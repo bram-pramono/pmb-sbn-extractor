@@ -1,0 +1,47 @@
+% I am touched deeply in places.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01 EQU speaker                                  % I         [0-1]
+%SBN% time.n.08   EQU now                                      % am        [2-4]
+%SBN% touch.v.01  Experiencer -2 Time -1 Degree +1 Location +2 % touched   [5-12]
+%SBN% deeply.r.01                                              % deeply  --in-- [13-22]
+%SBN% place.n.03                                               % places --.--   [23-30]
+
+% Incremental DRS
+
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:am
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[pss]\NP)
+----------
+tokens:touched
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←touch:touch.v.01(e1)','b1←Experiencer(e1,v3)']</b1>;(v2@e1)))
+cat: S[pss]\NP
+----------
+tokens:deeply
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←deeply:deeply.r.01(s1)','b1←Degree(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:in
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Location(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:places
+sem: λv1.<b1>[]:['b1←place:place.n.03(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

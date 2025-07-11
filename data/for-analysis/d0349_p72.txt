@@ -1,0 +1,49 @@
+% Looks like a walk did the trick.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% look_like.v.01 Time +1 Proposition &gt;1    % Looks  --like-- [0-10]
+%SBN% time.n.08      EQU now                   %            
+%SBN%                CONTINUATION &lt;0           %            
+%SBN% walk.n.01                                %  --a-- walk     [11-17]
+%SBN% do.v.03        Agent -1 Time +1 Theme +2 % did        [18-21]
+%SBN% time.n.08      TPR now                   %            
+%SBN% trick.n.01                               %  --the-- trick --.-- [22-32]
+
+% Incremental DRS
+
+tokens:Looks
+sem: λv1.λv2.(<b1>['b1←e1']:['b1←look_like:look_like.v.01(e1)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1=now','b3←Time(e1,t1)']</b3>;(v2@e1))))
+cat: S[dcl]/PP
+----------
+tokens:like
+sem: λv1.λv2.<b1>['b1←p1']:['b1←p1:(v1@λv3.<b2>[]:[]</b2>)','b1←Attribute(v2,p1)']</b1>
+cat: PP/S[dcl]
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:walk
+sem: λv1.<b1>[]:['b1←walk:walk.n.01(v1)']</b1>
+cat: N
+----------
+tokens:did
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←do:do.v.03(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:trick
+sem: λv1.<b1>[]:['b1←trick:trick.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

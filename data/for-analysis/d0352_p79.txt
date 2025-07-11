@@ -1,0 +1,170 @@
+% Sarah is not in a wheelchair, she is not big and strong, top half or bottom, and she does not speak with an American accent.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02     Name "Sarah"                    % Sarah         [0-5]
+%SBN% female.n.02     Name "Sarah"                    %               
+%SBN%                 NEGATION &lt;1                     %               
+%SBN% be.v.01         Theme -2 Time +1 Location +2    % is  --not--  --in--     [6-15]
+%SBN% time.n.08       EQU now                         %               
+%SBN% wheelchair.n.01                                 %  --a-- wheelchair --,-- [16-29]
+%SBN%                 NEGATION &lt;2                     %               
+%SBN% be.v.01         Theme -4 Time +1 Location +2    %               
+%SBN% time.n.08       EQU now                         %               
+%SBN% wheelchair.n.01                                 %               
+%SBN%                 CONTINUATION &lt;1                 %               
+%SBN% female.n.02     ANA -8                          % she           [81-84]
+%SBN% time.n.08       EQU now                         % does  --not--      [85-93]
+%SBN%                 NEGATION &lt;1                     %               
+%SBN% speak.v.03      Agent -2 Time -1 Manner +2      % speak  --with--    [94-104]
+%SBN% country.n.02    Name "America"                  %  --an-- American   [105-116]
+%SBN% accent.n.01     Attribute -1                    % accent --.--       [117-124]
+%SBN%                 CONTINUATION &lt;3                 %               
+%SBN% female.n.02     ANA -13                         % she           [30-33]
+%SBN% time.n.08       EQU now                         % is  --not--        [34-40]
+%SBN%                 NEGATION &lt;1                     %               
+%SBN% time.n.08       EQU now                         %               
+%SBN% big.a.01        AttributeOf -3 Time -2 Theme +3 % big  --and--       [41-48]
+%SBN% strong.a.01     AttributeOf -4 Time -2 Theme +1 % strong --,--  --top--   [49-60]
+%SBN% entity.n.01                                     % or            [66-68]
+%SBN% entity.n.01                                     %               
+%SBN%                 NEGATION &lt;1                     %               
+%SBN%                 NEGATION &lt;1                     %               
+%SBN% half.n.01       EQU -2                          % half          [61-65]
+%SBN%                 NEGATION &lt;2                     %               
+%SBN% bottom.n.02     EQU -3                          % bottom --,--  --and--   [69-80]
+%SBN%                 NEGATION &lt;4                     %               
+%SBN%                 NEGATION &lt;1                     %               
+%SBN% half.n.01       EQU -3                          %               
+%SBN%                 NEGATION &lt;2                     %               
+%SBN% bottom.n.02     EQU -4                          %               
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Sarah
+sem: λv1.<b1>[]:['b1←female:female.n.02(v1)','b1←Name(v1,sarah)']</b1>
+cat: N
+----------
+tokens:is
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←be:be.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1=now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:not
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:wheelchair
+sem: λv1.<b1>[]:['b1←wheelchair:wheelchair.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:she
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:is
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[adj]\NP)
+----------
+tokens:not
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[adj]\NP)/(S[adj]\NP)
+----------
+tokens:big
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←s1']:['b1←big:big.a.01(s1)','b1←Theme(s1,v5)','b1←AttributeOf(s1,v4)']</b1>;(v3@s1))))
+cat: (S[adj]\NP)/NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.λv5.((((v2@v3)@v4)@v5);(((v1@v3)@v4)@v5))
+cat: conj
+----------
+tokens:strong
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←s1']:['b1←strong:strong.a.01(s1)','b1←Theme(s1,v5)','b1←AttributeOf(s1,v4)']</b1>;(v3@s1))))
+cat: (S[adj]\NP)/NP
+----------
+tokens:,
+sem: λv1.v1
+cat: ((S[adj]\NP)/NP)\((S[adj]\NP)/NP)
+----------
+tokens:top
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:half
+sem: λv1.<b1>[]:['b1←half:half.n.01(v1)']</b1>
+cat: N
+----------
+tokens:or
+sem: λv1.λv2.λv3.(<b1>['b1←x1']:['b1←¬<b2>[]:["b2←¬(v1@λv5.<b4>[]:[\'b4←v5=x1\']</b4>)","b2←¬(v2@λv4.<b3>[]:[\'b3←v4=x1\']</b3>)"]</b2>','b1←entity:entity.n.01(x1)']</b1>;(v3@x1))
+cat: conj
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:bottom
+sem: λv1.<b1>[]:['b1←bottom:bottom.n.02(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.λv2.λv3.λv4.(((v2@v3)@v4);((v1@v3)@v4))
+cat: conj
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:she
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:does
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:not
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:speak
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←speak:speak.v.03(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[b]\NP)/PP
+----------
+tokens:with
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Manner(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:an
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:American
+sem: λv1.λv2.(<b2>['b1←x1']:['b1←country:country.n.02(x1)','b1←Name(x1,america)','b2←Attribute(v2,x1)']</b2>;(v1@v2))
+cat: N/N
+----------
+tokens:accent
+sem: λv1.<b1>[]:['b1←accent:accent.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

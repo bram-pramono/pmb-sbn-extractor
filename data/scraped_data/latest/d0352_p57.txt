@@ -1,0 +1,118 @@
+% He carries an axe as long as your arm and he can split a man from head to toe with it.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                                              % He         [0-2]
+%SBN% carry.v.01    Agent -1 Time +1 Theme +2                                % carries    [3-10]
+%SBN% time.n.08     EQU now                                                  %            
+%SBN% axe.n.01      Quantity +1                                              %  --an-- axe     [11-17]
+%SBN% quantity.n.01 EQU +1                                                   % as         [18-20]
+%SBN% long.r.01     Co-Theme +2                                              % long  --as--    [21-28]
+%SBN% person.n.01   EQU hearer                                               % your       [29-33]
+%SBN% arm.n.01      PartOf -1                                                % arm  --and--    [34-41]
+%SBN%               CONTINUATION &lt;1                                          %            
+%SBN% male.n.02     ANA -8                                                   % he  --can--     [42-48]
+%SBN%               POSSIBILITY &lt;1                                           %            
+%SBN% split.v.02    Agent -1 Theme +1 Source +2 Destination +3 Instrument +4 % split      [49-54]
+%SBN% man.n.01                                                               %  --a-- man  --from-- [55-65]
+%SBN% head.n.01                                                              % head  --to--    [66-73]
+%SBN% toe.n.01                                                               % toe  --with--   [74-82]
+%SBN% entity.n.01   ANA -10                                                  % it --.--        [83-86]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:carries
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←carry:carry.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1=now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:an
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:axe
+sem: λv1.<b1>[]:['b1←axe:axe.n.01(v1)']</b1>
+cat: N
+----------
+tokens:as
+sem: λv1.λv2.λv3.(<b1>['b1←x1','b1←x2']:['b1←quantity:quantity.n.01(x1)','b1←Quantity(v3,x1)']</b1>;(((v1@λv4.<b2>[]:['b2←x1=v4']</b2>)@x2);(v2@v3)))
+cat: (N\N)/(N\N)
+----------
+tokens:long
+sem: λv1.λv2.λv3.((v2@v3);(<b1>[]:['b1←long:long.r.01(v3)']</b1>;(v1@v3)))
+cat: (N\N)/PP
+----------
+tokens:as
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Co-Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:your
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;((v1@λv3.<b2>['b2←x2']:['b2←person:person.n.01(x2)','b2←x2=hearer','b2←PartOf(v3,x2)']</b2>)@x1))∗(v2@x1))
+cat: NP/(N/PP)
+----------
+tokens:arm
+sem: λv1.λv2.(<b1>[]:['b1←arm:arm.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:can
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←◊((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:split
+sem: λv1.λv2.λv3.λv4.λv5.(v4@λv6.(v1@λv7.(<b1>['b1←e1']:['b1←split:split.v.02(e1)','b1←Theme(e1,v7)','b1←Agent(e1,v6)']</b1>;((v2@e1);((v3@e1);(v5@e1))))))
+cat: (((S[b]\NP)/PP)/PP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:man
+sem: λv1.<b1>[]:['b1←man:man.n.01(v1)']</b1>
+cat: N
+----------
+tokens:from
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Source(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:head
+sem: λv1.<b1>[]:['b1←head:head.n.01(v1)']</b1>
+cat: N
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:toe
+sem: λv1.(<b1>['b1←x1']:['b1←toe:toe.n.01(x1)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:with
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Instrument(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

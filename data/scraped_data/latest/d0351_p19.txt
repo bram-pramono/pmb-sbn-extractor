@@ -1,0 +1,77 @@
+% I mostly just pick a dry white and drink it to get drunk.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01     EQU speaker                         % I  --mostly--  [0-8]
+%SBN% just.r.01                                           % just      [9-13]
+%SBN% pick.v.01       Agent -2 Manner -1 Time +1 Theme +3 % pick      [14-18]
+%SBN% time.n.08       EQU now                             %           
+%SBN% dry.a.06        AttributeOf +1                      %  --a-- dry     [19-24]
+%SBN% white_wine.n.01                                     % white  --and-- [25-34]
+%SBN% drink.v.01      Agent -6 Time +1 Theme +2 Goal +3   % drink     [35-40]
+%SBN% time.n.08       EQU now                             %           
+%SBN% entity.n.01     ANA -3                              % it  --to--     [41-46]
+%SBN% get.v.02        Experiencer -1 Stimulus +1          % get       [47-50]
+%SBN% drunk.a.02      AttributeOf -2                      % drunk --.--    [51-57]
+
+% Incremental DRS
+
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:mostly
+sem: λv1.v1
+cat: (S\NP)/(S\NP)
+----------
+tokens:just
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←just:just.r.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)/(S\NP)
+----------
+tokens:pick
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←pick:pick.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1=now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:dry
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←dry:dry.a.06(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:white
+sem: λv1.<b1>[]:['b1←white_wine:white_wine.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:drink
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←drink:drink.v.01(e1)','b1←Agent(e1,v5)','b1←Theme(e1,v6)']</b1>;(((v2@λv7.(v7@v6))@λv8.<b2>[]:['b2←Goal(e1,v8)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1=now','b4←Time(e1,t1)']</b4>;(v4@e1))))))
+cat: ((S[dcl]\NP)/(S[to]\NP))/NP
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:get
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←get:get.v.02(e1)','b1←Experiencer(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Stimulus(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[adj]\NP)
+----------
+tokens:drunk
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←drunk:drunk.a.02(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

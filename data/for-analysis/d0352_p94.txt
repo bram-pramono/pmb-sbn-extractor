@@ -1,0 +1,156 @@
+% From here she could not see the gate but she knew that it would stand wide and gaping, welcoming the night in, and all that it held.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02                                                     % she  --could--  --not--     [10-23]
+%SBN%               NEGATION &lt;1                                       %                   
+%SBN%               POSSIBILITY &lt;1                                    %                   
+%SBN% location.n.01 LocationOf speaker                                %  --From-- here         [0-9]
+%SBN% see.v.01      Experiencer -2 Location -1 Stimulus +1            % see               [24-27]
+%SBN% gate.n.01                                                       %  --the-- gate          [28-36]
+%SBN%               CONTRAST &lt;1                                       %                   
+%SBN% location.n.01 LocationOf speaker                                %                   
+%SBN% female.n.02   ANA -5                                            %  --but-- she           [37-44]
+%SBN% know.v.01     Location -2 Proposition &gt;1 Experiencer -1 Time +1 % knew              [45-49]
+%SBN% time.n.08     TPR now                                           %                   
+%SBN%               CONTINUATION &lt;0                                   %                   
+%SBN% entity.n.01                                                     %  --that-- it  --would--     [50-63]
+%SBN% stand.v.01    Theme -1 Attribute +1                             % stand             [64-69]
+%SBN% wide.a.01     AttributeOf -2                                    % wide  --and--          [70-78]
+%SBN%               CONTINUATION &lt;5                                   %                   
+%SBN%               NEGATION &lt;1                                       %                   
+%SBN% entity.n.01                                                     % all               [115-118]
+%SBN%               NEGATION &lt;1                                       %                   
+%SBN% gaping.a.01   AttributeOf -1 Causer +1                          % gaping --,--           [79-86]
+%SBN% welcome.v.02  Agent -2 Theme +1                                 % welcoming         [87-96]
+%SBN% night.n.01                                                      %  --the-- night  --in,--  --and-- [97-114]
+%SBN% entity.n.01   EQU -4                                            % that              [119-123]
+%SBN% entity.n.01   ANA -2                                            % it                [124-126]
+%SBN% hold.v.04     Theme -2 Path -1 Time +1                          % held --.--             [127-132]
+%SBN% time.n.08     TPR now                                           %                   
+
+% Incremental DRS
+
+tokens:From
+sem: λv1.λv2.λv3.(v2@λv4.((v1@λv5.<b1>[]:['b1←Location(v4,v5)']</b1>);(v3@v4)))
+cat: (S/S)/NP
+----------
+tokens:here
+sem: λv1.(<b1>['b1←x1']:['b1←location:location.n.01(x1)','b1←LocationOf(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:she
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:could
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←◊((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:not
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:see
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←see:see.v.01(e1)','b1←Stimulus(e1,v5)','b1←Experiencer(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:gate
+sem: λv1.<b1>[]:['b1←gate:gate.n.01(v1)']</b1>
+cat: N
+----------
+tokens:but
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:she
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:knew
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←know:know.v.01(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,p1)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[em]
+----------
+tokens:that
+sem: λv1.v1
+cat: S[em]/S[dcl]
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:would
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:stand
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←stand:stand.v.01(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Attribute(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[adj]\NP)
+----------
+tokens:wide
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←wide:wide.a.01(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:gaping
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←gaping:gaping.a.01(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:,
+sem: λv1.λv2.λv3.λv4.(v3@λv5.((v2@λv6.(v6@v5))@λv7.((v1@λv8.(v8@v5))@λv9.(<b1>[]:['b1←Causer(v7,v9)']</b1>;(v4@v7)))))
+cat: ((S\NP)\(S\NP))/(S[ng]\NP)
+----------
+tokens:welcoming
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←welcome:welcome.v.02(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;(v4@e1))))
+cat: ((S[ng]\NP)/PR)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:night
+sem: λv1.<b1>[]:['b1←night:night.n.01(v1)']</b1>
+cat: N
+----------
+tokens:in
+sem: in
+cat: PR
+----------
+tokens:,
+sem: λv1.v1
+cat: PR\PR
+----------
+tokens:and
+sem: λv1.v1
+cat: S/S
+----------
+tokens:all
+sem: λv1.<b1>[]:["b1←¬<b2>['b2←x1']:['b2←¬(v1@x1)','b2←entity:entity.n.01(x1)']</b2>"]</b1>
+cat: NP
+----------
+tokens:that
+sem: λv1.λv2.λv3.(v2@λv4.(((v1@λv5.(v5@v4))@λv6.<b1>[]:[]</b1>);(v3@v4)))
+cat: (NP\NP)/(S[dcl]/NP)
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:held
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←hold:hold.v.04(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Path(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:.
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------

@@ -1,0 +1,114 @@
+% Colin and Julie walked across a parade ground past a lot of men walking around in uniform carrying guns.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02          Name "Colin"                     % Colin                [0-5]
+%SBN% entity.n.01        Sub -1 Sub +1                    % and                  [6-9]
+%SBN% female.n.02        Name "Julie"                     % Julie                [10-15]
+%SBN% walk.v.04          Theme -2 Time +1 Path +2 Path +3 % walked  --across--        [16-29]
+%SBN% time.n.08          TPR now                          %                      
+%SBN% parade_ground.n.01                                  %  --a-- parade ground  --past-- [30-50]
+%SBN% entity.n.01        Quantity + QuantityOf +1         %  --a-- lot  --of--             [51-59]
+%SBN% man.n.01                                            % men                  [60-63]
+%SBN% walk.v.01          Theme -1 Manner +1               % walking  --around--  --in--    [64-81]
+%SBN% uniform.n.01                                        % uniform              [82-89]
+%SBN% carry.v.02         Agent -3 Theme +1                % carrying             [90-98]
+%SBN% gun.n.01                                            % guns --.--                [99-104]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Colin
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,colin)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;((v2@λv4.<b2>[]:['b2←Sub(x1,v4)']</b2>);((v1@λv5.<b3>[]:['b3←Sub(x1,v5)']</b3>);(v3@x1))))
+cat: conj
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Julie
+sem: λv1.<b1>[]:['b1←female:female.n.02(v1)','b1←Name(v1,julie)']</b1>
+cat: N
+----------
+tokens:walked
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←walk:walk.v.04(e1)','b1←Time(e1,t1)','b1←Theme(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:across
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Path(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:parade~ground
+sem: λv1.<b1>[]:['b1←parade_ground:parade_ground.n.01(v1)']</b1>
+cat: N
+----------
+tokens:past
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Path(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:lot
+sem: λv1.λv2.(<b1>[]:['b1←entity:entity.n.01(v2)','b1←Quantity(v2,+)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←QuantityOf(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:men
+sem: λv1.λv2.(<b1>[]:['b1←man:man.n.01(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[ng]\NP)
+----------
+tokens:walking
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←walk:walk.v.01(e1)','b1←Theme(e1,v3)']</b1>;(v2@e1)))
+cat: S[ng]\NP
+----------
+tokens:around
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:in
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Manner(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:uniform
+sem: λv1.<b1>[]:['b1←uniform:uniform.n.01(v1)']</b1>
+cat: N
+----------
+tokens:carrying
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);(v1@λv7.(<b1>['b1←e1']:['b1←carry:carry.v.02(e1)','b1←Theme(e1,v7)','b1←Agent(e1,v5)']</b1>;(v4@e1)))))
+cat: ((S[ng]\NP)\(S[ng]\NP))/NP
+----------
+tokens:guns
+sem: λv1.(<b1>['b1←x1']:['b1←gun:gun.n.01(x1)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

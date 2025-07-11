@@ -1,0 +1,103 @@
+% A smart efficient looking girl in a military uniform sat behind a desk reading Heat magazine.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% smart.a.01     AttributeOf +3               %  --A-- smart    [0-7]
+%SBN% efficient.a.01 AttributeOf +2               % efficient  [8-17]
+%SBN% looking.a.01   Attribute -1 Theme +1        % looking    [18-25]
+%SBN% girl.n.01      User +2                      % girl  --in--    [26-33]
+%SBN% military.a.02  AttributeOf +1               %  --a-- military [34-44]
+%SBN% uniform.n.01                                % uniform    [45-52]
+%SBN% sit.v.01       Theme -3 Time +1 Location +2 % sat        [53-56]
+%SBN% time.n.08      TPR now                      %            
+%SBN% location.n.01  SXP +1                       % behind     [57-63]
+%SBN% desk.n.01                                   %  --a-- desk     [64-70]
+%SBN% read.v.01      Experiencer -7 Stimulus +2   % reading    [71-78]
+%SBN% company.n.01   Name "Heat"                  % Heat       [79-83]
+%SBN% magazine.n.01  Creator -1                   % magazine --.--  [84-93]
+
+% Incremental DRS
+
+tokens:A
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:ø
+sem: λv1.λv2.λv3.((v2@v3);((v1@λv4.(v4@v3))@λv5.<b1>[]:[]</b1>))
+cat: (N/N)/(S[adj]\NP)
+----------
+tokens:smart
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←smart:smart.a.01(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:ø
+sem: λv1.λv2.λv3.((v2@v3);((v1@λv4.(v4@v3))@λv5.<b1>[]:[]</b1>))
+cat: (N\N)/(S[ng]\NP)
+----------
+tokens:efficient
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←efficient:efficient.a.01(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:looking
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←s1']:['b1←looking:looking.a.01(s1)','b1←Theme(s1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Attribute(s1,v6)']</b2>);(v3@s1))))
+cat: (S[ng]\NP)\(S[adj]\NP)
+----------
+tokens:girl
+sem: λv1.λv2.(<b1>[]:['b1←girl:girl.n.01(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[ng]\NP)
+----------
+tokens:in
+sem: λv1.λv2.λv3.((v2@v3);(v1@λv4.<b1>[]:['b1←User(v3,v4)']</b1>))
+cat: (N\N)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:military
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←military:military.a.02(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:uniform
+sem: λv1.<b1>[]:['b1←uniform:uniform.n.01(v1)']</b1>
+cat: N
+----------
+tokens:sat
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←sit:sit.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:behind
+sem: λv1.λv2.(v1@λv3.<b1>['b1←x1']:['b1←location:location.n.01(x1)','b1←SXP(x1,v3)','b1←Location(v2,x1)']</b1>)
+cat: PP/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:desk
+sem: λv1.<b1>[]:['b1←desk:desk.n.01(v1)']</b1>
+cat: N
+----------
+tokens:reading
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←read:read.v.01(e1)','b1←Stimulus(e1,v5)','b1←Experiencer(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:Heat
+sem: λv1.λv2.(<b2>['b1←x1']:['b1←company:company.n.01(x1)','b1←Name(x1,heat)','b2←Creator(v2,x1)']</b2>;(v1@v2))
+cat: N/N
+----------
+tokens:magazine
+sem: λv1.<b1>[]:['b1←magazine:magazine.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

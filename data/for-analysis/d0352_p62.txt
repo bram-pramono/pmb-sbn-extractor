@@ -1,0 +1,115 @@
+% They have never come this way before and so the hour of their arrival is strange if they wish to trade.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01                                     % They  --have--  --never--        [0-15]
+%SBN%              NEGATION &lt;1                        %                        
+%SBN% come.v.01    Theme -1 Time +1 Location +2       % come                   [16-20]
+%SBN% time.n.08    TPR now                            %                        
+%SBN% way.n.03                                        %  --this-- way  --before--  --and--  --so-- [21-43]
+%SBN%              CONTINUATION &lt;2                    %                        
+%SBN% hour.n.03    Sub +2                             %  --the-- hour  --of--            [44-55]
+%SBN% person.n.01  ANA -5                             % their                  [56-61]
+%SBN% arrival.n.02 User -1                            % arrival                [62-69]
+%SBN% be.v.01      Theme -3 Time +1 Co-Theme +2       % is                     [70-72]
+%SBN% time.n.08    EQU now                            %                        
+%SBN% strange.a.01 AttributeOf -5                     % strange  --if--             [73-83]
+%SBN%              PRECONDITION &lt;1                    %                        
+%SBN% person.n.01  EQU -10                            % they                   [84-88]
+%SBN% wish.v.01    Experiencer -1 Time +1 Stimulus +2 % wish  --to--                [89-96]
+%SBN% time.n.08    EQU now                            %                        
+%SBN% trade.v.01   Agent -3                           % trade --.--                 [97-103]
+
+% Incremental DRS
+
+tokens:They
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:have
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:never
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:come
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←come:come.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[pt]\NP
+----------
+tokens:this
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(<b2>[]:['b2←Location(v5,x1)']</b2>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/N
+----------
+tokens:way
+sem: λv1.<b1>[]:['b1←way:way.n.03(v1)']</b1>
+cat: N
+----------
+tokens:before
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:so
+sem: λv1.v1
+cat: S/S
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:hour
+sem: λv1.λv2.(<b1>[]:['b1←hour:hour.n.03(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Sub(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:their
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←User(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:arrival
+sem: λv1.λv2.(<b1>[]:['b1←arrival:arrival.n.02(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:is
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←be:be.v.01(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Co-Theme(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1=now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[adj]\NP)
+----------
+tokens:strange
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←strange:strange.a.01(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:if
+sem: λv1.λv2.λv3.λv4.<>[]:[]</>
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:they
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:wish
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←wish:wish.v.01(e1)','b1←Experiencer(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Stimulus(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1=now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:trade
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←trade:trade.v.01(e1)','b1←Agent(e1,v3)']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

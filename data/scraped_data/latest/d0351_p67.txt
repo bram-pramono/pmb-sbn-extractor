@@ -1,0 +1,90 @@
+% Colin drove into the garage to wash the truck and fill it with petrol.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02   Name "Colin"                            % Colin         [0-5]
+%SBN% drive.v.02  Agent -1 Time +2 Destination +4 Goal +6 % drove  --into--    [6-16]
+%SBN% drive.v.02  Agent -2 Time +2 Destination +4 Goal +7 %               
+%SBN% time.n.08   TPR now                                 %               
+%SBN% time.n.08   TPR now                                 %               
+%SBN% garage.n.02                                         %  --the-- garage  --to-- [17-30]
+%SBN% garage.n.02                                         %               
+%SBN% wash.v.01   Agent -7 Patient +1                     % wash          [31-35]
+%SBN% truck.n.01                                          %  --the-- truck  --and-- [36-49]
+%SBN% fill.v.01   Agent -9 Theme +1 Instrument +2         % fill          [50-54]
+%SBN% entity.n.01 ANA -2                                  % it  --with--       [55-62]
+%SBN% petrol.n.01                                         % petrol --.--       [63-70]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Colin
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,colin)']</b1>
+cat: N
+----------
+tokens:drove
+sem: λv1.λv2.λv3.λv4.(v3@λv5.((v2@λv6.(v6@v5))@λv7.(<b1>['b1←e1']:['b1←drive:drive.v.02(e1)','b1←Goal(e1,v7)','b1←Agent(e1,v5)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/(S[to]\NP))/PP
+----------
+tokens:into
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:garage
+sem: λv1.<b1>[]:['b1←garage:garage.n.02(v1)']</b1>
+cat: N
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:wash
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←wash:wash.v.01(e1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:truck
+sem: λv1.<b1>[]:['b1←truck:truck.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:fill
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←fill:fill.v.01(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(v4@e1)))))
+cat: ((S[b]\NP)/PP)/NP
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:with
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Instrument(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:petrol
+sem: λv1.<b1>[]:['b1←petrol:petrol.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

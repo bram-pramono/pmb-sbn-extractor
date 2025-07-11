@@ -1,0 +1,109 @@
+% I didn't read the local papers and neither did my parents so I had not heard about it.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01 EQU speaker               % I                  [0-1]
+%SBN% time.n.08   TPR now                   % did --n't--             [2-8]
+%SBN%             NEGATION &lt;1               %                    
+%SBN% read.v.01   Agent -2 Time -1 Theme +2 % read               [9-13]
+%SBN% local.a.01  AttributeOf +1            %  --the-- local          [14-23]
+%SBN% paper.n.03                            % papers  --and--  --neither-- [24-42]
+%SBN%             CONTINUATION &lt;2           %                    
+%SBN%             NEGATION &lt;1               %                    
+%SBN% read.v.01   Time +1 Agent +3          % did                [43-46]
+%SBN% time.n.08   TPR now                   %                    
+%SBN% person.n.01 EQU speaker               % my                 [47-49]
+%SBN% person.n.01 Of -1 Role +1             % parents  --so--         [50-60]
+%SBN% parent.n.01                           %                    
+%SBN%             EXPLANATION &lt;1            %                    
+%SBN% person.n.01 EQU speaker               % I  --had--  --not--          [61-70]
+%SBN%             NEGATION &lt;1               %                    
+%SBN% hear.v.02   Agent -1 Time +1 Theme +2 % heard  --about--        [71-82]
+%SBN% time.n.08   TPR now                   %                    
+%SBN% entity.n.01                           % it --.--                [83-86]
+
+% Incremental DRS
+
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:did
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:n't
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:read
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←read:read.v.01(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:local
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←local:local.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:papers
+sem: λv1.<b1>[]:['b1←paper:paper.n.03(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:neither
+sem: λv1.λv2.<b1>[]:['b1←¬(v1@v2)']</b1>
+cat: S[dcl]/S[dcl]
+----------
+tokens:did
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←read:read.v.01(e1)','b1←Time(e1,t1)','b1←Agent(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]/NP
+----------
+tokens:my
+sem: λv1.λv2.((<b1>['b1←x1','b1←x2']:['b1←Of(x1,x2)','b1←person:person.n.01(x2)','b1←Equal(x2,speaker)']</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:parents
+sem: λv1.<b1>['b1←x1']:['b1←parent:parent.n.01(x1)','b1←person:person.n.01(v1)','b1←Role(v1,x1)']</b1>
+cat: N
+----------
+tokens:so
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: (S\S)/S[dcl]
+----------
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:not
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:heard
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←hear:hear.v.02(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[pt]\NP)/PP
+----------
+tokens:about
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

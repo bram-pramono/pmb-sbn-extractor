@@ -1,0 +1,130 @@
+% Martin decided to step in when they asked everyone but Nigel along for a pint after work on Friday.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02    Name "Martin"                              % Martin              [0-6]
+%SBN% decide.v.01  Agent -1 Time +1 Goal +2                   % decided  --to--          [7-17]
+%SBN% time.n.08    TPR now                                    %                     
+%SBN% step_in.v.01 Theme -3                                   % step  --in--  --when--        [18-30]
+%SBN% person.n.01                                             % they                [31-35]
+%SBN% ask.v.02     Agent -1 Time +1 TIN -4 Topic +2 Theme +3  % asked               [36-41]
+%SBN% time.n.08    TPR now                                    %                     
+%SBN% person.n.01                                             %  --every--one            [42-50]
+%SBN% pint.n.01    Time +1 Time +3                            %  --a-- pint              [71-77]
+%SBN% time.n.08    TSU +1                                     % after               [78-83]
+%SBN% work.n.01                                               % work  --on--             [84-91]
+%SBN% time.n.08    DayOfWeek friday                           % Friday --.--             [92-99]
+%SBN%              NEGATION &lt;1                                %                     
+%SBN% ask.v.02     Agent -8 Time +1 TIN -11 Topic +2 Theme +3 %                     
+%SBN% time.n.08    TPR now                                    %                     
+%SBN% male.n.02    Name "Nigel"                               %  --but-- Nigel  --along--  --for-- [51-70]
+%SBN% pint.n.01    Time +1 Time +3                            %                     
+%SBN% time.n.08    TSU +1                                     %                     
+%SBN% work.n.01                                               %                     
+%SBN% time.n.08    DayOfWeek friday                           %                     
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Martin
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,martin)']</b1>
+cat: N
+----------
+tokens:decided
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←decide:decide.v.01(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Goal(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:step
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←step_in:step_in.v.01(e1)','b1←Theme(e1,v4)']</b1>;(v3@e1)))
+cat: (S[b]\NP)/PR
+----------
+tokens:in
+sem: in
+cat: PR
+----------
+tokens:when
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.((v1@λv6.<b1>[]:['b1←v6⊏v5']</b1>);(v4@v5)))
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:they
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:asked
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←ask:ask.v.02(e1)','b1←Topic(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/PP)/NP
+----------
+tokens:every
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:one
+sem: λv1.<b1>[]:['b1←person:person.n.01(v1)']</b1>
+cat: N
+----------
+tokens:but
+sem: λv1.λv2.λv3.((v2@v3);<b1>[]:['b1←¬(v1@v3)']</b1>)
+cat: conj
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Nigel
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,nigel)']</b1>
+cat: N
+----------
+tokens:along
+sem: λv1.v1
+cat: PP/PP
+----------
+tokens:for
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:pint
+sem: λv1.<b1>[]:['b1←pint:pint.n.01(v1)']</b1>
+cat: N
+----------
+tokens:after
+sem: λv1.λv2.λv3.((v2@v3);(v1@λv4.<b1>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻v4','b1←Time(v3,t1)']</b1>))
+cat: (N\N)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:work
+sem: λv1.<b1>[]:['b1←work:work.n.01(v1)']</b1>
+cat: N
+----------
+tokens:on
+sem: λv1.λv2.λv3.((v2@v3);(v1@λv4.<b1>[]:['b1←Time(v3,v4)']</b1>))
+cat: (N\N)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:Friday
+sem: λv1.<b1>[]:['b1←time:time.n.08(v1)','b1←DayOfWeek(v1,friday)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

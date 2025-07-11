@@ -1,0 +1,152 @@
+% In the distance, the walls appeared as the outline of a great dragon, curled and sleeping, back to the wind and wings folded.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% distance.n.01 ContentOf +1                             %  --In--  --the-- distance [0-15]
+%SBN% entity.n.01                                            % ,               [15-16]
+%SBN% wall.n.01                                              %  --the-- walls       [17-26]
+%SBN% appear.v.02   Location -3 Theme -1 Time +1 Co-Theme +2 % appeared  --as--     [27-38]
+%SBN% time.n.08     TPR now                                  %                 
+%SBN% outline.n.01  SubOf +3 SubOf +4                        %  --the-- outline  --of--  [39-53]
+%SBN% great.a.01    AttributeOf +2                           %  --a-- great         [54-61]
+%SBN% great.a.01    AttributeOf +2                           %                 
+%SBN% dragon.n.01                                            % dragon --,--         [62-69]
+%SBN% dragon.n.01                                            %                 
+%SBN% curl.v.01     Theme -5                                 % curled  --and--      [70-80]
+%SBN% sleep.v.01    Agent -6                                 % sleeping --,--       [81-90]
+%SBN%               CONTINUATION &lt;1                          %                 
+%SBN% event.v.01    Participant +1                           %                 
+%SBN% back.n.01     Destination +1 Destination +2            % back  --to--         [91-98]
+%SBN% wind.n.01                                              %  --the-- wind  --and--    [99-111]
+%SBN% wing.n.01                                              % wings           [112-117]
+%SBN% fold.v.01     Theme -1                                 % folded --.--         [118-125]
+
+% Incremental DRS
+
+tokens:In
+sem: λv1.λv2.λv3.(v2@λv4.((v1@λv5.<b1>[]:['b1←Location(v4,v5)']</b1>);(v3@v4)))
+cat: (S/S)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:distance
+sem: λv1.<b1>[]:['b1←distance:distance.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)','b1←ContentOf(v3,x1)']</b1>;(v2@v3)))
+cat: NP\NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:walls
+sem: λv1.<b1>[]:['b1←wall:wall.n.01(v1)']</b1>
+cat: N
+----------
+tokens:appeared
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←appear:appear.v.02(e1)','b1←Time(e1,t1)','b1←Theme(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:as
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Co-Theme(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:outline
+sem: λv1.λv2.(<b1>[]:['b1←outline:outline.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←SubOf(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:great
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←great:great.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:dragon
+sem: λv1.<b1>[]:['b1←dragon:dragon.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.v1
+cat: PP\PP
+----------
+tokens:ø
+sem: λv1.λv2.λv3.((v2@v3);((v1@λv4.(v4@v3))@λv5.<b1>[]:[]</b1>))
+cat: (N\N)/(S[pss]\NP)
+----------
+tokens:curled
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←curl:curl.v.01(e1)','b1←Theme(e1,v3)']</b1>;(v2@e1)))
+cat: S[pss]\NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(((v2@v3)@v4);((v1@v3)@v4))
+cat: conj
+----------
+tokens:ø
+sem: λv1.λv2.λv3.((v2@v3);((v1@λv4.(v4@v3))@λv5.<b1>[]:[]</b1>))
+cat: (N\N)/(S[ng]\NP)
+----------
+tokens:sleeping
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←sleep:sleep.v.01(e1)','b1←Agent(e1,v3)']</b1>;(v2@e1)))
+cat: S[ng]\NP
+----------
+tokens:,
+sem: λv1.v1
+cat: (N\N)\(N\N)
+----------
+tokens:back
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←back:back.n.01(x1)']</b1>;((v1@x1);(v2@x1)))
+cat: NP/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:wind
+sem: λv1.<b1>[]:['b1←wind:wind.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.((v2@v3);(v1@v3))
+cat: conj
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:wings
+sem: λv1.<b1>[]:['b1←wing:wing.n.01(v1)']</b1>
+cat: N
+----------
+tokens:ø
+sem: λv1.λv2.λv3.((v2@v3);((v1@λv4.(v4@v3))@λv5.<b1>[]:[]</b1>))
+cat: (N\N)/(S[pss]\NP)
+----------
+tokens:folded
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←fold:fold.v.01(e1)','b1←Theme(e1,v3)']</b1>;(v2@e1)))
+cat: S[pss]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: NP\NP
+----------

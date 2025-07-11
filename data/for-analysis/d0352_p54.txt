@@ -1,0 +1,111 @@
+% They stop in the nearest village to water the horses but the men must do without if they mind sharing.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01                                       % They             [0-4]
+%SBN% stop.v.01    Agent -1 Time +1 Location +4 Goal +5 % stop  --in--          [5-12]
+%SBN% time.n.08    EQU now                              %                  
+%SBN% near.a.01    Degree +1                            %  --the-- nearest      [13-24]
+%SBN% most.r.01                                         %                  
+%SBN% village.n.01 Attribute -2                         % village  --to--       [25-35]
+%SBN% water.v.02   Agent -6 Theme +1                    % water            [36-41]
+%SBN% horse.n.01                                        %  --the-- horses       [42-52]
+%SBN%              CONTRAST &lt;1                          %                  
+%SBN% man.n.01                                          %  --but--  --the-- men  --must-- [53-69]
+%SBN%              NEGATION &lt;1                          %                  
+%SBN%              NECESSITY &lt;1                         %                  
+%SBN% do.v.11      Agent -1                             % do  --without--  --if--    [70-83]
+%SBN% person.n.01  EQU -2                               % they             [84-88]
+%SBN% mind.v.01    Experiencer -1 Time +1 Stimulus +2   % mind             [89-93]
+%SBN% time.n.08    EQU now                              %                  
+%SBN% share.v.02   Agent -3                             % sharing --.--         [94-102]
+
+% Incremental DRS
+
+tokens:They
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:stop
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←stop:stop.v.01(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Goal(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1=now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:in
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Location(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:nearest
+sem: λv1.λv2.(<b1>['b1←s1','b1←s2']:['b1←most:most.r.01(s2)','b1←near:near.a.01(s1)','b1←Degree(s1,s2)','b1←Attribute(v2,s1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:village
+sem: λv1.<b1>[]:['b1←village:village.n.01(v1)']</b1>
+cat: N
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:water
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←water:water.v.02(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:horses
+sem: λv1.<b1>[]:['b1←horse:horse.n.01(v1)']</b1>
+cat: N
+----------
+tokens:but
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:men
+sem: λv1.<b1>[]:['b1←man:man.n.01(v1)']</b1>
+cat: N
+----------
+tokens:must
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←□((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:do
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←do:do.v.11(e1)','b1←Agent(e1,v3)']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:without
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:if
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.((v1@λv6.<b1>[]:[]</b1>);(v4@v5)))
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:they
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:mind
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←mind:mind.v.01(e1)','b1←Experiencer(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Stimulus(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1=now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:sharing
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←share:share.v.02(e1)','b1←Agent(e1,v3)']</b1>;(v2@e1)))
+cat: S[ng]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

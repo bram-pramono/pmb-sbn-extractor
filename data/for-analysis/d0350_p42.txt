@@ -1,0 +1,64 @@
+% You give me a lead and I'll follow it.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01 EQU hearer                             % You        [0-3]
+%SBN% give.v.01   Agent -1 Time +1 Recipient +2 Theme +3 % give       [4-8]
+%SBN% time.n.08   EQU now                                %            
+%SBN% person.n.01 EQU speaker                            % me         [9-11]
+%SBN% lead.n.03                                          %  --a-- lead  --and-- [12-22]
+%SBN%             CONTINUATION &lt;1                        %            
+%SBN% person.n.01 EQU speaker                            % I          [23-24]
+%SBN% time.n.08   TSU now                                % 'll        [24-27]
+%SBN% follow.v.04 Agent -2 Time -1 Theme +1              % follow     [28-34]
+%SBN% entity.n.01 ANA -4                                 % it --.--        [35-38]
+
+% Incremental DRS
+
+tokens:You
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:give
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(v1@λv7.(<b1>['b1←e1','b2←t1']:['b1←give:give.v.01(e1)','b1←Time(e1,t1)','b1←Recipient(e1,v7)','b1←Theme(e1,v6)','b1←Agent(e1,v5)','b2←time:time.n.08(t1)','b2←t1=now']</b1>;(v4@e1)))))
+cat: ((S[dcl]\NP)/NP)/NP
+----------
+tokens:me
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:lead
+sem: λv1.<b1>[]:['b1←lead:lead.n.03(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:'ll
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:follow
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←follow:follow.v.04(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

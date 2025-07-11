@@ -1,0 +1,62 @@
+% Albert spoke before Barbara had a chance to.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02   Name "Albert"                    % Albert       [0-6]
+%SBN% speak.v.01  Agent -1 Time +1                 % spoke  --before-- [7-19]
+%SBN% time.n.08   TPR now                          %              
+%SBN% female.n.02 Name "Barbara"                   % Barbara      [20-27]
+%SBN% have.v.01   Pivot -1 TPR -3 Time +1 Theme +2 % had          [28-31]
+%SBN% time.n.08   TPR now                          %              
+%SBN% chance.n.01                                  %  --a-- chance     [32-40]
+%SBN% speak.a.01  Theme -1                         % to --.--          [41-44]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Albert
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,albert)']</b1>
+cat: N
+----------
+tokens:spoke
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←speak:speak.v.01(e1)','b1←Time(e1,t1)','b1←Agent(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:before
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.((v1@λv6.<b1>[]:['b1←v6≺v5']</b1>);(v4@v5)))
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Barbara
+sem: λv1.<b1>[]:['b1←female:female.n.02(v1)','b1←Name(v1,barbara)']</b1>
+cat: N
+----------
+tokens:had
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←have:have.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Pivot(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:chance
+sem: λv1.λv2.(<b1>[]:['b1←chance:chance.n.01(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←speak:speak.a.01(s1)','b1←Theme(s1,v3)']</b1>;(v2@s1)))
+cat: S[to]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

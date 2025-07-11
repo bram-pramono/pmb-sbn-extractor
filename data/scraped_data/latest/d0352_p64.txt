@@ -1,0 +1,129 @@
+% He made a funny noise and shook his head and raised his hands to indicate that he was useless at describing people.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                  % He         [0-2]
+%SBN% make.v.16     Agent -1 Time +1 Theme +3    % made       [3-7]
+%SBN% time.n.08     TPR now                      %            
+%SBN% funny.a.02    AttributeOf +1               %  --a-- funny    [8-15]
+%SBN% noise.n.01                                 % noise  --and--  [16-25]
+%SBN% shake.v.09    Agent -5 Time +1 Patient +3  % shook      [26-31]
+%SBN% time.n.08     TPR now                      %            
+%SBN% male.n.02     ANA -7                       % his        [32-35]
+%SBN% head.n.01     PartOf -1                    % head  --and--   [36-44]
+%SBN% raise.v.02    Agent -9 Time +1 Patient +3  % raised     [45-51]
+%SBN% time.n.08     TPR now                      %            
+%SBN% male.n.02     ANA -11                      % his        [52-55]
+%SBN% hand.n.01     PartOf -1                    % hands  --to--   [56-64]
+%SBN%               CONTINUATION &lt;1              %            
+%SBN% indicate.v.03 Proposition &gt;1 Agent -13     % indicate   [65-73]
+%SBN%               CONTINUATION &lt;0              %            
+%SBN% male.n.02     ANA -14                      %  --that-- he    [74-81]
+%SBN% be.v.01       Theme -1 Time +1 Co-Theme +2 % was        [82-85]
+%SBN% time.n.08     TPR now                      %            
+%SBN% useless.a.01  AttributeOf -3 Theme +2      % useless    [86-93]
+%SBN% entity.n.01                                % at         [94-96]
+%SBN% describe.v.02 Agent -1 Patient +1          % describing [97-107]
+%SBN% person.n.01                                % people --.--    [108-115]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:made
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←make:make.v.16(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:funny
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←funny:funny.a.02(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:noise
+sem: λv1.<b1>[]:['b1←noise:noise.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:shook
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←shake:shake.v.09(e1)','b1←Time(e1,t1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←PartOf(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:head
+sem: λv1.<b1>[]:['b1←head:head.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:raised
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←raise:raise.v.02(e1)','b1←Time(e1,t1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←PartOf(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:hands
+sem: λv1.<b1>[]:['b1←hand:hand.n.01(v1)']</b1>
+cat: N
+----------
+tokens:to
+sem: λv1.λv2.λv3.λv4.(v3@λv5.<>[]:[]</>)
+cat: ((S\NP)\(S\NP))/(S[b]\NP)
+----------
+tokens:indicate
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1']:['b1←p1:(v1@λv5.<b2>[]:[]</b2>)','b1←indicate:indicate.v.03(e1)','b1←Topic(e1,p1)','b1←Agent(e1,v4)']</b1>;(v3@e1)))
+cat: (S[b]\NP)/S[em]
+----------
+tokens:that
+sem: λv1.v1
+cat: S[em]/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:was
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←be:be.v.01(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Co-Theme(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[adj]\NP)
+----------
+tokens:useless
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←s1']:['b1←useless:useless.a.01(s1)','b1←AttributeOf(s1,v4)']</b1>;((v1@s1);(v3@s1))))
+cat: (S[adj]\NP)/PP
+----------
+tokens:at
+sem: λv1.λv2.((v1@λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(v3@x1)))@λv4.<b2>[]:['b2←Theme(v2,v4)']</b2>)
+cat: PP/(S[ng]\NP)
+----------
+tokens:describing
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←describe:describe.v.02(e1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:people
+sem: λv1.<b1>[]:['b1←person:person.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

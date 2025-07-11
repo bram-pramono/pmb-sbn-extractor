@@ -1,0 +1,59 @@
+% He lay his sword aside and extended his hands.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                             % He              [0-2]
+%SBN% lay.v.01    Agent -1 Time +1 Theme +3 % lay             [3-6]
+%SBN% time.n.08   TPR now                   %                 
+%SBN% male.n.02   ANA -3                    % his             [7-10]
+%SBN% sword.n.01  User -1                   % sword  --aside--  --and-- [11-26]
+%SBN% extend.v.08 Agent -5 Time +1 Theme +3 % extended        [27-35]
+%SBN% time.n.08   TPR now                   %                 
+%SBN% male.n.02   ANA -7                    % his             [36-39]
+%SBN% hand.n.01   PartOf -1                 % hands --.--          [40-46]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:lay
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←lay:lay.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←User(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:sword
+sem: λv1.λv2.(<b1>[]:['b1←sword:sword.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:aside
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:extended
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←extend:extend.v.08(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:hands
+sem: λv1.λv2.(<b1>[]:['b1←hand:hand.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

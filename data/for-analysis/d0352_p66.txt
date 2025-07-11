@@ -1,0 +1,122 @@
+% Unlike the television in the kitchen or the chairs in the lounge or much in the flat, the stereo was not dusty.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% stereo.n.01                            %  --the-- stereo               [86-96]
+%SBN% time.n.08       TPR now                % was  --not--                  [97-104]
+%SBN%                 NEGATION &lt;1            %                          
+%SBN% dusty.a.01      AttributeOf -2 Time -1 % dusty --.--                   [105-111]
+%SBN%                 NEGATION &lt;1            %                          
+%SBN% television.n.01 PartOf -1 Location +1  %  --Unlike--  --the-- television  --in-- [0-24]
+%SBN% kitchen.n.01                           %  --the-- kitchen  --or--           [25-39]
+%SBN% chair.n.01      PartOf -3 PartOf +2    %  --the-- chairs  --in--            [40-53]
+%SBN% lounge.n.02                            %  --the-- lounge               [54-64]
+%SBN% entity.n.01     Sub -1 Sub +1          % or                       [65-67]
+%SBN% entity.n.01     PartOf +1              % much  --in--                  [68-75]
+%SBN% flat.n.07                              %  --the-- flat --,--                [76-85]
+
+% Incremental DRS
+
+tokens:Unlike
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>[]:["b1←¬(v1@λv5.<b2>[]:['b2←PartOf(v5,v4)']</b2>)"]</b1>;(v3@v4)))
+cat: (S/S)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:television
+sem: λv1.λv2.(<b1>[]:['b1←television:television.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:kitchen
+sem: λv1.<b1>[]:['b1←kitchen:kitchen.n.01(v1)']</b1>
+cat: N
+----------
+tokens:or
+sem: λv1.λv2.λv3.((v2@v3);(v1@v3))
+cat: conj
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:chairs
+sem: λv1.λv2.(<b1>[]:['b1←chair:chair.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←PartOf(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:lounge
+sem: λv1.<b1>[]:['b1←lounge:lounge.n.02(v1)']</b1>
+cat: N
+----------
+tokens:or
+sem: λv1.λv2.λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;((v2@λv4.<b2>[]:['b2←Sub(x1,v4)']</b2>);((v1@λv5.<b3>[]:['b3←Sub(x1,v5)']</b3>);(v3@x1))))
+cat: conj
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:much
+sem: λv1.λv2.(<b1>[]:['b1←entity:entity.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←PartOf(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:flat
+sem: λv1.<b1>[]:['b1←flat:flat.n.07(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.v1
+cat: (S/S)\(S/S)
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:stereo
+sem: λv1.<b1>[]:['b1←stereo:stereo.n.01(v1)']</b1>
+cat: N
+----------
+tokens:was
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[adj]\NP)
+----------
+tokens:not
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[adj]\NP)/(S[adj]\NP)
+----------
+tokens:dusty
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←dusty:dusty.a.01(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

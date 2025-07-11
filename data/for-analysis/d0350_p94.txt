@@ -1,0 +1,80 @@
+% In the morning at breakfast Mike smiled at the letter he received.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% morning.n.01   Time +1                                   %  --In--  --the-- morning  --at-- [0-17]
+%SBN% breakfast.n.01                                           % breakfast         [18-27]
+%SBN% male.n.02      Name "Mike"                               % Mike              [28-32]
+%SBN% smile.v.01     Location -3 Agent -1 Time +1 Recipient +2 % smiled  --at--         [33-42]
+%SBN% time.n.08      TPR now                                   %                   
+%SBN% letter.n.01    Proposition &gt;1                            %  --the-- letter        [43-53]
+%SBN%                CONTINUATION &lt;0                           %                   
+%SBN% male.n.02      ANA -4                                    % he                [54-56]
+%SBN% receive.v.01   Agent -1 Time +1                          % received --.--         [57-66]
+%SBN% time.n.08      TPR now                                   %                   
+
+% Incremental DRS
+
+tokens:In
+sem: λv1.λv2.λv3.(v2@λv4.((v1@λv5.<b1>[]:['b1←Location(v4,v5)']</b1>);(v3@v4)))
+cat: (S/S)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:morning
+sem: λv1.<b1>[]:['b1←morning:morning.n.01(v1)']</b1>
+cat: N
+----------
+tokens:at
+sem: λv1.λv2.λv3.((v2@v3);(v1@λv4.<b1>[]:['b1←Time(v3,v4)']</b1>))
+cat: (N\N)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:breakfast
+sem: λv1.<b1>[]:['b1←breakfast:breakfast.n.01(v1)']</b1>
+cat: N
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Mike
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,mike)']</b1>
+cat: N
+----------
+tokens:smiled
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←smile:smile.v.01(e1)','b1←Time(e1,t1)','b1←Agent(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:at
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Recipient(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:letter
+sem: λv1.λv2.<b1>['b1←p1']:['b1←p1:(v1@λv3.<b2>[]:[]</b2>)','b1←letter:letter.n.01(v2)','b1←Topic(v2,p1)']</b1>
+cat: N/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:received
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←receive:receive.v.01(e1)','b1←Time(e1,t1)','b1←Agent(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

@@ -1,0 +1,80 @@
+% Michael knew they never hit him and that was half the problem.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02    Name "Michael"                        % Michael      [0-7]
+%SBN% know.v.01    Proposition &gt;1 Experiencer -1 Time +1 % knew         [8-12]
+%SBN% time.n.08    TPR now                               %              
+%SBN%              CONTINUATION &lt;0                       %              
+%SBN% person.n.01                                        % they  --never--   [13-23]
+%SBN%              NEGATION &lt;1                           %              
+%SBN% hit.v.01     Agent -1 Time +1 Patient +2           % hit          [24-27]
+%SBN% time.n.08    TPR now                               %              
+%SBN% male.n.02    ANA -6                                % him  --and--      [28-35]
+%SBN%              CONTINUATION &lt;3                       %              
+%SBN% know.v.01                                          % that         [36-40]
+%SBN% be.v.01      Theme -1 Time +1 Co-Theme +2          % was  --half--     [41-49]
+%SBN% time.n.08    TPR now                               %              
+%SBN% problem.n.01 Quantity "half"                       %  --the-- problem --.-- [50-62]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Michael
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,michael)']</b1>
+cat: N
+----------
+tokens:knew
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←know:know.v.01(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,p1)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[dcl]
+----------
+tokens:they
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:never
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)/(S\NP)
+----------
+tokens:hit
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←hit:hit.v.01(e1)','b1←Time(e1,t1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:that
+sem: λv1.(<b1>['b1←e1']:['b1←know:know.v.01(e1)']</b1>;(v1@e1))
+cat: NP
+----------
+tokens:was
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←be:be.v.01(e1)','b1←Time(e1,t1)','b1←Co-Theme(e1,v5)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:half
+sem: λv1.λv2.(v1@λv3.(<b1>[]:['b1←Quantity(v3,half)']</b1>;(v2@v3)))
+cat: NP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:problem
+sem: λv1.<b1>[]:['b1←problem:problem.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

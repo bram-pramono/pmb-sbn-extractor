@@ -1,0 +1,83 @@
+% Alan told Jason he would just sit outside to have his lunch.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02    Name "Alan"                                    % Alan       [0-4]
+%SBN% tell.v.01    Proposition &gt;1 Agent -1 Time +1 Recipient +2   % told       [5-9]
+%SBN% time.n.08    TPR now                                        %            
+%SBN% male.n.02    Name "Jason"                                   % Jason      [10-15]
+%SBN%              CONTINUATION &lt;0                                %            
+%SBN% male.n.02    ANA -4                                         % he         [16-18]
+%SBN% time.n.08    TSU now                                        % would      [19-24]
+%SBN% just.r.01                                                   % just       [25-29]
+%SBN% sit.v.01     Agent -3 Time -2 Manner -1 Location +1 Goal +2 % sit        [30-33]
+%SBN% outside.a.01                                                % outside  --to-- [34-44]
+%SBN% have.v.06    Pivot -5 Theme +2                              % have       [45-49]
+%SBN% male.n.02    ANA -6                                         % his        [50-53]
+%SBN% lunch.n.01   Consumer -1                                    % lunch --.--     [54-60]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Alan
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,alan)']</b1>
+cat: N
+----------
+tokens:told
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v2@λv7.<b3>[]:[]</b3>)','b1←tell:tell.v.01(e1)','b1←Time(e1,t1)','b1←Recipient(e1,v6)','b1←Topic(e1,p1)','b1←Agent(e1,v5)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v4@e1))))
+cat: ((S[dcl]\NP)/S[dcl])/NP
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Jason
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,jason)']</b1>
+cat: N
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:would
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:just
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←just:just.r.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:sit
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←sit:sit.v.01(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Goal(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[to]\NP)
+----------
+tokens:outside
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←outside:outside.a.01(s1)','b1←Location(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:have
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←have:have.v.06(e1)','b1←Theme(e1,v5)','b1←Pivot(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←Consumer(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:lunch
+sem: λv1.<b1>[]:['b1←lunch:lunch.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

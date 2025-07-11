@@ -1,0 +1,87 @@
+% David finally got to eat his lunch then went back to digging the trench.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02    Name "David"                        % David        [0-5]
+%SBN% finally.r.01                                     % finally      [6-13]
+%SBN% get.v.03     Agent -2 Manner -1 Time +1 Theme +2 % got  --to--       [14-20]
+%SBN% time.n.08    TPR now                             %              
+%SBN% eat.v.01     Agent -4 Patient +2                 % eat          [21-24]
+%SBN% male.n.02    ANA -5                              % his          [25-28]
+%SBN% lunch.n.01   User -1                             % lunch  --then--   [29-39]
+%SBN%              CONTINUATION &lt;1                     %              
+%SBN% finally.r.01                                     %              
+%SBN% go.v.03      Theme -8 Manner -1 Time +1 Goal +2  % went  --back--  --to-- [40-52]
+%SBN% time.n.08    TPR now                             %              
+%SBN% dig.v.01     Agent -10 Patient +1                % digging      [53-60]
+%SBN% trench.n.01                                      %  --the-- trench --.--  [61-72]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:David
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,david)']</b1>
+cat: N
+----------
+tokens:finally
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←finally:finally.r.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)/(S\NP)
+----------
+tokens:got
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←get:get.v.03(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Theme(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:eat
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←eat:eat.v.01(e1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:lunch
+sem: λv1.<b1>[]:['b1←lunch:lunch.n.01(v1)']</b1>
+cat: N
+----------
+tokens:then
+sem: λv1.λv2.λv3.λv4.(v3@λv5.<>[]:[]</>)
+cat: ((S\NP)\(S\NP))/(S[dcl]\NP)
+----------
+tokens:went
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←go:go.v.03(e1)','b1←Theme(e1,v5)']</b1>;(((v2@λv6.(v6@v5))@λv7.<b2>[]:['b2←Goal(e1,v7)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v4@e1)))))
+cat: ((S[dcl]\NP)/(S[to]\NP))/PR
+----------
+tokens:back
+sem: λv1.v1
+cat: PR
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[ng]\NP)
+----------
+tokens:digging
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←dig:dig.v.01(e1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:trench
+sem: λv1.<b1>[]:['b1←trench:trench.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

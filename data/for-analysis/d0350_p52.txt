@@ -1,0 +1,69 @@
+% Let me through and you'll hear nothing more of it.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01  EQU hearer                         %              
+%SBN% let.v.03     Agent -1 Theme +1 Path +2          % Let          [0-3]
+%SBN% person.n.01  EQU speaker                        % me           [4-6]
+%SBN% through.a.01                                    % through  --and--  [7-18]
+%SBN%              CONTINUATION &lt;1                    %              
+%SBN% person.n.01  EQU hearer                         % you          [19-22]
+%SBN% time.n.08    TSU now                            % 'll          [22-25]
+%SBN%              NEGATION &lt;1                        %              
+%SBN% hear.v.01    Experiencer -2 Time -1 Stimulus +1 % hear  --nothing-- [26-38]
+%SBN% more.r.02    Theme +1                           % more  --of--      [39-46]
+%SBN% entity.n.01                                     % it --.--          [47-50]
+
+% Incremental DRS
+
+tokens:Let
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←let:let.v.03(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:me
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:through
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←through:through.a.01(s1)','b1←Path(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:and
+sem: λv1.v1
+cat: S/S
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:'ll
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:hear
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←hear:hear.v.01(e1)','b1←Stimulus(e1,v5)','b1←Experiencer(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:nothing
+sem: λv1.λv2.<b1>[]:["b1←¬(<b2>['b2←x1']:[]</b2>;((v1@x1);(v2@x1)))"]</b1>
+cat: NP/N
+----------
+tokens:more
+sem: λv1.λv2.(<b1>[]:['b1←more:more.r.02(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

@@ -1,0 +1,88 @@
+% The curious thing was, on the Friday night, that the garden gate was shut.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% curious.a.01 AttributeOf +1                          %  --The-- curious        [0-11]
+%SBN% entity.n.01                                          % thing              [12-17]
+%SBN% be.v.01      Proposition &gt;1 Theme -1 Time +1 Time +2 % was --,--  --on--  --the--  --Friday-- [18-36]
+%SBN% time.n.08    TPR now                                 %                    
+%SBN% night.n.01                                           % night --,--             [37-43]
+%SBN%              CONTINUATION &lt;0                         %                    
+%SBN% garden.n.03                                          %  --that--  --the-- garden    [44-59]
+%SBN% gate.n.01    Location -1                             % gate               [60-64]
+%SBN% time.n.08    TPR now                                 % was                [65-68]
+%SBN% shut.v.01    Patient -2 Time -1                      % shut --.--              [69-74]
+
+% Incremental DRS
+
+tokens:The
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:curious
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←curious:curious.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:thing
+sem: λv1.<b1>[]:['b1←entity:entity.n.01(v1)']</b1>
+cat: N
+----------
+tokens:was
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←be:be.v.01(e1)','b1←Time(e1,t1)','b1←Co-Theme(e1,p1)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[em]
+----------
+tokens:,
+sem: λv1.v1
+cat: ((S[dcl]\NP)/S[em])\((S[dcl]\NP)/S[em])
+----------
+tokens:on
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Time(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Friday
+sem: λv1.v1
+cat: N/N
+----------
+tokens:night
+sem: λv1.<b1>[]:['b1←night:night.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.v1
+cat: NP\NP
+----------
+tokens:that
+sem: λv1.v1
+cat: S[em]/S[dcl]
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:garden
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←garden:garden.n.03(x1)','b1←Location(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:gate
+sem: λv1.<b1>[]:['b1←gate:gate.n.01(v1)']</b1>
+cat: N
+----------
+tokens:was
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[pss]\NP)
+----------
+tokens:shut
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←shut:shut.v.01(e1)','b1←Patient(e1,v3)']</b1>;(v2@e1)))
+cat: S[pss]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

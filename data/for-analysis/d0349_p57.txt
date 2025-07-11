@@ -1,0 +1,47 @@
+% Ross sat back down and shivered.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02     Name "Ross"            % Ross              [0-4]
+%SBN% sit_back.v.01 Agent -1 Time +1       % sat  --back--  --down--  --and-- [5-22]
+%SBN% time.n.08     TPR now                %                   
+%SBN% shiver.v.01   Experiencer -3 Time +1 % shivered --.--         [23-32]
+%SBN% time.n.08     TPR now                %                   
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Ross
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,ross)']</b1>
+cat: N
+----------
+tokens:sat
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b2←t1']:['b1←sit_back:sit_back.v.01(e1)','b1←Time(e1,t1)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/PR
+----------
+tokens:back
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:down
+sem: down
+cat: PR
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:shivered
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←shiver:shiver.v.01(e1)','b1←Time(e1,t1)','b1←Experiencer(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

@@ -1,0 +1,61 @@
+% Andrew closed the office door on the way out.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02   Name "Andrew"                       % Andrew     [0-6]
+%SBN% close.v.01  Agent -1 Time +1 Patient +3 Path +4 % closed     [7-13]
+%SBN% time.n.08   TPR now                             %            
+%SBN% office.n.01 AttributeOf +1                      %  --the-- office [14-24]
+%SBN% door.n.01                                       % door  --on--    [25-32]
+%SBN% way.n.07                                        %  --the-- way    [33-40]
+%SBN% out.a.06    AttributeOf -1                      % out --.--       [41-45]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Andrew
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,andrew)']</b1>
+cat: N
+----------
+tokens:closed
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←close:close.v.01(e1)','b1←Time(e1,t1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:office
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←office:office.n.01(x1)','b1←AttributeOf(x1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:door
+sem: λv1.<b1>[]:['b1←door:door.n.01(v1)']</b1>
+cat: N
+----------
+tokens:on
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Path(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:way
+sem: λv1.<b1>[]:['b1←way:way.n.07(v1)']</b1>
+cat: N
+----------
+tokens:out
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←out:out.a.06(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N\N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

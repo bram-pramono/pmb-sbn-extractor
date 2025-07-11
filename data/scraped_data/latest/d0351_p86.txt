@@ -1,0 +1,95 @@
+% I haven't lost a single man though they're hardly in a fit state to fight.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01   EQU speaker                % I  --haven't--     [0-9]
+%SBN%               NEGATION &lt;1                %               
+%SBN% lose.v.03     Agent -1 Time +1 Theme +3  % lost          [10-14]
+%SBN% time.n.08     TPR now                    %               
+%SBN% quantity.n.01 EQU "single"               %  --a-- single      [15-23]
+%SBN% man.n.01      Quantity -1                % man  --though--    [24-34]
+%SBN% person.n.01                              % they          [35-39]
+%SBN%               NEGATION &lt;1                %               
+%SBN% be.v.01       Theme -1 Time +1 Manner +3 % 're  --hardly--  --in-- [39-52]
+%SBN% time.n.08     EQU now                    %               
+%SBN% fit.a.03      AttributeOf +1             %  --a-- fit         [53-58]
+%SBN% state.n.02                               % state  --to--      [59-67]
+%SBN% fight.v.01    Agent -1                   % fight --.--        [68-74]
+
+% Incremental DRS
+
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:have
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:n't
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:lost
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←lose:lose.v.03(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[pt]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:single
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←quantity:quantity.n.01(x1)','b1←x1=single','b1←Quantity(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:man
+sem: λv1.<b1>[]:['b1←man:man.n.01(v1)']</b1>
+cat: N
+----------
+tokens:though
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.((v1@λv6.<b1>[]:[]</b1>);(v4@v5)))
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:they
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:'re
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←be:be.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1=now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:hardly
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Manner(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:fit
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←fit:fit.a.03(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:state
+sem: λv1.λv2.(<b1>[]:['b1←state:state.n.02(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:fight
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←fight:fight.v.01(e1)','b1←Agent(e1,v3)']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

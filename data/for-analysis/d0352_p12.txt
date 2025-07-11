@@ -1,0 +1,104 @@
+% In a moment, before anyone could stop him, he had driven his sword into his own stomach.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% moment.n.02                                   %  --In--  --a-- moment  [0-11]
+%SBN% entity.n.01  Time -1                          % ,  --before--     [11-19]
+%SBN%              RESULT &lt;1                        %              
+%SBN% person.n.01                                   % anyone  --could-- [20-32]
+%SBN%              POSSIBILITY &lt;1                   %              
+%SBN% stop.v.03    Agent -1 Theme +1                % stop         [33-37]
+%SBN% male.n.02                                     % him --,--         [38-42]
+%SBN%              CONTINUATION &lt;1                  %              
+%SBN% male.n.02                                     % he  --had--       [43-49]
+%SBN% drive.v.04   Agent -1 Theme +2 Destination +4 % driven       [50-56]
+%SBN% male.n.02    ANA -2                           % his          [57-60]
+%SBN% sword.n.01   User -1                          % sword  --into--   [61-71]
+%SBN% male.n.02    ANA -4                           % his  --own--      [72-79]
+%SBN% stomach.n.02 PartOf -1                        % stomach --.--     [80-88]
+
+% Incremental DRS
+
+tokens:In
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Time(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:moment
+sem: λv1.<b1>[]:['b1←moment:moment.n.02(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: (S/S)\PP
+----------
+tokens:before
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: (S/S)/S[dcl]
+----------
+tokens:anyone
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:could
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←◊((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:stop
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←stop:stop.v.03(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:,
+sem: λv1.v1
+cat: NP\NP
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:driven
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←drive:drive.v.04(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(v4@e1)))))
+cat: ((S[pt]\NP)/PP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←User(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:sword
+sem: λv1.λv2.(<b1>[]:['b1←sword:sword.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:into
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:own
+sem: λv1.v1
+cat: N/N
+----------
+tokens:stomach
+sem: λv1.λv2.(<b1>[]:['b1←stomach:stomach.n.02(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

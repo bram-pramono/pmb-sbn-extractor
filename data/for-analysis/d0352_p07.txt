@@ -1,0 +1,93 @@
+% They followed the stairs down two flights and walked through a door into a reception room.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01                                            % They            [0-4]
+%SBN% follow.v.04    Agent -1 Time +1 Theme +2 Path +4       % followed        [5-13]
+%SBN% time.n.08      TPR now                                 %                 
+%SBN% stairs.n.01                                            %  --the-- stairs  --down-- [14-29]
+%SBN% quantity.n.01  EQU 2                                   % two             [30-33]
+%SBN% flight.n.03    Quantity -1                             % flights  --and--     [34-45]
+%SBN% time.n.08      TPR now                                 % walked  --through--  [46-60]
+%SBN% walk.n.01      Theme -7 Time -1 Path +1 Destination +3 %                 
+%SBN% door.n.01                                              %  --a-- door  --into--     [61-72]
+%SBN% reception.n.01                                         %  --a-- reception     [73-84]
+%SBN% room.n.01      Attribute -1                            % room --.--           [85-90]
+
+% Incremental DRS
+
+tokens:They
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:followed
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←follow:follow.v.04(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:stairs
+sem: λv1.<b1>[]:['b1←stairs:stairs.n.01(v1)']</b1>
+cat: N
+----------
+tokens:down
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Path(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:two
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←quantity:quantity.n.01(x1)','b1←x1=2','b1←Quantity(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:flights
+sem: λv1.<b1>[]:['b1←flight:flight.n.03(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:walked
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←x1','b2←t1']:['b1←walk:walk.n.01(x1)','b1←Time(x1,t1)','b1←Theme(x1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@x1)))
+cat: S[dcl]\NP
+----------
+tokens:through
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Path(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:door
+sem: λv1.<b1>[]:['b1←door:door.n.01(v1)']</b1>
+cat: N
+----------
+tokens:into
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Destination(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:reception
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←reception:reception.n.01(x1)','b1←Attribute(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:room
+sem: λv1.<b1>[]:['b1←room:room.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

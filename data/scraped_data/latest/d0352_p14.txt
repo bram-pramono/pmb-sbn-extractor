@@ -1,0 +1,98 @@
+% Keith walked into the cell and climbed up on his bed and lay staring at the ceiling.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02     Name "Keith"                    % Keith         [0-5]
+%SBN% walk.v.01     Theme -1 Time +1 Destination +2 % walked  --into--   [6-17]
+%SBN% time.n.08     TPR now                         %               
+%SBN% cell.n.01                                     %  --the-- cell  --and--  [18-30]
+%SBN% climb_up.v.01 Agent -4 Time +1 Destination +3 % climbed  --up--  --on-- [31-44]
+%SBN% time.n.08     TPR now                         %               
+%SBN% male.n.02     ANA -6                          % his           [45-48]
+%SBN% bed.n.01      User -1                         % bed  --and--       [49-56]
+%SBN% lie.v.01      Theme -8 Time +1 Attribute +2   % lay           [57-60]
+%SBN% time.n.08     TPR now                         %               
+%SBN% stare.n.01    Agent -10 Theme +1              % staring  --at--    [61-71]
+%SBN% ceiling.n.01                                  %  --the-- ceiling --.--  [72-84]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Keith
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,keith)']</b1>
+cat: N
+----------
+tokens:walked
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←walk:walk.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:into
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:cell
+sem: λv1.<b1>[]:['b1←cell:cell.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:climbed
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←climb_up:climb_up.v.01(e1)','b1←Agent(e1,v5)']</b1>;((v2@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1)))))
+cat: ((S[dcl]\NP)/PP)/PR
+----------
+tokens:up
+sem: up
+cat: PR
+----------
+tokens:on
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:bed
+sem: λv1.<b1>[]:['b1←bed:bed.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:lay
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←lie:lie.v.01(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Attribute(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:staring
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←x1']:['b1←stare:stare.n.01(x1)','b1←Agent(x1,v4)']</b1>;((v1@x1);(v3@x1))))
+cat: (S[ng]\NP)/PP
+----------
+tokens:at
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:ceiling
+sem: λv1.<b1>[]:['b1←ceiling:ceiling.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

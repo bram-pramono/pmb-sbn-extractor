@@ -1,0 +1,124 @@
+% Sophie came back in and began to make Morgan his breakfast while he sat drinking his coffee and reading the paper.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02    Name "Sophie"                      % Sophie          [0-6]
+%SBN% come.v.01      Theme -1 Time +1 Manner +2         % came            [7-11]
+%SBN% time.n.08      TPR now                            %                 
+%SBN% back.r.01                                         % back  --in--  --and--     [12-23]
+%SBN% begin.v.01     Agent -4 Time +1 Theme +2          % began  --to--        [24-32]
+%SBN% time.n.08      TPR now                            %                 
+%SBN% make.v.06      Agent -6 Beneficiary +1 Product +3 % make            [33-37]
+%SBN% male.n.02      Name "Morgan"                      % Morgan          [38-44]
+%SBN% male.n.02      ANA -1                             % his             [45-48]
+%SBN% breakfast.n.01 User -1                            % breakfast  --while-- [49-64]
+%SBN% male.n.02      ANA -3                             % he              [65-67]
+%SBN% sit.v.01       Agent -1 Time +1 Theme +2 Theme +5 % sat             [68-71]
+%SBN% time.n.08      TPR now                            %                 
+%SBN% drink.v.01     Agent -3 Patient +2                % drinking        [72-80]
+%SBN% male.n.02      ANA -7                             % his             [81-84]
+%SBN% coffee.n.01    User -1                            % coffee  --and--      [85-95]
+%SBN% read.v.01      Agent -6 Theme +1                  % reading         [96-103]
+%SBN% paper.n.03                                        %  --the-- paper --.--      [104-114]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Sophie
+sem: λv1.<b1>[]:['b1←female:female.n.02(v1)','b1←Name(v1,sophie)']</b1>
+cat: N
+----------
+tokens:came
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←come:come.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:back
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←back:back.r.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:in
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:began
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←begin:begin.v.01(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Theme(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:make
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(v1@λv7.(<b1>['b1←e1']:['b1←make:make.v.06(e1)','b1←Beneficiary(e1,v7)','b1←Product(e1,v6)','b1←Agent(e1,v5)']</b1>;(v4@e1)))))
+cat: ((S[b]\NP)/NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Morgan
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,morgan)']</b1>
+cat: N
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:breakfast
+sem: λv1.<b1>[]:['b1←breakfast:breakfast.n.01(v1)']</b1>
+cat: N
+----------
+tokens:while
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.((v1@λv6.<b1>[]:[]</b1>);(v4@v5)))
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:sat
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←sit:sit.v.01(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Theme(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:drinking
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←drink:drink.v.01(e1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←User(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:coffee
+sem: λv1.λv2.(<b1>[]:['b1←coffee:coffee.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:reading
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←read:read.v.01(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:paper
+sem: λv1.<b1>[]:['b1←paper:paper.n.03(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

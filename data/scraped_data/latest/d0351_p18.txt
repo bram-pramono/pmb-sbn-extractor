@@ -1,0 +1,81 @@
+% I flung out my hands and they said I had broken my wrists.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01 EQU speaker                     % I         [0-1]
+%SBN% fling.v.02  Agent -1 Time +1 Theme +3       % flung  --out-- [2-11]
+%SBN% time.n.08   TPR now                         %           
+%SBN% person.n.01 ANA -3                          % my        [12-14]
+%SBN% hand.n.01   PartOf -1                       % hands  --and-- [15-24]
+%SBN%             CONTINUATION &lt;1                 %           
+%SBN% person.n.01                                 % they      [25-29]
+%SBN% say.v.01    Proposition &gt;1 Agent -1 Time +1 % said      [30-34]
+%SBN% time.n.08   TPR now                         %           
+%SBN%             CONTINUATION &lt;0                 %           
+%SBN% person.n.01 EQU speaker                     % I  --had--     [35-40]
+%SBN% break.v.57  Agent -1 Time +1 Patient +3     % broken    [41-47]
+%SBN% time.n.08   TPR now                         %           
+%SBN% person.n.01 ANA -3                          % my        [48-50]
+%SBN% wrist.n.01  PartOf -1                       % wrists --.--   [51-58]
+
+% Incremental DRS
+
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:flung
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(<b1>['b1←e1','b2←t1']:['b1←fling:fling.v.02(e1)','b1←Time(e1,t1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v4@e1))))
+cat: ((S[dcl]\NP)/NP)/PR
+----------
+tokens:out
+sem: out
+cat: PR
+----------
+tokens:my
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;((v1@λv3.<b2>['b2←x2']:['b2←person:person.n.01(x2)','b2←x2=speaker','b2←PartOf(v3,x2)']</b2>)@x1))∗(v2@x1))
+cat: NP/(N/PP)
+----------
+tokens:hands
+sem: λv1.λv2.(<b1>[]:['b1←hand:hand.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:they
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:said
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←say:say.v.01(e1)','b1←Time(e1,t1)','b1←Topic(e1,p1)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[dcl]
+----------
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:broken
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←break:break.v.57(e1)','b1←Time(e1,t1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[pt]\NP)/NP
+----------
+tokens:my
+sem: λv1.λv2.((<b1>['b1←x1','b1←x2']:['b1←PartOf(x1,x2)','b1←person:person.n.01(x2)','b1←Equal(x2,speaker)']</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:wrists
+sem: λv1.<b1>[]:['b1←wrist:wrist.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

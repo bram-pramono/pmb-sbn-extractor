@@ -1,0 +1,52 @@
+% Tony stopped off at his first delivery.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02     Name "Tony"                  % Tony           [0-4]
+%SBN% stop.v.04     Agent -1 Time +1 Location +4 % stopped  --off--  --at-- [5-19]
+%SBN% time.n.08     TPR now                      %                
+%SBN% male.n.02     ANA -3                       % his            [20-23]
+%SBN% rank.n.02     EQU 1                        % first          [24-29]
+%SBN% delivery.n.01 Creator -2 Order -1          % delivery --.--      [30-39]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Tony
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,tony)']</b1>
+cat: N
+----------
+tokens:stopped
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←stop:stop.v.04(e1)','b1←Agent(e1,v5)']</b1>;((v2@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1)))))
+cat: ((S[dcl]\NP)/PP)/PR
+----------
+tokens:off
+sem: off
+cat: PR
+----------
+tokens:at
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←Creator(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:first
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←rank:rank.n.02(x1)','b1←x1=1','b1←Order(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:delivery
+sem: λv1.λv2.(<b1>[]:['b1←delivery:delivery.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

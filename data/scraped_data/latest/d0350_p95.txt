@@ -1,0 +1,80 @@
+% It had been two weeks since Philip had been sent to prison.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% entity.n.01                                     % It  --had--      [0-6]
+%SBN% be.v.10       Theme -1 Time +1 Co-Theme +3      % been        [7-11]
+%SBN% time.n.08     TPR now                           %             
+%SBN% quantity.n.01 EQU 2                             % two         [12-15]
+%SBN% week.n.01     Quantity -1                       % weeks  --since-- [16-27]
+%SBN%               EXPLANATION &lt;1                    %             
+%SBN% male.n.02     Name "Philip"                     % Philip  --had--  [28-38]
+%SBN% time.n.08     TPR now                           % been        [39-43]
+%SBN% send.v.02     Patient -2 Time -1 Destination +1 % sent  --to--     [44-51]
+%SBN% prison.n.01                                     % prison --.--     [52-59]
+
+% Incremental DRS
+
+tokens:It
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:been
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←be:be.v.10(e1)','b1←Time(e1,t1)','b1←Co-Theme(e1,v5)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[pt]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:two
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←quantity:quantity.n.01(x1)','b1←x1=2','b1←Quantity(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:weeks
+sem: λv1.<b1>[]:['b1←week:week.n.01(v1)']</b1>
+cat: N
+----------
+tokens:since
+sem: λv1.λv2.λv3.λv4.<>[]:[]</>
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:Philip
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)','b1←Name(x1,philip)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:been
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[pt]\NP)/(S[pss]\NP)
+----------
+tokens:sent
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←send:send.v.02(e1)','b1←Patient(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[pss]\NP)/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:prison
+sem: λv1.<b1>[]:['b1←prison:prison.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

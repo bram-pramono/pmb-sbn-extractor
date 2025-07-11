@@ -1,0 +1,61 @@
+% Charles felt sick to the pit of his stomach.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02    Name "Charles"                     % Charles    [0-7]
+%SBN% feel.v.01    Experiencer -1 Time +1 Stimulus +2 % felt       [8-12]
+%SBN% time.n.08    TPR now                            %            
+%SBN% sick.a.02    Experiencer -3 Extent +1           % sick  --to--    [13-20]
+%SBN% pit.n.02     PartOf +2                          %  --the-- pit  --of-- [21-31]
+%SBN% male.n.02    ANA -5                             % his        [32-35]
+%SBN% stomach.n.01 PartOf -1                          % stomach --.--   [36-44]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Charles
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,charles)']</b1>
+cat: N
+----------
+tokens:felt
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←feel:feel.v.01(e1)','b1←Experiencer(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Stimulus(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[adj]\NP)
+----------
+tokens:sick
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←s1']:['b1←sick:sick.a.02(s1)','b1←Experiencer(s1,v4)']</b1>;((v1@s1);(v3@s1))))
+cat: (S[adj]\NP)/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Extent(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:pit
+sem: λv1.<b1>[]:['b1←pit:pit.n.02(v1)']</b1>
+cat: N
+----------
+tokens:of
+sem: λv1.λv2.λv3.((v2@v3);(v1@λv4.<b1>[]:['b1←PartOf(v3,v4)']</b1>))
+cat: (N\N)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:stomach
+sem: λv1.λv2.(<b1>[]:['b1←stomach:stomach.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

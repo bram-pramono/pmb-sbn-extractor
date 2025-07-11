@@ -1,0 +1,68 @@
+% Whether Peter heard him or not Gabriel didn't care.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02 Name "Peter"                       %  --Whether-- Peter [0-13]
+%SBN%           NEGATION &lt;1                        %               
+%SBN% hear.v.01 Experiencer -1 Time +1 Stimulus +2 % heard         [14-19]
+%SBN% time.n.08 TPR now                            %               
+%SBN% male.n.02 Name "Gabriel"                     % him  --or--  --not--    [20-30]
+%SBN%           CONTINUATION &lt;0                    %               
+%SBN% male.n.02                                    % Gabriel       [31-38]
+%SBN% time.n.08 TPR now                            % did --n't--        [39-45]
+%SBN%           NEGATION &lt;1                        %               
+%SBN% care.v.01 Time -1 Proposition &lt;3 Agent -2    % care --.--         [46-51]
+
+% Incremental DRS
+
+tokens:Whether
+sem: λv1.v1
+cat: S[em]/S[dcl]
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Peter
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,peter)']</b1>
+cat: N
+----------
+tokens:heard
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←hear:hear.v.01(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,v5)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)','b1←Name(x1,gabriel)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:or
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:not
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:Gabriel
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:did
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:n't
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:care
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1']:['b1←p1:(v1@λv5.<b2>[]:[]</b2>)','b1←care:care.v.01(e1)','b1←Theme(e1,p1)','b1←Agent(e1,v4)']</b1>;(v3@e1)))
+cat: (S[b]\NP)\S[em]
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

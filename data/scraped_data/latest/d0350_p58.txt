@@ -1,0 +1,63 @@
+% She would soon be found if she tried to hide.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02                            % She      [0-3]
+%SBN% time.n.08   TSU now                    % would    [4-9]
+%SBN% soon.r.01                              % soon  --be--  [10-17]
+%SBN% find.v.03   Patient -3 Time -2 Time -1 % found  --if-- [18-26]
+%SBN%             PRECONDITION &lt;1            %          
+%SBN% female.n.02 ANA -4                     % she      [27-30]
+%SBN% try.v.01    Agent -1 Time +1 Theme +2  % tried  --to-- [31-39]
+%SBN% time.n.08   TPR now                    %          
+%SBN% hide.v.01   Agent -3                   % hide --.--    [40-45]
+
+% Incremental DRS
+
+tokens:She
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:would
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:soon
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←soon:soon.r.01(s1)','b1←Time(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:be
+sem: λv1.v1
+cat: (S[b]\NP)/(S[pss]\NP)
+----------
+tokens:found
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←find:find.v.03(e1)','b1←Patient(e1,v3)']</b1>;(v2@e1)))
+cat: S[pss]\NP
+----------
+tokens:if
+sem: λv1.λv2.λv3.λv4.<>[]:[]</>
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:she
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:tried
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←try:try.v.01(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Theme(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:hide
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←hide:hide.v.01(e1)','b1←Agent(e1,v3)']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

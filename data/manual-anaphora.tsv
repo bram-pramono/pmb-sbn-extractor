@@ -1,0 +1,362 @@
+id	sent_nr	sent	manual_anaphoras	non-12-per_anaphoras
+d0349_p30	1	Anne lost control and laughed.	-	-
+d0349_p31	2	Billy wrote on the envelope.	-	-
+d0349_p32	3	He called over his shoulder.	He(?), his(-3)	He[0](?); his[3](-3)
+d0349_p33	4	He stayed against the wall.	He(?)	He[0](?)
+d0349_p34	5	Helen ran to the toilet.	-	-
+d0349_p35	6	I cannot tell you more.	I(?), you(?)	-
+d0349_p36	7	Michael gave Adam two pounds.	-	-
+d0349_p37	8	Roger smiled and sat down.	-	-
+d0349_p38	9	Things were looking up again.	-	-
+d0349_p39	10	This man's hair is black.	This{dem}(?)	This[0](?)
+d0349_p40	11	Turn your hearing aid up.	your(?)	-
+d0349_p41	12	You'll demand nothing of me.	You'll(?), me(?)	-
+d0349_p42	13	A horse has thrown a shoe.	-	-
+d0349_p43	14	A tube train took his legs.	his(?)	his[4](?)
+d0349_p44	15	Five will be listening for sure.	-	-
+d0349_p45	16	Gordon felt his anger build up.	his(-2)	his[2](-2)
+d0349_p46	17	Harry smiled at his little brother.	his(-3)	his[3](-3)
+d0349_p47	18	He needed putting in his place.	He(?), his(-4)	He[0](?); his[4](-4)
+d0349_p48	19	He shouted and the calling ceased.	He(?)	He[0](?)
+d0349_p49	20	He uses his belt on you.	He(?), his(-2), you(?)	He[0](?); his[2](-2)
+d0349_p51	21	He's broken his wrists very badly.	He's(?), his(-2)	He's[0](?); his[2](-2)
+d0349_p52	22	I am touched deeply in places.	I(?)	-
+d0349_p53	23	I don't want to hear it.	I(?), it.(?)	it.[5](?)
+d0349_p54	24	I knew I heard your voice.	I(?), I(-2), your(?)	-
+d0349_p55	25	I wouldn't want to miss this.	I(?), this{dem}(?)	this.[5](?)
+d0349_p56	26	Jack walked up to the door.	-	-
+d0349_p57	27	Ross sat back down and shivered.	-	-
+d0349_p59	28	She couldn't help feel for Alex.	She(?)	She[0](?)
+d0349_p60	29	The bored looking soldier just pointed.	-	-
+d0349_p61	30	The campaign will pay for itself.	itself(-4)	itself.[5](-4)
+d0349_p62	31	They're riding out to meet them.	They're(?), them(?)	They're[0](?); them.[5](?)
+d0349_p63	32	We barely escaped with our lives.	We(?), our(-4)	We[0](?); our[4](-4)
+d0349_p64	33	We've been travelling almost three days.	We've(?)	We've[0](?)
+d0349_p65	34	Alice is looking for somewhere to live.	-	-
+d0349_p66	35	Alan forgot to shave again this morning.	this{dem}(?)	this[5](?)
+d0349_p67	36	Have a carriage sent for us immediately.	us(?)	us[5](?)
+d0349_p68	37	He probably doesn't want people to know.	He(?)	He[0](?)
+d0349_p69	38	He put the fork on the table.	He(?)	He[0](?)
+d0349_p70	39	I'll give him more than a slap.	I'll(?), him(?)	him[2](?)
+d0349_p71	40	Andrew nodded and stood against the counter.	-	-
+d0349_p72	41	Looks like a walk did the trick.	-	-
+d0349_p73	42	Sam felt proud when he went home.	he(-4)	he[4](-4)
+d0349_p74	43	Scott got up and washed his plate.	his(-5)	his[5](-5)
+d0349_p75	44	Simon nodded and walked into the room.	-	-
+d0349_p76	45	Steve sat down to eat his lunch.	his(-5)	his[5](-5)
+d0349_p77	46	Ted smiled and bit his bottom lip.	his(-4)	his[4](-4)
+d0349_p78	47	Thomas stepped back and shook his head.	his(-5)	his[5](-5)
+d0349_p79	48	Tom stood up and wiped his jeans.	his(-5)	his[5](-5)
+d0349_p80	49	Tony stopped off at his first delivery.	his(-4)	his[4](-4)
+d0349_p81	50	Normally they want to cut things up.	they(?)	they[1](?)
+d0349_p82	51	Powerful in the wrong hands, is that.	that{dem}(?)	that.[6](?)
+d0349_p83	52	She had refused to leave her home.	She(?), her(-5)	She[0](?); her[5](-5)
+d0349_p84	53	She hid the boxes and matches well.	She(?)	She[0](?)
+d0349_p85	54	The bored looking soldier continued looking bored.	-	-
+d0349_p86	55	The dead must not kill the living.	-	-
+d0349_p87	56	The prison guard walked along the row.	-	-
+d0349_p88	57	The van is your lead, follow that.	your(?), that{dem}(-5)	that.[6](-5)
+d0349_p89	58	You're getting up early in the morning.	You're(?)	-
+d0349_p90	59	After lunch he was told he had visitors.	he(?), he(-3)	he[2](?); he[5](-3)
+d0349_p91	60	Albert spoke before Barbara had a chance to.	-	-
+d0349_p92	61	Come within the walls to escape the enemy.	-	-
+d0349_p93	62	Follow me closely and watch for their leader.	me(?), their(?)	their[6](?)
+d0349_p94	63	He called out but she did not move.	He(?), she(?)	He[0](?); she[4](?)
+d0349_p95	64	He sat down and began to eat breakfast.	He(?)	He[0](?)
+d0349_p96	65	He slammed the knife down on the lamb.	He(?)	He[0](?)
+d0349_p97	66	He staggered into the chair at his desk.	He(?), his(-6)	He[0](?); his[6](-6)
+d0349_p98	67	I do not spare the birds a killing.	I(?)	-
+d0349_p99	68	I think our friend's demands are well justified.	I(?), our(?)	-
+d0350_p00	69	Let us leave these poor people in peace.	us(?)	us[1](?)
+d0350_p01	70	Walter closed the door and took a breath.	-	-
+d0350_p02	71	William sat down and tucked into his breakfast.	his(-6)	his[6](-6)
+d0350_p03	72	Alec stood against the wall to steady himself.	himself(-7)	himself.[7](-7)
+d0350_p04	73	No-one else had dared step within the ring.	-	-
+d0350_p05	74	None of the city people dress like that.	that{dem}(?)	that.[7](?)
+d0350_p06	75	She saw the throwing knife in his hand.	She(?), his(?)	She[0](?); his[6](?)
+d0350_p07	76	She was smiling in the dark, teeth flashing.	She(?)	She[0](?)
+d0350_p08	77	Shut your smart foul mouth and sit down.	your(?)	-
+d0350_p09	78	Tell me what really happened to the truck.	me(?)	-
+d0350_p10	79	The door was opened and Alexander walked out.	-	-
+d0350_p11	80	There were choked screams and shouts of dismay.	-	-
+d0350_p12	81	There will be men to kill either way.	-	-
+d0350_p13	82	They were definitely holding hands underneath the table.	They(?)	They[0](?)
+d0350_p14	83	Claudia still teaches and still claims to hate it.	it(-6)	it.[8](-6)
+d0350_p15	84	Burn him now, don't wait for him to escape.	him(?), him(-5)	him[1](?); him[6](-5)
+d0350_p16	85	Don't die of cold before you die in battle.	you(?)	-
+d0350_p17	86	Good God, if you are watching, give me strength.	you(-2), me(?)	-
+d0350_p18	87	He heaved his shoulders and swung the axe again.	He(?), his(-2)	He[0](?); his[2](-2)
+d0350_p19	88	He is after glory and heads for his hall.	He(?), his(-7)	He[0](?); his[7](-7)
+d0350_p20	89	He just wished he could talk to his dad.	He(?), he(-3), his(-4)	He[0](?); he[3](-3); his[7](-4)
+d0350_p21	90	He lay his sword aside and extended his hands.	He(?), his(-2), his(-5)	He[0](?); his[2](-2); his[7](-5)
+d0350_p22	91	He sighed and walked back to the wood shop.	He(?)	He[0](?)
+d0350_p23	92	He smiled when she let out a big yawn.	He(?), she(?)	He[0](?); she[3](?)
+d0350_p24	93	He was leaning against his truck smoking a joint.	He(?), his(-4)	He[0](?); his[4](-4)
+d0350_p25	94	I was thinking of getting the band together again.	I(?)	-
+d0350_p26	95	It is a narrow ship, much like our own.	It(?), our(?)	It[0](?)
+d0350_p27	96	Arthur placed the bars of chocolate on the counter.	-	-
+d0350_p28	97	John gave Bernard a hard slap on the head.	-	-
+d0350_p29	98	Let's get out and I'll buy you a drink.	Let's(?), I(-4), you(-6)	Let's[0](?)
+d0350_p30	99	Let's have the gates closed and go home early.	Let's(?)	Let's[0](?)
+d0350_p31	100	Andrew closed the office door on the way out.	-	-
+d0350_p32	101	Charles felt sick to the pit of his stomach.	his(-7)	his[7](-7)
+d0350_p33	102	Christopher groaned and lay his hands across his stomach.	his(-4), his(-3)	his[4](-4); his[7](-3)
+d0350_p34	103	Dave kicked him in the stomach and Paul groaned.	him(+5)	him[2](+5)
+d0350_p35	104	Dexter opened his letter and found a photograph inside.	his(-2)	his[2](-2)
+d0350_p36	105	Duncan took a breath and wanted to be sick.	-	-
+d0350_p37	106	Edward washed his hands and flicked water at Bob.	his(-2)	his[2](-2)
+d0350_p38	107	She turned and saw him standing in her path.	She(?), him(?), her(-7)	She[0](?); him[4](?); her[7](-7)
+d0350_p39	108	They turned round just as Frankie walked toward them.	They(?), them(-8)	They[0](?); them.[8](-8)
+d0350_p40	109	Underneath the table her hand was gripping the chair.	her(?)	her[3](?)
+d0350_p41	110	Whether Peter heard him or not Gabriel didn't care.	him(?)	him[3](?)
+d0350_p42	111	You give me a lead and I'll follow it.	You(?), me(?), I(-4), it(-4)	it.[8](-4)
+d0350_p43	112	All the bowls from the empty tables are cleared up.	-	-
+d0350_p44	113	His dark hair was just visible under his white hat.	His(?), his(-7)	His[0](?); his[7](-7)
+d0350_p45	114	His men will not follow him and they are few.	His(?), him(-5), they(-6)	His[0](?); him[5](-5); they[7](-6)
+d0350_p46	115	I'll break your neck if you don't fix that water.	I'll(?), your(?), you(-3), that{dem}(?)	that[8](?)
+d0350_p47	116	Ian gave Geoffrey a hard slap across his right ear.	his(-5)	his[7](-5)
+d0350_p48	117	Jake smiled again at his baby daughter, she was perfect.	his(-4), she(-1)	his[4](-4); she[7](-1)
+d0350_p49	118	Jimmy liked the fact they were calling him Jim.	they(?), him(-7)	they[4](?); him[7](-7)
+d0350_p50	119	Brian sniffed and wiped his grubby hand across his nose.	his(-4), his(-4)	his[4](-4); his[8](-4)
+d0350_p51	120	Phil let him go and Charlie fell to the ground.	him(+3)	him[2](+3)
+d0350_p52	121	Let me through and you'll hear nothing more of it.	me(?), you'll(?), it(?)	it.[9](?)
+d0350_p53	122	Men could be paid to do all sorts of things.	-	-
+d0350_p54	123	Gilbert sat as still as he could nursing his lip.	he(-5), his(-3)	he[5](-5); his[8](-3)
+d0350_p55	124	Jacques sighed and tried to move out of the way.	-	-
+d0350_p56	125	Jamie took a cigarette and Andy gave him a light.	him(-7)	him[7](-7)
+d0350_p57	126	Joseph walked into the office and removed his flat cap.	his(-7)	his[7](-7)
+d0350_p58	127	She would soon be found if she tried to hide.	She(?), she(-6)	She[0](?); she[6](-6)
+d0350_p59	128	The brothers stood up and came down from the platform.	-	-
+d0350_p60	129	Anthony was approached, just as he had predicted, in the park.	he(-5)	he[5](-5)
+d0350_p61	130	Despite what Frank had told her Ellen thanked the young soldier.	her(+1)	her[5](+1)
+d0350_p62	131	He called earlier and I already arranged to go swimming tomorrow.	He(?), I(?)	He[0](?)
+d0350_p63	132	He drove his truck home and walked down to the village.	He(?), his(-2)	He[0](?); his[2](-2)
+d0350_p64	133	He held his mother tight and she cried into his chest.	He(?), his(-2), she(-3), his(-7)	He[0](?); his[2](-2); she[6](-3); his[9](-7)
+d0350_p65	134	He went to the door and walked out of the room.	He(?)	He[0](?)
+d0350_p66	135	His helmet was lost but he could still do some damage.	His(?), he(-5)	His[0](?); he[5](-5)
+d0350_p67	136	Ken just hoped he wasn't taking his temper out on Chris.	he(-3), his(-3)	he[3](-3); his[6](-3)
+d0350_p68	137	Lawrence rubbed the back of his neck and hung his head.	his(-5), his(-4)	his[5](-5); his[9](-4)
+d0350_p69	138	Lewis sat down and Lucy laid her hand on his cheek.	her(-2), his(-9)	her[6](-2); his[9](-9)
+d0350_p70	139	Matthew stood against the wall with his hands behind his back.	his(-6), his(-3)	his[6](-6); his[9](-3)
+d0350_p71	140	Run along home now and bring us some men to kill.	us(?)	us[6](?)
+d0350_p72	141	She just kept telling herself he had to learn a lesson.	She(?), herself(-4), he(?)	She[0](?); herself[4](-4); he[5](?)
+d0350_p73	142	She wound up talking to Barry about her time in India.	She(?), her(-7)	She[0](?); her[7](-7)
+d0350_p74	143	The gate was double, one huge mass of wood following another.	-	-
+d0350_p75	144	The gathered villagers took a step back, almost as one man.	-	-
+d0350_p76	145	We shall arrive properly or you will never live this down.	We(?), you(?), this{dem}(?)	We[0](?); this[9](?)
+d0350_p77	146	While they sat drinking their tea, Mick dug them a trench.	they(?), their(-3), them(-4)	they[1](?); their[4](-3); them[8](-4)
+d0350_p78	147	You know better than to talk to your mother like that.	You(?), your(-7), that{dem}(?)	that.[10](?)
+d0350_p79	148	You know that I will do whatever you ask of me.	You(?), I(?), you(-7), me(-7)	-
+d0350_p80	149	You shouldn't have been racing my truck in the first place.	You(?), my(?)	-
+d0350_p81	150	A smile came to his lips as he thought of an idea.	his(?), he(-3)	his[4](?); he[7](-3)
+d0350_p82	151	All last week there was a white van parked across the street.	-	-
+d0350_p83	152	Finally Maria sat down with a cup of tea and a sandwich.	-	-
+d0351_p51	153	Have that carriage sent down and have servants bring wine and water.	that(?)	that[1](?)
+d0350_p84	154	He didn't seem to mind that she was screaming in his ear.	He(?), she(?), his(-10)	He[0](?); she[6](?); his[10](-10)
+d0350_p85	155	He drank too much at times and washed too little at times.	He(?)	He[0](?)
+d0350_p86	156	He folded his arms across his chest and put out his lip.	He(?), his(-2), his(-3), his(-5)	He[0](?); his[2](-2); his[5](-3); his[10](-5)
+d0350_p87	157	He had another shock when they told him he was moving cells.	He(?), they(?), him(-7), he(-1)	He[0](?); they[5](?); him[7](-7); he[8](-1)
+d0350_p88	158	He put his hands in his pockets and leaned against the truck.	He(?), his(-2), his(-3)	He[0](?); his[2](-2); his[5](-3)
+d0350_p89	159	He was built with muscle and liked to throw his weight around.	He(?), his(-9)	He[0](?); his[9](-9)
+d0350_p91	160	I am trying, old man, but I would rather kill the ship.	I(?), I(-6)	-
+d0350_p92	161	I shall have a victory and I want it to be remembered.	I(?), I(-6), it(-4)	it[8](-4)
+d0350_p93	162	In the morning Mickey stood straight with his hand behind his back.	his(-4), his(-3)	his[7](-4); his[10](-3)
+d0350_p94	163	In the morning at breakfast Mike smiled at the letter he received.	he(-5)	he[10](-5)
+d0350_p95	164	It had been two weeks since Philip had been sent to prison.	It(?)	It[0](?)
+d0350_p96	165	It is not the most fragrant of places but we make do.	It(?), we(?)	It[0](?); we[9](?)
+d0350_p97	166	James walked in to wake Samuel at four thirty in the morning.	-	-
+d0351_p52	167	David came running into the waiting room and went straight to Stephen.	-	-
+d0351_p53	168	Dennis was standing at the entrance to the workshop smiling at Terry.	-	-
+d0350_p98	169	Let us give battle to these foreign snakes once and for all.	us(?)	us[1](?)
+d0350_p99	170	Tommy came out of the staff room toilet looking a little pale.	-	-
+d0351_p54	171	Adam hoped she was knocked out cold and wouldn't wake till morning.	she(?)	she[2](?)
+d0351_p00	172	Michael knew they never hit him and that was half the problem.	they(?), him(-5), that{dem}(-3)	they[2](?); him[5](-5); that[7](-3)
+d0351_p01	173	Alan told Jason he would just sit outside to have his lunch.	he(-3), his(-7)	he[3](-3); his[10](-7)
+d0351_p02	174	Now the man is coming who will give it back to me.	it(?), me(?)	it[8](?)
+d0351_p03	175	She threatened to leave before and this time she just had enough.	She(?), this{dem}(?), she(-8)	She[0](?); this[6](?); she[8](-8)
+d0351_p04	176	The first knife caught in her skirt and she shook it free.	her(?), she(-3), it(-8)	her[5](?); she[8](-3); it[10](-8)
+d0351_p05	177	The last thing Alex felt like doing after work was more work.	-	-
+d0351_p06	178	The truck was an older version of the ones the others drove.	-	-
+d0351_p07	179	They stared at the black wall and now this offered no comfort.	They(?), this{dem}(-7)	They[0](?); this[8](-7)
+d0351_p55	180	They were halfway through breakfast when a guard walked up with mail.	They(?)	They[0](?)
+d0351_p08	181	We should talk about the things people talk about on first dates.	We(?)	We[0](?)
+d0351_p09	182	Why don't you tell me what happened on Saturday, step by step.	you(?), me(?)	-
+d0351_p10	183	Emma put her mug of tea down on the table with a bang.	her(-2)	her[2](-2)
+d0351_p56	184	Benjamin dashed out of the door and glanced up and down the street.	-	-
+d0351_p11	185	Bruce is looking for someone to take the spare room in his flat.	his(-11)	his[11](-11)
+d0351_p12	186	From the moment we leave this spot be very careful what you say.	we(?), this{dem}(?), you(?)	we[3](?); this[5](?)
+d0351_p13	187	He knocked on the door so hard that he almost broke it down.	He(?), he(-8), it(-7)	He[0](?); he[8](-8); it[11](-7)
+d0351_p14	188	He let Donald go and he fell to the floor with a thud.	He(?), he(-5)	He[0](?); he[5](-5)
+d0351_p15	189	He smiled again and felt like a man and not just the kid.	He(?)	He[0](?)
+d0351_p16	190	He's got the ability to work but he just gets bored too easy.	He's(?), he(-7)	He's[0](?); he[7](-7)
+d0351_p57	191	Her ambition offered no thought to the men standing behind and around her.	Her(?), her(-12)	Her[0](?); her.[12](-12)
+d0351_p17	192	I can't see any amount of talk getting you out of this mess.	I(?), you(?), this{dem}(?)	this[11](?)
+d0351_p18	193	I flung out my hands and they said I had broken my wrists.	I(?), my(-3), they(?), I(-5), my(-3)	they[6](?)
+d0351_p19	194	I mostly just pick a dry white and drink it to get drunk.	I(?), it(-3)	it[9](-3)
+d0351_p20	195	Andy felt good when he got ready to go out on Saturday night.	he(-4)	he[4](-4)
+d0351_p58	196	Arthur got in his truck and slammed his fist against the steering wheel.	his(-3),his(-4)	his[3](-3); his[7](-4)
+d0351_p21	197	Billy knocked on the door and waited till he was told to enter.	he(-8)	he[8](-8)
+d0351_p22	198	Bob sat at the entrance to the warehouse and made up a cigarette.	-	-
+d0351_p24	199	Brian sat down at an empty table and began to eat his breakfast.	his(-11)	his[11](-11)
+d0351_p59	200	Charlie walked home slowly so that he could smoke one of his cigarettes.	he(-6),his(-5)	he[6](-6); his[11](-5)
+d0351_p25	201	One by one she placed her teeth about their necks and killed them.	she(?), her(-2), their(?), them(-4)	she[3](?); her[5](-2); their[8](?); them.[12](-4)
+d0351_p26	202	The shout caught him off guard and he fell back a little way.	him(?), he(-4)	him[3](?); he[7](-4)
+d0351_p60	203	They probably just talked about medieval folk music anyway and it was boring.	They(?), it(-7)	They[0](?); it[10](-7)
+d0351_p61	204	Within four months they moved in together to the flat on Shakespeare Road.	they(?)	they[3](?)
+d0351_p62	205	After only a night's journey by sea they had travelled into the South proper.	they(?)	they[7](?)
+d0351_p63	206	Every free man had a right to speak gathered at the calling of Council.	-	-
+d0351_p64	207	He had a headache and every drop sounded like an arrow piercing his skull.	He(?), his(-12)	He[0](?); his[12](-12)
+d0351_p65	208	He had money whenever he wanted it and still the best truck in town.	He(?), he(-4), it(-4)	He[0](?); he[4](-4); it[6](-4)
+d0351_p27	209	He rose from his seat and stopped mid way when Joe glared at him.	He(?), his(-3), him(-10)	He[0](?); his[3](-3); him.[13](-10)
+d0351_p28	210	He sat his son up on the table and laid his belt beside him.	He(?), his(-2), his(-8), him(-10)	He[0](?); his[2](-2); his[10](-8); him.[13](-10)
+d0351_p29	211	If I have time at the end I'll fill you in on what happened.	I(?), I'll(-6), you(?)	-
+d0351_p66	212	Chris carefully carried Eddie to his truck and laid him on the back seat.	his(-5), him(-6)	his[5](-5); him[9](-6)
+d0351_p67	213	Colin drove into the garage to wash the truck and fill it with petrol.	it(-3)	it[11](-3)
+d0351_p68	214	David finally got to eat his lunch then went back to digging the trench.	his(-5)	his[5](-5)
+d0351_p69	215	Dennis noticed someone standing in front of him when he reached for another log.	him(-7), he(-2)	him[7](-7); he[9](-2)
+d0351_p70	216	Donald sat down at the kitchen table and fed his little sister her bottle.	his(-9), her(-1)	his[9](-9); her[12](-1)
+d0351_p71	217	Frank sighed and walked to the visiting room with his hands in his pockets.	his(-9), his(-3)	his[9](-9); his[12](-3)
+d0351_p72	218	Fred walked into the kitchen on Saturday morning to find his mother making breakfast.	his(-10)	his[10](-10)
+d0351_p73	219	George was led inside and they made him strip and gave him a uniform.	they(?), him(-7), him(-4)	they[5](?); him[7](-7); him[11](-4)
+d0351_p74	220	Harry was whistling and singing to himself for the whole of the next day.	himself(-6)	himself[6](-6)
+d0351_p30	221	Henry washed his hands and sat on the seat in front of the stove.	his(-2)	his[2](-2)
+d0351_p75	222	She tried hard to bring him up right and teach him right from wrong.	She(?), him(?), him(-5)	She[0](?); him[5](?); him[10](-5)
+d0351_p76	223	The bored soldier pressed a button which opened the gate and allowed them in.	them(?)	them[12](?)
+d0351_p77	224	The curious thing was, on the Friday night, that the garden gate was shut.	-	-
+d0351_p78	225	The first thing she noticed when she walked into the house was the silence.	she(?), she(-3)	she[3](?); she[6](-3)
+d0351_p31	226	The police officer got out of the van and picked up the two cans.	-	-
+d0351_p32	227	The speaker turned to her with a smile and a bow of his head.	her(?), his(-11)	her[4](?); his[12](-11)
+d0351_p33	228	They say he can breathe fire and kill a man with a single word.	They(?), he(?)	They[0](?); he[2](?)
+d0351_p79	229	When she had fallen, the witnesses to her death would have cut her apart.	she(?), her(-6), her(-5)	she[1](?); her[7](-6); her[12](-5)
+d0351_p34	230	He came back to his senses when he heard his dad stand up to him.	He(?), his(-4), he(-3), his(-2), him(-5)	He[0](?); his[4](-4); he[7](-3); his[9](-2); him.[14](-5)
+d0351_p80	231	He could hear men shouting, screaming as though all of hell was at their heels.	He(?), their(-10)	He[0](?); their[13](-10)
+d0351_p81	232	He did as he was told and tucked in his shirt and straightened his tie.	He(?), he(-3), his(-6), his(-4)	He[0](?); he[3](-3); his[9](-6); his[13](-4)
+d0351_p82	233	He had jobs and lost jobs, he never had what you could call a career.	He(?), he(-6), you(?)	He[0](?); he[6](-6)
+d0351_p83	234	He put his hand on the little boy's shoulder and gave it an encouraging squeeze.	He(?), his(-2), it(-3)	He[0](?); his[2](-2); it[11](-3)
+d0351_p35	235	He was already up and dressed and invited us in for a cup of tea.	He(?), us(?)	He[0](?); us[8](?)
+d0351_p84	236	His smile soon faded to a frown when he heard what Keith had to say.	His(?), he(-8)	His[0](?); he[8](-8)
+d0351_p85	237	I ask that my people be allowed to stay behind and tend to the wounded.	I(?), my(-3)	-
+d0351_p86	238	I haven't lost a single man though they're hardly in a fit state to fight.	I(?), they're(?)	they're[7](?)
+d0351_p36	239	I know Richard drinks a little too much and has a bit of a temper.	I(?)	-
+d0351_p87	240	I remember an agent with no arms who could kill a man with his teeth.	I(?), his(-10)	his[13](-10)
+d0351_p37	241	If this were a movie instead of a book this would be a good bit.	this{dem}(+7), this{dem}(?)	this[1](+7); this[9](?)
+d0351_p88	242	If you haven't seen it yet all that means is you aren't looking hard enough.	you(?), it(?), that(-4), you(-9)	it[4](?); that[7](-4)
+d0351_p89	243	Kevin had struck the belt across his legs and hit his fingers in the process.	his(-6), his(-4)	his[6](-6); his[10](-4)
+d0351_p90	244	Hugh got up and picked up the bucket and placed it back on the floor.	it(-3)	it[10](-3)
+d0351_p91	245	Ian sighed when Howard handed him the brush and sent him out to the yard.	him(-5), him(-5)	him[5](-5); him[10](-5)
+d0351_p38	246	James was only in the cell for an hour but it felt like a week.	it(-9)	it[10](-9)
+d0351_p92	247	Somehow Jason just kept quiet and did as they told him without any smart comments.	they(?), him(-9)	they[8](?); him[10](-9)
+d0351_p93	248	That night he had never felt so scared since he had been sent to prison.	That(?), he(?), he(-7)	That[0](?); he[2](?); he[9](-7)
+d0351_p94	249	To his mum and dad he was just another mouth they couldn't afford to feed.	his(?), he(-4), they(-8 + -6)	his[1](?); he[5](-4); they[10](-8 + -6)
+d0351_p95	250	A smart efficient looking girl in a military uniform sat behind a desk reading Heat magazine.	-	-
+d0351_p96	251	Jane had worn a suit in the belief that it might make her look less suspicious.	it(-5), her(-12)	it[9](-5); her[12](-12)
+d0351_p97	252	At ground level, by the wall, a ditch gathered water and dead rats crowded the ground.	-	-
+d0351_p98	253	He turned to the crowd who stood quietly waiting to see how the battle would turn.	He(?)	He[0](?)
+d0351_p99	254	He walked into the kitchen a while after dinner dressed in his best jeans and shirt.	He(?), his(-11)	He[0](?); his[11](-11)
+d0352_p00	255	I would not have you abandon what we have won to chase after that woman's life.	I(?), you(?), we(-3 + -7)	we[7](-3 + -7)
+d0352_p01	256	If they don't approach me at any of those places then we'll know they don't care.	they(?), me(?), those(?), we'll(?), they(-12)	they[1](?); those[8](?); they[13](-12); ana-we'll[9](?)
+d0352_p02	257	Just as he was about to give up and go back he heard a second noise.	he(?), he(-9)	he[2](?); he[11](-9)
+d0352_p03	258	No one had ever cared about him so much as to threaten his dad like that.	him(?), his(-6), that(?)	him[6](?); his[12](-6); that.[15](?)
+d0352_p04	259	She is wearing a cardigan over a purple blouse and a faded old red cotton skirt.	She(?)	She[0](?)
+d0352_p05	260	She was served by an incredibly striking girl with bright blue hair and a Polish accent.	She(?)	She[0](?)
+d0352_p06	261	The longer you waste time in talk, the more certain it is that you will lose.	you(?), you(-11)	-
+d0352_p07	262	They followed the stairs down two flights and walked through a door into a reception room.	They(?)	They[0](?)
+d0352_p08	263	We don't even need to build the boat, the native villagers have plenty that would do.	We(?)	We[0](?)
+d0352_p09	264	As soon as they taste cold steel they'll flee back to their mountains as they did before.	they(?), they'll(-4), their(-4), they(-3)	they[3](?); they'll[7](-4); their[11](-4); they[14](-3)
+d0352_p10	265	Don't tell me any more about the crime, in fact, don't tell me any more full stop.	me(?), me(-10)	-
+d0352_p11	266	He sets out to prove them wrong by holding down a job and trying to act responsible.	He(?), them(?)	He[0](?); them[5](?)
+d0352_p12	267	In a moment, before anyone could stop him, he had driven his sword into his own stomach.	him(?), he(-1), his(-3), his(-3)	him,[7](?); he[8](-1); his[11](-3); his[14](-3)
+d0352_p13	268	Joe had survived his first week of work and felt good to have money in his pocket.	his(-3), his(-12)	his[3](-3); his[15](-12)
+d0352_p14	269	Keith walked into the cell and climbed up on his bed and lay staring at the ceiling.	his(-9)	his[9](-9)
+d0352_p15	270	Douglas followed his father to his office and Kevin knew from looking in the window they were arguing.	his(-2), his(-2), they(-10 + -13)	his[2](-2); his[5](-2); they[15](-10 + -13)
+d0352_p16	271	He had lived with his mother till she died after a long and painful fight with lung cancer.	He(?), his(-4), she(-2)	He[0](?); his[4](-4); she[7](-2)
+d0352_p17	272	He had to get himself in gear and stop getting into trouble and this time he meant it.	He(?), himself(-4), this(?), he(-11), it(-9)	He[0](?); himself[4](-4); this[13](?); he[15](-11); it.[17](-9)
+d0352_p18	273	He had walked so far since the battle and every step now seemed to him like a year.	He(?), him(-14)	He[0](?); him[14](-14)
+d0352_p19	274	He put his hands to his sword and heard the song rush through his blood louder than ever.	He(?), his(-2), his(-3), his(-8)	He[0](?); his[2](-2); his[5](-3); his[13](-8)
+d0352_p20	275	He stared down the narrow pass as though expecting some challenge to issue from the mouth of it.	He(?), it(-12)	He[0](?); it.[17](-12)
+d0352_p21	276	He walked up to the office and knocked on the door waiting till he was told to enter.	He(?), he(-13)	He[0](?); he[13](-13)
+d0352_p22	277	I didn't read the local papers and neither did my parents so I had not heard about it.	I(?), my(-9), I(-3), it(?)	it.[17](?)
+d0352_p23	278	Luke kicked off his boots and shrugged off his jacket and slammed his cap down on the hook.	his(-3), his(-5), his(-4)	his[3](-3); his[8](-5); his[12](-4)
+d0352_p24	279	Malcolm woke Lewis at six in the morning and told him to wear his worst jeans and shirt.	him(-8), his(-3)	him[10](-8); his[13](-3)
+d0352_p25	280	Mark stopped in his tracks on the way to the table and stood in front of the stove.	his(-3)	his[3](-3)
+d0352_p26	281	Martin went to get washed up for lunch then spent the afternoon working on the extension with Mark.	-	-
+d0352_p27	282	The driver slowed down, pulled over and got out, which was really a terrible mistake on his part.	his(-15)	his[16](-15)
+d0352_p28	283	The people need a champion to follow, to open the wall in battle and give them an opening.	them(-14)	them[15](-14)
+d0352_p29	284	Whenever she and Clark had tried to talk just between the two of them the subject had wandered.	she(?), them(-10 + -12)	she[1](?); them[13](-10 + -12)
+d0352_p30	285	Colin and Julie walked across a parade ground past a lot of men walking around in uniform carrying guns.	-	-
+d0352_p31	286	Damian is not normally a man of action so now, stirred into action, he looks like he means business.	he(-13), he(-3)	he[13](-13); he[16](-3)
+d0352_p32	287	Derek reached for the statement and placed it in a more prominent position, the better to remember it later.	it(-3), it(-10)	it[7](-3); it[17](-10)
+d0352_p33	288	Dick sat down at the table and took the cup of tea that Karen placed in front of him.	him(-18)	him.[18](-18)
+d0352_p34	289	Henry came out of his office and found Neil standing against the wall with his hands in his pockets.	his(-4), his(-6), his(-3)	his[4](-4); his[14](-6); his[17](-3)
+d0352_p35	290	He could tell by the look of him and his actions that Robert had been hitting the drink again.	He(?), him(+5), his(-2)	He[0](?); him[7](+5); his[9](-2)
+d0352_p36	291	He owned the garage in town and was trusted to do maintenance on all the cars in the village.	He(?)	He[0](?)
+d0352_p37	292	Rachel for no reason at all dropped the fish slice on the floor and ran from the room crying.	-	-
+d0352_p38	293	I am a man of the dead and I have felt the anguish of those passing through my hands.	I(?), I(-8), my(-10)	-
+d0352_p39	294	Martin decided to step in when they asked everyone but Nigel along for a pint after work on Friday.	they(?)	they[6](?)
+d0352_p40	295	Matt thought the best way to have a talk with Patrick would be to take him for a pint.	him(-5)	him[15](-5)
+d0352_p41	296	We could not keep them in the country, they had farms to return to, services drawing to an end.	We(?), them(?), they(-4)	We[0](?); them[4](?); they[8](-4)
+d0352_p42	297	As soon as I got off the phone with the pet store man I rang Gerry and told him everything.	I(?), I(-10), him(-3)	him[18](-3)
+d0352_p43	298	Graham took a long drink from his beer as if to signal that that was an end to the matter.	his(-6), that(-12)	his[6](-6); that[12](-12)
+d0352_p44	299	Harvey longed for a son to carry on the family name and talked of little else in his letters home.	his(-17)	his[17](-17)
+d0352_p45	300	He slumped down on the chair by the fire in a heap like his whole body had suddenly got heavy.	He(?), his(-13)	He[0](?); his[13](-13)
+d0352_p46	301	He stood up as straight as he could with his hands behind his back and tried not to look scared.	He(?), he(-6), his(-3), his(-3)	He[0](?); he[6](-6); his[9](-3); his[12](-3)
+d0352_p47	302	He wrenched one arm from the man's grasp and used it to pull the man's ankles out from beneath him.	He(?), it(-7), the man(-8), him(-5)	He[0](?); it[10](-7); him.[19](-5); ana-the man[14](-8)
+d0352_p49	303	His lips were blue and though just conscious he was in no shape to walk, talk or even breathe well.	His(?), he(-8)	His[0](?); he[8](-8)
+d0352_p50	304	I considered it to be the minimum information I could give out in order to bring the situation under control.	I(?), it(?), I(-8)	it[2](?)
+d0352_p51	305	The next night after tea and locked in the cell for the night, Paul decided to write to his mum.	his(-5)	his[18](-5)
+d0352_p52	306	The water of the river seems to battle against the army, dragging at their legs, trying to pull them under.	their(-3), them(-4)	their[13](-3); them[18](-4)
+d0352_p53	307	They had been allowing their voices to rise and as the debate continued the rest of the crowd caught on.	They(?), their(-4)	They[0](?); their[4](-4)
+d0352_p54	308	They stop in the nearest village to water the horses but the men must do without if they mind sharing.	They(+12)	They[0](+12)
+d0352_p55	309	To one side, out of sight of the priests on the steps of their temple, was a circle of stones.	their(?)	their[13](?)
+d0352_p56	310	We have been given this voice, in a language that is not our own, with which to tell our story.	We(?), this{dem}(?), our(-12), our(-6)	We[0](?); this[4](?); our[12](-12); our[18](-6)
+d0352_p57	311	He carries an axe as long as your arm and he can split a man from head to toe with it.	He(?), your(?), he(-10), it(-17)	He[0](?); he[10](-10); it.[20](-17)
+d0352_p58	312	He ought to have seen the patrol coming, should have spotted their track, noticed the way the forest was on edge.	He(?), their(-5)	He[0](?); their[11](-5)
+d0352_p59	313	Sophie came back in and began to make Morgan his breakfast while he sat drinking his coffee and reading the paper.	his(-1), he(-3), his(-3)	his[9](-1); he[12](-3); his[15](-3)
+d0352_p60	314	My nose was and continues to be broken, also my ribs and legs were bruised after the collision with the wheelchair.	My(?), my(-9)	-
+d0352_p61	315	Putting himself between Fred and his dad could only do more harm than good at least that's what Neil told him.	himself(?), his(-4), that's(-16), him(-15)	himself[1](?); his[5](-4); that's[16](-16); him.[20](-15)
+d0352_p62	316	They have never come this way before and so the hour of their arrival is strange if they wish to trade.	They(?), this(?), their(-12), they(-5)	They[0](?); this[4](?); their[12](-12); they[17](-5)
+d0352_p63	317	By the time he got home he was feeling a little light headed and felt like he could take on the world.	he(?), he(-3), he(-10)	he[3](?); he[6](-3); he[16](-10)
+d0352_p64	318	He made a funny noise and shook his head and raised his hands to indicate that he was useless at describing people.	He(?), his(-7), his(-4), he(-5)	He[0](?); his[7](-7); his[11](-4); he[16](-5)
+d0352_p65	319	Once he'd chopped just about half, he stuck the axe into the chopping block and made his way inside to have breakfast.	he(?), he(-5), the chopping block(-10), his(-10)	he'd[1](?); he[6](-5); ana-the chopping block[13](-10); his[16](-10)
+d0352_p66	320	Unlike the television in the kitchen or the chairs in the lounge or much in the flat, the stereo was not dusty.	-	-
+d0352_p67	321	Kate propped herself up on her elbows, her wine glass standing in the tall grass besides her, and announced that we should talk.	herself(-2), her(-3), her(-2), her(-9), we(-4 + ?)	herself[2](-2); her[5](-3); her[7](-2); her,[16](-9); we[20](-4 + ?)
+d0352_p68	322	He stood over the small sofa at the other end of his office and watched the small figure curl up under his jacket.	He(?), his(-11), his(-10)	He[0](?); his[11](-11); his[21](-10)
+d0352_p69	323	In the distance, the walls appeared as the outline of a great dragon, curled and sleeping, back to the wind and wings folded.	-	-
+d0352_p70	324	Peter went to bed giving himself his word that while Hugh wasn't around he'd look out for George as much as he could.	himself(-5), his(-1), he'd(-7), he(-8)	himself[5](-5); his[6](-1); he'd[13](-7); he[21](-8)
+d0352_p71	325	There was a pause, then the distant rattle of stone on stone, followed closely by its echo from the high mountain walls behind.	its(-8)	its[15](-8)
+d0352_p72	326	Ever devoted to his wife he was at her side in the delivery room when she gave birth to a baby girl in 1978.	his(?), he(-2), her(-4), she(-7)	his[3](?); he[5](-2); her[8](-4); she[15](-7)
+d0352_p73	327	Sue shook her head as she watched Nicholas give up on fighting to stay awake and fall asleep on the chair by the fire.	her(-2), she(-3)	her[2](-2); she[5](-3)
+d0352_p74	328	If you had asked him seconds after visiting the bar what colour the girl's hair was he would have probably turned around to look.	you(?), him(?), he(-12)	him[4](?); he[16](-12)
+d0352_p75	329	Phil ran up to the water tank, his mum would kill Nigel if she knew he'd sent him up the hill without a jacket.	his(-7), she(-5), he'd(-4), him(-10)	his[7](-7); she[13](-5); he'd[15](-4); him[17](-10)
+d0352_p76	330	The following day it was made clear to Laura, if not in so many words, that she really needed to be moving out soon.	she(-8)	she[16](-8)
+d0352_p77	331	The very streets seemed to know the gossip, it passed from head to head not by mouth but seemingly by sheer power of will.	it(-1)	it[8](-1)
+d0352_p78	332	Mary had absolutely no idea what the woman was talking about but there were few things that annoyed her more than adults reading children's books.	her(-18)	her[18](-18)
+d0352_p79	333	Sarah is not in a wheelchair, she is not big and strong, top half or bottom, and she does not speak with an American accent.	she(-6), she(-11)	she[6](-6); she[17](-11)
+d0352_p80	334	He could see a paying job just about to slip out of his fingers and he knew he had to act fast to save it.	He(?), his(-12), he(-3), he(-2), it(-19)	He[0](?); his[12](-12); he[15](-3); he[17](-2); it.[24](-19)
+d0352_p81	335	If he does decide to do anything, he'll fill their bones with fire, put ashes in their lights and blow them past the last river.	he(?), he'll(-6), their(?), their(-7), them(-6)	he[1](?); he'll[7](-6); their[9](?); their[16](-7); them[20](-6)
+d0352_p82	336	If you were coming from the high street you had to walk past three or four perfectly good pubs to get to The Three Cups.	you(?), you(-7)	-
+d0352_p83	337	Just as Margaret was setting out tea, Patrick came in still in his work clothes and washed his hands in the water in the basin.	his(-5), his(-5)	his[12](-5); his[17](-5)
+d0352_p84	338	Richard sat down on the chair in front of the stove and tucked into his tea with the warmth of the stove on his back.	his(-14), his(-9)	his[14](-14); his[23](-9)
+d0352_p85	339	There was no television in the lounge, there was a small one in the kitchen but in the lounge all seats faced the record player.	one(-8)	one[11](-8)
+d0352_p86	340	There was not an enemy within a hundred miles and they were trading a path their kind had not taken for many, many a year.	they(?), their(-5)	they[10](?); their[15](-5)
+d0352_p87	341	Susan would be a cat person, she wanted a pet that could look after itself and, if it loved her, would love her as an equal.	she(-6), itself(-5), it(-3), her(-13), her(-3)	she[6](-6); itself[14](-5); it[17](-3); her,[19](-13); her[22](-3)
+d0352_p88	342	Despite all the publicity he was getting there was still one thing Robert knew he had to do before he could clear his conscience for good.	he(+8), he(-2), he(-5), his(-3)	he[4](+8); he[14](-2); he[19](-5); his[22](-3)
+d0352_p89	343	He went to get on his boots and Ian stuck out his foot and Roger fell over it and landed on the floor with a thud.	He(+8), his(-5), his(-3), it(-5)	He[0](+8); his[5](-5); his[11](-3); it[17](-5)
+d0352_p90	344	Jenny went to the sitting room while Ross finished off his tea and washed up his dishes then went for a bath and straight to bed.	his(-3), his(-5)	his[10](-3); his[15](-5)
+d0352_p91	345	Sam slid down the wall and sat with his knees against his chest and folded his arms across them and put his head down on them.	his(-8), his(-3), his(-4), them(-9), his(-6), them(-7)	his[8](-8); his[11](-3); his[15](-4); them[18](-9); his[21](-6); them.[25](-7)
+d0352_p92	346	Now that he was master, had his own affairs and his own men to command, he was less inclined to be ordered about by his wife.	he(?), his(-4), his(-4), he(-5), his(-9)	he[2](?); his[6](-4); his[10](-4); he[15](-5); his[24](-9)
+d0352_p93	347	For now we must go on with our lives and act as normal, which right now means drinking beer and talking rubbish like we used to do.	we(?), our(-5), we(-16)	we[2](?); our[7](-5); we[23](-16)
+d0352_p94	348	From here she could not see the gate but she knew that it would stand wide and gaping, welcoming the night in, and all that it held.	she(?), she(-7), it(-5), it(-13)	she[2](?); she[9](-7); it[12](-5); it[25](-13)
+d0352_p95	349	He still felt a little drunk but not as bad as he was earlier but that didn't stop him falling in the door and waking everyone up.	He(?), he(-11), that(-13), him(-7)	He[0](?); he[11](-11); that[15](-13); him[18](-7)
+d0352_p96	350	I can't imagine what else you would have been talking to him about except a certain matter that I believe you said you would not talk about.	I(?), you(?), him(?), I(-18), you(-15), you(-2)	him[11](?)
+d0352_p97	351	She also says to tell you that you will not be able to rely on the land, not once you are under the shadow of the walls.	She(?), you(?), you(-2), you(-12)	She[0](?)
+d0352_p98	352	Slowly, very slowly, he placed the tips of his fingers on the ground and felt the power flowing through the earth to the stones touch his ability.	he(?), his(-5), his(-17)	he[3](?); his[8](-5); his[25](-17)
+d0352_p99	353	The door was slammed shut behind him and Scott slid down the wall right to the floor not even noticing the two other men in the cell.	him(?)	him[6](?)
+d0353_p00	354	Caroline picked up the empty dishes from the table and piled them on the side of the sink and began to clean up the crumbs on the table.	them(-6)	them[11](-6)
+d0353_p01	355	In the morning it felt good to get up and not have to wait for an inspection or get told when to go to the bathroom or have breakfast.	it(-1)	it[3](-1)
+d0353_p02	356	When she had gone to make a cup of tea she had noticed a small hair stuck to the moist lip of the kettle and, without thinking, had gone to remove it.	she(?), she(-9), it(-16)	she[1](?); she[10](-9); it.[31](-16)
+d0353_p03	357	Simon lay staring at the ceiling again with his arms behind his head and thinking about his mum, he hoped she wasn't worrying too much and hoped they'd get to visit him soon.	his(-8), his(-3), his(-5), he(-2), she(-3), they'd(-7 + ?), him(-13)	his[8](-8); his[11](-3); his[16](-5); he[18](-2); she[20](-3); they'd[27](-7 + ?); him[31](-13)
+d0353_p04	358	Paula tried to relax back into the pillow to drift off a little, to enjoy listening to the world, but the morning was shot, it was ruined and there was no getting it back.	it(-3), it(-8)	it[24](-3); it[32](-8)
+d0353_p05	359	He kept his stock books neat and checked them every day and Steve knew he urged his son Kenneth to be nothing less than respectable and made sure he was polite with their customers.	He(+12), his(-2), them(-4), he(-2), his(-2), he(-10), their(-4 + -16)	He[0](+12); his[2](-2); them[8](-4); he[14](-2); his[16](-2); he[28](-10); their[32](-4 + -16)
+d0353_p06	360	Tom walked into the visiting room glad that his mum was making it back to see him so quickly or at least when they told him he had a visitor he assumed it was his mum.	his(-8), it{expletive}(?), him(-8), him(-9), he(-1), he(-4), it(-3), his(-4)	his[8](-8); it[12](?); him[16](-8); him[25](-9); he[26](-1); he[30](-4); it[32](-3); his[34](-4)
+d0353_p07	361	She seemed to show some interest in Tony fixing the truck and asked a lot of questions and even liked it when he let her fix some things and she didn't seem to mind getting covered in oil.	She(?), it(+3), he(-15), her(-24), she(-5)	She[0](?); it[20](+3); he[22](-15); her[24](-24); she[29](-5)

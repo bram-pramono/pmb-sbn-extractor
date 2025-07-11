@@ -1,0 +1,89 @@
+% Kevin had struck the belt across his legs and hit his fingers in the process.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02    Name "Kevin"                          % Kevin  --had--       [0-9]
+%SBN% strike.v.03  Agent -1 Time +1 Theme +2 Location +4 % struck          [10-16]
+%SBN% time.n.08    TPR now                               %                 
+%SBN% belt.n.02                                          %  --the-- belt  --across-- [17-32]
+%SBN% male.n.02    ANA -4                                % his             [33-36]
+%SBN% leg.n.01     PartOf -1                             % legs  --and--        [37-45]
+%SBN% hit.v.02     Agent -6 Time +1 Theme +3 Time +4     % hit             [46-49]
+%SBN% time.n.08    TPR now                               %                 
+%SBN% male.n.02    ANA -8                                % his             [50-53]
+%SBN% finger.n.01  PartOf -1                             % fingers  --in--      [54-64]
+%SBN% process.n.01                                       %  --the-- process --.--    [65-77]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Kevin
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,kevin)']</b1>
+cat: N
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:struck
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←strike:strike.v.03(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[pt]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:belt
+sem: λv1.<b1>[]:['b1←belt:belt.n.02(v1)']</b1>
+cat: N
+----------
+tokens:across
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Location(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←PartOf(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:legs
+sem: λv1.<b1>[]:['b1←leg:leg.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:hit
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←hit:hit.v.02(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/PP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←PartOf(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:fingers
+sem: λv1.<b1>[]:['b1←finger:finger.n.01(v1)']</b1>
+cat: N
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Time(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:process
+sem: λv1.<b1>[]:['b1←process:process.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

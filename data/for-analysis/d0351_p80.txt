@@ -1,0 +1,105 @@
+% He could hear men shouting, screaming as though all of hell was at their heels.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                % He  --could--            [0-8]
+%SBN%             POSSIBILITY &lt;1               %                     
+%SBN% hear.v.01   Experiencer -1 Stimulus +1   % hear                [9-13]
+%SBN% man.n.01                                 % men                 [14-17]
+%SBN% shout.v.01  Agent -1                     % shouting --,--           [18-27]
+%SBN% scream.v.03 Agent -2                     % screaming  --as--  --though-- [28-47]
+%SBN%             EXPLANATION &lt;1               %                     
+%SBN%             NEGATION &lt;1                  %                     
+%SBN% entity.n.01 InstanceOf +1                % all  --of--              [48-54]
+%SBN% hell.n.01                                % hell                [55-59]
+%SBN%             NEGATION &lt;1                  %                     
+%SBN% be.v.01     Theme -2 Time +1 Location +3 % was  --at--              [60-66]
+%SBN% time.n.08   TPR now                      %                     
+%SBN% person.n.01                              % their               [67-72]
+%SBN% heel.n.01   PartOf -1                    % heels --.--              [73-79]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:could
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←◊((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:hear
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←hear:hear.v.01(e1)','b1←Stimulus(e1,v5)','b1←Experiencer(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:men
+sem: λv1.λv2.(<b1>[]:['b1←man:man.n.01(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[ng]\NP)
+----------
+tokens:shouting
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←shout:shout.v.01(e1)','b1←Agent(e1,v3)']</b1>;(v2@e1)))
+cat: S[ng]\NP
+----------
+tokens:,
+sem: λv1.v1
+cat: (S[ng]\NP)\(S[ng]\NP)
+----------
+tokens:ø
+sem: λv1.λv2.λv3.((v2@v3);((v1@λv4.(v4@v3))@λv5.<b1>[]:[]</b1>))
+cat: (N\N)/(S[ng]\NP)
+----------
+tokens:screaming
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←scream:scream.v.03(e1)','b1←Agent(e1,v3)']</b1>;(v2@e1)))
+cat: S[ng]\NP
+----------
+tokens:as
+sem: λv1.v1
+cat: ((S\NP)\(S\NP))/((S\NP)\(S\NP))
+----------
+tokens:though
+sem: λv1.λv2.λv3.λv4.<>[]:[]</>
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:all
+sem: λv1.λv2.<b1>[]:["b1←¬(<b2>['b2←x1']:['b2←¬(v2@x1)','b2←entity:entity.n.01(x1)']</b2>;(v1@x1))"]</b1>
+cat: NP/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←InstanceOf(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:hell
+sem: λv1.<b1>[]:['b1←hell:hell.n.01(v1)']</b1>
+cat: N
+----------
+tokens:was
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←be:be.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:at
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:their
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:heels
+sem: λv1.λv2.(<b1>[]:['b1←heel:heel.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

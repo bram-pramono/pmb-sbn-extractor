@@ -1,0 +1,73 @@
+% I'll break your neck if you don't fix that water.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01 EQU speaker                 % I           [0-1]
+%SBN% time.n.08   TSU now                     % 'll         [1-4]
+%SBN% break.v.57  Agent -2 Time -1 Theme +2   % break       [5-10]
+%SBN% person.n.01 EQU hearer                  % your        [11-15]
+%SBN% neck.n.01   PartOf -1                   % neck  --if--     [16-23]
+%SBN%             PRECONDITION &lt;1             %             
+%SBN% person.n.01 EQU hearer                  % you         [24-27]
+%SBN% time.n.08   EQU now                     % do --n't--       [28-33]
+%SBN%             NEGATION &lt;1                 %             
+%SBN% fix.v.01    Agent -2 Time -1 Patient +1 % fix         [34-37]
+%SBN% water.n.01                              %  --that-- water --.-- [38-49]
+
+% Incremental DRS
+
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:'ll
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:break
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←break:break.v.57(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:your
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;((v1@λv3.<b2>['b2←x2']:['b2←person:person.n.01(x2)','b2←x2=hearer','b2←PartOf(v3,x2)']</b2>)@x1))∗(v2@x1))
+cat: NP/(N/PP)
+----------
+tokens:neck
+sem: λv1.λv2.(<b1>[]:['b1←neck:neck.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:if
+sem: λv1.λv2.λv3.λv4.<>[]:[]</>
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:do
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:n't
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:fix
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←fix:fix.v.01(e1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:that
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:water
+sem: λv1.<b1>[]:['b1←water:water.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

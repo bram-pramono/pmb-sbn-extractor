@@ -1,0 +1,113 @@
+% Harvey longed for a son to carry on the family name and talked of little else in his letters home.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02        Name "Harvey"                         % Harvey              [0-6]
+%SBN% long.v.01        Pivot -1 Time +1 Theme +2             % longed  --for--          [7-17]
+%SBN% time.n.08        TPR now                               %                     
+%SBN% person.n.01      Role +1                               %  --a-- son  --to--            [18-26]
+%SBN% son.n.01                                               %                     
+%SBN% carry_on.v.02    Agent -2 Theme +1                     % carry  --on--            [27-35]
+%SBN% family_name.n.01                                       %  --the-- family name  --and-- [36-55]
+%SBN% talk.v.02        Agent -7 Time +1 Topic +3 Location +6 % talked  --of--           [56-65]
+%SBN% time.n.08        TPR now                               %                     
+%SBN% little.a.02      AttributeOf +1                        % little              [66-72]
+%SBN% entity.n.01      NEQ +1                                % else  --in--             [73-80]
+%SBN% entity.n.01                                            %                     
+%SBN% male.n.02        ANA -12                               % his                 [81-84]
+%SBN% letter.n.01      User -1 Destination +1                % letters             [85-92]
+%SBN% home.n.01                                              % home --.--               [93-98]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Harvey
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,harvey)']</b1>
+cat: N
+----------
+tokens:longed
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←long:long.v.01(e1)','b1←Pivot(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:for
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:son
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←son:son.n.01(x1)','b1←person:person.n.01(v2)','b1←Role(v2,x1)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:carry
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(<b1>['b1←e1']:['b1←carry_on:carry_on.v.02(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;(v4@e1))))
+cat: ((S[b]\NP)/NP)/PR
+----------
+tokens:on
+sem: on
+cat: PR
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:family~name
+sem: λv1.<b1>[]:['b1←family_name:family_name.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:talked
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←talk:talk.v.02(e1)','b1←Agent(e1,v5)']</b1>;((v2@e1);((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/PP)/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Topic(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:little
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←little:little.a.02(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:else
+sem: λv1.<b2>['b1←x1']:['b1←person:person.n.01(x1)','b2←person:person.n.01(v1)','b2←v1≠x1']</b2>
+cat: N
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:letters
+sem: λv1.<b1>[]:['b1←letter:letter.n.01(v1)']</b1>
+cat: N
+----------
+tokens:home
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←home:home.n.01(x1)','b1←Destination(v2,x1)']</b1>;(v1@v2))
+cat: N\N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

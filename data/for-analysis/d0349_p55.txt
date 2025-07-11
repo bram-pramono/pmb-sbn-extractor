@@ -1,0 +1,48 @@
+% I wouldn't want to miss this.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01 EQU speaker               % I        [0-1]
+%SBN% time.n.08   TSU now                   % would --n't-- [2-10]
+%SBN%             NEGATION &lt;1               %          
+%SBN% want.v.01   Pivot -2 Time -1 Theme +1 % want  --to--  [11-18]
+%SBN% miss.v.09   Agent -3 Theme +1         % miss     [19-23]
+%SBN% entity.n.01                           % this --.--    [24-29]
+
+% Incremental DRS
+
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:would
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:n't
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:want
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←want:want.v.01(e1)','b1←Pivot(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Theme(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:miss
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←miss:miss.v.09(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:this
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

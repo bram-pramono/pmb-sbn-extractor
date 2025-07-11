@@ -1,0 +1,166 @@
+% In the morning it felt good to get up and not have to wait for an inspection or get told when to go to the bathroom or have breakfast.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% morning.n.01                                         %  --the-- morning      [3-14]
+%SBN% entity.n.01                                          % it               [15-17]
+%SBN% entity.n.01                                          % felt             [18-22]
+%SBN% good.a.05            Time -3 AttributeOf -2 Theme +1 % good  --to--          [23-30]
+%SBN% get_up.v.02          Patient -2                      % get  --up--  --and--  --not--   [31-45]
+%SBN%                      NEGATION &lt;1                     %                  
+%SBN%                      NEGATION &lt;1                     %                  
+%SBN%                      NEGATION &lt;1                     %                  
+%SBN%                      NEGATION &lt;1                     %                  
+%SBN%                      NEGATION &lt;1                     %                  
+%SBN% morning.n.01                                         %                  
+%SBN% have.v.01            Pivot -4 Theme +1               % have  --to--          [46-53]
+%SBN% wait.v.01            Theme -5 Goal +1                % wait  --for--         [54-62]
+%SBN% inspection.n.01                                      %  --an-- inspection  --or-- [63-79]
+%SBN% terra_incognita.n.01 EQU -6 Time -4                  % In               [0-2]
+%SBN% terra_incognita.n.01 EQU -7 Theme -4 EQU -1          %                  
+%SBN%                      NEGATION &lt;2                     %                  
+%SBN% morning.n.01                                         %                  
+%SBN% get.v.01             Experiencer -10 Stimulus +1     % get              [80-83]
+%SBN% tell.v.04            Topic -11 Time +1 Recipient +2  % told             [84-88]
+%SBN% time.n.08            TPR now                         %                  
+%SBN% when.n.01                                            % when  --to--          [89-96]
+%SBN% go.v.01              Theme -1 Destination +1         % go  --to--            [97-102]
+%SBN% bathroom.n.01                                        %  --the-- bathroom  --or--  [103-118]
+%SBN% terra_incognita.n.01 EQU -15 EQU -8 Time -7          %                  
+%SBN% terra_incognita.n.01 EQU -16 Theme -7 EQU -1         %                  
+%SBN%                      NEGATION &lt;5                     %                  
+%SBN% morning.n.01                                         %                  
+%SBN% have.v.06            Agent -19 Patient +1            % have             [119-123]
+%SBN% breakfast.n.01                                       % breakfast --.--       [124-134]
+%SBN% terra_incognita.n.01 EQU -20 EQU -4 Time -3          %                  
+%SBN% terra_incognita.n.01 EQU -21 Theme -3 EQU -1         %                  
+
+% Incremental DRS
+
+tokens:In
+sem: λv1.λv2.λv3.(v2@λv4.((v1@λv5.<b1>[]:['b1←Time(v4,v5)']</b1>);(v3@v4)))
+cat: (S/S)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:morning
+sem: λv1.<b1>[]:['b1←morning:morning.n.01(v1)']</b1>
+cat: N
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:felt
+sem: λv1.λv2.λv3.λv4.((v1@v3)@λv5.((v2@λv6.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(v6@x1)))@λv7.(<b2>[]:['b2←Theme(v5,v7)']</b2>;(v4@v5))))
+cat: ((S[dcl]\NP)/(S[to]\NP))/(S[adj]\NP)
+----------
+tokens:good
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←good:good.a.05(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:get
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←get_up:get_up.v.02(e1)','b1←Patient(e1,v4)']</b1>;(v3@e1)))
+cat: (S[b]\NP)/PR
+----------
+tokens:up
+sem: up
+cat: PR
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:not
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)/(S\NP)
+----------
+tokens:have
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←have:have.v.01(e1)','b1←Pivot(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Theme(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:wait
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←wait:wait.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[b]\NP)/PP
+----------
+tokens:for
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Goal(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:an
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:inspection
+sem: λv1.<b1>[]:['b1←inspection:inspection.n.01(v1)']</b1>
+cat: N
+----------
+tokens:or
+sem: λv1.λv2.λv3.λv4.(v3@λv5.<b1>[]:["b1←¬<b2>[]:['b2←¬((v1@λv7.(v7@v5))@v4)','b2←¬((v2@λv6.(v6@v5))@v4)']</b2>"]</b1>)
+cat: conj
+----------
+tokens:get
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←get:get.v.01(e1)','b1←Experiencer(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Stimulus(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[pss]\NP)
+----------
+tokens:told
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←tell:tell.v.04(e1)','b1←Time(e1,t1)','b1←Recipient(e1,v5)','b1←Topic(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[pss]\NP)/NP
+----------
+tokens:when
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←when:when.n.01(x1)']</b1>;(((v1@λv3.(v3@x1))@λv4.<b2>[]:[]</b2>);(v2@x1)))
+cat: NP/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:go
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←go:go.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[b]\NP)/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:bathroom
+sem: λv1.<b1>[]:['b1←bathroom:bathroom.n.01(v1)']</b1>
+cat: N
+----------
+tokens:or
+sem: λv1.λv2.λv3.λv4.(v3@λv5.<b1>[]:["b1←¬<b2>[]:['b2←¬((v1@λv7.(v7@v5))@v4)','b2←¬((v2@λv6.(v6@v5))@v4)']</b2>"]</b1>)
+cat: conj
+----------
+tokens:have
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←have:have.v.06(e1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:breakfast
+sem: λv1.<b1>[]:['b1←breakfast:breakfast.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

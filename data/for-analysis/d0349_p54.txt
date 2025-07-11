@@ -1,0 +1,47 @@
+% I knew I heard your voice.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01 EQU speaker                           % I      [0-1]
+%SBN% know.v.01   Proposition &gt;1 Experiencer -1 Time +1 % knew   [2-6]
+%SBN% time.n.08   TPR now                               %        
+%SBN%             CONTINUATION &lt;0                       %        
+%SBN% person.n.01 EQU speaker                           % I      [7-8]
+%SBN% hear.v.01   Experiencer -1 Time +1 Stimulus +3    % heard  [9-14]
+%SBN% time.n.08   TPR now                               %        
+%SBN% person.n.01 EQU hearer                            % your   [15-19]
+%SBN% voice.n.01  PartOf -1                             % voice --.-- [20-26]
+
+% Incremental DRS
+
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:knew
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←know:know.v.01(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,p1)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[dcl]
+----------
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:heard
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←hear:hear.v.01(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,v5)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:your
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;((v1@λv3.<b2>['b2←x2']:['b2←person:person.n.01(x2)','b2←x2=hearer','b2←PartOf(v3,x2)']</b2>)@x1))∗(v2@x1))
+cat: NP/(N/PP)
+----------
+tokens:voice
+sem: λv1.λv2.(<b1>[]:['b1←voice:voice.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

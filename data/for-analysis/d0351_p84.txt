@@ -1,0 +1,91 @@
+% His smile soon faded to a frown when he heard what Keith had to say.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                               % His          [0-3]
+%SBN% smile.n.01 PartOf -1                                    % smile        [4-9]
+%SBN% soon.r.01                                               % soon         [10-14]
+%SBN% fade.v.01  Patient -2 Time -1 Time +1 Result +2         % faded  --to--     [15-23]
+%SBN% time.n.08  TPR now                                      %              
+%SBN% frown.n.01                                              %  --a-- frown  --when-- [24-36]
+%SBN% male.n.02  ANA -6                                       % he           [37-39]
+%SBN% hear.v.04  Proposition &gt;1 TIN -4 Experiencer -1 Time +1 % heard  --what--   [40-50]
+%SBN% time.n.08  TPR now                                      %              
+%SBN%            CONTINUATION &lt;0                              %              
+%SBN% male.n.02  Name "Keith"                                 % Keith        [51-56]
+%SBN% time.n.08  TPR now                                      % had  --to--       [57-63]
+%SBN% say.v.01   Agent -2 Time -1                             % say --.--         [64-68]
+
+% Incremental DRS
+
+tokens:His
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:smile
+sem: λv1.λv2.(<b1>[]:['b1←smile:smile.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:soon
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←soon:soon.r.01(s1)','b1←Time(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)/(S\NP)
+----------
+tokens:faded
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←fade:fade.v.01(e1)','b1←Patient(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Result(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:frown
+sem: λv1.<b1>[]:['b1←frown:frown.n.01(v1)']</b1>
+cat: N
+----------
+tokens:when
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.((v1@λv6.<b1>[]:['b1←v6⊏v5']</b1>);(v4@v5)))
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:heard
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←hear:hear.v.04(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,v5)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:what
+sem: λv1.λv2.(<b1>['b1←p1']:['b1←p1:(v1@λv3.<b2>[]:[]</b2>)']</b1>;(v2@p1))
+cat: NP/S[dcl]
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Keith
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,keith)']</b1>
+cat: N
+----------
+tokens:had
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:say
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←say:say.v.01(e1)','b1←Agent(e1,v3)']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

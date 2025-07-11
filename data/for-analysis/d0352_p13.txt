@@ -1,0 +1,108 @@
+% Joe had survived his first week of work and felt good to have money in his pocket.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02    Name "Joe"                     % Joe  --had--  [0-7]
+%SBN% survive.v.01 Agent -1 Time +1 Theme +4      % survived [8-16]
+%SBN% time.n.08    TPR now                        %          
+%SBN% male.n.02    ANA -3                         % his      [17-20]
+%SBN% rank.n.02    EQU 1                          % first    [21-26]
+%SBN% week.n.02    User -2 Order -1 Attribute +1  % week  --of--  [27-34]
+%SBN% work.n.03                                   % work  --and-- [35-43]
+%SBN% feel.v.01    Theme -7 Time +1 Attribute +2  % felt     [44-48]
+%SBN% time.n.08    TPR now                        %          
+%SBN% good.a.01    Experiencer -9 Stimulus +1     % good  --to--  [49-56]
+%SBN% have.v.01    Pivot -10 Theme +1 Location +3 % have     [57-61]
+%SBN% money.n.01                                  % money  --in-- [62-70]
+%SBN% male.n.02    ANA -12                        % his      [71-74]
+%SBN% pocket.n.03  User -1                        % pocket --.--  [75-82]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Joe
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,joe)']</b1>
+cat: N
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:survived
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←survive:survive.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[pt]\NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←User(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:first
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←rank:rank.n.02(x1)','b1←x1=1','b1←Order(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:week
+sem: λv1.λv2.λv3.(<b1>[]:['b1←week:week.n.02(v3)']</b1>;((v1@v3);(v2@v3)))
+cat: (N/PP)/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Attribute(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:work
+sem: λv1.<b1>[]:['b1←work:work.n.03(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:felt
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←feel:feel.v.01(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Attribute(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[adj]\NP)
+----------
+tokens:good
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←s1']:['b1←good:good.a.01(s1)','b1←Experiencer(s1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Stimulus(s1,v6)']</b2>);(v3@s1))))
+cat: (S[adj]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:have
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←have:have.v.01(e1)','b1←Theme(e1,v6)','b1←Pivot(e1,v5)']</b1>;((v2@e1);(v4@e1)))))
+cat: ((S[b]\NP)/PP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:money
+sem: λv1.<b1>[]:['b1←money:money.n.01(v1)']</b1>
+cat: N
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:pocket
+sem: λv1.<b1>[]:['b1←pocket:pocket.n.03(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

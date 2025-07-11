@@ -1,0 +1,116 @@
+% By the time he got home he was feeling a little light headed and felt like he could take on the world.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% time.n.01                                                                %  --By--  --the-- time      [0-11]
+%SBN% male.n.02                                                                % he               [12-14]
+%SBN% get.v.05          Time -2 Proposition &gt;1 Agent -1 Time +1 Destination +2 % got              [15-18]
+%SBN% time.n.08         TPR now                                                %                  
+%SBN% home.n.01                                                                % home             [19-23]
+%SBN%                   CONTINUATION &lt;0                                        %                  
+%SBN% male.n.02         ANA -4                                                 % he               [24-26]
+%SBN% time.n.08         TPR now                                                % was              [27-30]
+%SBN% feel.v.01         Theme -2 Time -1 Attribute +2                          % feeling  --a--  --little-- [31-47]
+%SBN% light_headed.a.01 AttributeOf +1                                         % light headed  --and-- [48-64]
+%SBN% entity.n.01       Quantity -                                             %                  
+%SBN% feel.v.01         Theme -5 Time +1 Proposition &gt;1                        % felt  --like--        [65-74]
+%SBN% time.n.08         TPR now                                                %                  
+%SBN%                   CONTINUATION &lt;0                                        %                  
+%SBN% male.n.02         ANA -11                                                % he  --could--         [75-83]
+%SBN%                   POSSIBILITY &lt;1                                         %                  
+%SBN% take_on.v.03      Agent -1 Theme +1                                      % take  --on--          [84-91]
+%SBN% world.n.01                                                               %  --the-- world --.--       [92-102]
+
+% Incremental DRS
+
+tokens:By
+sem: λv1.λv2.λv3.(v2@λv4.((v1@λv5.<b1>[]:['b1←Time(v4,v5)']</b1>);(v3@v4)))
+cat: (S/S)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:time
+sem: λv1.<b1>[]:['b1←time:time.n.01(v1)']</b1>
+cat: N
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:got
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v2@λv7.<b3>[]:[]</b3>)','b1←get:get.v.05(e1)','b1←Time(e1,t1)','b1←Destination(e1,v6)','b1←Theme(e1,p1)','b1←Agent(e1,v5)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v4@e1))))
+cat: ((S[dcl]\NP)/S[dcl])/NP
+----------
+tokens:home
+sem: λv1.(<b1>['b1←x1']:['b1←home:home.n.01(x1)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:was
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:feeling
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←feel:feel.v.01(e1)','b1←Attribute(e1,v5)','b1←Theme(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:little
+sem: λv1.λv2.(<b1>[]:['b1←Quantity(v2,-)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:light~headed
+sem: λv1.<b1>['b1←s1']:['b1←entity:entity.n.01(v1)','b1←light~headed:light~headed.a.01(s1)','b1←AttributeOf(s1,v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:felt
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←feel:feel.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:like
+sem: λv1.λv2.<b1>['b1←p1']:['b1←p1:(v1@λv3.<b2>[]:[]</b2>)','b1←Attribute(v2,p1)']</b1>
+cat: PP/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:could
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←◊((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:take
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(<b1>['b1←e1']:['b1←take_on:take_on.v.03(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;(v4@e1))))
+cat: ((S[b]\NP)/NP)/PR
+----------
+tokens:on
+sem: on
+cat: PR
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:world
+sem: λv1.<b1>[]:['b1←world:world.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

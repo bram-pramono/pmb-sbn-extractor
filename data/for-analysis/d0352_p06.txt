@@ -1,0 +1,96 @@
+% The longer you waste time in talk, the more certain it is that you will lose.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% longer.r.01                                                    % The longer [0-10]
+%SBN% hearer.n.01                                                    % you        [11-14]
+%SBN% waste.v.02   Attribute -2 Agent -1 Time +1 Asset +2 Context +3 % waste      [15-20]
+%SBN% time.n.08    EQU now                                           %            
+%SBN% time.n.03                                                      % time  --in--    [21-28]
+%SBN% talk.n.01                                                      % talk --,--      [29-34]
+%SBN%              CONTINUATION &lt;1                                   %            
+%SBN% more.a.01                                                      % the more   [35-43]
+%SBN% certain.a.02 Manner -1 Proposition &gt;1 Agent +1                 % certain    [44-51]
+%SBN% entity.n.01                                                    % it  --is--      [52-57]
+%SBN%              CONTINUATION &lt;0                                   %            
+%SBN% person.n.01  EQU -8                                            %  --that-- you   [58-66]
+%SBN% time.n.08    TSU now                                           % will       [67-71]
+%SBN% lose.v.02    Agent -2 Time -1                                  % lose --.--      [72-77]
+
+% Incremental DRS
+
+tokens:The~longer
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←longer:longer.r.01(s1)','b1←Attribute(v3,s1)']</b1>;(v2@v3)))
+cat: S/S
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←hearer:hearer.n.01(x1)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:waste
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←waste:waste.v.02(e1)','b1←Asset(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1=now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/PP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:time
+sem: λv1.<b1>[]:['b1←time:time.n.03(v1)']</b1>
+cat: N
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Context(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:talk
+sem: λv1.<b1>[]:['b1←talk:talk.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:the~more
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←more:more.a.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S[adj]\NP)/(S[adj]\NP)
+----------
+tokens:certain
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←s1','b1←p1']:['b1←p1:(v1@λv5.<b2>[]:[]</b2>)','b1←certain:certain.a.02(s1)','b1←Topic(s1,p1)','b1←Agent(s1,v4)']</b1>;(v3@s1)))
+cat: (S[adj]\NP)/S[em]
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:is
+sem: λv1.λv2.(v2@v1)
+cat: (S[dcl]\(S[adj]\NP))\NP
+----------
+tokens:that
+sem: λv1.v1
+cat: S[em]/S[dcl]
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:will
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:lose
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←lose:lose.v.02(e1)','b1←Agent(e1,v3)']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

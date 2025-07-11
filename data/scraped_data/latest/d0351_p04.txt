@@ -1,0 +1,74 @@
+% The first knife caught in her skirt and she shook it free.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% rank.n.02   EQU 1                               %  --The-- first [0-9]
+%SBN% knife.n.01  Order -1                            % knife     [10-15]
+%SBN% catch.v.06  Patient -1 Time +1 Destination +3   % caught  --in-- [16-25]
+%SBN% time.n.08   TPR now                             %           
+%SBN% female.n.02                                     % her       [26-29]
+%SBN% skirt.n.01  User -1                             % skirt  --and-- [30-39]
+%SBN%             CONTINUATION &lt;1                     %           
+%SBN% female.n.02 ANA -2                              % she       [40-43]
+%SBN% shake.v.07  Agent -1 Time +1 Theme +2 Manner +3 % shook     [44-49]
+%SBN% time.n.08   TPR now                             %           
+%SBN% entity.n.01 ANA -8                              % it        [50-52]
+%SBN% free.r.01                                       % free --.--     [53-58]
+
+% Incremental DRS
+
+tokens:The
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:first
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←rank:rank.n.02(x1)','b1←x1=1','b1←Order(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:knife
+sem: λv1.<b1>[]:['b1←knife:knife.n.01(v1)']</b1>
+cat: N
+----------
+tokens:caught
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←catch:catch.v.06(e1)','b1←Patient(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:her
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←User(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:skirt
+sem: λv1.λv2.(<b1>[]:['b1←skirt:skirt.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:she
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:shook
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←shake:shake.v.07(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:free
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←free:free.r.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

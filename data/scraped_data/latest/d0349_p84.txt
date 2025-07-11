@@ -1,0 +1,53 @@
+% She hid the boxes and matches well.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02                                       % She       [0-3]
+%SBN% hide.v.01   Agent -1 Time +1 Patient +3 Manner +5 % hid       [4-7]
+%SBN% time.n.08   TPR now                               %           
+%SBN% box.n.01                                          %  --the-- boxes [8-17]
+%SBN% entity.n.01 Sub -1 Sub +1                         % and       [18-21]
+%SBN% match.n.01                                        % matches   [22-29]
+%SBN% well.r.10                                         % well --.--     [30-35]
+
+% Incremental DRS
+
+tokens:She
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:hid
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←hide:hide.v.01(e1)','b1←Time(e1,t1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:boxes
+sem: λv1.<b1>[]:['b1←box:box.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;((v2@λv4.<b2>[]:['b2←Sub(x1,v4)']</b2>);((v1@λv5.<b3>[]:['b3←Sub(x1,v5)']</b3>);(v3@x1))))
+cat: conj
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:matches
+sem: λv1.<b1>[]:['b1←match:match.n.01(v1)']</b1>
+cat: N
+----------
+tokens:well
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←well:well.r.10(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

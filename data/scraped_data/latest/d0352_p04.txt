@@ -1,0 +1,90 @@
+% She is wearing a cardigan over a purple blouse and a faded old red cotton skirt.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02                                         % She             [0-3]
+%SBN% time.n.08     EQU now                               % is              [4-6]
+%SBN% wear.n.03     Agent -2 Time -1 Theme +1 Location +4 % wearing         [7-14]
+%SBN% cardigan.n.01                                       %  --a-- cardigan  --over-- [15-30]
+%SBN% purple.a.01                                         %  --a-- purple        [31-39]
+%SBN% blouse.n.01   Colour -1                             % blouse          [40-46]
+%SBN% entity.n.01   Sub -1 Sub +5                         % and             [47-50]
+%SBN% faded.a.01    AttributeOf +4                        %  --a-- faded         [51-58]
+%SBN% old.a.02      Value +                               % old             [59-62]
+%SBN% red.a.01                                            % red             [63-66]
+%SBN% cotton.n.02                                         % cotton          [67-73]
+%SBN% skirt.n.01    Attribute -3 Colour -2 MadeOf -1      % skirt --.--          [74-80]
+
+% Incremental DRS
+
+tokens:She
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:is
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:wearing
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←x1']:['b1←wear:wear.n.03(x1)','b1←Theme(x1,v5)','b1←Agent(x1,v4)']</b1>;(v3@x1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:cardigan
+sem: λv1.<b1>[]:['b1←cardigan:cardigan.n.01(v1)']</b1>
+cat: N
+----------
+tokens:over
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Location(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:purple
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←purple:purple.a.01(s1)','b1←Colour(v2,s1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:blouse
+sem: λv1.<b1>[]:['b1←blouse:blouse.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;((v2@λv4.<b2>[]:['b2←Sub(x1,v4)']</b2>);((v1@λv5.<b3>[]:['b3←Sub(x1,v5)']</b3>);(v3@x1))))
+cat: conj
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:faded
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←faded:faded.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:old
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←old:old.a.02(s1)','b1←Value(s1,+)','b1←Attribute(v2,s1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:red
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←red:red.a.01(s1)','b1←Colour(v2,s1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:cotton
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←cotton:cotton.n.02(x1)','b1←MadeOf(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:skirt
+sem: λv1.<b1>[]:['b1←skirt:skirt.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

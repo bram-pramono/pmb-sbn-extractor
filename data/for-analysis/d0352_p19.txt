@@ -1,0 +1,102 @@
+% He put his hands to his sword and heard the song rush through his blood louder than ever.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                           % He           [0-2]
+%SBN% put.v.01   Agent -1 Time +1 Theme +3 Destination +5 % put          [3-6]
+%SBN% time.n.08  TPR now                                  %              
+%SBN% male.n.02  ANA -3                                   % his          [7-10]
+%SBN% hand.n.01  PartOf -1                                % hands  --to--     [11-19]
+%SBN% male.n.02  ANA -5                                   % his          [20-23]
+%SBN% sword.n.01 User -1                                  % sword  --and--    [24-33]
+%SBN% hear.v.01  Proposition &gt;1 Agent -7 Time +1          % heard        [34-39]
+%SBN% time.n.08  TPR now                                  %              
+%SBN%            CONTINUATION &lt;0                          %              
+%SBN% song.n.01                                           %  --the-- song     [40-48]
+%SBN% rush.v.01  Theme -1 Path +2 Manner +3 Time +4       % rush  --through-- [49-61]
+%SBN% male.n.02  ANA -11                                  % his          [62-65]
+%SBN% blood.n.02 PartOf -1                                % blood        [66-71]
+%SBN% loud.a.01                                           % louder  --than--  [72-83]
+%SBN% ever.n.01                                           % ever --.--        [84-89]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:put
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←put:put.v.01(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/PP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:hands
+sem: λv1.λv2.(<b1>[]:['b1←hand:hand.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←User(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:sword
+sem: λv1.λv2.(<b1>[]:['b1←sword:sword.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:heard
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←hear:hear.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,p1)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[b]
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:song
+sem: λv1.<b1>[]:['b1←song:song.n.01(v1)']</b1>
+cat: N
+----------
+tokens:rush
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←rush:rush.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[b]\NP)/PP
+----------
+tokens:through
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Path(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:blood
+sem: λv1.λv2.(<b1>[]:['b1←blood:blood.n.02(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:louder
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←loud:loud.a.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:than
+sem: λv1.v1
+cat: ((S\NP)\(S\NP))/((S\NP)\(S\NP))
+----------
+tokens:ever
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←x1']:['b1←ever:ever.n.01(x1)','b1←Time(v4,x1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

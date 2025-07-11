@@ -1,0 +1,90 @@
+% Chris carefully carried Eddie to his truck and laid him on the back seat.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02      Name "Chris"                                       % Chris     [0-5]
+%SBN% carefully.r.01                                                    % carefully [6-15]
+%SBN% carry.v.01     Agent -2 Manner -1 Time +1 Theme +2 Destination +4 % carried   [16-23]
+%SBN% time.n.08      TPR now                                            %           
+%SBN% male.n.02      Name "Eddie"                                       % Eddie  --to--  [24-32]
+%SBN% male.n.02      ANA -5                                             % his       [33-36]
+%SBN% truck.n.01     User -1                                            % truck  --and-- [37-46]
+%SBN% lay.v.02       Agent -7 Time +1 Theme +2 Location +4              % laid      [47-51]
+%SBN% time.n.08      TPR now                                            %           
+%SBN% male.n.02      ANA -5                                             % him  --on--    [52-58]
+%SBN% back.a.01      AttributeOf +1                                     %  --the-- back  [59-67]
+%SBN% seat.n.03                                                         % seat --.--     [68-73]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Chris
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,chris)']</b1>
+cat: N
+----------
+tokens:carefully
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←carefully:carefully.r.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)/(S\NP)
+----------
+tokens:carried
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←carry:carry.v.01(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/PP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Eddie
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,eddie)']</b1>
+cat: N
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:truck
+sem: λv1.<b1>[]:['b1←truck:truck.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:laid
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←lay:lay.v.02(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/PP)/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:on
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:back
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←back:back.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:seat
+sem: λv1.<b1>[]:['b1←seat:seat.n.03(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

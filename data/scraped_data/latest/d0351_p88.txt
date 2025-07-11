@@ -1,0 +1,102 @@
+% If you haven't seen it yet all that means is you aren't looking hard enough.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01 EQU hearer                         %  --If-- you  --haven't-- [0-14]
+%SBN%             NEGATION &lt;1                        %                
+%SBN% see.v.01    Experiencer -1 Time +1 Stimulus +2 % seen           [15-19]
+%SBN% time.n.08   TPR now                            %                
+%SBN% entity.n.01                                    % it  --yet--         [20-26]
+%SBN%             CONSEQUENCE &lt;1                     %                
+%SBN%             NEGATION &lt;1                        %                
+%SBN% entity.n.01                                    %  --all-- that       [27-35]
+%SBN%             NEGATION &lt;1                        %                
+%SBN% mean.v.02   Theme -1 Time +1 Co-Theme +2       % means          [36-41]
+%SBN% time.n.08   EQU now                            %                
+%SBN% be.v.01     Proposition &gt;1 Theme -3 Time +1    % is             [42-44]
+%SBN% time.n.08   EQU now                            %                
+%SBN%             CONTINUATION &lt;0                    %                
+%SBN% person.n.01 EQU hearer                         % you            [45-48]
+%SBN% time.n.08   EQU now                            % are --n't--         [49-55]
+%SBN%             NEGATION &lt;1                        %                
+%SBN% look.v.04   Theme -2 Time -1 Attribute +1      % looking        [56-63]
+%SBN% hard.r.01   Manner -3 Manner +1                % hard           [64-68]
+%SBN% enough.r.01                                    % enough --.--        [69-76]
+
+% Incremental DRS
+
+tokens:If
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: (S/S)/S[dcl]
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:have
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:n't
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:seen
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←see:see.v.01(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,v5)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[pt]\NP)/NP
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:yet
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:all
+sem: λv1.λv2.<b1>[]:["b1←¬(<b2>['b2←x1']:['b2←¬(v2@x1)']</b2>;(v1@x1))"]</b1>
+cat: NP/N
+----------
+tokens:that
+sem: λv1.<b1>[]:['b1←entity:entity.n.01(v1)']</b1>
+cat: N
+----------
+tokens:means
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←mean:mean.v.02(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Co-Theme(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1=now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[dcl]\NP)
+----------
+tokens:is
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←be:be.v.01(e1)','b1←Time(e1,t1)','b1←Co-Theme(e1,p1)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1=now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[dcl]
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:are
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:n't
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:looking
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←look:look.v.04(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Attribute(e1,v6)']</b2>);(v3@e1))))
+cat: (S[ng]\NP)/(S[adj]\NP)
+----------
+tokens:hard
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←hard:hard.r.01(s1)','b1←Manner(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:enough
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←enough:enough.r.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S[adj]\NP)\(S[adj]\NP)
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

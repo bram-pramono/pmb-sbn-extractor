@@ -1,0 +1,61 @@
+% The brothers stood up and came down from the platform.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01    Role +1                    %  --The-- brothers   [0-12]
+%SBN% brother.n.01                              %                
+%SBN% stand_up.v.01  Agent -2 Time +1           % stood  --up--  --and--   [13-25]
+%SBN% time.n.08      TPR now                    %                
+%SBN% come_down.v.01 Theme -4 Time +1 Source +2 % came  --down--  --from-- [26-40]
+%SBN% time.n.08      TPR now                    %                
+%SBN% platform.n.01                             %  --the-- platform --.--  [41-54]
+
+% Incremental DRS
+
+tokens:The
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:brothers
+sem: λv1.<b1>['b1←x1']:['b1←brother:brother.n.01(x1)','b1←person:person.n.01(v1)','b1←Role(v1,x1)']</b1>
+cat: N
+----------
+tokens:stood
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b2←t1']:['b1←stand_up:stand_up.v.01(e1)','b1←Time(e1,t1)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/PR
+----------
+tokens:up
+sem: up
+cat: PR
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:came
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←come_down:come_down.v.01(e1)','b1←Theme(e1,v5)']</b1>;((v2@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1)))))
+cat: ((S[dcl]\NP)/PP)/PR
+----------
+tokens:down
+sem: down
+cat: PR
+----------
+tokens:from
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Source(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:platform
+sem: λv1.<b1>[]:['b1←platform:platform.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

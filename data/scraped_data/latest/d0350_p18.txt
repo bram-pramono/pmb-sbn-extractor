@@ -1,0 +1,58 @@
+% He heaved his shoulders and swung the axe again.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                               % He             [0-2]
+%SBN% heave.v.04    Agent -1 Time +1 Theme +3 % heaved         [3-9]
+%SBN% time.n.08     TPR now                   %                
+%SBN% male.n.02     ANA -3                    % his            [10-13]
+%SBN% shoulder.n.01 PartOf -1                 % shoulders  --and--  [14-27]
+%SBN% swing.v.01    Agent -5 Time +1 Theme +2 % swung          [28-33]
+%SBN% time.n.08     TPR now                   %                
+%SBN% axe.n.01                                %  --the-- axe  --again.-- [34-48]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:heaved
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←heave:heave.v.04(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:shoulders
+sem: λv1.λv2.(<b1>[]:['b1←shoulder:shoulder.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:swung
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←swing:swing.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:axe
+sem: λv1.<b1>[]:['b1←axe:axe.n.01(v1)']</b1>
+cat: N
+----------
+tokens:again
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

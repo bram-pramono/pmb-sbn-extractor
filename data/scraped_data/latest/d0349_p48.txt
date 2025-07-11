@@ -1,0 +1,45 @@
+% He shouted and the calling ceased.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                   % He          [0-2]
+%SBN% shout.v.02 Agent -1 Time +1 % shouted  --and-- [3-14]
+%SBN% time.n.08  TPR now          %             
+%SBN%            CONTINUATION &lt;1  %             
+%SBN% call.v.03                   %  --the-- calling [15-26]
+%SBN% cease.v.01 Theme -1 Time +1 % ceased --.--     [27-34]
+%SBN% time.n.08  TPR now          %             
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:shouted
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←shout:shout.v.02(e1)','b1←Time(e1,t1)','b1←Agent(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:calling
+sem: λv1.<b1>[]:['b1←call:call.v.03(v1)']</b1>
+cat: N
+----------
+tokens:ceased
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←cease:cease.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

@@ -1,0 +1,92 @@
+% No one had ever cared about him so much as to threaten his dad like that.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN%               NEGATION &lt;1                                 %               
+%SBN% person.n.01                                               %  --No-- one  --had--    [0-10]
+%SBN% ever.r.01                                                 % ever          [11-15]
+%SBN% care.v.01     Agent -2 Time -1 Time +1 Theme +2 Degree +3 % cared  --about--   [16-27]
+%SBN% time.n.08     TPR now                                     %               
+%SBN% male.n.02                                                 % him           [28-31]
+%SBN% so.r.01                                                   % so  --much--  --as--  --to-- [32-45]
+%SBN%               CONTINUATION &lt;2                             %               
+%SBN% so.r.01                                                   %               
+%SBN% threaten.v.02 Agent -7 Degree -1 Theme +2 Manner +4       % threaten      [46-54]
+%SBN% male.n.02     ANA -4                                      % his           [55-58]
+%SBN% person.n.01   Of -1 Role +1                               % dad  --like--      [59-67]
+%SBN% dad.n.01                                                  %               
+%SBN% entity.n.01                                               % that --.--         [68-73]
+
+% Incremental DRS
+
+tokens:No
+sem: λv1.λv2.<b1>[]:["b1←¬(<b2>['b2←x1']:[]</b2>;((v1@x1);(v2@x1)))"]</b1>
+cat: NP/N
+----------
+tokens:one
+sem: λv1.<b1>[]:['b1←person:person.n.01(v1)']</b1>
+cat: N
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:ever
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←ever:ever.r.01(s1)','b1←Time(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)/(S\NP)
+----------
+tokens:cared
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←care:care.v.01(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[pt]\NP)/PP
+----------
+tokens:about
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:so
+sem: λv1.λv2.λv3.λv4.(((v1@v2)@v3)@λv5.(<b1>['b1←s1']:['b1←so:so.r.01(s1)','b1←Degree(v5,s1)']</b1>;(v4@v5)))
+cat: ((S\NP)\(S\NP))/((S\NP)\(S\NP))
+----------
+tokens:much
+sem: λv1.v1
+cat: ((S\NP)\(S\NP))/((S\NP)\(S\NP))
+----------
+tokens:as
+sem: λv1.λv2.λv3.λv4.(v3@λv5.<>[]:[]</>)
+cat: ((S\NP)\(S\NP))/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:threaten
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←threaten:threaten.v.02(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←Of(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:dad
+sem: λv1.<b1>['b1←x1']:['b1←dad:dad.n.01(x1)','b1←person:person.n.01(v1)','b1←Role(v1,x1)']</b1>
+cat: N
+----------
+tokens:like
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Manner(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:that
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

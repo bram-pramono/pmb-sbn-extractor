@@ -1,0 +1,108 @@
+% Derek reached for the statement and placed it in a more prominent position, the better to remember it later.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02      Name "Derek"                                      % Derek             [0-5]
+%SBN% reach.v.08     Agent -1 Time +1 Theme +2                         % reached  --for--       [6-17]
+%SBN% time.n.08      TPR now                                           %                   
+%SBN% statement.n.01                                                   %  --the-- statement  --and-- [18-35]
+%SBN% place.v.01     Agent -4 Time +1 Theme +2 Location +5 Location +6 % placed            [36-42]
+%SBN% time.n.08      TPR now                                           %                   
+%SBN% entity.n.01    ANA -3                                            % it  --in--             [43-48]
+%SBN% more.r.01                                                        %  --a-- more            [49-55]
+%SBN% prominent.a.01 Degree -1 AttributeOf +1                          % prominent         [56-65]
+%SBN% position.n.01                                                    % position --,--         [66-75]
+%SBN% good.a.12                                                        %  --the-- better  --to--     [76-89]
+%SBN% remember.v.02  Attribute -1 Theme +1 Manner +2                   % remember          [90-98]
+%SBN% entity.n.01    ANA -9                                            % it                [99-101]
+%SBN% later.r.01                                                       % later --.--            [102-108]
+
+% Incremental DRS
+
+tokens:Derek
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)','b1←Name(x1,derek)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:reached
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←reach:reach.v.08(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:for
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:statement
+sem: λv1.<b1>[]:['b1←statement:statement.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:placed
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←place:place.v.01(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/PP)/NP
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:more
+sem: λv1.λv2.λv3.(((v1@λv4.(v4@v3))@λv5.<b1>['b1←s1']:['b1←more:more.r.01(s1)','b1←Degree(v5,s1)']</b1>);(v2@v3))
+cat: (N/N)/(S[adj]\NP)
+----------
+tokens:prominent
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←prominent:prominent.a.01(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:position
+sem: λv1.<b1>[]:['b1←position:position.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.λv2.λv3.((v2@v3);(v1@v3))
+cat: conj
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:better
+sem: λv1.λv2.(<b1>[]:['b1←good:good.a.12(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:remember
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←remember:remember.v.02(e1)','b1←Theme(e1,v5)','b1←Attribute(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:later
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←later:later.r.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

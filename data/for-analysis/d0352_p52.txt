@@ -1,0 +1,115 @@
+% The water of the river seems to battle against the army, dragging at their legs, trying to pull them under.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% water.n.01  SubOf +1                           %  --The-- water  --of--   [0-12]
+%SBN% river.n.01  Name "river"                       %  --the-- river      [13-22]
+%SBN% seem.v.01   Experiencer -2 Time +1 Stimulus +2 % seems  --to--       [23-31]
+%SBN% time.n.08   EQU now                            %                
+%SBN% battle.v.01 Agent -4 Beneficiary +1            % battle  --against-- [32-46]
+%SBN% army.n.01                                      %  --the-- army --,--      [47-56]
+%SBN% drag.v.01   Agent -6 Theme +2                  % dragging  --at--    [57-68]
+%SBN% person.n.01                                    % their          [69-74]
+%SBN% leg.n.01    PartOf -1 ContentOf +1             % legs           [75-79]
+%SBN% entity.n.01                                    % ,  --trying--  --to--    [79-90]
+%SBN%             CONTINUATION &lt;1                    %                
+%SBN% pull.v.01   Agent -10 Patient -3               % pull           [91-95]
+%SBN% person.n.01 EQU -4                             % them  --under.--    [96-107]
+
+% Incremental DRS
+
+tokens:The
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:water
+sem: λv1.λv2.(<b1>[]:['b1←water:water.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←SubOf(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:river
+sem: λv1.<b1>[]:['b1←river:river.n.01(v1)','b1←Name(v1,river)']</b1>
+cat: N
+----------
+tokens:seems
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←seem:seem.v.01(e1)','b1←Experiencer(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Stimulus(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1=now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:battle
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←battle:battle.v.01(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[b]\NP)/PP
+----------
+tokens:against
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Beneficiary(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:army
+sem: λv1.<b1>[]:['b1←army:army.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.v1
+cat: NP\NP
+----------
+tokens:dragging
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);(<b1>['b1←e1']:['b1←drag:drag.v.01(e1)','b1←Agent(e1,v5)']</b1>;(v1@e1))))
+cat: ((S[dcl]\NP)\(S[dcl]\NP))/PP
+----------
+tokens:at
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:their
+sem: λv1.λv2.(<b1>['b1←x1','b1←x2']:['b1←person:person.n.01(x1)','b1←PartOf(x2,x1)']</b1>;((v1@x2);(v2@x2)))
+cat: NP/N
+----------
+tokens:legs
+sem: λv1.<b1>[]:['b1←leg:leg.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)','b1←ContentOf(v3,x1)']</b1>;(v2@v3)))
+cat: NP\NP
+----------
+tokens:trying
+sem: λv1.λv2.λv3.λv4.(v3@λv5.<>[]:[]</>)
+cat: ((S[dcl]\NP)\(S[dcl]\NP))/(S\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:pull
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←pull:pull.v.01(e1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:them
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:under
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

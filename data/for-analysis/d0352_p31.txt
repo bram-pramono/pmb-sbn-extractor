@@ -1,0 +1,138 @@
+% Damian is not normally a man of action so now, stirred into action, he looks like he means business.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02     Name "Damian"                                  % Damian       [0-6]
+%SBN%               NEGATION &lt;1                                    %              
+%SBN% be.v.01       Theme -1 Time +1 Manner +2 Co-Theme +3         % is  --not--       [7-13]
+%SBN% time.n.08     EQU now                                        %              
+%SBN% normally.r.01                                                % normally     [14-22]
+%SBN% man.n.01      Attribute +1                                   %  --a-- man  --of--     [23-31]
+%SBN% action.n.06                                                  % action  --so--    [32-41]
+%SBN%               EXPLANATION &lt;1                                 %              
+%SBN% entity.n.01                                                  %              
+%SBN% time.n.08     EQU now                                        % now --,--         [42-46]
+%SBN% stir.v.06     Theme -2 Time -1 Goal +1                       % stirred  --into-- [47-59]
+%SBN% action.n.02                                                  % action --,--      [60-67]
+%SBN% male.n.02     ANA -10                                        % he           [68-70]
+%SBN% look.v.02     Participant -3 Theme -1 Time +1 Proposition &gt;1 % looks  --like--   [71-81]
+%SBN% time.n.08     EQU now                                        %              
+%SBN%               CONTINUATION &lt;0                                %              
+%SBN% male.n.02     ANA -13                                        % he           [82-84]
+%SBN% mean.v.01     Agent -1 Time +1 Theme +2                      % means        [85-90]
+%SBN% time.n.08     EQU now                                        %              
+%SBN% business.n.02                                                % business --.--    [91-100]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Damian
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,damian)']</b1>
+cat: N
+----------
+tokens:is
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←be:be.v.01(e1)','b1←Time(e1,t1)','b1←Co-Theme(e1,v5)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1=now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:not
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:normally
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←normally:normally.r.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:man
+sem: λv1.λv2.(<b1>[]:['b1←man:man.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Attribute(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:action
+sem: λv1.<b1>[]:['b1←action:action.n.06(v1)']</b1>
+cat: N
+----------
+tokens:so
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: (S\S)/S[dcl]
+----------
+tokens:now
+sem: λv1.λv2.(v1@λv3.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v3,t1)']</b2>;(v2@v3)))
+cat: S/S
+----------
+tokens:,
+sem: λv1.v1
+cat: (S/S)\(S/S)
+----------
+tokens:ø
+sem: λv1.λv2.λv3.((v1@λv4.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(v4@x1)))@λv5.((v3@v5);(v2@λv6.<b2>[]:['b2←Participant(v6,v5)']</b2>)))
+cat: (S[dcl]/S[dcl])/(S[pss]\NP)
+----------
+tokens:stirred
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←stir:stir.v.06(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[pss]\NP)/PP
+----------
+tokens:into
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Goal(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:action
+sem: λv1.<b1>[]:['b1←action:action.n.02(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.v1
+cat: NP\NP
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:looks
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←look:look.v.02(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1=now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:like
+sem: λv1.λv2.<b1>['b1←p1']:['b1←p1:(v1@λv3.<b2>[]:[]</b2>)','b1←Attribute(v2,p1)']</b1>
+cat: PP/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:means
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←mean:mean.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1=now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:business
+sem: λv1.<b1>[]:['b1←business:business.n.02(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

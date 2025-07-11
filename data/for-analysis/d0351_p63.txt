@@ -1,0 +1,86 @@
+% Every free man had a right to speak gathered at the calling of Council.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN%             NEGATION &lt;1                  %                
+%SBN% free.a.01   AttributeOf +1               %  --Every-- free     [0-10]
+%SBN% man.n.03                                 % man            [11-14]
+%SBN% have.v.01   Pivot -1 Time +1 Theme +2    % had            [15-18]
+%SBN% time.n.08   TPR now                      %                
+%SBN% right.n.01                               %  --a-- right  --to--     [19-29]
+%SBN% speak.v.01  Theme -1                     % speak          [30-35]
+%SBN%             NEGATION &lt;1                  %                
+%SBN% gather.v.06 Theme -5 Time +1 Location +2 % gathered  --at--    [36-47]
+%SBN% time.n.08   TPR now                      %                
+%SBN% call.n.11   Theme +1                     %  --the-- calling  --of-- [48-62]
+%SBN% agency.n.01 Name "Council"               % Council --.--       [63-71]
+
+% Incremental DRS
+
+tokens:Every
+sem: λv1.λv2.<b1>[]:["b1←¬(<b2>['b2←x1']:['b2←¬(v2@x1)']</b2>;(v1@x1))"]</b1>
+cat: NP/N
+----------
+tokens:free
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←free:free.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:man
+sem: λv1.λv2.(<b1>[]:['b1←man:man.n.03(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[em]\NP)
+----------
+tokens:had
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←have:have.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Pivot(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[em]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:right
+sem: λv1.λv2.(<b1>[]:['b1←right:right.n.01(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:speak
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←speak:speak.v.01(e1)','b1←Theme(e1,v3)']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:gathered
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←gather:gather.v.06(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:at
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:calling
+sem: λv1.λv2.(<b1>[]:['b1←call:call.n.11(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Council
+sem: λv1.<b1>[]:['b1←agency:agency.n.01(v1)','b1←Name(v1,council)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

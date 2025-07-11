@@ -1,0 +1,74 @@
+% Finally Maria sat down with a cup of tea and a sandwich.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% finally.r.01                                       % Finally       [0-7]
+%SBN% female.n.02   Name "Maria"                         % Maria         [8-13]
+%SBN% sit_down.v.01 Manner -2 Agent -1 Time +1 Manner +4 % sat down  --with-- [14-27]
+%SBN% time.n.08     TPR now                              %               
+%SBN% cup.n.01      Content +1                           %  --a-- cup  --of--      [28-36]
+%SBN% tea.n.01                                           % tea           [37-40]
+%SBN% entity.n.01   Sub -2 Sub +1                        % and           [41-44]
+%SBN% sandwich.n.01                                      %  --a-- sandwich --.--   [45-56]
+
+% Incremental DRS
+
+tokens:Finally
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←finally:finally.r.01(s1)','b1←Manner(v3,s1)']</b1>;(v2@v3)))
+cat: S/S
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Maria
+sem: λv1.<b1>[]:['b1←female:female.n.02(v1)','b1←Name(v1,maria)']</b1>
+cat: N
+----------
+tokens:sat~down
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←sit_down:sit_down.v.01(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:with
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Manner(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:cup
+sem: λv1.<b1>[]:['b1←cup:cup.n.01(v1)']</b1>
+cat: N
+----------
+tokens:of
+sem: λv1.λv2.λv3.((v2@v3);(v1@λv4.<b1>[]:['b1←Content(v3,v4)']</b1>))
+cat: (N\N)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:tea
+sem: λv1.<b1>[]:['b1←tea:tea.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;((v2@λv4.<b2>[]:['b2←Sub(x1,v4)']</b2>);((v1@λv5.<b3>[]:['b3←Sub(x1,v5)']</b3>);(v3@x1))))
+cat: conj
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:sandwich
+sem: λv1.<b1>[]:['b1←sandwich:sandwich.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

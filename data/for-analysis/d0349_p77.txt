@@ -1,0 +1,54 @@
+% Ted smiled and bit his bottom lip.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02   Name "Ted"                % Ted        [0-3]
+%SBN% time.n.08   TPR now                   % smiled  --and-- [4-14]
+%SBN% smile.n.01  Agent -2 Time -1          %            
+%SBN% bite.v.01   Agent -3 Time +1 Theme +4 % bit        [15-18]
+%SBN% time.n.08   TPR now                   %            
+%SBN% male.n.02   ANA -5                    % his        [19-22]
+%SBN% bottom.a.01 AttributeOf +1            % bottom     [23-29]
+%SBN% lip.n.01    PartOf -2                 % lip --.--       [30-34]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Ted
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,ted)']</b1>
+cat: N
+----------
+tokens:smiled
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←x1','b2←t1']:['b1←smile:smile.n.01(x1)','b1←Time(x1,t1)','b1←Agent(x1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@x1)))
+cat: S[dcl]\NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:bit
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←bite:bite.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←PartOf(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:bottom
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←bottom:bottom.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:lip
+sem: λv1.<b1>[]:['b1←lip:lip.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

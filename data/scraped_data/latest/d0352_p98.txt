@@ -1,0 +1,155 @@
+% Slowly, very slowly, he placed the tips of his fingers on the ground and felt the power flowing through the earth to the stones touch his ability.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% slowly.r.01                                                            % Slowly --,--  --very--    [0-12]
+%SBN% slowly.r.01                                                            %                 
+%SBN% slowly.r.01                                                            % slowly --,--         [13-20]
+%SBN% slowly.r.01                                                            %                 
+%SBN% male.n.02                                                              % he              [21-23]
+%SBN% place.v.01   Manner -5 Manner -3 Agent -1 Time +1 Theme +2 Location +5 % placed          [24-30]
+%SBN% time.n.08    TPR now                                                   %                 
+%SBN% tip.n.01     SubOf +2                                                  %  --the-- tips  --of--     [31-42]
+%SBN% male.n.02    ANA -4                                                    % his             [43-46]
+%SBN% finger.n.01  PartOf -1                                                 % fingers  --on--      [47-57]
+%SBN% ground.n.01                                                            %  --the-- ground  --and--  [58-72]
+%SBN% feel.v.01    Manner -10 Manner -8 Proposition &gt;1 Agent -7 Time +1      % felt            [73-77]
+%SBN% time.n.08    TPR now                                                   %                 
+%SBN%              CONTINUATION &lt;0                                           %                 
+%SBN% power.n.01                                                             %  --the-- power       [78-87]
+%SBN% flow.v.01    Theme -1 Path +1 Destination +2                           % flowing  --through-- [88-103]
+%SBN% earth.n.02                                                             %  --the-- earth  --to--    [104-116]
+%SBN% stone.n.01                                                             %  --the-- stones      [117-127]
+%SBN% touch.v.06   Agent -4 Theme +2                                         % touch           [128-133]
+%SBN% male.n.02    ANA -14                                                   % his             [134-137]
+%SBN% ability.n.01 User -1                                                   % ability --.--        [138-146]
+
+% Incremental DRS
+
+tokens:Slowly
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←slowly:slowly.r.01(s1)','b1←Manner(v3,s1)']</b1>;(v2@v3)))
+cat: S/S
+----------
+tokens:,
+sem: λv1.v1
+cat: S/S
+----------
+tokens:very
+sem: λv1.v1
+cat: (S/S)/(S/S)
+----------
+tokens:slowly
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←slowly:slowly.r.01(s1)','b1←Manner(v3,s1)']</b1>;(v2@v3)))
+cat: S/S
+----------
+tokens:,
+sem: λv1.v1
+cat: S/S
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:placed
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←place:place.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:tips
+sem: λv1.λv2.(<b1>[]:['b1←tip:tip.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←SubOf(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:fingers
+sem: λv1.λv2.(<b1>[]:['b1←finger:finger.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:on
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Location(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:ground
+sem: λv1.<b1>[]:['b1←ground:ground.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:felt
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←feel:feel.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,p1)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[b]
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:power
+sem: λv1.<b1>[]:['b1←power:power.n.01(v1)']</b1>
+cat: N
+----------
+tokens:ø
+sem: λv1.λv2.λv3.((v2@v3);((v1@λv4.(v4@v3))@λv5.<b1>[]:[]</b1>))
+cat: (N\N)/(S[ng]\NP)
+----------
+tokens:flowing
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←flow:flow.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[ng]\NP)/PP
+----------
+tokens:through
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Path(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:earth
+sem: λv1.<b1>[]:['b1←earth:earth.n.02(v1)']</b1>
+cat: N
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:stones
+sem: λv1.<b1>[]:['b1←stone:stone.n.01(v1)']</b1>
+cat: N
+----------
+tokens:touch
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←touch:touch.v.06(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:ability
+sem: λv1.<b1>[]:['b1←ability:ability.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

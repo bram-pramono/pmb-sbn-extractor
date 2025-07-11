@@ -1,0 +1,72 @@
+% You know that I will do whatever you ask of me.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01 EQU hearer                            % You      [0-3]
+%SBN% know.v.01   Proposition &gt;1 Experiencer -1 Time +1 % know     [4-8]
+%SBN% time.n.08   EQU now                               %          
+%SBN%             CONTINUATION &lt;0                       %          
+%SBN% person.n.01 EQU speaker                           %  --that-- I   [9-15]
+%SBN%             NEGATION &lt;1                           %          
+%SBN% entity.n.01                                       % whatever [24-32]
+%SBN% person.n.01 EQU hearer                            % you      [33-36]
+%SBN% ask.v.02    Topic -2 Agent -1 Time +1 Patient +2  % ask  --of--   [37-43]
+%SBN% time.n.08   EQU now                               %          
+%SBN% person.n.01 ANA -5                                % me --.--      [44-47]
+%SBN% time.n.08   TSU now                               % will     [16-20]
+%SBN%             NEGATION &lt;1                           %          
+%SBN% do.v.02     Agent -7 Theme -6 Time -1             % do       [21-23]
+
+% Incremental DRS
+
+tokens:You
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:know
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←know:know.v.01(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,p1)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1=now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[em]
+----------
+tokens:that
+sem: λv1.v1
+cat: S[em]/S[dcl]
+----------
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:will
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:do
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←do:do.v.02(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:whatever
+sem: λv1.λv2.<b1>[]:["b1←¬(<b2>['b2←x1']:['b2←¬(v2@x1)','b2←entity:entity.n.01(x1)']</b2>;((v1@λv3.(v3@x1))@λv4.<b3>[]:[]</b3>))"]</b1>
+cat: NP/(S[dcl]/NP)
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:ask
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(<b1>['b1←e1']:['b1←ask:ask.v.02(e1)','b1←Topic(e1,v6)','b1←Agent(e1,v5)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1=now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/NP)/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Patient(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:me
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

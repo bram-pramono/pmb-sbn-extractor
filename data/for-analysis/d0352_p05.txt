@@ -1,0 +1,89 @@
+% She was served by an incredibly striking girl with bright blue hair and a Polish accent.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02                                  % She           [0-3]
+%SBN% time.n.08        TPR now                     % was           [4-7]
+%SBN% serve.v.06       Patient -2 Time -1 Agent +1 % served  --by--     [8-17]
+%SBN% incredibly.r.01  Part +5                     %  --an-- incredibly [18-31]
+%SBN% striking.a.01    AttributeOf -1              % striking      [32-40]
+%SBN% girl.n.01        EQU -2                      % girl  --with--     [41-50]
+%SBN% bright_blue.a.01                             % bright blue   [51-62]
+%SBN% hair.n.01        Colour -1                   % hair          [63-67]
+%SBN% entity.n.01      Sub -1 Sub +2               % and           [68-71]
+%SBN% country.n.02     Name "Poland"               %  --a-- Polish      [72-80]
+%SBN% accent.n.01      Attribute -1                % accent --.--       [81-88]
+
+% Incremental DRS
+
+tokens:She
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:was
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[pss]\NP)
+----------
+tokens:served
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←serve:serve.v.06(e1)','b1←Patient(e1,v3)']</b1>;(v2@e1)))
+cat: S[pss]\NP
+----------
+tokens:by
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Agent(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:an
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:incredibly
+sem: λv1.λv2.λv3.(<b1>[]:['b1←incredibly:incredibly.r.01(v3)']</b1>;((v1@v2)@v3))
+cat: (N/N)/(N/N)
+----------
+tokens:striking
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←striking:striking.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:girl
+sem: λv1.<b1>[]:['b1←girl:girl.n.01(v1)']</b1>
+cat: N
+----------
+tokens:with
+sem: λv1.λv2.λv3.((v2@v3);(v1@λv4.<b1>[]:['b1←Part(v3,v4)']</b1>))
+cat: (N\N)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:bright~blue
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←bright_blue:bright_blue.a.01(s1)','b1←Colour(v2,s1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:hair
+sem: λv1.<b1>[]:['b1←hair:hair.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;((v2@λv4.<b2>[]:['b2←Sub(x1,v4)']</b2>);((v1@λv5.<b3>[]:['b3←Sub(x1,v5)']</b3>);(v3@x1))))
+cat: conj
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:Polish
+sem: λv1.λv2.(<b2>['b1←x1']:['b1←country:country.n.02(x1)','b1←Name(x1,poland)','b2←Attribute(v2,x1)']</b2>;(v1@v2))
+cat: N/N
+----------
+tokens:accent
+sem: λv1.<b1>[]:['b1←accent:accent.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

@@ -1,0 +1,133 @@
+% If you had asked him seconds after visiting the bar what colour the girl's hair was he would have probably turned around to look.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01 EQU hearer                                             %  --If-- you  --had--          [0-10]
+%SBN% ask.v.01    Proposition &gt;1 Agent -1 Time +1 Recipient +2 Manner +3 % asked               [11-16]
+%SBN% time.n.08   TPR now                                                %                     
+%SBN% male.n.02                                                          % him  --seconds--  --after--   [17-34]
+%SBN% visit.v.01  Agent -4 Theme +1                                      % visiting            [35-43]
+%SBN% bar.n.01                                                           %  --the-- bar  --what--        [44-56]
+%SBN%             CONTINUATION &lt;0                                        %                     
+%SBN% colour.n.01                                                        % colour              [57-63]
+%SBN% girl.n.01                                                          %  --the-- girl --'s--          [64-74]
+%SBN% hair.n.01   PartOf -1                                              % hair                [75-79]
+%SBN% be.v.01     Theme -3 Co-Theme -1 Time +1                           % was                 [80-83]
+%SBN% time.n.08   TPR now                                                %                     
+%SBN%             CONSEQUENCE &lt;2                                         %                     
+%SBN% male.n.02   ANA -8                                                 % he                  [84-86]
+%SBN%             POSSIBILITY &lt;1                                         %                     
+%SBN% time.n.08   TSU now                                                % would  --have--  --probably-- [87-106]
+%SBN% turn.v.01   Agent -2 Time -1 Time +1 Goal +2                       % turned  --around--  --to--    [107-123]
+%SBN% time.n.08   TPR now                                                %                     
+%SBN% look.v.01   Agent -4                                               % look --.--               [124-129]
+
+% Incremental DRS
+
+tokens:If
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: (S/S)/S[dcl]
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:asked
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(v1@λv7.(<b1>['b1←e1','b2←t1']:['b1←ask:ask.v.01(e1)','b1←Time(e1,t1)','b1←Recipient(e1,v7)','b1←Topic(e1,v6)','b1←Agent(e1,v5)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v4@e1)))))
+cat: ((S[pt]\NP)/NP)/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:seconds
+sem: λv1.v1
+cat: (S\NP)/(S\NP)
+----------
+tokens:after
+sem: λv1.λv2.λv3.λv4.(v3@λv5.((v2@λv6.(v6@v5))@λv7.((v1@λv8.(v8@v5))@λv9.(<b1>[]:['b1←Manner(v7,v9)']</b1>;(v4@v7)))))
+cat: ((S\NP)\(S\NP))/(S[ng]\NP)
+----------
+tokens:visiting
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←visit:visit.v.01(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:bar
+sem: λv1.<b1>[]:['b1←bar:bar.n.01(v1)']</b1>
+cat: N
+----------
+tokens:what
+sem: λv1.λv2.(<b1>['b1←p1']:['b1←p1:(v1@λv3.<b2>[]:[]</b2>)']</b1>;(v2@p1))
+cat: NP/S[dcl]
+----------
+tokens:colour
+sem: λv1.(<b1>['b1←x1']:['b1←colour:colour.n.01(x1)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:girl
+sem: λv1.<b1>[]:['b1←girl:girl.n.01(v1)']</b1>
+cat: N
+----------
+tokens:'s
+sem: λv1.λv2.λv3.(v1@λv4.((<b1>['b1←x1']:['b1←PartOf(x1,v4)']</b1>;(v2@x1))∗(v3@x1)))
+cat: (NP/N)\NP
+----------
+tokens:hair
+sem: λv1.<b1>[]:['b1←hair:hair.n.01(v1)']</b1>
+cat: N
+----------
+tokens:was
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←be:be.v.01(e1)','b1←Time(e1,t1)','b1←Co-Theme(e1,v5)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)\NP
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:would
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:have
+sem: λv1.v1
+cat: (S[b]\NP)/(S[pt]\NP)
+----------
+tokens:probably
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←◊((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:turned
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←turn:turn.v.01(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Goal(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[pt]\NP)/(S[to]\NP)
+----------
+tokens:around
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:look
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←look:look.v.01(e1)','b1←Agent(e1,v3)']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

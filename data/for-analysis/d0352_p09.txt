@@ -1,0 +1,107 @@
+% As soon as they taste cold steel they'll flee back to their mountains as they did before.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% soon.r.01                                                           %  --As-- soon  --as-- [0-10]
+%SBN% person.n.01                                                         % they       [11-15]
+%SBN% taste.n.04    Start -2 Agent -1 Theme +2                            % taste      [16-21]
+%SBN% cold.a.01     AttributeOf +1                                        % cold       [22-26]
+%SBN% steel.n.02                                                          % steel      [27-32]
+%SBN%               ATTRIBUTION &lt;1                                        %            
+%SBN% person.n.01   EQU -4                                                % they       [33-37]
+%SBN% time.n.08     TSU now                                               % 'll        [37-40]
+%SBN% flee.v.01     Theme -2 Time -1 Manner +1 Destination +3 Co-Theme +4 % flee       [41-45]
+%SBN% back.r.01                                                           % back  --to--    [46-53]
+%SBN% person.n.01   ANA -4                                                % their      [54-59]
+%SBN% mountain.n.01 User -1                                               % mountains  [60-69]
+%SBN% entity.n.01                                                         % as         [70-72]
+%SBN% person.n.01   EQU -7                                                % they       [73-77]
+%SBN% do.v.02       Participant -2 Agent -1 Time +1 Manner +2             % did        [78-81]
+%SBN% time.n.08     TPR now                                               %            
+%SBN% before.a.01                                                         % before --.--    [82-89]
+
+% Incremental DRS
+
+tokens:As
+sem: λv1.v1
+cat: (S/S)/(S/S)
+----------
+tokens:soon
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←soon:soon.r.01(s1)','b1←Start(v3,s1)']</b1>;(v2@v3)))
+cat: S/S
+----------
+tokens:as
+sem: λv1.λv2.λv3.λv4.<>[]:[]</>
+cat: ((S/S)\(S/S))/S[dcl]
+----------
+tokens:they
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:taste
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←x1']:['b1←taste:taste.n.04(x1)','b1←Theme(x1,v5)','b1←Agent(x1,v4)']</b1>;(v3@x1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:cold
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←cold:cold.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:steel
+sem: λv1.<b1>[]:['b1←steel:steel.n.02(v1)']</b1>
+cat: N
+----------
+tokens:they
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:'ll
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:flee
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←flee:flee.v.01(e1)','b1←Theme(e1,v3)']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:back
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←back:back.r.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:to
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Destination(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:their
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←User(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:mountains
+sem: λv1.λv2.(<b1>[]:['b1←mountain:mountain.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:as
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.((v1@λv6.<b1>['b1←x1']:['b1←entity:entity.n.01(x1)','b1←Co-Theme(v5,x1)','b1←Participant(v6,x1)']</b1>);(v4@v5)))
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:they
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:did
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←do:do.v.02(e1)','b1←Time(e1,t1)','b1←Agent(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:before
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←before:before.a.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

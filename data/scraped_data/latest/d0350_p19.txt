@@ -1,0 +1,58 @@
+% He is after glory and heads for his hall.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                     % He        [0-2]
+%SBN% be_after.v.01 Agent -1 Time +1 Theme +2       % is after  [3-11]
+%SBN% time.n.08     EQU now                         %           
+%SBN% glory.n.01                                    % glory  --and-- [12-21]
+%SBN% head.v.01     Theme -4 Time +1 Destination +3 % heads  --for-- [22-31]
+%SBN% time.n.08     EQU now                         %           
+%SBN% male.n.02     ANA -6                          % his       [32-35]
+%SBN% hall.n.03     User -1                         % hall --.--     [36-41]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:is~after
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←be_after:be_after.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1=now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:glory
+sem: λv1.<b1>[]:['b1←glory:glory.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:heads
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←head:head.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1=now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:for
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:hall
+sem: λv1.<b1>[]:['b1←hall:hall.n.03(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

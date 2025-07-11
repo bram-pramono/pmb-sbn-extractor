@@ -1,0 +1,52 @@
+% They were definitely holding hands underneath the table.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01                                       % They             [0-4]
+%SBN%             NECESSITY &lt;1                          %                  
+%SBN% time.n.08   TPR now                               % were  --definitely--  [5-20]
+%SBN% hold.v.02   Agent -2 Time -1 Theme +1 Location +2 % holding          [21-28]
+%SBN% hand.n.01                                         % hands  --underneath-- [29-45]
+%SBN% table.n.02                                        %  --the-- table --.--       [46-56]
+
+% Incremental DRS
+
+tokens:They
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:were
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:definitely
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←□((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:holding
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←hold:hold.v.02(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:hands
+sem: λv1.(<b1>['b1←x1']:['b1←hand:hand.n.01(x1)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:underneath
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Location(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:table
+sem: λv1.<b1>[]:['b1←table:table.n.02(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

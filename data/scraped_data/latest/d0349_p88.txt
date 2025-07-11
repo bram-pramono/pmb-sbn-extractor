@@ -1,0 +1,55 @@
+% The van is your lead, follow that.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% van.n.05                                 %  --The-- van [0-7]
+%SBN% be.v.01     Theme -1 Time +1 Co-Theme +3 % is      [8-10]
+%SBN% time.n.08   EQU now                      %         
+%SBN% person.n.01 EQU hearer                   % your    [11-15]
+%SBN% lead.n.03   User -1                      % lead --,--   [16-21]
+%SBN%             CONTINUATION &lt;1              %         
+%SBN% person.n.01 EQU hearer                   %         
+%SBN% follow.v.01 Agent -1 Theme +1            % follow  [22-28]
+%SBN% entity.n.01 ANA -7                       % that --.--   [29-34]
+
+% Incremental DRS
+
+tokens:The
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:van
+sem: λv1.<b1>[]:['b1←van:van.n.05(v1)']</b1>
+cat: N
+----------
+tokens:is
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←be:be.v.01(e1)','b1←Time(e1,t1)','b1←Co-Theme(e1,v5)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1=now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:your
+sem: λv1.λv2.((<b1>['b1←x1','b1←x2']:['b1←User(x1,x2)','b1←person:person.n.01(x2)','b1←Equal(x2,hearer)']</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:lead
+sem: λv1.<b1>[]:['b1←lead:lead.n.03(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.v1
+cat: NP\NP
+----------
+tokens:follow
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←follow:follow.v.01(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:that
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:.
+sem: λv1.v1
+cat: (S[b]\NP)\(S[b]\NP)
+----------

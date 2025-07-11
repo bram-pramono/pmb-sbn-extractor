@@ -1,0 +1,73 @@
+% Now the man is coming who will give it back to me.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% time.n.08   EQU now                                                  % Now        [0-3]
+%SBN% man.n.01                                                             %  --the-- man    [4-11]
+%SBN% time.n.08   EQU now                                                  % is         [12-14]
+%SBN% come.v.01   Time -3 Theme -2 Time -1                                 % coming  --who-- [15-25]
+%SBN%             CONTINUATION &lt;1                                          %            
+%SBN% time.n.08   EQU now                                                  %            
+%SBN% time.n.08   TSU now                                                  % will       [26-30]
+%SBN% give.v.01   Agent -5 Time -2 Time -1 Theme +1 Manner +2 Recipient +3 % give       [31-35]
+%SBN% entity.n.01                                                          % it         [36-38]
+%SBN% back.r.03                                                            % back  --to--    [39-46]
+%SBN% person.n.01 EQU speaker                                              % me --.--        [47-50]
+
+% Incremental DRS
+
+tokens:Now
+sem: λv1.λv2.(v1@λv3.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v3,t1)']</b2>;(v2@v3)))
+cat: S/S
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:man
+sem: λv1.<b1>[]:['b1←man:man.n.01(v1)']</b1>
+cat: N
+----------
+tokens:is
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:coming
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←come:come.v.01(e1)','b1←Theme(e1,v3)']</b1>;(v2@e1)))
+cat: S[ng]\NP
+----------
+tokens:who
+sem: λv1.λv2.λv3.λv4.(v3@λv5.<>[]:[]</>)
+cat: ((S\NP)\(S\NP))/(S[dcl]\NP)
+----------
+tokens:will
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:give
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←give:give.v.01(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(v4@e1)))))
+cat: ((S[b]\NP)/PP)/NP
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:back
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←back:back.r.03(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Recipient(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:me
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

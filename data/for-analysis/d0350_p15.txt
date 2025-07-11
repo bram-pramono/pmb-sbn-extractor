@@ -1,0 +1,68 @@
+% Burn him now, don't wait for him to escape.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01 EQU hearer                %          
+%SBN% burn.v.01   Agent -1 Patient +1       % Burn     [0-4]
+%SBN% male.n.02                             % him  --now,-- [5-13]
+%SBN%             CONTINUATION &lt;1           %          
+%SBN% person.n.01 EQU hearer                %          
+%SBN% time.n.08   EQU now                   % do --n't--    [14-19]
+%SBN%             NEGATION &lt;1               %          
+%SBN% wait.v.02   Agent -2 Time -1 Theme +1 % wait  --for-- [20-28]
+%SBN% male.n.02                             % him  --to--   [29-35]
+%SBN% escape.v.01 Theme -1                  % escape --.--  [36-43]
+
+% Incremental DRS
+
+tokens:Burn
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←burn:burn.v.01(e1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:now
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:,
+sem: λv1.v1
+cat: ((S\NP)\(S\NP))\((S\NP)\(S\NP))
+----------
+tokens:do
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[b]\NP)/(S[b]\NP)
+----------
+tokens:n't
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:wait
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←wait:wait.v.02(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[b]\NP)/PP
+----------
+tokens:for
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:him
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>;(((v1@λv3.(v3@x1))@λv4.<b2>[]:[]</b2>);(v2@x1)))
+cat: NP/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:escape
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←escape:escape.v.01(e1)','b1←Theme(e1,v3)']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: (S[b]\NP)\(S[b]\NP)
+----------

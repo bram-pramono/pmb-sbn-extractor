@@ -1,0 +1,109 @@
+% They had been allowing their voices to rise and as the debate continued the rest of the crowd caught on.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01                                            % They  --had--    [0-8]
+%SBN% time.n.08     TPR now                                  % been        [9-13]
+%SBN% allow.v.02    Agent -2 Time -1 Beneficiary +2 Theme +3 % allowing    [14-22]
+%SBN% person.n.01                                            % their       [23-28]
+%SBN% voice.n.01    PartOf -1                                % voices  --to--   [29-38]
+%SBN% rise.v.02     Theme -1                                 % rise  --and--  --as-- [39-50]
+%SBN%               CONTINUATION &lt;1                          %             
+%SBN% debate.n.01                                            %  --the-- debate  [51-61]
+%SBN% continue.v.01 Theme -1 Time +1                         % continued   [62-71]
+%SBN% time.n.08     TPR now                                  %             
+%SBN%               CONTINUATION &lt;1                          %             
+%SBN% rest.n.01     SubOf +1                                 %  --the-- rest  --of-- [72-83]
+%SBN% crowd.n.01                                             %  --the-- crowd   [84-93]
+%SBN% catch_on.v.01 Theme -2 Time +1                         % caught  --on.--  [94-104]
+%SBN% time.n.08     TPR now                                  %             
+
+% Incremental DRS
+
+tokens:They
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:been
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[pt]\NP)/(S[ng]\NP)
+----------
+tokens:allowing
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←allow:allow.v.02(e1)','b1←Agent(e1,v5)','b1←Beneficiary(e1,v6)']</b1>;(((v2@λv7.(v7@v6))@λv8.<b2>[]:['b2←Theme(e1,v8)']</b2>);(v4@e1)))))
+cat: ((S[ng]\NP)/(S[to]\NP))/NP
+----------
+tokens:their
+sem: λv1.λv2.(<b1>['b1←x1','b1←x2']:['b1←person:person.n.01(x1)','b1←PartOf(x2,x1)']</b1>;((v1@x2);(v2@x2)))
+cat: NP/N
+----------
+tokens:voices
+sem: λv1.<b1>[]:['b1←voice:voice.n.01(v1)']</b1>
+cat: N
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:rise
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←rise:rise.v.02(e1)','b1←Theme(e1,v3)']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:as
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: (S/S)/S[dcl]
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:debate
+sem: λv1.<b1>[]:['b1←debate:debate.n.01(v1)']</b1>
+cat: N
+----------
+tokens:continued
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←continue:continue.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:rest
+sem: λv1.λv2.(<b1>[]:['b1←rest:rest.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←SubOf(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:crowd
+sem: λv1.<b1>[]:['b1←crowd:crowd.n.01(v1)']</b1>
+cat: N
+----------
+tokens:caught
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b2←t1']:['b1←catch_on:catch_on.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/PR
+----------
+tokens:on
+sem: on
+cat: PR
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

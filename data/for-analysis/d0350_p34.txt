@@ -1,0 +1,63 @@
+% Dave kicked him in the stomach and Paul groaned.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02    Name "Dave"                                % Dave            [0-4]
+%SBN% kick.v.01    Agent -1 Time +1 Patient +2 Destination +3 % kicked          [5-11]
+%SBN% time.n.08    TPR now                                    %                 
+%SBN% male.n.02    Name "Paul"                                % him  --in--          [12-18]
+%SBN% stomach.n.01                                            %  --the-- stomach  --and-- [19-34]
+%SBN%              CONTINUATION &lt;1                            %                 
+%SBN% male.n.02    ANA -2                                     % Paul            [35-39]
+%SBN% groan.v.01   Agent -1 Time +1                           % groaned --.--        [40-48]
+%SBN% time.n.08    TPR now                                    %                 
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Dave
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,dave)']</b1>
+cat: N
+----------
+tokens:kicked
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(<b1>['b1←e1']:['b1←kick:kick.v.01(e1)','b1←Patient(e1,v6)','b1←Agent(e1,v5)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/NP)/PP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)','b1←Name(x1,paul)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:stomach
+sem: λv1.<b1>[]:['b1←stomach:stomach.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:Paul
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:groaned
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←groan:groan.v.01(e1)','b1←Time(e1,t1)','b1←Agent(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

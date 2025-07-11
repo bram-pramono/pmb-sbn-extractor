@@ -1,0 +1,78 @@
+% While they sat drinking their tea, Mick dug them a trench.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01                                          %  --While-- they [0-10]
+%SBN% sit.v.02    Agent -1 Time +1 Theme +2                % sat        [11-14]
+%SBN% time.n.08   TPR now                                  %            
+%SBN% drink.v.01  Agent -3 Patient +2                      % drinking   [15-23]
+%SBN% person.n.01                                          % their      [24-29]
+%SBN% tea.n.01    Consumer -1                              % tea --,--       [30-34]
+%SBN%             CONTINUATION &lt;1                          %            
+%SBN% male.n.02   Name "Mick"                              % Mick       [35-39]
+%SBN% dig.v.02    Beneficiary -3 Agent -1 Time +1 Theme +3 % dug        [40-43]
+%SBN% time.n.08   TPR now                                  %            
+%SBN% person.n.01 EQU -5                                   % them       [44-48]
+%SBN% trench.n.01                                          %  --a-- trench --.--  [49-58]
+
+% Incremental DRS
+
+tokens:While
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: (S/S)/S[dcl]
+----------
+tokens:they
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:sat
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←sit:sit.v.02(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Theme(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:drinking
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←drink:drink.v.01(e1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:their
+sem: λv1.λv2.(<b1>['b1←x1','b1←x2']:['b1←person:person.n.01(x1)','b1←Consumer(x2,x1)']</b1>;((v1@x2);(v2@x2)))
+cat: NP/N
+----------
+tokens:tea
+sem: λv1.<b1>[]:['b1←tea:tea.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.v1
+cat: NP\NP
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Mick
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,mick)']</b1>
+cat: N
+----------
+tokens:dug
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(v1@λv7.(<b1>['b1←e1','b2←t1']:['b1←dig:dig.v.02(e1)','b1←Time(e1,t1)','b1←Beneficiary(e1,v7)','b1←Theme(e1,v6)','b1←Agent(e1,v5)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v4@e1)))))
+cat: ((S[dcl]\NP)/NP)/NP
+----------
+tokens:them
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:trench
+sem: λv1.<b1>[]:['b1←trench:trench.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

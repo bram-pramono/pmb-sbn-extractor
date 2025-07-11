@@ -1,0 +1,111 @@
+% He stood up as straight as he could with his hands behind his back and tried not to look scared.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                        % He           [0-2]
+%SBN% stand_up.v.01 Agent -1 Time +1 Attribute +3      % stood  --up--     [3-11]
+%SBN% time.n.08     TPR now                            %              
+%SBN% as.r.01       Theme -3 Co-Theme +3               % as           [12-14]
+%SBN% straight.a.04 AttributeOf -4 Degree -1 Manner +4 % straight  --as--  [15-26]
+%SBN% male.n.02     ANA -5                             % he           [27-29]
+%SBN% could.a.01    Theme -1                           % could  --with--   [30-40]
+%SBN% male.n.02     ANA -7                             % his          [41-44]
+%SBN% hand.n.01     User -1 Location +1                % hands        [45-50]
+%SBN% location.n.01 SXP +2                             % behind       [51-57]
+%SBN% male.n.02     ANA -10                            % his          [58-61]
+%SBN% back.n.01     PartOf -1                          % back  --and--     [62-70]
+%SBN%               NEGATION &lt;1                        %              
+%SBN% try.v.01      Agent -12 Time +1 Theme +2         % tried  --not--  --to-- [71-83]
+%SBN% time.n.08     TPR now                            %              
+%SBN% look.v.02     Theme -14 Attribute +1             % look         [84-88]
+%SBN% scared.a.01   Experiencer -15                    % scared --.--      [89-96]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:stood
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←stand_up:stand_up.v.01(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Attribute(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[adj]\NP)
+----------
+tokens:up
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:as
+sem: λv1.λv2.λv3.λv4.(v3@λv5.((v1@λv6.(v6@v5))@λv7.(<b1>['b1←s1']:['b1←as:as.r.01(s1)','b1←Theme(s1,v5)','b1←Degree(v7,s1)']</b1>;((v2@s1);(v4@v7)))))
+cat: ((S[adj]\NP)/PP)/(S[adj]\NP)
+----------
+tokens:straight
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←straight:straight.a.04(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:as
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Co-Theme(v2,v3)']</b1>)
+cat: PP/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:could
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←could:could.a.01(s1)','b1←Theme(s1,v3)']</b1>;(v2@s1)))
+cat: S[dcl]\NP
+----------
+tokens:with
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Manner(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:hands
+sem: λv1.λv2.(<b1>[]:['b1←hand:hand.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:behind
+sem: λv1.λv2.(v1@λv3.<b1>['b1←x1']:['b1←location:location.n.01(x1)','b1←SXP(x1,v3)','b1←Location(v2,x1)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←PartOf(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:back
+sem: λv1.<b1>[]:['b1←back:back.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:tried
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←try:try.v.01(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Theme(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:not
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:look
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←look:look.v.02(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Attribute(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[adj]\NP)
+----------
+tokens:scared
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←scared:scared.a.01(s1)','b1←Experiencer(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

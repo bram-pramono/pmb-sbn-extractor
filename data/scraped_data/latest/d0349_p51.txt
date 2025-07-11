@@ -1,0 +1,49 @@
+% He's broken his wrists very badly.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                                  % He --'s--   [0-4]
+%SBN% break.v.02 Agent -1 Time +1 Patient +3 Degree +4 Manner +5 % broken [5-11]
+%SBN% time.n.08  TPR now                                         %        
+%SBN% male.n.02  ANA -3                                          % his    [12-15]
+%SBN% wrist.n.01 PartOf -1                                       % wrists [16-22]
+%SBN% very.r.01                                                  % very   [23-27]
+%SBN% badly.r.01                                                 % badly --.-- [28-34]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:'s
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:broken
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←break:break.v.02(e1)','b1←Time(e1,t1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[pt]\NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:wrists
+sem: λv1.λv2.(<b1>[]:['b1←wrist:wrist.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:very
+sem: λv1.λv2.λv3.λv4.(((v1@v2)@v3)@λv5.(<b1>['b1←s1']:['b1←very:very.r.01(s1)','b1←Degree(v5,s1)']</b1>;(v4@v5)))
+cat: ((S\NP)\(S\NP))/((S\NP)\(S\NP))
+----------
+tokens:badly
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←badly:badly.r.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

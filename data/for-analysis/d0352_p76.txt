@@ -1,0 +1,143 @@
+% The following day it was made clear to Laura, if not in so many words, that she really needed to be moving out soon.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% following.a.02       AttributeOf +1                            %  --The-- following   [0-13]
+%SBN% day.n.01                                                       % day             [14-17]
+%SBN% entity.n.01                                                    % it              [18-20]
+%SBN% time.n.08            TPR now                                   % was             [21-24]
+%SBN% make.v.02            Time -3 Theme -2 Time -1 Result +1        % made            [25-29]
+%SBN% clear.a.01           Proposition &gt;1 Agent -3 Recipient +1 Time i(unknown_ref) % clear  --to--        [30-38]
+%SBN% female.n.02          Name "Laura"                              % Laura --,--  --if--  --not--   [39-52]
+%SBN% so.r.01              Quantity ?                                % so  --many--         [56-63]
+%SBN% word.n.01            EQU -1                                    % words --,--          [64-70]
+%SBN% terra_incognita.n.01 Manner -1 EQU i(unknown_ref)                             % in              [53-55]
+%SBN%                      CONTINUATION &lt;0                           %                 
+%SBN% female.n.02          ANA -4                                    %  --that-- she  --really-- [71-86]
+%SBN% need.v.01            Pivot -1 Time +1 Theme +3                 % needed  --to--       [87-96]
+%SBN% time.n.08            TPR now                                   %                 
+%SBN% time.n.08            TPR now                                   % be              [97-99]
+%SBN% move_out.v.02        Theme -4 Time -1 Time +1                  % moving  --out--      [100-110]
+%SBN% soon.r.01                                                      % soon --.--           [111-116]
+
+% Incremental DRS
+
+tokens:The
+sem: λv1.λv2.λv3.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@λv4.(<b2>[]:['b2←Time(v4,x1)']</b2>;(v3@v4))))
+cat: (S/S)/N
+----------
+tokens:following
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←following:following.a.02(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:day
+sem: λv1.<b1>[]:['b1←day:day.n.01(v1)']</b1>
+cat: N
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP[expl]
+----------
+tokens:was
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[pss]\NP)
+----------
+tokens:made
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←make:make.v.02(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Result(e1,v6)']</b2>);(v3@e1))))
+cat: (S[pss]\NP)/(S[adj]\NP)
+----------
+tokens:clear
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←s1','b1←p1']:['b1←p1:(v1@λv5.<b2>[]:[]</b2>)','b1←clear:clear.a.01(s1)','b1←Topic(s1,p1)','b1←Agent(s1,v4)']</b1>;(v3@s1)))
+cat: (S[adj]\NP)/S[em]
+----------
+tokens:to
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Recipient(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Laura
+sem: λv1.<b1>[]:['b1←female:female.n.02(v1)','b1←Name(v1,laura)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.v1
+cat: NP\NP
+----------
+tokens:if
+sem: λv1.v1
+cat: ((S\NP)\(S\NP))/((S\NP)\(S\NP))
+----------
+tokens:not
+sem: λv1.λv2.λv3.λv4.λv5.(((v2@v3)@v4)@λv6.(<b1>['b1←x1']:['b1←Time(v6,x1)']</b1>;((v1@x1);(v5@v6))))
+cat: (((S\NP)\(S\NP))\((S\NP)\(S\NP)))/PP
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Manner(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:so
+sem: λv1.λv2.λv3.(<b1>[]:['b1←so:so.r.01(v3)']</b1>;((v1@v2)@v3))
+cat: (N/N)/(N/N)
+----------
+tokens:many
+sem: λv1.λv2.(<b1>[]:['b1←Quantity(v2,?)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:words
+sem: λv1.<b1>[]:['b1←word:word.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.v1
+cat: NP\NP
+----------
+tokens:that
+sem: λv1.v1
+cat: S[em]/S[dcl]
+----------
+tokens:she
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:really
+sem: λv1.v1
+cat: (S\NP)/(S\NP)
+----------
+tokens:needed
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←need:need.v.01(e1)','b1←Pivot(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Theme(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:be
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[b]\NP)/(S[ng]\NP)
+----------
+tokens:moving
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←move_out:move_out.v.02(e1)','b1←Theme(e1,v4)']</b1>;(v3@e1)))
+cat: (S[ng]\NP)/PR
+----------
+tokens:out
+sem: out
+cat: PR
+----------
+tokens:soon
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←soon:soon.r.01(s1)','b1←Time(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

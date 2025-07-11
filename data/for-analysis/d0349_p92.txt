@@ -1,0 +1,52 @@
+% Come within the walls to escape the enemy.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01 EQU hearer                     %              
+%SBN% come.v.01   Theme -1 Location +1 Result +2 % Come  --within--  [0-11]
+%SBN% wall.n.01                                  %  --the-- walls  --to-- [12-24]
+%SBN% escape.v.01 Theme -3 Source +1             % escape       [25-31]
+%SBN% person.n.01 Role +1                        %  --the-- enemy --.--   [32-42]
+%SBN% enemy.n.03                                 %              
+
+% Incremental DRS
+
+tokens:Come
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←come:come.v.01(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Result(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[to]\NP)
+----------
+tokens:within
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Location(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:walls
+sem: λv1.<b1>[]:['b1←wall:wall.n.01(v1)']</b1>
+cat: N
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:escape
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←escape:escape.v.01(e1)','b1←Source(e1,v5)','b1←Theme(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:enemy
+sem: λv1.<b1>['b1←x1']:['b1←enemy:enemy.n.03(x1)','b1←person:person.n.01(v1)','b1←Role(v1,x1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: (S[b]\NP)\(S[b]\NP)
+----------

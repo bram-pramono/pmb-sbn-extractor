@@ -1,0 +1,80 @@
+% The first thing she noticed when she walked into the house was the silence.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% rank.n.02    EQU 1                                  %  --The-- first     [0-9]
+%SBN% entity.n.01  Order -1 TPR now EQU +8                % thing         [10-15]
+%SBN% female.n.02                                         % she           [16-19]
+%SBN% notice.v.01  Stimulus -2 Experiencer -1 Time +1     % noticed  --when--  [20-32]
+%SBN% time.n.08    TPR now                                %               
+%SBN% female.n.02  ANA -3                                 % she           [33-36]
+%SBN% walk.v.01    Theme -1 TIN -3 Time +1 Destination +2 % walked  --into--   [37-48]
+%SBN% time.n.08    TPR now                                %               
+%SBN% house.n.01                                          %  --the-- house  --was-- [49-62]
+%SBN% silence.n.02                                        %  --the-- silence --.--  [63-75]
+
+% Incremental DRS
+
+tokens:The
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:first
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←rank:rank.n.02(x1)','b1←x1=1','b1←Order(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:thing
+sem: λv1.λv2.(<b1>[]:['b1←entity:entity.n.01(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S/NP)
+----------
+tokens:she
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:noticed
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←notice:notice.v.01(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,v5)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:when
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.((v1@λv6.<b1>[]:['b1←v6⊏v5']</b1>);(v4@v5)))
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:she
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:walked
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←walk:walk.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:into
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:house
+sem: λv1.<b1>[]:['b1←house:house.n.01(v1)']</b1>
+cat: N
+----------
+tokens:was
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>[]:['b1←v4≺now','b1←v4=v5']</b1>;(v3@v5))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:silence
+sem: λv1.<b1>[]:['b1←silence:silence.n.02(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

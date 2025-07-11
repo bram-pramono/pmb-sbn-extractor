@@ -1,0 +1,103 @@
+% He could tell by the look of him and his actions that Robert had been hitting the drink again.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                     % He  --could--         [0-8]
+%SBN%             POSSIBILITY &lt;1                    %                  
+%SBN% tell.v.05   Proposition &gt;1 Agent -1 Manner +3 % tell  --by--          [9-16]
+%SBN% look.n.03   User +1                           %  --the-- look  --of--      [17-28]
+%SBN% male.n.02   Name "Robert"                     % him              [29-32]
+%SBN% entity.n.01 Sub -2 Sub +2                     % and              [33-36]
+%SBN% male.n.02   ANA -2                            % his              [37-40]
+%SBN% action.n.01 User -1                           % actions          [41-48]
+%SBN%             CONTINUATION &lt;0                   %                  
+%SBN% male.n.02   ANA -4                            %  --that-- Robert  --had--  [49-64]
+%SBN% time.n.08   TPR now                           % been             [65-69]
+%SBN% hit.v.15    Agent -2 Time -1 Theme +1         % hitting          [70-77]
+%SBN% drink.n.02                                    %  --the-- drink  --again.-- [78-94]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:could
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←◊((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:tell
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1']:['b1←p1:(v1@λv5.<b2>[]:[]</b2>)','b1←tell:tell.v.05(e1)','b1←Theme(e1,p1)','b1←Agent(e1,v4)']</b1>;(v3@e1)))
+cat: (S[b]\NP)/S[em]
+----------
+tokens:by
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Manner(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:look
+sem: λv1.λv2.(<b1>[]:['b1←look:look.n.03(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←User(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)','b1←Name(x1,robert)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;((v2@λv4.<b2>[]:['b2←Sub(x1,v4)']</b2>);((v1@λv5.<b3>[]:['b3←Sub(x1,v5)']</b3>);(v3@x1))))
+cat: conj
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←User(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:actions
+sem: λv1.λv2.(<b1>[]:['b1←action:action.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:that
+sem: λv1.v1
+cat: S[em]/S[dcl]
+----------
+tokens:Robert
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:been
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[pt]\NP)/(S[ng]\NP)
+----------
+tokens:hitting
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←hit:hit.v.15(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:drink
+sem: λv1.<b1>[]:['b1←drink:drink.n.02(v1)']</b1>
+cat: N
+----------
+tokens:again
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

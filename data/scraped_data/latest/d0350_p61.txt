@@ -1,0 +1,79 @@
+% Despite what Frank had told her Ellen thanked the young soldier.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02  Name "Ellen"                           % Ellen        [32-37]
+%SBN% thank.v.01   Agent -1 Time +1 Theme +3              % thanked      [38-45]
+%SBN% time.n.08    TPR now                                %              
+%SBN% young.a.01   AttributeOf +1                         %  --the-- young    [46-55]
+%SBN% person.n.01  Role +1                                % soldier --.--     [56-64]
+%SBN% soldier.n.01                                        %              
+%SBN%              CONTRAST &lt;1                            %              
+%SBN% event.v.01   Participant +1                         %              
+%SBN% entity.n.01                                         %  --Despite-- what [0-12]
+%SBN% male.n.02    Name "Frank"                           % Frank  --had--    [13-22]
+%SBN% tell.v.01    Topic -2 Agent -1 Time +1 Recipient +2 % told         [23-27]
+%SBN% time.n.08    TPR now                                %              
+%SBN% female.n.02                                         % her          [28-31]
+
+% Incremental DRS
+
+tokens:Despite
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: (S/S)/NP
+----------
+tokens:what
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(((v1@λv3.(v3@x1))@λv4.<b2>[]:[]</b2>);(v2@x1)))
+cat: NP/(S[dcl]/NP)
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Frank
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,frank)']</b1>
+cat: N
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:told
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(v1@λv7.(<b1>['b1←e1','b2←t1']:['b1←tell:tell.v.01(e1)','b1←Time(e1,t1)','b1←Recipient(e1,v7)','b1←Topic(e1,v6)','b1←Agent(e1,v5)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v4@e1)))))
+cat: ((S[pt]\NP)/NP)/NP
+----------
+tokens:her
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Ellen
+sem: λv1.<b1>[]:['b1←female:female.n.02(v1)','b1←Name(v1,ellen)']</b1>
+cat: N
+----------
+tokens:thanked
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←thank:thank.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:young
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←young:young.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:soldier
+sem: λv1.<b1>['b1←x1']:['b1←soldier:soldier.n.01(x1)','b1←person:person.n.01(v1)','b1←Role(v1,x1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

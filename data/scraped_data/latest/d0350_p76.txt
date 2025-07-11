@@ -1,0 +1,70 @@
+% We shall arrive properly or you will never live this down.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN%                NEGATION &lt;1                %             
+%SBN%                NEGATION &lt;1                %             
+%SBN% person.n.01    Sub speaker                % We          [0-2]
+%SBN% time.n.08      TSU now                    % shall       [3-8]
+%SBN% arrive.v.01    Theme -2 Time -1 Manner +1 % arrive      [9-15]
+%SBN% properly.r.01                             % properly  --or-- [16-27]
+%SBN%                NEGATION &lt;2                %             
+%SBN% person.n.01    EQU hearer                 % you         [28-31]
+%SBN% time.n.08      TSU now                    % will  --never--  [32-42]
+%SBN%                NEGATION &lt;1                %             
+%SBN% live_down.v.01 Theme -2 Time -1 Pivot +1  % live        [43-47]
+%SBN% entity.n.01                               % this  --down.--  [48-58]
+
+% Incremental DRS
+
+tokens:We
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Sub(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:shall
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:arrive
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←arrive:arrive.v.01(e1)','b1←Theme(e1,v3)']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:properly
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←properly:properly.r.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:or
+sem: λv1.λv2.λv3.<b1>[]:["b1←¬<b2>[]:['b2←¬(v1@v3)','b2←¬(v2@v3)']</b2>"]</b1>
+cat: conj
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:will
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:never
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:["b1←¬(<b2>['b2←t1']:['b2←time:time.n.08(t1)']</b2>;((v1@λv5.(v5@v4))@v3))"]</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:live
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(<b1>['b1←e1']:['b1←live_down:live_down.v.01(e1)','b1←Pivot(e1,v6)','b1←Theme(e1,v5)']</b1>;(v4@e1))))
+cat: ((S[b]\NP)/NP)/PR
+----------
+tokens:this
+sem: λv1.(<b1>['b1←x1']:['b1←this:this.n.01(x1)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:down
+sem: down
+cat: PR
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

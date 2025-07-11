@@ -1,0 +1,64 @@
+% After lunch he was told he had visitors.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% lunch.n.01                                               %  --After-- lunch [0-11]
+%SBN% male.n.02                                                % he          [12-14]
+%SBN% time.n.08    TPR now                                     % was         [15-18]
+%SBN% tell.v.02    Time -3 Time -1 Proposition &gt;1 Recipient -2 % told        [19-23]
+%SBN%              CONTINUATION &lt;0                             %             
+%SBN% male.n.02    ANA -3                                      % he          [24-26]
+%SBN% have.v.15    Experiencer -1 Time +1 Stimulus +2          % had         [27-30]
+%SBN% time.n.08    TPR now                                     %             
+%SBN% person.n.01  Role +1                                     % visitors --.--   [31-40]
+%SBN% visitor.n.01                                             %             
+
+% Incremental DRS
+
+tokens:After
+sem: λv1.λv2.λv3.(v2@λv4.((v1@λv5.<b1>[]:['b1←Time(v4,v5)']</b1>);(v3@v4)))
+cat: (S/S)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:lunch
+sem: λv1.<b1>[]:['b1←lunch:lunch.n.01(v1)']</b1>
+cat: N
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:was
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[pss]\NP)
+----------
+tokens:told
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1']:['b1←p1:(v1@λv5.<b2>[]:[]</b2>)','b1←tell:tell.v.02(e1)','b1←Topic(e1,p1)','b1←Recipient(e1,v4)']</b1>;(v3@e1)))
+cat: (S[pss]\NP)/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←have:have.v.15(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,v5)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:visitors
+sem: λv1.<b1>['b1←x1']:['b1←visitor:visitor.n.01(x1)','b1←person:person.n.01(v1)','b1←Role(v1,x1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

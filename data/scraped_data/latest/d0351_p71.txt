@@ -1,0 +1,80 @@
+% Frank sighed and walked to the visiting room with his hands in his pockets.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02          Name "Frank"                    % Frank                  [0-5]
+%SBN% sigh.v.01          Agent -1 Time +1                % sighed  --and--             [6-16]
+%SBN% time.n.08          TPR now                         %                        
+%SBN% walk.v.01          Theme -3 Time +1 Destination +2 % walked  --to--              [17-26]
+%SBN% time.n.08          TPR now                         %                        
+%SBN% visiting_room.n.01 Manner +2                       %  --the-- visiting room  --with-- [27-49]
+%SBN% male.n.02          ANA -6                          % his                    [50-53]
+%SBN% hand.n.01          PartOf -1 Location +2           % hands  --in--               [54-62]
+%SBN% male.n.02          ANA -8                          % his                    [63-66]
+%SBN% pocket.n.01        User -1                         % pockets --.--               [67-75]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Frank
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,frank)']</b1>
+cat: N
+----------
+tokens:sighed
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←sigh:sigh.v.01(e1)','b1←Time(e1,t1)','b1←Agent(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:walked
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←walk:walk.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:visiting~room
+sem: λv1.<b1>[]:['b1←visiting~room:visiting~room.n.01(v1)']</b1>
+cat: N
+----------
+tokens:with
+sem: λv1.λv2.λv3.((v2@v3);(v1@λv4.<b1>[]:['b1←Manner(v3,v4)']</b1>))
+cat: (N\N)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←PartOf(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:hands
+sem: λv1.λv2.(<b1>[]:['b1←hand:hand.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:pockets
+sem: λv1.<b1>[]:['b1←pocket:pocket.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

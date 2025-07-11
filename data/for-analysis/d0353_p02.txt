@@ -1,0 +1,178 @@
+% When she had gone to make a cup of tea she had noticed a small hair stuck to the moist lip of the kettle and, without thinking, had gone to remove it.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02                                    %  --When-- she  --had--            [0-12]
+%SBN% go.v.01     Agent -1 Time +1 Destination +2    % gone  --to--                 [13-20]
+%SBN% time.n.08   TPR now                            %                         
+%SBN% make.v.39   Agent -3 Product +1                % make                    [21-25]
+%SBN% cup.n.01    Content +1                         %  --a-- cup  --of--                [26-34]
+%SBN% tea.n.01                                       % tea                     [35-38]
+%SBN%             CONTINUATION &lt;1                    %                         
+%SBN% female.n.02 ANA -6                             % she  --had--                 [39-46]
+%SBN% notice.v.02 Experiencer -1 Time +1 Stimulus +3 % noticed                 [47-54]
+%SBN% time.n.08   TPR now                            %                         
+%SBN% small.a.02  Value +                            %  --a-- small                 [55-62]
+%SBN% hair.n.01   Attribute -1                       % hair                    [63-67]
+%SBN% stick.v.04  Theme -1 Time +1 Location +4       % stuck  --to--                [68-76]
+%SBN% time.n.08   TPR now                            %                         
+%SBN% moist.a.01  Degree +1                          %  --the-- moist               [77-86]
+%SBN% most.r.01                                      %                         
+%SBN% lip.n.04    Attribute -2 PartOf +1             % lip  --of--                  [87-93]
+%SBN% kettle.n.01                                    %  --the-- kettle  --and,--  --without-- [94-117]
+%SBN% go.v.02     Theme -11 Time +1 Goal +2          % gone  --to--                 [132-139]
+%SBN% time.n.08   TPR now                            %                         
+%SBN% remove.v.01 Agent -13 Theme +1                 % remove                  [140-146]
+%SBN% entity.n.01 ANA -10                            % it --.--                     [147-150]
+%SBN%             NEGATION &lt;1                        %                         
+%SBN% think.v.03  Agent -15 TIN -4                   % thinking --,--  --had--           [118-131]
+
+% Incremental DRS
+
+tokens:When
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: (S/S)/S[dcl]
+----------
+tokens:she
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:gone
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←go:go.v.01(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Destination(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[pt]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:make
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←make:make.v.39(e1)','b1←Product(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:cup
+sem: λv1.λv2.(<b1>[]:['b1←cup:cup.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Content(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:tea
+sem: λv1.<b1>[]:['b1←tea:tea.n.01(v1)']</b1>
+cat: N
+----------
+tokens:she
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:noticed
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←notice:notice.v.02(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,v5)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[pt]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:small
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←small:small.a.02(s1)','b1←Value(s1,+)','b1←Attribute(v2,s1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:hair
+sem: λv1.λv2.(<b1>[]:['b1←hair:hair.n.01(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[pss]\NP)
+----------
+tokens:stuck
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←stick:stick.v.04(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[pss]\NP)/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:moist
+sem: λv1.λv2.(<b1>['b1←s1','b1←s2']:['b1←most:most.r.01(s2)','b1←moist:moist.a.01(s1)','b1←Degree(s1,s2)','b1←Attribute(v2,s1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:lip
+sem: λv1.λv2.(<b1>[]:['b1←lip:lip.n.04(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←PartOf(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:kettle
+sem: λv1.<b1>[]:['b1←kettle:kettle.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:,
+sem: λv1.v1
+cat: conj\conj
+----------
+tokens:without
+sem: λv1.λv2.λv3.λv4.(v3@λv5.((v2@λv6.(v6@v5))@λv7.(<b1>[]:["b1←¬((v1@λv8.(v8@v5))@λv9.<b2>[]:['b2←v9⊏v7']</b2>)"]</b1>;(v4@v7))))
+cat: ((S\NP)/(S\NP))/(S[ng]\NP)
+----------
+tokens:thinking
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←think:think.v.03(e1)','b1←Agent(e1,v3)']</b1>;(v2@e1)))
+cat: S[ng]\NP
+----------
+tokens:,
+sem: λv1.v1
+cat: ((S\NP)/(S\NP))\((S\NP)/(S\NP))
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:gone
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←go:go.v.02(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Goal(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[pt]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:remove
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←remove:remove.v.01(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

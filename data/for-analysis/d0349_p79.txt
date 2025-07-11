@@ -1,0 +1,53 @@
+% Tom stood up and wiped his jeans.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02     Name "Tom"                % Tom          [0-3]
+%SBN% stand_up.v.04 Theme -1 Time +1          % stood  --up--  --and-- [4-16]
+%SBN% time.n.08     TPR now                   %              
+%SBN% wipe.v.01     Agent -3 Time +1 Theme +3 % wiped        [17-22]
+%SBN% time.n.08     TPR now                   %              
+%SBN% male.n.02     ANA -5                    % his          [23-26]
+%SBN% jean.n.01     User -1                   % jeans --.--       [27-33]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Tom
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,tom)']</b1>
+cat: N
+----------
+tokens:stood
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b2←t1']:['b1←stand_up:stand_up.v.04(e1)','b1←Time(e1,t1)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/PR
+----------
+tokens:up
+sem: up
+cat: PR
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:wiped
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←wipe:wipe.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←User(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:jeans
+sem: λv1.λv2.(<b1>[]:['b1←jean:jean.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

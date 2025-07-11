@@ -1,0 +1,151 @@
+% I can't imagine what else you would have been talking to him about except a certain matter that I believe you said you would not talk about.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01  EQU speaker                                   % I  --can't--          [0-7]
+%SBN%              NEGATION &lt;1                                   %                  
+%SBN%              POSSIBILITY &lt;1                                %                  
+%SBN% imagine.v.01 Agent -1 Theme +1                             % imagine          [8-15]
+%SBN% entity.n.01                                                % what  --else--        [16-25]
+%SBN% person.n.01  EQU hearer                                    % you              [26-29]
+%SBN% time.n.08    TSU now                                       % would  --have--       [30-40]
+%SBN% time.n.08    TPR now                                       % been             [41-45]
+%SBN% talk.v.01    Agent -3 Topic -4 Time -2 Time -1 Co-Agent +1 % talking  --to--       [46-56]
+%SBN% male.n.02                                                  % him  --about--  --except-- [57-73]
+%SBN%              NEGATION &lt;1                                   %                  
+%SBN% certain.a.01 AttributeOf +1                                %  --a-- certain        [74-83]
+%SBN% matter.n.01  Theme -8                                      % matter           [84-90]
+%SBN% person.n.01  EQU speaker                                   %  --that-- I           [91-97]
+%SBN% believe.v.02 Proposition &gt;1 Experiencer -1 Time +1         % believe          [98-105]
+%SBN% time.n.08    EQU now                                       %                  
+%SBN%              CONTINUATION &lt;0                               %                  
+%SBN% person.n.01  EQU hearer                                    % you              [106-109]
+%SBN% say.v.01     Proposition &gt;1 Agent -1 Time +1               % said             [110-114]
+%SBN% time.n.08    TPR now                                       %                  
+%SBN%              CONTINUATION &lt;0                               %                  
+%SBN% person.n.01  EQU hearer                                    % you              [115-118]
+%SBN% time.n.08    TSU now                                       % would  --not--        [119-128]
+%SBN%              NEGATION &lt;1                                   %                  
+%SBN% talk.v.04    Topic -9 Agent -2 Time -1                     % talk  --about.--      [129-140]
+
+% Incremental DRS
+
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:ca
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←◊((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:n't
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:imagine
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←imagine:imagine.v.01(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:what
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(((v1@λv3.(v3@x1))@λv4.<b2>[]:[]</b2>);(v2@x1)))
+cat: NP/(S[dcl]/NP)
+----------
+tokens:else
+sem: λv1.v1
+cat: (NP/(S[dcl]/NP))\(NP/(S[dcl]/NP))
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:would
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:have
+sem: λv1.v1
+cat: (S[b]\NP)/(S[pt]\NP)
+----------
+tokens:been
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[pt]\NP)/(S[ng]\NP)
+----------
+tokens:talking
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←talk:talk.v.01(e1)','b1←Agent(e1,v5)']</b1>;((v2@e1);((v1@e1);(v4@e1)))))
+cat: ((S[ng]\NP)/PP)/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Co-Agent(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:about
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Topic(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:except
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(<b1>[]:["b1←¬(v1@λv6.<b2>[]:['b2←Theme(v6,v5)']</b2>)"]</b1>;(v4@v5)))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:certain
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←certain:certain.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:matter
+sem: λv1.<b1>[]:['b1←matter:matter.n.01(v1)']</b1>
+cat: N
+----------
+tokens:that
+sem: λv1.λv2.λv3.((v2@v3);((v1@λv4.(v4@v3))@λv5.<b1>[]:[]</b1>))
+cat: (N\N)/(S[dcl]/NP)
+----------
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:believe
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←believe:believe.v.02(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,p1)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1=now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[dcl]
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:said
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←say:say.v.01(e1)','b1←Time(e1,t1)','b1←Topic(e1,p1)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[dcl]
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:would
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:not
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:talk
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←talk:talk.v.04(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[b]\NP)/PP
+----------
+tokens:about
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Topic(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

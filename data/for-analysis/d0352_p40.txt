@@ -1,0 +1,113 @@
+% Matt thought the best way to have a talk with Patrick would be to take him for a pint.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02  Name "Matt"                     % Matt        [0-4]
+%SBN% think.v.03 Proposition &gt;1 Agent -1 Time +1 % thought     [5-12]
+%SBN% time.n.08  TPR now                         %             
+%SBN%            CONTINUATION &lt;0                 %             
+%SBN% good.a.01  Degree +1                       %  --the-- best    [13-21]
+%SBN% most.r.01                                  %             
+%SBN% way.n.01   Attribute -2                    % way  --to--      [22-28]
+%SBN% have.v.03  Agent -1 Theme +1               % have        [29-33]
+%SBN% talk.n.01  Co-Agent +1                     %  --a-- talk  --with-- [34-45]
+%SBN% male.n.02  Name "Patrick"                  % Patrick     [46-53]
+%SBN% time.n.08  TSU now                         % would       [54-59]
+%SBN% be.v.01    Agent -5 Time -1 Topic +1       % be  --to--       [60-65]
+%SBN% take.v.03  Agent -6 Theme +1 Theme +2      % take        [66-70]
+%SBN% male.n.02  ANA -4                          % him  --for--     [71-78]
+%SBN% pint.n.01                                  %  --a-- pint --.--     [79-86]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Matt
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,matt)']</b1>
+cat: N
+----------
+tokens:thought
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←think:think.v.03(e1)','b1←Time(e1,t1)','b1←Theme(e1,p1)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[dcl]
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:best
+sem: λv1.λv2.(<b1>['b1←s1','b1←s2']:['b1←most:most.r.01(s2)','b1←good:good.a.01(s1)','b1←Degree(s1,s2)','b1←Attribute(v2,s1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:way
+sem: λv1.λv2.(<b1>[]:['b1←way:way.n.01(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:have
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←have:have.v.03(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:talk
+sem: λv1.λv2.(<b1>[]:['b1←talk:talk.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:with
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Co-Agent(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Patrick
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,patrick)']</b1>
+cat: N
+----------
+tokens:would
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:be
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←be:be.v.01(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Topic(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:take
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←take:take.v.03(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(v4@e1)))))
+cat: ((S[b]\NP)/PP)/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:for
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:pint
+sem: λv1.<b1>[]:['b1←pint:pint.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

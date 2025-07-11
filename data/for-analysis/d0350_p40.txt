@@ -1,0 +1,56 @@
+% Underneath the table her hand was gripping the chair.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% table.n.02                                        %  --Underneath--  --the-- table [0-20]
+%SBN% female.n.02                                       % her                  [21-24]
+%SBN% hand.n.01   PartOf -1                             % hand                 [25-29]
+%SBN% time.n.08   TPR now                               % was                  [30-33]
+%SBN% grip.v.01   Location -4 Agent -2 Time -1 Theme +1 % gripping             [34-42]
+%SBN% chair.n.01                                        %  --the-- chair --.--           [43-53]
+
+% Incremental DRS
+
+tokens:Underneath
+sem: λv1.λv2.λv3.(v2@λv4.((v1@λv5.<b1>[]:['b1←Location(v4,v5)']</b1>);(v3@v4)))
+cat: (S/S)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:table
+sem: λv1.<b1>[]:['b1←table:table.n.02(v1)']</b1>
+cat: N
+----------
+tokens:her
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:hand
+sem: λv1.λv2.(<b1>[]:['b1←hand:hand.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:was
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:gripping
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←grip:grip.v.01(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:chair
+sem: λv1.<b1>[]:['b1←chair:chair.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

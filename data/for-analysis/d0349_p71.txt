@@ -1,0 +1,52 @@
+% Andrew nodded and stood against the counter.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02    Name "Andrew"                % Andrew        [0-6]
+%SBN% nod.v.01     Agent -1 Time +1             % nodded  --and--    [7-17]
+%SBN% time.n.08    TPR now                      %               
+%SBN% stand.v.01   Theme -3 Time +1 Location +2 % stood  --against-- [18-31]
+%SBN% time.n.08    TPR now                      %               
+%SBN% counter.n.04                              %  --the-- counter --.--  [32-44]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Andrew
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,andrew)']</b1>
+cat: N
+----------
+tokens:nodded
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←nod:nod.v.01(e1)','b1←Time(e1,t1)','b1←Agent(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:stood
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←stand:stand.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:against
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:counter
+sem: λv1.<b1>[]:['b1←counter:counter.n.04(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

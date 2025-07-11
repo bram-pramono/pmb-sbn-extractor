@@ -1,0 +1,75 @@
+% The gathered villagers took a step back, almost as one man.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% gather.v.02   Theme +1                            %  --The-- gathered    [0-12]
+%SBN% person.n.01   Role +1                             % villagers       [13-22]
+%SBN% villager.n.01                                     %                 
+%SBN% take.v.01     Agent -2 Time +1 Theme +2 Manner +5 % took            [23-27]
+%SBN% time.n.08     TPR now                             %                 
+%SBN% step.n.02                                         %  --a-- step          [28-34]
+%SBN% back.r.02     AttributeOf -1                      % back --,--  --almost--  --as-- [35-50]
+%SBN% quantity.n.01 EQU 1                               % one             [51-54]
+%SBN% man.n.03      Quantity -1                         % man --.--            [55-59]
+
+% Incremental DRS
+
+tokens:The
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:gathered
+sem: λv1.λv2.(<b1>['b1←e1']:['b1←gather:gather.v.02(e1)','b1←Theme(e1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:villagers
+sem: λv1.<b1>['b1←x1']:['b1←villager:villager.n.01(x1)','b1←person:person.n.01(v1)','b1←Role(v1,x1)']</b1>
+cat: N
+----------
+tokens:took
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←take:take.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:step
+sem: λv1.<b1>[]:['b1←step:step.n.02(v1)']</b1>
+cat: N
+----------
+tokens:back
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←back:back.r.02(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N\N
+----------
+tokens:,
+sem: λv1.v1
+cat: NP\NP
+----------
+tokens:almost
+sem: λv1.v1
+cat: ((S\NP)\(S\NP))/((S\NP)\(S\NP))
+----------
+tokens:as
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Manner(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:one
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←quantity:quantity.n.01(x1)','b1←x1=1','b1←Quantity(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:man
+sem: λv1.<b1>[]:['b1←man:man.n.03(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

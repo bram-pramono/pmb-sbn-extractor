@@ -1,0 +1,69 @@
+% Gilbert sat as still as he could nursing his lip.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02   Name "Gilbert"                          % Gilbert [0-7]
+%SBN% sit.v.01    Agent -1 Time +1 Attribute +2 Manner +3 % sat  --as--  [8-14]
+%SBN% time.n.08   TPR now                                 %         
+%SBN% still.r.04                                          % still   [15-20]
+%SBN% entity.n.01                                         % as      [21-23]
+%SBN% male.n.02   ANA -5                                  % he      [24-26]
+%SBN% sit.v.01    Participant -2 Agent -1 Time +1         % could   [27-32]
+%SBN% time.n.08   TPR now                                 %         
+%SBN% nurse.v.01  Agent -8 Theme +2                       % nursing [33-40]
+%SBN% male.n.02   ANA -9                                  % his     [41-44]
+%SBN% lip.n.01    PartOf -1                               % lip --.--    [45-49]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Gilbert
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,gilbert)']</b1>
+cat: N
+----------
+tokens:sat
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←sit:sit.v.01(e1)','b1←Time(e1,t1)','b1←Agent(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:as
+sem: λv1.v1
+cat: (S\NP)/(S\NP)
+----------
+tokens:still
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←still:still.r.04(s1)','b1←Attribute(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:as
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.((v1@λv6.<b1>['b1←x1']:['b1←entity:entity.n.01(x1)','b1←Manner(v5,x1)','b1←Participant(v6,x1)']</b1>);(v4@v5)))
+cat: ((S\NP)\(S\NP))/S[b]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:could
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←sit:sit.v.01(e1)','b1←Time(e1,t1)','b1←Agent(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:nursing
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);(v1@λv7.(<b1>['b1←e1']:['b1←nurse:nurse.v.01(e1)','b1←Theme(e1,v7)','b1←Agent(e1,v5)']</b1>;(v4@e1)))))
+cat: ((S[dcl]\NP)\(S[dcl]\NP))/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:lip
+sem: λv1.λv2.(<b1>[]:['b1←lip:lip.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

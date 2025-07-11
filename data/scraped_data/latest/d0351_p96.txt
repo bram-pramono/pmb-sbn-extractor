@@ -1,0 +1,96 @@
+% Jane had worn a suit in the belief that it might make her look less suspicious.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02     Name "Jane"                         % Jane  --had--      [0-8]
+%SBN% wear.v.01       Agent -1 Time +1 Theme +2 Causer +3 % worn          [9-13]
+%SBN% time.n.08       TPR now                             %               
+%SBN% suit.n.01                                           %  --a-- suit  --in--     [14-23]
+%SBN% belief.n.01     Proposition &gt;1                      %  --the-- belief    [24-34]
+%SBN%                 CONTINUATION &lt;0                     %               
+%SBN% entity.n.01     ANA -2                              %  --that-- it  --might-- [35-48]
+%SBN%                 POSSIBILITY &lt;1                      %               
+%SBN% make.v.02       Proposition &gt;1 Agent -1             % make          [49-53]
+%SBN%                 CONTINUATION &lt;0                     %               
+%SBN% female.n.02     ANA -7                              % her           [54-57]
+%SBN% look.v.02       Theme -1 Attribute +2               % look          [58-62]
+%SBN% less.r.01       Theme -2                            % less          [63-67]
+%SBN% suspicious.a.01 AttributeOf -3 Degree -1            % suspicious --.--   [68-79]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Jane
+sem: λv1.<b1>[]:['b1←female:female.n.02(v1)','b1←Name(v1,jane)']</b1>
+cat: N
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:worn
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←wear:wear.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[pt]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:suit
+sem: λv1.<b1>[]:['b1←suit:suit.n.01(v1)']</b1>
+cat: N
+----------
+tokens:in
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Causer(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:belief
+sem: λv1.λv2.<b1>['b1←p1']:['b1←p1:(v1@λv3.<b2>[]:[]</b2>)','b1←belief:belief.n.01(v2)','b1←Topic(v2,p1)']</b1>
+cat: N/S[em]
+----------
+tokens:that
+sem: λv1.v1
+cat: S[em]/S[dcl]
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:might
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←◊((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:make
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1']:['b1←p1:(v1@λv5.<b2>[]:[]</b2>)','b1←make:make.v.02(e1)','b1←Topic(e1,p1)','b1←Agent(e1,v4)']</b1>;(v3@e1)))
+cat: (S[b]\NP)/S[dcl]
+----------
+tokens:her
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:look
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←look:look.v.02(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Attribute(e1,v6)']</b2>);(v3@e1))))
+cat: (S[dcl]\NP)/(S[adj]\NP)
+----------
+tokens:less
+sem: λv1.λv2.λv3.(v2@λv4.((v1@λv5.(v5@v4))@λv6.(<b1>['b1←s1']:['b1←less:less.r.01(s1)','b1←Theme(s1,v4)','b1←Degree(v6,s1)']</b1>;(v3@v6))))
+cat: (S[adj]\NP)/(S[adj]\NP)
+----------
+tokens:suspicious
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←suspicious:suspicious.a.01(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

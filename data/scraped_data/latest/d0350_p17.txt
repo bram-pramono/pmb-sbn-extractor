@@ -1,0 +1,78 @@
+% Good God, if you are watching, give me strength.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% event.v.01    Participant +2                 %           
+%SBN% good.a.04     AttributeOf +1                 % Good      [0-4]
+%SBN% god.n.01                                     % God --,--  --if--   [5-12]
+%SBN%               CONTINUATION &lt;1                %           
+%SBN% person.n.01   EQU hearer                     % you       [13-16]
+%SBN% time.n.08     EQU now                        % are       [17-20]
+%SBN% watch.v.03    Agent -2 Time -1               % watching --,-- [21-30]
+%SBN%               CONSEQUENCE &lt;1                 %           
+%SBN% person.n.01   EQU hearer                     %           
+%SBN% give.v.01     Agent -1 Recipient +1 Theme +2 % give      [31-35]
+%SBN% person.n.01   EQU speaker                    % me        [36-38]
+%SBN% strength.n.09                                % strength --.-- [39-48]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:Good
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←good:good.a.04(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:God
+sem: λv1.<b1>[]:['b1←god:god.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.v1
+cat: NP\NP
+----------
+tokens:if
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: (S/S)/S[dcl]
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:are
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:watching
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←watch:watch.v.03(e1)','b1←Agent(e1,v3)']</b1>;(v2@e1)))
+cat: S[ng]\NP
+----------
+tokens:,
+sem: λv1.v1
+cat: (S[ng]\NP)\(S[ng]\NP)
+----------
+tokens:give
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(v1@λv7.(<b1>['b1←e1']:['b1←give:give.v.01(e1)','b1←Recipient(e1,v7)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;(v4@e1)))))
+cat: ((S[b]\NP)/NP)/NP
+----------
+tokens:me
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:strength
+sem: λv1.<b1>[]:['b1←strength:strength.n.09(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: (S[b]\NP)\(S[b]\NP)
+----------

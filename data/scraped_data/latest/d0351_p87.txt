@@ -1,0 +1,87 @@
+% I remember an agent with no arms who could kill a man with his teeth.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01          EQU speaker                       % I              [0-1]
+%SBN% remember.v.03        Agent -1 Time +1 Theme +2         % remember       [2-10]
+%SBN% time.n.08            EQU now                           %                
+%SBN% person.n.01          Role +1                           %  --an-- agent       [11-19]
+%SBN% agent.n.02                                             %                
+%SBN%                      NEGATION &lt;1                       %                
+%SBN% arm.n.01                                               % arms  --who--  --could-- [28-42]
+%SBN% terra_incognita.n.01 EQU -2 Attribute -1               % with  --no--        [20-27]
+%SBN%                      POSSIBILITY &lt;2                    %                
+%SBN% kill.v.01            Agent -4 Patient +1 Instrument +3 % kill           [43-47]
+%SBN% man.n.01                                               %  --a-- man  --with--     [48-58]
+%SBN% male.n.02            ANA -6                            % his            [59-62]
+%SBN% tooth.n.01           PartOf -1                         % teeth --.--         [63-69]
+
+% Incremental DRS
+
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:remember
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←remember:remember.v.03(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1=now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:an
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:agent
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←agent:agent.n.02(x1)','b1←person:person.n.01(v2)','b1←Role(v2,x1)']</b1>;(v1@x1))
+cat: N/PP
+----------
+tokens:with
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Attribute(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:no
+sem: λv1.λv2.<b1>[]:["b1←¬(<b2>['b2←x1']:[]</b2>;((v1@x1);(v2@x1)))"]</b1>
+cat: NP/N
+----------
+tokens:arms
+sem: λv1.<b1>[]:['b1←arm:arm.n.01(v1)']</b1>
+cat: N
+----------
+tokens:who
+sem: λv1.λv2.λv3.((v2@v3);((v1@λv4.(v4@v3))@λv5.<b1>[]:[]</b1>))
+cat: (N\N)/(S[dcl]\NP)
+----------
+tokens:could
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←◊((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:kill
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←kill:kill.v.01(e1)','b1←Patient(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(v4@e1)))))
+cat: ((S[b]\NP)/PP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:man
+sem: λv1.<b1>[]:['b1←man:man.n.01(v1)']</b1>
+cat: N
+----------
+tokens:with
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Instrument(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:teeth
+sem: λv1.λv2.(<b1>[]:['b1←tooth:tooth.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

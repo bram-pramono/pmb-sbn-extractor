@@ -1,0 +1,72 @@
+% Men could be paid to do all sorts of things.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% man.n.01                                  % Men  --could--    [0-9]
+%SBN%                      POSSIBILITY &lt;1       %              
+%SBN% be.v.01              Theme -1 Co-Theme +1 % be           [10-12]
+%SBN% pay.v.01             Theme -2             % paid  --to--      [13-20]
+%SBN%                      NEGATION &lt;1          %              
+%SBN% sort.n.01            SubOf +1             %  --all-- sorts  --of-- [24-36]
+%SBN% thing.n.02                                % things --.--      [37-44]
+%SBN%                      NEGATION &lt;1          %              
+%SBN% do.v.01              Agent -5 Theme -2    % do           [21-23]
+%SBN% terra_incognita.n.01 EQU -4 Goal -1       %              
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:Men
+sem: λv1.<b1>[]:['b1←man:man.n.01(v1)']</b1>
+cat: N
+----------
+tokens:could
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←◊((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:be
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←be:be.v.01(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Co-Theme(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[pss]\NP)
+----------
+tokens:paid
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←pay:pay.v.01(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Goal(e1,v6)']</b2>);(v3@e1))))
+cat: (S[pss]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:do
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←do:do.v.01(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:all
+sem: λv1.λv2.<b1>[]:["b1←¬(<b2>['b2←x1']:['b2←¬(v2@x1)']</b2>;(v1@x1))"]</b1>
+cat: NP/N
+----------
+tokens:sorts
+sem: λv1.λv2.(<b1>[]:['b1←sort:sort.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←SubOf(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:things
+sem: λv1.<b1>[]:['b1←thing:thing.n.02(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

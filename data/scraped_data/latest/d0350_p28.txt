@@ -1,0 +1,65 @@
+% John gave Bernard a hard slap on the head.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02 Name "John"                            % John      [0-4]
+%SBN% give.v.01 Agent -1 Time +1 Recipient +2 Theme +4 % gave      [5-9]
+%SBN% time.n.08 TPR now                                %           
+%SBN% male.n.02 Name "Bernard"                         % Bernard   [10-17]
+%SBN% hard.a.04 AttributeOf +1                         %  --a-- hard    [18-24]
+%SBN% slap.n.01 Destination +1                         % slap  --on--   [25-32]
+%SBN% head.n.01                                        %  --the-- head --.-- [33-42]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:John
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,john)']</b1>
+cat: N
+----------
+tokens:gave
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(v1@λv7.(<b1>['b1←e1','b2←t1']:['b1←give:give.v.01(e1)','b1←Time(e1,t1)','b1←Recipient(e1,v7)','b1←Theme(e1,v6)','b1←Agent(e1,v5)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v4@e1)))))
+cat: ((S[dcl]\NP)/NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Bernard
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,bernard)']</b1>
+cat: N
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:hard
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←hard:hard.a.04(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:slap
+sem: λv1.λv2.(<b1>[]:['b1←slap:slap.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:on
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:head
+sem: λv1.<b1>[]:['b1←head:head.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

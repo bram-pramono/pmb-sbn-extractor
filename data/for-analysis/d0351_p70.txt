@@ -1,0 +1,82 @@
+% Donald sat down at the kitchen table and fed his little sister her bottle.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02          Name "Donald"                          % Donald        [0-6]
+%SBN% sit_down.v.01      Agent -1 Time +1 Location +3           % sat  --down--  --at--   [7-18]
+%SBN% time.n.08          TPR now                                %               
+%SBN% kitchen.n.01                                              %  --the-- kitchen   [19-30]
+%SBN% table.n.02         Attribute -1                           % table  --and--     [31-40]
+%SBN% feed.v.01          Agent -5 Time +1 Recipient +3 Theme +6 % fed           [41-44]
+%SBN% time.n.08          TPR now                                %               
+%SBN% male.n.02          ANA -7                                 % his           [45-48]
+%SBN% person.n.01        Role +1                                % little sister [49-62]
+%SBN% little_sister.n.01 Of -2                                  %               
+%SBN% female.n.02        ANA -2                                 % her           [63-66]
+%SBN% bottle.n.01        User -1                                % bottle --.--       [67-74]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Donald
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,donald)']</b1>
+cat: N
+----------
+tokens:sat
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b2←t1']:['b1←sit_down:sit_down.v.01(e1)','b1←Time(e1,t1)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/PR
+----------
+tokens:down
+sem: down
+cat: PR
+----------
+tokens:at
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Location(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:kitchen
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←kitchen:kitchen.n.01(x1)','b1←Attribute(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:table
+sem: λv1.<b1>[]:['b1←table:table.n.02(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:fed
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(v1@λv7.(<b1>['b1←e1','b2←t1']:['b1←feed:feed.v.01(e1)','b1←Time(e1,t1)','b1←Recipient(e1,v7)','b1←Theme(e1,v6)','b1←Agent(e1,v5)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v4@e1)))))
+cat: ((S[dcl]\NP)/NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←Of(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:little~sister
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←little_sister:little_sister.n.01(x1)','b1←person:person.n.01(v2)','b1←Role(v2,x1)']</b1>;(v1@x1))
+cat: N/PP
+----------
+tokens:her
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←User(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:bottle
+sem: λv1.λv2.(<b1>[]:['b1←bottle:bottle.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

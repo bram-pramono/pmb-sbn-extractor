@@ -1,0 +1,128 @@
+% Putting himself between Fred and his dad could only do more harm than good at least that's what Neil told him.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% put.v.01    Theme +1 Location +3            % Putting         [0-7]
+%SBN% male.n.02                                   % himself  --between-- [8-23]
+%SBN% male.n.02   Name "Fred"                     % Fred            [24-28]
+%SBN% entity.n.01 Sub -1 Sub +2                   % and             [29-32]
+%SBN% male.n.02   ANA -3                          % his             [33-36]
+%SBN% person.n.01 Role +1                         % dad  --could--       [37-46]
+%SBN% dad.n.01    Of -2                           %                 
+%SBN%             POSSIBILITY &lt;1                  %                 
+%SBN% only.a.01                                   % only            [47-51]
+%SBN% do.v.05     Agent -8 Manner -1 Theme +1     % do  --more--         [52-59]
+%SBN% harm.n.03                                   % harm  --than--       [60-69]
+%SBN%             CONTINUATION &lt;1                 %                 
+%SBN% good.n.02   Attribute -10                   % good  --at least--   [70-83]
+%SBN%             CONTINUATION &lt;3                 %                 
+%SBN% entity.n.01                                 % that            [84-88]
+%SBN% be.v.01     Proposition &gt;1 Theme -1 Time +1 % 's  --what--         [88-95]
+%SBN% time.n.08   EQU now                         %                 
+%SBN%             CONTINUATION &lt;0                 %                 
+%SBN% male.n.02   Name "Neil"                     % Neil            [96-100]
+%SBN% tell.v.01   Agent -1 Time +1 Recipient +2   % told            [101-105]
+%SBN% time.n.08   TPR now                         %                 
+%SBN% male.n.02   ANA -16                         % him --.--            [106-110]
+
+% Incremental DRS
+
+tokens:Putting
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←put:put.v.01(e1)','b1←Theme(e1,v3)']</b1>;(v2@e1)))
+cat: NP/NP
+----------
+tokens:himself
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:between
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>[]:['b1←Location(v4,v5)']</b1>;(v3@v4))))
+cat: (NP\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Fred
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,fred)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;((v2@λv4.<b2>[]:['b2←Sub(x1,v4)']</b2>);((v1@λv5.<b3>[]:['b3←Sub(x1,v5)']</b3>);(v3@x1))))
+cat: conj
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←Of(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:dad
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←dad:dad.n.01(x1)','b1←person:person.n.01(v2)','b1←Role(v2,x1)']</b1>;(v1@x1))
+cat: N/PP
+----------
+tokens:could
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←◊((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:only
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←only:only.a.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:do
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←do:do.v.05(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:more
+sem: λv1.v1
+cat: NP/NP
+----------
+tokens:harm
+sem: λv1.(<b1>['b1←x1']:['b1←harm:harm.n.03(x1)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:than
+sem: λv1.λv2.λv3.λv4.(v3@λv5.<>[]:[]</>)
+cat: ((S\NP)\(S\NP))/(S[adj]\NP)
+----------
+tokens:good
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←x1']:['b1←good:good.n.02(x1)','b1←Attribute(x1,v3)']</b1>;(v2@x1)))
+cat: S[adj]\NP
+----------
+tokens:at~least
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: (S\S)/S[dcl]
+----------
+tokens:that
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:'s
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←be:be.v.01(e1)','b1←Time(e1,t1)','b1←Co-Theme(e1,v5)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1=now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:what
+sem: λv1.λv2.(<b1>['b1←p1']:['b1←p1:(v1@λv3.<b2>[]:[]</b2>)']</b1>;(v2@p1))
+cat: NP/S[dcl]
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Neil
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,neil)']</b1>
+cat: N
+----------
+tokens:told
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←tell:tell.v.01(e1)','b1←Time(e1,t1)','b1←Recipient(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

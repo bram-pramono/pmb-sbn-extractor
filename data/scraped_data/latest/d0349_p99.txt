@@ -1,0 +1,62 @@
+% I think our friend's demands are well justified.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01    EQU speaker                     % I          [0-1]
+%SBN% think.v.01     Proposition &gt;1 Agent -1 Time +1 % think      [2-7]
+%SBN% time.n.08      EQU now                         %            
+%SBN%                CONTINUATION &lt;0                 %            
+%SBN% person.n.01    Sub speaker                     % our        [8-11]
+%SBN% person.n.01    User -1 Role +1                 % friend --'s--   [12-20]
+%SBN% friend.n.01                                    %            
+%SBN% demand.n.01    User -2                         % demands    [21-28]
+%SBN% be.v.01        Theme -1 Time +1 Co-Theme +3    % are        [29-32]
+%SBN% time.n.08      EQU now                         %            
+%SBN% well.r.02                                      % well       [33-37]
+%SBN% justified.a.01 Theme -4 Manner -1              % justified --.-- [38-48]
+
+% Incremental DRS
+
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:think
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←think:think.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,p1)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1=now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[dcl]
+----------
+tokens:our
+sem: λv1.λv2.((<b1>['b1←x1','b1←x2']:['b1←User(x1,x2)','b1←person:person.n.01(x2)','b1←Sub(x2,speaker)']</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:friend
+sem: λv1.<b1>['b1←x1']:['b1←friend:friend.n.01(x1)','b1←person:person.n.01(v1)','b1←Role(v1,x1)']</b1>
+cat: N
+----------
+tokens:'s
+sem: λv1.λv2.λv3.(v1@λv4.((<b1>['b1←x1']:[]</b1>;((v2@λv5.<b2>[]:['b2←User(v5,v4)']</b2>)@x1))∗(v3@x1)))
+cat: (NP/(N/PP))\NP
+----------
+tokens:demands
+sem: λv1.λv2.(<b1>[]:['b1←demand:demand.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:are
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←be:be.v.01(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Co-Theme(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1=now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[pss]\NP)
+----------
+tokens:well
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←well:well.r.02(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)/(S\NP)
+----------
+tokens:justified
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←justified:justified.a.01(s1)','b1←Theme(s1,v3)']</b1>;(v2@s1)))
+cat: S[pss]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

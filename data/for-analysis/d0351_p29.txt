@@ -1,0 +1,91 @@
+% If I have time at the end I'll fill you in on what happened.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01 EQU speaker                            %  --If-- I      [0-4]
+%SBN% have.v.01   Pivot -1 Time +1 Theme +2              % have      [5-9]
+%SBN% time.n.08   EQU now                                %           
+%SBN% time.n.03   Time +1                                % time  --at--   [10-17]
+%SBN% end.n.02                                           %  --the-- end   [18-25]
+%SBN%             CONSEQUENCE &lt;1                         %           
+%SBN% person.n.01 EQU speaker                            % I         [26-27]
+%SBN% time.n.08   TSU now                                % 'll       [27-30]
+%SBN% fill.v.01   Agent -2 Time -1 Recipient +1 Topic +2 % fill      [31-35]
+%SBN% person.n.01 EQU hearer                             % you  --in--  --on-- [36-45]
+%SBN% entity.n.01                                        % what      [46-50]
+%SBN% happen.v.01 Theme -1 Time +1                       % happened --.-- [51-60]
+%SBN% time.n.08   TPR now                                %           
+
+% Incremental DRS
+
+tokens:If
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: (S/S)/S[dcl]
+----------
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:have
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←have:have.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Pivot(e1,v4)','b2←time:time.n.08(t1)','b2←t1=now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:time
+sem: λv1.λv2.(<b1>[]:['b1←time:time.n.03(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:at
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Time(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:end
+sem: λv1.<b1>[]:['b1←end:end.n.02(v1)']</b1>
+cat: N
+----------
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:'ll
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:fill
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←fill:fill.v.01(e1)','b1←Recipient(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(v4@e1)))))
+cat: ((S[b]\NP)/PP)/NP
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:in
+sem: λv1.v1
+cat: PP/PP
+----------
+tokens:on
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Topic(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:what
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(((v1@λv3.(v3@x1))@λv4.<b2>[]:[]</b2>);(v2@x1)))
+cat: NP/(S[dcl]\NP)
+----------
+tokens:happened
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←happen:happen.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

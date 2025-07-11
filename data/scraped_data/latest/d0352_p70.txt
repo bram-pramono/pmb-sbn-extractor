@@ -1,0 +1,145 @@
+% Peter went to bed giving himself his word that while Hugh wasn't around he'd look out for George as much as he could.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02     Name "Peter"                            % Peter             [0-5]
+%SBN% go.v.01       Theme -1 Time +1 Destination +2 Goal +3 % went  --to--           [6-13]
+%SBN% time.n.08     TPR now                                 %                   
+%SBN% bed.n.01                                              % bed               [14-17]
+%SBN% give.v.37     Agent -4 Recipient +1 Theme +3          % giving            [18-24]
+%SBN% male.n.02     ANA -5                                  % himself           [25-32]
+%SBN% male.n.02     ANA -6                                  % his               [33-36]
+%SBN% word.n.06     Creator -1 Proposition &gt;1               % word  --that--  --while--   [37-52]
+%SBN%               CONTINUATION &lt;0                         %                   
+%SBN% male.n.02     Name "Hugh"                             % Hugh              [53-57]
+%SBN% time.n.08     TPR now                                 % was --n't--            [58-64]
+%SBN%               NEGATION &lt;1                             %                   
+%SBN% around.r.01   AttributeOf -2 Time -1                  % around            [65-71]
+%SBN%               CONTINUATION &lt;3                         %                   
+%SBN% male.n.02     ANA -11                                 % he                [72-74]
+%SBN% time.n.08     TSU now                                 % 'd                [74-76]
+%SBN% look_out.v.02 Agent -2 Time -1 Beneficiary +1         % look  --out--  --for--      [77-89]
+%SBN% male.n.02     Name "George"                           % George  --as much as-- [90-107]
+%SBN%               CONTINUATION &lt;1                         %                   
+%SBN%               POSSIBILITY &lt;1                          %                   
+%SBN% male.n.02     ANA -4                                  % he                [108-110]
+%SBN% look_out.v.02 Agent -1 Time +1                        % could --.--            [111-117]
+%SBN% time.n.08     EQU now                                 %                   
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Peter
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,peter)']</b1>
+cat: N
+----------
+tokens:went
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←go:go.v.01(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Goal(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:to
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Destination(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:bed
+sem: λv1.<b1>[]:['b1←bed:bed.n.01(v1)']</b1>
+cat: N
+----------
+tokens:giving
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(v1@λv7.(<b1>['b1←e1']:['b1←give:give.v.37(e1)','b1←Recipient(e1,v7)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;(v4@e1)))))
+cat: ((S[ng]\NP)/NP)/NP
+----------
+tokens:himself
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←Creator(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:word
+sem: λv1.λv2.<b1>['b1←p1']:['b1←p1:(v1@λv3.<b2>[]:[]</b2>)','b1←word:word.n.06(v2)','b1←Topic(v2,p1)']</b1>
+cat: N/S[em]
+----------
+tokens:that
+sem: λv1.v1
+cat: S[em]/S[dcl]
+----------
+tokens:while
+sem: λv1.v1
+cat: S/S
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Hugh
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,hugh)']</b1>
+cat: N
+----------
+tokens:was
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[adj]\NP)
+----------
+tokens:n't
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)/(S\NP)
+----------
+tokens:around
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←around:around.r.01(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:'d
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:look
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←look_out:look_out.v.02(e1)','b1←Agent(e1,v5)']</b1>;((v2@e1);(v4@e1))))
+cat: ((S[b]\NP)/PP)/PR
+----------
+tokens:out
+sem: out
+cat: PR
+----------
+tokens:for
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Beneficiary(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:George
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,george)']</b1>
+cat: N
+----------
+tokens:as~much~as
+sem: λv1.λv2.<b1>[]:['b1←◊(v1@v2)']</b1>
+cat: S/S
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:could
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←look_out:look_out.v.02(e1)','b1←Time(e1,t1)','b1←Agent(e1,v3)','b2←time:time.n.08(t1)','b2←t1=now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

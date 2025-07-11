@@ -1,0 +1,48 @@
+% I cannot tell you more.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01 EQU speaker                    % I  --cannot-- [0-8]
+%SBN%             NEGATION &lt;1                    %          
+%SBN%             POSSIBILITY &lt;1                 %          
+%SBN% tell.v.01   Agent -1 Recipient +1 Topic +2 % tell     [9-13]
+%SBN% person.n.01 EQU hearer                     % you      [14-17]
+%SBN% entity.n.01                                % more --.--    [18-23]
+
+% Incremental DRS
+
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:can
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←◊((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:not
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:tell
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(v1@λv7.(<b1>['b1←e1']:['b1←tell:tell.v.01(e1)','b1←Recipient(e1,v7)','b1←Topic(e1,v6)','b1←Agent(e1,v5)']</b1>;(v4@e1)))))
+cat: ((S[b]\NP)/NP)/NP
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:more
+sem: λv1.<b1>[]:['b1←entity:entity.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

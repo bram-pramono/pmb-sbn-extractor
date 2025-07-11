@@ -1,0 +1,157 @@
+% If he does decide to do anything, he'll fill their bones with fire, put ashes in their lights and blow them past the last river.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                              %  --If-- he      [0-5]
+%SBN% time.n.08     EQU now                                  % does       [6-10]
+%SBN% decide.v.01   Agent -2 Time -1 Goal +1                 % decide  --to--  [11-20]
+%SBN% do.v.01       Agent -3 Theme +1                        % do         [21-23]
+%SBN% entity.n.01                                            % anything --,--  [24-33]
+%SBN%               CONSEQUENCE &lt;1                           %            
+%SBN% male.n.02     ANA -5                                   % he         [34-36]
+%SBN% time.n.08     TSU now                                  % 'll        [36-39]
+%SBN% time.n.08     TSU now                                  %            
+%SBN% time.n.08     TSU now                                  %            
+%SBN% fill.v.01     Agent -4 Time -3 Destination +2 Theme +3 % fill       [40-44]
+%SBN% person.n.01                                            % their      [45-50]
+%SBN% bone.n.01     PartOf -1                                % bones  --with-- [51-61]
+%SBN% fire.n.01                                              % fire --,--      [62-67]
+%SBN% put.v.01      Agent -8 Time -6 Theme +1 Destination +3 % put        [68-71]
+%SBN% ash.n.01                                               % ashes  --in--   [72-80]
+%SBN% person.n.01                                            % their      [81-86]
+%SBN% light.n.02    User -1                                  % lights  --and-- [87-97]
+%SBN% blow.v.01     Agent -12 Time -9 Theme -3 Location +2   % blow       [98-102]
+%SBN% person.n.01   EQU -4                                   % them       [103-107]
+%SBN% location.n.01 SXP +2                                   % past       [108-112]
+%SBN% last.n.02     AttributeOf +1                           %  --the-- last   [113-121]
+%SBN% river.n.01                                             % river --.--     [122-128]
+
+% Incremental DRS
+
+tokens:If
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: (S/S)/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:does
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:decide
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←decide:decide.v.01(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Goal(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:do
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←do:do.v.01(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:anything
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:,
+sem: λv1.v1
+cat: (S[b]\NP)\(S[b]\NP)
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:'ll
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:fill
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←fill:fill.v.01(e1)','b1←Destination(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(v4@e1)))))
+cat: ((S[b]\NP)/PP)/NP
+----------
+tokens:their
+sem: λv1.λv2.(<b1>['b1←x1','b1←x2']:['b1←person:person.n.01(x1)','b1←PartOf(x2,x1)']</b1>;((v1@x2);(v2@x2)))
+cat: NP/N
+----------
+tokens:bones
+sem: λv1.<b1>[]:['b1←bone:bone.n.01(v1)']</b1>
+cat: N
+----------
+tokens:with
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:fire
+sem: λv1.<b1>[]:['b1←fire:fire.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:put
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←put:put.v.01(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(v4@e1)))))
+cat: ((S[b]\NP)/PP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:ashes
+sem: λv1.<b1>[]:['b1←ash:ash.n.01(v1)']</b1>
+cat: N
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:their
+sem: λv1.λv2.(<b1>['b1←x1','b1←x2']:['b1←person:person.n.01(x1)','b1←User(x2,x1)']</b1>;((v1@x2);(v2@x2)))
+cat: NP/N
+----------
+tokens:lights
+sem: λv1.<b1>[]:['b1←light:light.n.02(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:blow
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←blow:blow.v.01(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(v4@e1)))))
+cat: ((S[b]\NP)/PP)/NP
+----------
+tokens:them
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:past
+sem: λv1.λv2.(v1@λv3.<b1>['b1←x1']:['b1←location:location.n.01(x1)','b1←SXP(x1,v3)','b1←Location(v2,x1)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:last
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←last:last.n.02(x1)','b1←AttributeOf(x1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:river
+sem: λv1.<b1>[]:['b1←river:river.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

@@ -1,0 +1,57 @@
+% He probably doesn't want people to know.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                             % He  --probably-- [0-11]
+%SBN%             POSSIBILITY &lt;1            %             
+%SBN% time.n.08   EQU now                   % does --n't--     [12-19]
+%SBN%             NEGATION &lt;1               %             
+%SBN% want.v.01   Pivot -2 Time -1 Theme +1 % want        [20-24]
+%SBN% person.n.01                           % people  --to--   [25-34]
+%SBN% know.v.01   Experiencer -1            % know --.--       [35-40]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:probably
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←◊((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)/(S\NP)
+----------
+tokens:does
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:n't
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:want
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←want:want.v.01(e1)','b1←Theme(e1,v5)','b1←Pivot(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:people
+sem: λv1.λv2.(<b1>[]:['b1←person:person.n.01(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:know
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←know:know.v.01(e1)','b1←Experiencer(e1,v3)']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

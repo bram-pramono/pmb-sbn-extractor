@@ -1,0 +1,158 @@
+% Despite all the publicity he was getting there was still one thing Robert knew he had to do before he could clear his conscience for good.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN%                 NEGATION &lt;1                           %                
+%SBN% entity.n.01     SubOf +1                              %  --Despite-- all    [0-11]
+%SBN% publicity.n.01                                        %  --the-- publicity  [12-25]
+%SBN%                 NEGATION &lt;1                           %                
+%SBN% male.n.02                                             % he             [26-28]
+%SBN% time.n.08       TPR now                               % was            [29-32]
+%SBN% get.v.01        Theme -4 Agent -2 Time -1             % getting        [33-40]
+%SBN%                 CONTRAST &lt;1                           %                
+%SBN% entity.n.01                                           % there          [41-46]
+%SBN% be.v.04         EQU -1 Time +1 Theme +3               % was  --still--      [47-56]
+%SBN% time.n.08       TPR now                               %                
+%SBN% quantity.n.01   EQU 1                                 % one            [57-60]
+%SBN% entity.n.01     Quantity -1 Proposition &gt;2            % thing          [61-66]
+%SBN%                 CONTINUATION &lt;0                       %                
+%SBN% male.n.02                                             % he             [79-81]
+%SBN% time.n.08       TPR now                               % had  --to--         [82-88]
+%SBN% do.v.02         Agent -2 Time -1                      % do  --before--      [89-98]
+%SBN%                 CONTINUATION &lt;0                       %                
+%SBN% male.n.02       Name "Robert"                         % Robert         [67-73]
+%SBN% know.v.01       Proposition &lt;1 Experiencer -1 Time +1 % knew           [74-78]
+%SBN% time.n.08       TPR now                               %                
+%SBN% male.n.02       ANA -3                                % he  --could--       [99-107]
+%SBN%                 POSSIBILITY &lt;1                        %                
+%SBN% clear.v.01      Agent -1 TPR -3 Theme +2 Goal +3      % clear          [108-113]
+%SBN% male.n.02       ANA -5                                % his            [114-117]
+%SBN% conscience.n.01 PartOf -1                             % conscience  --for-- [118-132]
+%SBN% entity.n.01                                           % good --.--          [133-138]
+%SBN% good.n.02       AttributeOf -1                        %                
+
+% Incremental DRS
+
+tokens:Despite
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: (S/S)/S[dcl]
+----------
+tokens:all
+sem: λv1.λv2.<b1>[]:["b1←¬(<b2>['b2←x1']:['b2←¬(v2@x1)','b2←entity:entity.n.01(x1)']</b2>;(v1@λv3.<b3>[]:['b3←SubOf(x1,v3)']</b3>))"]</b1>
+cat: NP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:publicity
+sem: λv1.<b1>[]:['b1←publicity:publicity.n.01(v1)']</b1>
+cat: N
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:was
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:getting
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←get:get.v.01(e1)','b1←Agent(e1,v5)','b1←Theme(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)\NP
+----------
+tokens:there
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(v1@x1))
+cat: NP[thr]
+----------
+tokens:was
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←be:be.v.04(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←e1=v4','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP[thr])/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:still
+sem: λv1.v1
+cat: (N/N)/(N/N)
+----------
+tokens:one
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←quantity:quantity.n.01(x1)','b1←x1=1','b1←Quantity(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:thing
+sem: λv1.λv2.<b1>['b1←p1']:['b1←p1:(v1@λv3.<b2>[]:[]</b2>)','b1←entity:entity.n.01(v2)','b1←Topic(v2,p1)']</b1>
+cat: N/S[dcl]
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Robert
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,robert)']</b1>
+cat: N
+----------
+tokens:knew
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←know:know.v.01(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,p1)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:do
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←do:do.v.02(e1)','b1←Agent(e1,v3)']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:before
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.((v1@λv6.<b1>[]:['b1←v6≺v5']</b1>);(v4@v5)))
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:could
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←◊((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:clear
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←clear:clear.v.01(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(v4@e1)))))
+cat: ((S[b]\NP)/PP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←PartOf(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:conscience
+sem: λv1.<b1>[]:['b1←conscience:conscience.n.01(v1)']</b1>
+cat: N
+----------
+tokens:for
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Goal(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:good
+sem: λv1.<b1>['b1←x1']:['b1←entity:entity.n.01(v1)','b1←good:good.n.02(x1)','b1←AttributeOf(x1,v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

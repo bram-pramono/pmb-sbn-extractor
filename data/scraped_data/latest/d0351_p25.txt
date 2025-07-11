@@ -1,0 +1,70 @@
+% One by one she placed her teeth about their necks and killed them.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% one_by_one.r.02                                                 % One by one  [0-10]
+%SBN% one_by_one.r.02                                                 %             
+%SBN% female.n.02                                                     % she         [11-14]
+%SBN% place.v.01      Manner -3 Agent -1 Time +1 Theme +3 Location +5 % placed      [15-21]
+%SBN% time.n.08       TPR now                                         %             
+%SBN% female.n.02     ANA -3                                          % her         [22-25]
+%SBN% tooth.n.01      PartOf -1                                       % teeth  --about-- [26-37]
+%SBN% person.n.01                                                     % their       [38-43]
+%SBN% neck.n.01       PartOf -1                                       % necks  --and--   [44-53]
+%SBN% kill.v.01       Manner -8 Agent -7 Patient -2 Time +1           % killed      [54-60]
+%SBN% time.n.08       TPR now                                         %             
+%SBN% person.n.01     EQU -4                                          % them --.--       [61-66]
+
+% Incremental DRS
+
+tokens:One~by~one
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←one_by_one:one_by_one.r.02(s1)','b1←Manner(v3,s1)']</b1>;(v2@v3)))
+cat: S/S
+----------
+tokens:she
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:placed
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←place:place.v.01(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/PP)/NP
+----------
+tokens:her
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:teeth
+sem: λv1.λv2.(<b1>[]:['b1←tooth:tooth.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:about
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:their
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:necks
+sem: λv1.λv2.(<b1>[]:['b1←neck:neck.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:killed
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←kill:kill.v.01(e1)','b1←Time(e1,t1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:them
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

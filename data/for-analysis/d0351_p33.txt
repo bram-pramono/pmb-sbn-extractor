@@ -1,0 +1,86 @@
+% They say he can breathe fire and kill a man with a single word.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01                                   % They       [0-4]
+%SBN% say.v.01      Proposition &gt;1 Agent -1 Time +1 % say        [5-8]
+%SBN% time.n.08     EQU now                         %            
+%SBN%               CONTINUATION &lt;0                 %            
+%SBN% male.n.02                                     % he  --can--     [9-15]
+%SBN%               POSSIBILITY &lt;1                  %            
+%SBN% breathe.v.01  Agent -1 Theme +1               % breathe    [16-23]
+%SBN% fire.n.03                                     % fire  --and--   [24-32]
+%SBN% kill.v.01     Agent -3 Patient +1 Manner +3   % kill       [33-37]
+%SBN% man.n.01                                      %  --a-- man  --with-- [38-48]
+%SBN% quantity.n.01 EQU "single"                    %  --a-- single   [49-57]
+%SBN% word.n.01     Attribute -1                    % word --.--      [58-63]
+
+% Incremental DRS
+
+tokens:They
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:say
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←say:say.v.01(e1)','b1←Time(e1,t1)','b1←Topic(e1,p1)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1=now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:can
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←◊((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:breathe
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←breathe:breathe.v.01(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:fire
+sem: λv1.<b1>[]:['b1←fire:fire.n.03(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:kill
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←kill:kill.v.01(e1)','b1←Patient(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(v4@e1)))))
+cat: ((S[b]\NP)/PP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:man
+sem: λv1.<b1>[]:['b1←man:man.n.01(v1)']</b1>
+cat: N
+----------
+tokens:with
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Manner(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:single
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←quantity:quantity.n.01(x1)','b1←x1=single','b1←Attribute(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:word
+sem: λv1.<b1>[]:['b1←word:word.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

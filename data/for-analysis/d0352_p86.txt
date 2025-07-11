@@ -1,0 +1,142 @@
+% There was not an enemy within a hundred miles and they were trading a path their kind had not taken for many, many a year.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% entity.n.01                             % There                [0-5]
+%SBN%               NEGATION &lt;1               %                      
+%SBN% be.v.03       EQU -1 Time +1 Theme +2   % was  --not--              [6-13]
+%SBN% time.n.08     TPR now                   %                      
+%SBN% person.n.01   Role +1 Location +3       %  --an-- enemy  --within--      [14-29]
+%SBN% enemy.n.01                              %                      
+%SBN% quantity.n.01 EQU 100                   %  --a-- hundred            [30-39]
+%SBN% mile.n.01     Quantity -1               % miles  --and--            [40-49]
+%SBN%               CONTINUATION &lt;2           %                      
+%SBN% person.n.01                             % they                 [50-54]
+%SBN% time.n.08     TPR now                   % were                 [55-59]
+%SBN% trade.n.01    Agent -2 Time -1 Theme +1 % trading              [60-67]
+%SBN% path.n.03     Proposition &gt;1            %  --a-- path               [68-74]
+%SBN%               CONTINUATION &lt;0           %                      
+%SBN% person.n.01                             % their                [75-80]
+%SBN% entity.n.01   EQU -1                    % kind  --had--  --not--         [81-93]
+%SBN%               NEGATION &lt;1               %                      
+%SBN% take.v.09     Agent -1 Time +1 Theme +2 % taken  --for--  --many,--  --many-- [94-114]
+%SBN% time.n.08     TPR now                   %                      
+%SBN% time.n.01     Quantity +                %  --a-- year --.--              [115-122]
+
+% Incremental DRS
+
+tokens:There
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(v1@x1))
+cat: NP[thr]
+----------
+tokens:was
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←be:be.v.03(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←e1=v4','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP[thr])/NP
+----------
+tokens:not
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)/(S\NP)
+----------
+tokens:an
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:enemy
+sem: λv1.<b1>['b1←x1']:['b1←enemy:enemy.n.01(x1)','b1←person:person.n.01(v1)','b1←Role(v1,x1)']</b1>
+cat: N
+----------
+tokens:within
+sem: λv1.λv2.λv3.((v2@v3);(v1@λv4.<b1>[]:['b1←Location(v3,v4)']</b1>))
+cat: (N\N)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:a
+sem: λv1.v1
+cat: (N/N)/(N/N)
+----------
+tokens:hundred
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←quantity:quantity.n.01(x1)','b1←x1=100','b1←Quantity(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:miles
+sem: λv1.<b1>[]:['b1←mile:mile.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:they
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:were
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:trading
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←x1']:['b1←trade:trade.n.01(x1)','b1←Theme(x1,v5)','b1←Agent(x1,v4)']</b1>;(v3@x1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:path
+sem: λv1.λv2.<b1>['b1←p1']:['b1←p1:(v1@λv3.<b2>[]:[]</b2>)','b1←path:path.n.03(v2)','b1←Topic(v2,p1)']</b1>
+cat: N/S[dcl]
+----------
+tokens:their
+sem: λv1.λv2.(<b1>['b1←x1','b1←x2']:['b1←person:person.n.01(x1)','b1←Equal(x2,x1)']</b1>;((v1@x2);(v2@x2)))
+cat: NP/N
+----------
+tokens:kind
+sem: λv1.<b1>[]:['b1←entity:entity.n.01(v1)']</b1>
+cat: N
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:not
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:taken
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←take:take.v.09(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[pt]\NP)/PP
+----------
+tokens:for
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:many
+sem: λv1.λv2.(<b1>[]:['b1←Quantity(v2,+)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:,
+sem: λv1.λv2.λv3.λv4.(((v2@v3)@v4);((v1@v3)@v4))
+cat: conj
+----------
+tokens:many
+sem: λv1.λv2.(<b1>[]:['b1←Quantity(v2,+)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP\N
+----------
+tokens:year
+sem: λv1.<b1>[]:['b1←time:time.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

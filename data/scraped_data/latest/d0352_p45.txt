@@ -1,0 +1,108 @@
+% He slumped down on the chair by the fire in a heap like his whole body had suddenly got heavy.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                                           % He              [0-2]
+%SBN% slump.v.01    Theme -1 Time +1 Location +2 Manner +4 Co-Theme +5    % slumped  --down--  --on-- [3-18]
+%SBN% time.n.08     TPR now                                               %                 
+%SBN% chair.n.01    Location +1                                           %  --the-- chair  --by--    [19-31]
+%SBN% fire.n.04                                                           %  --the-- fire  --in--     [32-43]
+%SBN% heap.n.01                                                           %  --a-- heap          [44-50]
+%SBN% entity.n.01                                                         % like            [51-55]
+%SBN% male.n.02     ANA -7                                                % his             [56-59]
+%SBN% whole.a.01    AttributeOf +1                                        % whole           [60-65]
+%SBN% body.n.01     PartOf -2                                             % body  --had--        [66-74]
+%SBN% suddenly.r.01                                                       % suddenly        [75-83]
+%SBN% get.v.02      Participant -5 Patient -2 Manner -1 Time +1 Result +2 % got             [84-87]
+%SBN% time.n.08     TPR now                                               %                 
+%SBN% heavy.a.01    AttributeOf -4                                        % heavy --.--          [88-94]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:slumped
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←slump:slump.v.01(e1)','b1←Theme(e1,v5)']</b1>;((v2@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1)))))
+cat: ((S[dcl]\NP)/PP)/PR
+----------
+tokens:down
+sem: down
+cat: PR
+----------
+tokens:on
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:chair
+sem: λv1.<b1>[]:['b1←chair:chair.n.01(v1)']</b1>
+cat: N
+----------
+tokens:by
+sem: λv1.λv2.λv3.((v2@v3);(v1@λv4.<b1>[]:['b1←Location(v3,v4)']</b1>))
+cat: (N\N)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:fire
+sem: λv1.<b1>[]:['b1←fire:fire.n.04(v1)']</b1>
+cat: N
+----------
+tokens:in
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Manner(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:heap
+sem: λv1.<b1>[]:['b1←heap:heap.n.01(v1)']</b1>
+cat: N
+----------
+tokens:like
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.((v1@λv6.<b1>['b1←x1']:['b1←entity:entity.n.01(x1)','b1←Co-Theme(v5,x1)','b1←Participant(v6,x1)']</b1>);(v4@v5)))
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←PartOf(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:whole
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←whole:whole.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:body
+sem: λv1.<b1>[]:['b1←body:body.n.01(v1)']</b1>
+cat: N
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:suddenly
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←suddenly:suddenly.r.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:got
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←get:get.v.02(e1)','b1←Patient(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Result(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[pt]\NP)/(S[adj]\NP)
+----------
+tokens:heavy
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←heavy:heavy.a.01(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

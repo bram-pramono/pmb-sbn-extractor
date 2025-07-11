@@ -1,0 +1,116 @@
+% As soon as I got off the phone with the pet store man I rang Gerry and told him everything.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% soon.r.01                                          %  --As-- soon  --as--             [0-10]
+%SBN% person.n.01 EQU speaker                            % I                      [11-12]
+%SBN% get.v.03    Time -2 Theme -1 Time +1 Source +2     % got  --off--                [13-20]
+%SBN% time.n.08   TPR now                                %                        
+%SBN% phone.n.01  Co-Agent +2                            %  --the-- phone  --with--  --the--  --pet-- [21-43]
+%SBN% store.n.01                                         % store                  [44-49]
+%SBN% man.n.01    Attribute -1                           % man                    [50-53]
+%SBN%             ATTRIBUTION &lt;1                         %                        
+%SBN% person.n.01 EQU speaker                            % I                      [54-55]
+%SBN% ring.v.04   Agent -1 Time +1 Theme +2              % rang                   [56-60]
+%SBN% time.n.08   TPR now                                %                        
+%SBN% male.n.02   Name "Gerry"                           % Gerry  --and--              [61-70]
+%SBN%             NEGATION &lt;1                            %                        
+%SBN% entity.n.01                                        % everything --.--            [80-91]
+%SBN%             NEGATION &lt;1                            %                        
+%SBN% tell.v.02   Agent -5 Topic -1 Time +1 Recipient +2 % told                   [71-75]
+%SBN% time.n.08   TPR now                                %                        
+%SBN% male.n.02   ANA -4                                 % him                    [76-79]
+
+% Incremental DRS
+
+tokens:As
+sem: λv1.v1
+cat: (S/S)/(S/S)
+----------
+tokens:soon
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←soon:soon.r.01(s1)','b1←Time(v3,s1)']</b1>;(v2@v3)))
+cat: S/S
+----------
+tokens:as
+sem: λv1.λv2.λv3.λv4.<>[]:[]</>
+cat: ((S/S)\(S/S))/S[dcl]
+----------
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:got
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←get:get.v.03(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:off
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Source(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:phone
+sem: λv1.<b1>[]:['b1←phone:phone.n.01(v1)']</b1>
+cat: N
+----------
+tokens:with
+sem: λv1.λv2.λv3.((v2@v3);(v1@λv4.<b1>[]:['b1←Co-Agent(v3,v4)']</b1>))
+cat: (N\N)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:pet
+sem: λv1.v1
+cat: (N/N)/(N/N)
+----------
+tokens:store
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←store:store.n.01(x1)','b1←Attribute(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:man
+sem: λv1.<b1>[]:['b1←man:man.n.01(v1)']</b1>
+cat: N
+----------
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:rang
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←ring:ring.v.04(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Gerry
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,gerry)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:told
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(v1@λv7.(<b1>['b1←e1','b2←t1']:['b1←tell:tell.v.02(e1)','b1←Time(e1,t1)','b1←Recipient(e1,v7)','b1←Topic(e1,v6)','b1←Agent(e1,v5)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v4@e1)))))
+cat: ((S[dcl]\NP)/NP)/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:everything
+sem: λv1.<b1>[]:["b1←¬<b2>['b2←x1']:['b2←¬(v1@x1)','b2←entity:entity.n.01(x1)']</b2>"]</b1>
+cat: NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

@@ -1,0 +1,100 @@
+% He had lived with his mother till she died after a long and painful fight with lung cancer.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                               % He  --had--       [0-6]
+%SBN% live.v.02        Theme -1 Time +1 Co-Theme +3 Finish +6 % lived  --with--   [7-17]
+%SBN% time.n.08        TPR now                                %              
+%SBN% male.n.02        ANA -3                                 % his          [18-21]
+%SBN% person.n.01      Role +1                                % mother  --till--  [22-33]
+%SBN% mother.n.01      Of -2                                  %              
+%SBN% female.n.02      ANA -2                                 % she          [34-37]
+%SBN% die.v.01         Patient -1 Time +1 Causer +4           % died  --after--   [38-48]
+%SBN% time.n.08        TPR now                                %              
+%SBN% long.a.01        AttributeOf +2                         %  --a-- long  --and--   [49-59]
+%SBN% painful.a.01     AttributeOf +1                         % painful      [60-67]
+%SBN% fight.v.03       Theme +1 Theme +2                      % fight  --with--   [68-78]
+%SBN% lung_cancer.n.01                                        % lung cancer --.-- [79-91]
+%SBN% lung_cancer.n.01                                        %              
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:lived
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←live:live.v.02(e1)','b1←Theme(e1,v5)']</b1>;((v2@e1);((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[pt]\NP)/PP)/PP
+----------
+tokens:with
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Co-Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←Of(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:mother
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←mother:mother.n.01(x1)','b1←person:person.n.01(v2)','b1←Role(v2,x1)']</b1>;(v1@x1))
+cat: N/PP
+----------
+tokens:till
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Finish(v2,v3)']</b1>)
+cat: PP/S[dcl]
+----------
+tokens:she
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:died
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←die:die.v.01(e1)','b1←Patient(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:after
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Causer(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:long
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←long:long.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(((v2@v3)@v4);((v1@v3)@v4))
+cat: conj
+----------
+tokens:painful
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←painful:painful.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:fight
+sem: λv1.λv2.(<b1>[]:['b1←fight:fight.v.03(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:with
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:lung~cancer
+sem: λv1.<b1>[]:['b1←lung_cancer:lung_cancer.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

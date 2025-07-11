@@ -1,0 +1,71 @@
+% It is not the most fragrant of places but we make do.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% entity.n.01                                   % It              [0-2]
+%SBN% time.n.08     EQU now                         % is  --not--  --the--  --most-- [3-18]
+%SBN%               NEGATION &lt;1                     %                 
+%SBN% fragrant.a.01 AttributeOf -2 Time -1 Theme +1 % fragrant  --of--     [19-30]
+%SBN% place.n.02                                    % places          [31-37]
+%SBN%               CONTRAST &lt;1                     %                 
+%SBN% person.n.01   Sub speaker                     %  --but-- we          [38-44]
+%SBN% make_do.v.01  Agent -1 Time +1                % make do --.--        [45-53]
+%SBN% time.n.08     EQU now                         %                 
+
+% Incremental DRS
+
+tokens:It
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:is
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[adj]\NP)
+----------
+tokens:not
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:the
+sem: λv1.v1
+cat: (S[adj]\NP)/(S[adj]\NP)
+----------
+tokens:most
+sem: λv1.v1
+cat: (S[adj]\NP)/(S[adj]\NP)
+----------
+tokens:fragrant
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←s1']:['b1←fragrant:fragrant.a.01(s1)','b1←AttributeOf(s1,v4)']</b1>;((v1@s1);(v3@s1))))
+cat: (S[adj]\NP)/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:places
+sem: λv1.<b1>[]:['b1←place:place.n.02(v1)']</b1>
+cat: N
+----------
+tokens:but
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:we
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Sub(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:make~do
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←make_do:make_do.v.01(e1)','b1←Time(e1,t1)','b1←Agent(e1,v3)','b2←time:time.n.08(t1)','b2←t1=now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

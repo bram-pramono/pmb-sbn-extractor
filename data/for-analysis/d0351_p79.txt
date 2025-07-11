@@ -1,0 +1,87 @@
+% When she had fallen, the witnesses to her death would have cut her apart.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02                              %  --When-- she  --had--     [0-12]
+%SBN% fall.v.01    Patient -1 Time +1          % fallen --,--          [13-20]
+%SBN% time.n.08    TPR now                     %                  
+%SBN%              CONTINUATION &lt;1             %                  
+%SBN% person.n.01  Role +1 Stimulus +3         %  --the-- witnesses  --to-- [21-37]
+%SBN% witness.n.01                             %                  
+%SBN% female.n.02  ANA -5                      % her              [38-41]
+%SBN% death.n.01   User -1                     % death            [42-47]
+%SBN% time.n.08    TSU now                     % would            [48-53]
+%SBN% have.v.01    Pivot -5 Time -1 Theme +1   % have             [54-58]
+%SBN% cut.v.01     Agent -6 Time +1 Patient +2 % cut              [59-62]
+%SBN% time.n.08    TPR now                     %                  
+%SBN% female.n.02  ANA -6                      % her  --apart.--       [63-73]
+
+% Incremental DRS
+
+tokens:When
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: (S/S)/S[dcl]
+----------
+tokens:she
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:fallen
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←fall:fall.v.01(e1)','b1←Time(e1,t1)','b1←Patient(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[pt]\NP
+----------
+tokens:,
+sem: λv1.v1
+cat: (S[pt]\NP)\(S[pt]\NP)
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:witnesses
+sem: λv1.<b1>['b1←x1']:['b1←witness:witness.n.01(x1)','b1←person:person.n.01(v1)','b1←Role(v1,x1)']</b1>
+cat: N
+----------
+tokens:to
+sem: λv1.λv2.λv3.((v2@v3);(v1@λv4.<b1>[]:['b1←Stimulus(v3,v4)']</b1>))
+cat: (N\N)/NP
+----------
+tokens:her
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←User(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:death
+sem: λv1.λv2.(<b1>[]:['b1←death:death.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:would
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:have
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←have:have.v.01(e1)','b1←Pivot(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Theme(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[pt]\NP)
+----------
+tokens:cut
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1','b2←t1']:['b1←cut:cut.v.01(e1)','b1←Time(e1,t1)','b1←Patient(e1,v6)','b1←Agent(e1,v5)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v4@e1))))
+cat: ((S[pt]\NP)/PR)/NP
+----------
+tokens:her
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:apart
+sem: apart
+cat: PR
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

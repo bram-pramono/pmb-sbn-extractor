@@ -1,0 +1,71 @@
+% Matthew stood against the wall with his hands behind his back.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02     Name "Matthew"                         % Matthew       [0-7]
+%SBN% stand.v.01    Theme -1 Time +1 Location +2 Manner +4 % stood  --against-- [8-21]
+%SBN% time.n.08     TPR now                                %               
+%SBN% wall.n.01                                            %  --the-- wall  --with-- [22-35]
+%SBN% male.n.02     ANA -4                                 % his           [36-39]
+%SBN% hand.n.01     PartOf -1 Location +1                  % hands         [40-45]
+%SBN% location.n.01 SXP +2                                 % behind        [46-52]
+%SBN% male.n.02     ANA -7                                 % his           [53-56]
+%SBN% back.n.01     PartOf -1                              % back --.--         [57-62]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Matthew
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,matthew)']</b1>
+cat: N
+----------
+tokens:stood
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←stand:stand.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:against
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:wall
+sem: λv1.<b1>[]:['b1←wall:wall.n.01(v1)']</b1>
+cat: N
+----------
+tokens:with
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Manner(v5,v6)']</b1>;(v4@v5))))
+cat: ((S[dcl]\NP)\(S[dcl]\NP))/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←PartOf(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:hands
+sem: λv1.λv2.(<b1>[]:['b1←hand:hand.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:behind
+sem: λv1.λv2.(v1@λv3.<b1>['b1←x1']:['b1←location:location.n.01(x1)','b1←SXP(x1,v3)','b1←Location(v2,x1)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←PartOf(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:back
+sem: λv1.<b1>[]:['b1←back:back.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

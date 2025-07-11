@@ -1,0 +1,165 @@
+% For now we must go on with our lives and act as normal, which right now means drinking beer and talking rubbish like we used to do.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01  Sub speaker                                                        % we  --must--    [8-15]
+%SBN%              NECESSITY &lt;1                                                       %            
+%SBN% time.n.08    EQU now                                                            %  --For-- now    [0-7]
+%SBN% time.n.08    EQU now                                                            %            
+%SBN% go_on.v.03   Theme -3 Time -2 Theme +2                                          % go  --on--  --with-- [16-26]
+%SBN% person.n.01  Sub speaker                                                        % our        [27-30]
+%SBN% life.n.03    User -1                                                            % lives  --and--  [31-40]
+%SBN% act.v.02     Agent -6 Time -4 Theme +1                                          % act  --as--     [41-47]
+%SBN% normal.n.01                                                                     % normal --,--    [48-55]
+%SBN%              CONTINUATION &lt;1                                                    %            
+%SBN% entity.n.01                                                                     % which      [56-61]
+%SBN% right.r.01                                                                      % right      [62-67]
+%SBN% now.n.01                                                                        % now        [68-71]
+%SBN% mean.v.02    Degree -2 Manner -1 Recipient -3 Time +1 Topic +2 Topic +4 Time +6 % means      [72-77]
+%SBN% time.n.08    EQU now                                                            %            
+%SBN% drink.v.02   Agent -5 Patient +1                                                % drinking   [78-86]
+%SBN% beer.n.01                                                                       % beer  --and--   [87-95]
+%SBN% talk.v.02    Agent -7 Topic +1                                                  % talking    [96-103]
+%SBN% rubbish.n.02                                                                    % rubbish    [104-111]
+%SBN% entity.n.01                                                                     % like       [112-116]
+%SBN% person.n.01  Sub speaker                                                        % we         [117-119]
+%SBN% time.n.08    TPR now                                                            % used  --to--    [120-127]
+%SBN% do.v.01      Participant -3 Agent -2 Time -1                                    % do --.--        [128-131]
+
+% Incremental DRS
+
+tokens:For
+sem: λv1.λv2.λv3.(v2@λv4.((v1@λv5.<b1>[]:['b1←Time(v4,v5)']</b1>);(v3@v4)))
+cat: (S/S)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:now
+sem: λv1.<b1>[]:['b1←time:time.n.08(v1)','b1←v1=now']</b1>
+cat: N
+----------
+tokens:we
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Sub(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:must
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←□((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:go
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←go_on:go_on.v.03(e1)','b1←Theme(e1,v5)']</b1>;((v2@e1);(v4@e1))))
+cat: ((S[b]\NP)/PP)/PR
+----------
+tokens:on
+sem: on
+cat: PR
+----------
+tokens:with
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:our
+sem: λv1.λv2.((<b1>['b1←x1','b1←x2']:['b1←User(x1,x2)','b1←person:person.n.01(x2)','b1←Sub(x2,speaker)']</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:lives
+sem: λv1.<b1>[]:['b1←life:life.n.03(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:act
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←act:act.v.02(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[b]\NP)/PP
+----------
+tokens:as
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:normal
+sem: λv1.<b1>[]:['b1←normal:normal.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.v1
+cat: S\S
+----------
+tokens:which
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:right
+sem: λv1.λv2.λv3.λv4.(((v1@v2)@v3)@λv5.(<b1>['b1←s1']:['b1←right:right.r.01(s1)','b1←Degree(v5,s1)']</b1>;(v4@v5)))
+cat: ((S\NP)/(S\NP))/((S\NP)/(S\NP))
+----------
+tokens:now
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←x1']:['b1←now:now.n.01(x1)','b1←Manner(v4,x1)']</b1>;(v3@v4)))
+cat: (S\NP)/(S\NP)
+----------
+tokens:means
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←mean:mean.v.02(e1)','b1←Recipient(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Topic(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1=now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:drinking
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←drink:drink.v.02(e1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:beer
+sem: λv1.<b1>[]:['b1←beer:beer.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:talking
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←talk:talk.v.02(e1)','b1←Topic(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:rubbish
+sem: λv1.<b1>[]:['b1←rubbish:rubbish.n.02(v1)']</b1>
+cat: N
+----------
+tokens:like
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.((v1@λv6.<b1>['b1←x1']:['b1←entity:entity.n.01(x1)','b1←Time(v5,x1)','b1←Participant(v6,x1)']</b1>);(v4@v5)))
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:we
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Sub(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:used
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:do
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←do:do.v.01(e1)','b1←Agent(e1,v3)']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

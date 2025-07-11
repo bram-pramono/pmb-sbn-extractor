@@ -1,0 +1,42 @@
+% This man's hair is black.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% man.n.01                       %  --This-- man --'s-- [0-10]
+%SBN% hair.n.01  PartOf -1           % hair       [11-15]
+%SBN% time.n.08  EQU now             % is         [16-18]
+%SBN% black.a.01 ColourOf -2 Time -1 % black --.--     [19-25]
+
+% Incremental DRS
+
+tokens:This
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:man
+sem: λv1.<b1>[]:['b1←man:man.n.01(v1)']</b1>
+cat: N
+----------
+tokens:'s
+sem: λv1.λv2.λv3.(v1@λv4.((<b1>['b1←x1']:['b1←PartOf(x1,v4)']</b1>;(v2@x1))∗(v3@x1)))
+cat: (NP/N)\NP
+----------
+tokens:hair
+sem: λv1.<b1>[]:['b1←hair:hair.n.01(v1)']</b1>
+cat: N
+----------
+tokens:is
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[adj]\NP)
+----------
+tokens:black
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←black:black.a.01(s1)','b1←ColourOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

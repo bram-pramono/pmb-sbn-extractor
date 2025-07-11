@@ -1,0 +1,154 @@
+% Now that he was master, had his own affairs and his own men to command, he was less inclined to be ordered about by his wife.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                                  %  --Now--  --that-- he      [0-11]
+%SBN% be.v.01       Theme -1 Time +1 Co-Theme +2                 % was              [12-15]
+%SBN% time.n.08     TPR now                                      %                  
+%SBN% person.n.01   Role +1                                      % master --,--          [16-23]
+%SBN% master.n.02                                                %                  
+%SBN% have.v.01     Pivot -5 Time +1 Theme +4                    % had              [24-27]
+%SBN% time.n.08     TPR now                                      %                  
+%SBN% male.n.02     ANA -7                                       % his  --own--          [28-35]
+%SBN% affair.n.01   User -1                                      % affairs          [36-43]
+%SBN% entity.n.01   Sub -1 Sub +2                                % and              [44-47]
+%SBN% male.n.02     ANA -10                                      % his  --own--          [48-55]
+%SBN% man.n.01      User -1                                      % men  --to--           [56-62]
+%SBN% command.v.05  Theme -1                                     % command --,--         [63-71]
+%SBN%               CONTINUATION &lt;1                              %                  
+%SBN% male.n.02     ANA -13                                      % he               [72-74]
+%SBN% time.n.08     TPR now                                      % was              [75-78]
+%SBN% less.r.01                                                  % less             [79-83]
+%SBN% inclined.a.01 Experiencer -3 Time -2 Degree -1 Stimulus +2 % inclined  --to--      [84-95]
+%SBN% time.n.08     EQU now                                      % be               [96-98]
+%SBN% order.v.01    Patient -5 Time -1 Time +1 Agent +3          % ordered  --about--  --by-- [99-115]
+%SBN% time.n.08     TPR now                                      %                  
+%SBN% male.n.02     ANA -20                                      % his              [116-119]
+%SBN% person.n.01   Of -1 Role +1                                % wife --.--            [120-125]
+%SBN% wife.n.01                                                  %                  
+
+% Incremental DRS
+
+tokens:Now
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: (S[dcl]/S[dcl])/S[dcl]
+----------
+tokens:that
+sem: λv1.v1
+cat: S[dcl]/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:was
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←be:be.v.01(e1)','b1←Time(e1,t1)','b1←Co-Theme(e1,v5)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:master
+sem: λv1.<b1>['b1←x1']:['b1←master:master.n.02(x1)','b1←person:person.n.01(v1)','b1←Role(v1,x1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:had
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←have:have.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Pivot(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:own
+sem: λv1.v1
+cat: N/N
+----------
+tokens:affairs
+sem: λv1.<b1>[]:['b1←affair:affair.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;((v2@λv4.<b2>[]:['b2←Sub(x1,v4)']</b2>);((v1@λv5.<b3>[]:['b3←Sub(x1,v5)']</b3>);(v3@x1))))
+cat: conj
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:own
+sem: λv1.v1
+cat: N/N
+----------
+tokens:men
+sem: λv1.λv2.(<b1>[]:['b1←man:man.n.01(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:command
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←command:command.v.05(e1)','b1←Theme(e1,v3)']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:,
+sem: λv1.v1
+cat: (NP\NP)\(NP\NP)
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:was
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[adj]\NP)
+----------
+tokens:less
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←less:less.r.01(s1)','b1←Degree(v4,s1)']</b1>;(v3@v4)))
+cat: (S[adj]\NP)/(S[adj]\NP)
+----------
+tokens:inclined
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←s1']:['b1←inclined:inclined.a.01(s1)','b1←Experiencer(s1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Stimulus(s1,v6)']</b2>);(v3@s1))))
+cat: (S[adj]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:be
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[b]\NP)/(S[pss]\NP)
+----------
+tokens:ordered
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←order:order.v.01(e1)','b1←Patient(e1,v5)']</b1>;((v2@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1)))))
+cat: ((S[pss]\NP)/PP)/PR
+----------
+tokens:about
+sem: about
+cat: PR
+----------
+tokens:by
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Agent(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←Of(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:wife
+sem: λv1.<b1>['b1←x1']:['b1←wife:wife.n.01(x1)','b1←person:person.n.01(v1)','b1←Role(v1,x1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

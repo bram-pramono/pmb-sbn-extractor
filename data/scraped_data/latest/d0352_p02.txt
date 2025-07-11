@@ -1,0 +1,92 @@
+% Just as he was about to give up and go back he heard a second noise.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN%              NEGATION &lt;1                              %              
+%SBN% just.r.01    Participant +1 Time +4 Topic +5 Topic +6 % Just         [0-4]
+%SBN% as.n.01                                               % as           [5-7]
+%SBN% male.n.02                                             % he           [8-10]
+%SBN% be.v.01      EQU -3                                   % was  --about--  --to-- [11-23]
+%SBN% time.n.08    TPR now                                  %              
+%SBN% give_up.v.04 Agent -3                                 % give  --up--  --and--  [24-35]
+%SBN% go.v.01      Theme -4                                 % go  --back--      [36-43]
+%SBN%              NEGATION &lt;1                              %              
+%SBN% male.n.02    ANA -5                                   % he           [44-46]
+%SBN% hear.v.01    Experiencer -1 Time +1 Stimulus +3       % heard        [47-52]
+%SBN% time.n.08    TPR now                                  %              
+%SBN% rank.n.02    EQU 2                                    %  --a-- second     [53-61]
+%SBN% noise.n.01   Order -1                                 % noise --.--       [62-68]
+
+% Incremental DRS
+
+tokens:Just
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>[]:['b1←just:just.r.01(v4)']</b1>;(v3@v4)))
+cat: (S/S)/(S/S)
+----------
+tokens:as
+sem: λv1.λv2.λv3.<b1>[]:["b1←¬((v1@λv4.(<b2>['b2←x1']:['b2←¬(v2@λv5.<b3>[]:[]</b3>)','b2←as:as.n.01(x1)']</b2>;(v4@x1)))@v3)"]</b1>
+cat: (S/S)/(S[dcl]\NP)
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:was
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←be:be.v.01(e1)','b1←Participant(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:about
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Topic(v2,v3)']</b1>)
+cat: PP/S[to]
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:give
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←give_up:give_up.v.04(e1)','b1←Agent(e1,v4)']</b1>;(v3@e1)))
+cat: (S[b]\NP)/PR
+----------
+tokens:up
+sem: up
+cat: PR
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:go
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←go:go.v.01(e1)','b1←Theme(e1,v4)']</b1>;(v3@e1)))
+cat: (S[b]\NP)/PR
+----------
+tokens:back
+sem: λv1.v1
+cat: PR
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:heard
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←hear:hear.v.01(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,v5)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:second
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←rank:rank.n.02(x1)','b1←x1=2','b1←Order(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:noise
+sem: λv1.<b1>[]:['b1←noise:noise.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

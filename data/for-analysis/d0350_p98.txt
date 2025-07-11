@@ -1,0 +1,60 @@
+% Let us give battle to these foreign snakes once and for all.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01           Sub speaker                              %  --Let-- us            [0-6]
+%SBN% give.v.09             Agent -1 Theme +1 Recipient +3 Manner +4 % give              [7-11]
+%SBN% battle.n.01                                                    % battle  --to--         [12-21]
+%SBN% foreign.a.02          AttributeOf +1                           %  --these-- foreign     [22-35]
+%SBN% snake.n.01                                                     % snakes            [36-42]
+%SBN% once_and_for_all.r.01                                          % once and for all --.-- [43-60]
+
+% Incremental DRS
+
+tokens:Let
+sem: λv1.λv2.(v2@v1)
+cat: (S[dcl]/(S[b]\NP))/NP
+----------
+tokens:us
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Sub(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:give
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←give:give.v.09(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(v4@e1)))))
+cat: ((S[b]\NP)/PP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:battle
+sem: λv1.<b1>[]:['b1←battle:battle.n.01(v1)']</b1>
+cat: N
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Recipient(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:these
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:foreign
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←foreign:foreign.a.02(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:snakes
+sem: λv1.<b1>[]:['b1←snake:snake.n.01(v1)']</b1>
+cat: N
+----------
+tokens:once~and~for~all
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←once_and_for_all:once_and_for_all.r.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

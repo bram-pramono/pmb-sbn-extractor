@@ -1,0 +1,84 @@
+% He had a headache and every drop sounded like an arrow piercing his skull.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                        % He                   [0-2]
+%SBN% have.v.01     Experiencer -1 Time +1 Stimulus +2 % had                  [3-6]
+%SBN% time.n.08     TPR now                            %                      
+%SBN% headache.n.02                                    %  --a-- headache  --and--  --every-- [7-27]
+%SBN%               CONTINUATION &lt;1                    %                      
+%SBN%               NEGATION &lt;1                        %                      
+%SBN% drop.n.02                                        % drop                 [28-32]
+%SBN%               NEGATION &lt;1                        %                      
+%SBN% sound.v.03    Theme -1 Time +1 Co-Theme +2       % sounded  --like--         [33-45]
+%SBN% time.n.08     TPR now                            %                      
+%SBN% arrow.n.02                                       %  --an-- arrow             [46-54]
+%SBN% pierce.v.04   Agent -1 Patient +2                % piercing             [55-63]
+%SBN% male.n.02     ANA -9                             % his                  [64-67]
+%SBN% skull.n.01    PartOf -1                          % skull --.--               [68-74]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←have:have.v.01(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,v5)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:headache
+sem: λv1.<b1>[]:['b1←headache:headache.n.02(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:every
+sem: λv1.λv2.<b1>[]:["b1←¬(<b2>['b2←x1']:['b2←¬(v2@x1)']</b2>;(v1@x1))"]</b1>
+cat: NP/N
+----------
+tokens:drop
+sem: λv1.<b1>[]:['b1←drop:drop.n.02(v1)']</b1>
+cat: N
+----------
+tokens:sounded
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←sound:sound.v.03(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:like
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Co-Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:an
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:arrow
+sem: λv1.λv2.(<b1>[]:['b1←arrow:arrow.n.02(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[ng]\NP)
+----------
+tokens:piercing
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←pierce:pierce.v.04(e1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:skull
+sem: λv1.λv2.(<b1>[]:['b1←skull:skull.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

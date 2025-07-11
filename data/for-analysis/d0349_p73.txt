@@ -1,0 +1,54 @@
+% Sam felt proud when he went home.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02  Name "Sam"                          % Sam        [0-3]
+%SBN% feel.v.04  Experiencer -1 Time +1 Stimulus +2  % felt       [4-8]
+%SBN% time.n.08  TPR now                             %            
+%SBN% proud.a.01 Experiencer -3                      % proud  --when-- [9-19]
+%SBN% male.n.02  ANA -4                              % he         [20-22]
+%SBN% go.v.01    Location -1 TIN -4 Time +1 Theme +2 % went       [23-27]
+%SBN% time.n.08  TPR now                             %            
+%SBN% home.n.01                                      % home --.--      [28-33]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Sam
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,sam)']</b1>
+cat: N
+----------
+tokens:felt
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←feel:feel.v.04(e1)','b1←Experiencer(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Stimulus(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[adj]\NP)
+----------
+tokens:proud
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←proud:proud.a.01(s1)','b1←Experiencer(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:when
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.((v1@λv6.<b1>[]:['b1←v6⊏v5']</b1>);(v4@v5)))
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:went
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←go:go.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Location(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:home
+sem: λv1.(<b1>['b1←x1']:['b1←home:home.n.01(x1)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

@@ -1,0 +1,84 @@
+% I am trying, old man, but I would rather kill the ship.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01 EQU speaker                           % I         [0-1]
+%SBN% time.n.08   EQU now                               % am        [2-4]
+%SBN% try.v.01    Agent -2 Time -1                      % trying --,--   [5-12]
+%SBN% old.a.01    Agent -3 Time +3 Degree +5 Patient +9 % old  --man,--  [13-21]
+%SBN% old.a.01    Agent +1 Time +3 Degree +5 Patient +9 %           
+%SBN% person.n.01 ANA -5                                %  --but-- I     [22-27]
+%SBN% time.n.08   TSU now                               % would     [28-33]
+%SBN% time.n.08   TSU now                               %           
+%SBN% rather.r.01                                       % rather    [34-40]
+%SBN% rather.r.01                                       %           
+%SBN% kill.v.01   EQU -7                                % kill      [41-45]
+%SBN% kill.v.01   EQU -7                                %           
+%SBN% ship.n.01                                         %  --the-- ship --.-- [46-55]
+%SBN% ship.n.01                                         %           
+
+% Incremental DRS
+
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:am
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:trying
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←try:try.v.01(e1)','b1←Agent(e1,v3)']</b1>;(v2@e1)))
+cat: S[ng]\NP
+----------
+tokens:,
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:old
+sem: λv1.λv2.λv3.λv4.(((v1@v2)@v3)@λv5.(<b1>[]:['b1←old:old.a.01(v5)']</b1>;(v4@v5)))
+cat: ((S\NP)/(S\NP))/((S\NP)/(S\NP))
+----------
+tokens:man
+sem: λv1.v1
+cat: (S\NP)/(S\NP)
+----------
+tokens:,
+sem: λv1.v1
+cat: ((S\NP)/(S\NP))\((S\NP)/(S\NP))
+----------
+tokens:but
+sem: λv1.λv2.λv3.((v2@v3);(v1@v3))
+cat: conj
+----------
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:would
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:rather
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←rather:rather.r.01(s1)','b1←Degree(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)/(S\NP)
+----------
+tokens:kill
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←kill:kill.v.01(e1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:ship
+sem: λv1.<b1>[]:['b1←ship:ship.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

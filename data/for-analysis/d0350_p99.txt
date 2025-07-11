@@ -1,0 +1,72 @@
+% Tommy came out of the staff room toilet looking a little pale.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02   Name "Tommy"                           % Tommy     [0-5]
+%SBN% come.v.01   Agent -1 Time +1 Location +2 Result +6 % came      [6-10]
+%SBN% time.n.08   TPR now                                %           
+%SBN% entity.n.01 Source +3                              % out  --of--    [11-17]
+%SBN% staff.n.01                                         %  --the-- staff [18-27]
+%SBN% room.n.01                                          % room      [28-32]
+%SBN% toilet.n.01 Role -2 Attribute -1                   % toilet    [33-39]
+%SBN% look.v.02   Theme -7 Attribute +2                  % looking   [40-47]
+%SBN% time.n.01   Quantity "a~little"                    % a little  [48-56]
+%SBN% pale.a.04   AttributeOf -9 Quantity -1             % pale --.--     [57-62]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Tommy
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,tommy)']</b1>
+cat: N
+----------
+tokens:came
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←come:come.v.01(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Result(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:out
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)','b1←Location(v5,x1)']</b1>;((v1@x1);(v4@v5))))
+cat: ((S\NP)\(S\NP))/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Source(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:staff
+sem: λv1.λv2.λv3.(((v1@λv4.<b1>['b1←x1']:['b1←staff:staff.n.01(x1)','b1←Role(v4,x1)']</b1>)@v3);(v2@v3))
+cat: (N/N)/(N/N)
+----------
+tokens:room
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←room:room.n.01(x1)','b1←Attribute(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:toilet
+sem: λv1.<b1>[]:['b1←toilet:toilet.n.01(v1)']</b1>
+cat: N
+----------
+tokens:looking
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←look:look.v.02(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Attribute(e1,v6)']</b2>);(v3@e1))))
+cat: (S[ng]\NP)/(S[adj]\NP)
+----------
+tokens:a~little
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←x1']:['b1←Quantity(v4,x1)','b1←time:time.n.01(x1)','b1←Quantity(x1,a~little)']</b1>;(v3@v4)))
+cat: (S[adj]\NP)/(S[adj]\NP)
+----------
+tokens:pale
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←pale:pale.a.04(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

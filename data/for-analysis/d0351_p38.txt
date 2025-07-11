@@ -1,0 +1,93 @@
+% James was only in the cell for an hour but it felt like a week.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02  Name "James"                                       % James        [0-5]
+%SBN% be.v.03    Theme -1 Time +1 Manner +2 Location +3 Duration +4 % was          [6-9]
+%SBN% time.n.08  TPR now                                            %              
+%SBN% only.a.01                                                     % only  --in--      [10-17]
+%SBN% cell.n.07                                                     %  --the-- cell  --for-- [18-30]
+%SBN% hour.n.01  Quantity 1                                         %  --an-- hour      [31-38]
+%SBN%            CONTRAST &lt;1                                        %              
+%SBN% being.n.01                                                    %  --but-- it       [39-45]
+%SBN% feel.v.01  Stimulus -1 Time +1 APX +2                         % felt  --like--    [46-55]
+%SBN% time.n.08  TPR now                                            %              
+%SBN% week.n.01                                                     %  --a-- week --.--      [56-63]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:James
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,james)']</b1>
+cat: N
+----------
+tokens:was
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←be:be.v.03(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:only
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←only:only.a.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:cell
+sem: λv1.<b1>[]:['b1←cell:cell.n.07(v1)']</b1>
+cat: N
+----------
+tokens:for
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Duration(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:an
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←Quantity(x1,1)']</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:hour
+sem: λv1.<b1>[]:['b1←hour:hour.n.01(v1)']</b1>
+cat: N
+----------
+tokens:but
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:it
+sem: λv1.<b1>[]:['b1←being:being.n.01(v1)']</b1>
+cat: N
+----------
+tokens:felt
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←feel:feel.v.01(e1)','b1←Stimulus(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:like
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←v2≈v3']</b1>)
+cat: PP/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:week
+sem: λv1.<b1>[]:['b1←week:week.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

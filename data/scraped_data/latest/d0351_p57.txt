@@ -1,0 +1,78 @@
+% Her ambition offered no thought to the men standing behind and around her.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02                                            % Her        [0-3]
+%SBN% ambition.n.02 User -1                                  % ambition   [4-12]
+%SBN%               NEGATION &lt;1                              %            
+%SBN% offer.v.01    Agent -1 Time +1 Theme +2 Destination +3 % offered  --no-- [13-23]
+%SBN% time.n.08     TPR now                                  %            
+%SBN% thought.n.02                                           % thought  --to-- [24-34]
+%SBN% man.n.01                                               %  --the-- men    [35-42]
+%SBN% stand.v.03    Agent -1 Location +1 Location +2         % standing   [43-51]
+%SBN% location.n.01 SXP +2                                   % behind  --and-- [52-62]
+%SBN% location.n.01 SXY +2                                   % around     [63-69]
+%SBN% female.n.02   ANA -9                                   % her --.--       [70-74]
+%SBN% female.n.02                                            %            
+
+% Incremental DRS
+
+tokens:Her
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:ambition
+sem: λv1.<b1>[]:['b1←ambition:ambition.n.02(v1)']</b1>
+cat: N
+----------
+tokens:offered
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←offer:offer.v.01(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/PP)/NP
+----------
+tokens:no
+sem: λv1.λv2.<b1>[]:["b1←¬(<b2>['b2←x1']:[]</b2>;((v1@x1);(v2@x1)))"]</b1>
+cat: NP/N
+----------
+tokens:thought
+sem: λv1.<b1>[]:['b1←thought:thought.n.02(v1)']</b1>
+cat: N
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:men
+sem: λv1.λv2.(<b1>[]:['b1←man:man.n.01(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[ng]\NP)
+----------
+tokens:standing
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←stand:stand.v.03(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[ng]\NP)/PP
+----------
+tokens:behind
+sem: λv1.λv2.(v1@λv3.<b1>['b1←x1']:['b1←location:location.n.01(x1)','b1←SXP(x1,v3)','b1←Location(v2,x1)']</b1>)
+cat: PP/NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(((v2@v3)@v4);((v1@v3)@v4))
+cat: conj
+----------
+tokens:around
+sem: λv1.λv2.(v1@λv3.<b1>['b1←x1']:['b1←location:location.n.01(x1)','b1←SXY(x1,v3)','b1←Location(v2,x1)']</b1>)
+cat: PP/NP
+----------
+tokens:her
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

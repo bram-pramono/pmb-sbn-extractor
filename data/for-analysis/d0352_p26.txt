@@ -1,0 +1,110 @@
+% Martin went to get washed up for lunch then spent the afternoon working on the extension with Mark.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02      Name "Martin"                          % Martin             [0-6]
+%SBN% go.v.01        Theme -1 Time +1 Goal +2               % went  --to--            [7-14]
+%SBN% time.n.08      TPR now                                %                    
+%SBN% get.v.02       Experiencer -3 Stimulus +1             % get                [15-18]
+%SBN% wash_up.v.01   Theme -4 Goal +1                       % washed  --up--  --for--      [19-32]
+%SBN% lunch.n.01                                            % lunch  --then--         [33-43]
+%SBN% spend.v.01     Agent -6 Time +1 Theme +2 Attribute +3 % spent              [44-49]
+%SBN% time.n.08      TPR now                                %                    
+%SBN% afternoon.n.01                                        %  --the-- afternoon      [50-63]
+%SBN% work.v.01      Agent -1 Theme +1 Co-Agent +2          % working  --on--         [64-74]
+%SBN% extension.n.01                                        %  --the-- extension  --with-- [75-93]
+%SBN% male.n.02      Name "Mark"                            % Mark --.--              [94-99]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Martin
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,martin)']</b1>
+cat: N
+----------
+tokens:went
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←go:go.v.01(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Goal(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:get
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←get:get.v.02(e1)','b1←Experiencer(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Stimulus(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[pss]\NP)
+----------
+tokens:washed
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←wash_up:wash_up.v.01(e1)','b1←Theme(e1,v5)']</b1>;((v2@e1);(v4@e1))))
+cat: ((S[pss]\NP)/PP)/PR
+----------
+tokens:up
+sem: up
+cat: PR
+----------
+tokens:for
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Goal(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:lunch
+sem: λv1.<b1>[]:['b1←lunch:lunch.n.01(v1)']</b1>
+cat: N
+----------
+tokens:then
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:spent
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←spend:spend.v.01(e1)','b1←Agent(e1,v5)','b1←Theme(e1,v6)']</b1>;(((v2@λv7.(v7@v6))@λv8.<b2>[]:['b2←Attribute(e1,v8)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v4@e1))))))
+cat: ((S[dcl]\NP)/(S[ng]\NP))/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:afternoon
+sem: λv1.<b1>[]:['b1←afternoon:afternoon.n.01(v1)']</b1>
+cat: N
+----------
+tokens:working
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←work:work.v.01(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[ng]\NP)/PP
+----------
+tokens:on
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:extension
+sem: λv1.<b1>[]:['b1←extension:extension.n.01(v1)']</b1>
+cat: N
+----------
+tokens:with
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Co-Agent(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Mark
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,mark)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

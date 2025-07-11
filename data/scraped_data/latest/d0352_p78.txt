@@ -1,0 +1,150 @@
+% Mary had absolutely no idea what the woman was talking about but there were few things that annoyed her more than adults reading children's books.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02 Name "Mary"                                 % Mary                    [0-4]
+%SBN% entity.n.01                                             % what                    [28-32]
+%SBN% woman.n.01                                              %  --the-- woman               [33-42]
+%SBN% time.n.08   TPR now                                     % was                     [43-46]
+%SBN% talk.v.02   Theme -3 Agent -2 Time -1                   % talking  --about--  --but--  --there-- [47-70]
+%SBN%             NEGATION &lt;1                                 %                         
+%SBN% have.v.01   Pivot -5 Topic -4 Time +1 Theme +2          % had  --absolutely--  --no--       [5-22]
+%SBN% time.n.08   TPR now                                     %                         
+%SBN% idea.n.01                                               % idea                    [23-27]
+%SBN%             CONTINUATION &lt;2                             %                         
+%SBN% be.v.04     Time +1 Patient +2                          % were  --few--                [71-79]
+%SBN% time.n.08   TPR now                                     %                         
+%SBN% thing.n.06  Quantity -                                  % things                  [80-86]
+%SBN% annoy.v.01  Stimulus -1 Time +1 Experiencer +2 Theme +3 %  --that-- annoyed            [87-99]
+%SBN% time.n.08   TPR now                                     %                         
+%SBN% female.n.02 ANA -13                                     % her  --more than--           [100-113]
+%SBN% adult.n.01                                              % adults                  [114-120]
+%SBN% read.v.01   Experiencer -1 Stimulus +2                  % reading                 [121-128]
+%SBN% child.n.01                                              % children --'s--              [129-139]
+%SBN% book.n.01   User -1                                     % books --.--                  [140-146]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Mary
+sem: λv1.<b1>[]:['b1←female:female.n.02(v1)','b1←Name(v1,mary)']</b1>
+cat: N
+----------
+tokens:had
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(v1@λv7.(<b1>['b1←e1','b2←t1']:['b1←have:have.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v7)','b1←Topic(e1,v6)','b1←Pivot(e1,v5)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v4@e1)))))
+cat: ((S[dcl]\NP)/NP)/NP
+----------
+tokens:absolutely
+sem: λv1.v1
+cat: (NP/N)/(NP/N)
+----------
+tokens:no
+sem: λv1.λv2.<b1>[]:["b1←¬(<b2>['b2←x1']:[]</b2>;((v1@x1);(v2@x1)))"]</b1>
+cat: NP/N
+----------
+tokens:idea
+sem: λv1.<b1>[]:['b1←idea:idea.n.01(v1)']</b1>
+cat: N
+----------
+tokens:what
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(((v1@λv3.(v3@x1))@λv4.<b2>[]:[]</b2>);(v2@x1)))
+cat: NP/(S[dcl]/NP)
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:woman
+sem: λv1.<b1>[]:['b1←woman:woman.n.01(v1)']</b1>
+cat: N
+----------
+tokens:was
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:talking
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←talk:talk.v.02(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[ng]\NP)/PP
+----------
+tokens:about
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:but
+sem: λv1.v1
+cat: S/S
+----------
+tokens:there
+sem: λv1.v1
+cat: S[dcl]/S[inv]
+----------
+tokens:were
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←be:be.v.04(e1)','b1←Time(e1,t1)','b1←Patient(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[inv]/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:few
+sem: λv1.λv2.(<b1>[]:['b1←Quantity(v2,-)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:things
+sem: λv1.<b1>[]:['b1←thing:thing.n.06(v1)']</b1>
+cat: N
+----------
+tokens:that
+sem: λv1.λv2.λv3.((v2@v3);((v1@λv4.(v4@v3))@λv5.<b1>[]:[]</b1>))
+cat: (N\N)/(S[dcl]\NP)
+----------
+tokens:annoyed
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←annoy:annoy.v.01(e1)','b1←Experiencer(e1,v6)','b1←Stimulus(e1,v5)']</b1>;((v2@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/PP)/NP
+----------
+tokens:her
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:more~than
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:adults
+sem: λv1.λv2.(<b1>[]:['b1←adult:adult.n.01(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[ng]\NP)
+----------
+tokens:reading
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←read:read.v.01(e1)','b1←Stimulus(e1,v5)','b1←Experiencer(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:children
+sem: λv1.<b1>[]:['b1←child:child.n.01(v1)']</b1>
+cat: N
+----------
+tokens:'s
+sem: λv1.λv2.λv3.(v1@λv4.((<b1>['b1←x1']:['b1←User(x1,v4)']</b1>;(v2@x1))∗(v3@x1)))
+cat: (NP/N)\NP
+----------
+tokens:books
+sem: λv1.<b1>[]:['b1←book:book.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

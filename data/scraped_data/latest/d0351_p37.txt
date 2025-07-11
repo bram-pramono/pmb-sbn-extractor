@@ -1,0 +1,87 @@
+% If this were a movie instead of a book this would be a good bit.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% entity.n.01                              %  --If-- this    [0-7]
+%SBN% be.v.01     Theme -1 Time +1 Co-Theme +2 % were       [8-12]
+%SBN% time.n.08   TPR now                      %            
+%SBN% movie.n.01                               %  --a-- movie    [13-20]
+%SBN%             NEGATION &lt;1                  %            
+%SBN% entity.n.01 EQU -3 Theme +1              % instead  --of-- [21-31]
+%SBN% book.n.01                                %  --a-- book     [32-38]
+%SBN%             CONSEQUENCE &lt;1               %            
+%SBN% entity.n.01                              % this       [39-43]
+%SBN% time.n.08   TSU now                      % would      [44-49]
+%SBN% be.v.01     Theme -2 Time -1 Co-Theme +2 % be         [50-52]
+%SBN% good.a.01   AttributeOf +1               %  --a-- good     [53-59]
+%SBN% bit.n.04                                 % bit --.--       [60-64]
+
+% Incremental DRS
+
+tokens:If
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: (S/S)/S[dcl]
+----------
+tokens:this
+sem: λv1.(<b1>['b1←x1']:['b1←this:this.n.01(x1)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:were
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←be:be.v.01(e1)','b1←Time(e1,t1)','b1←Co-Theme(e1,v5)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:movie
+sem: λv1.<b1>[]:['b1←movie:movie.n.01(v1)']</b1>
+cat: N
+----------
+tokens:instead
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(<b1>[]:['b1←¬(v1@v5)']</b1>;(v4@v5)))
+cat: ((S[dcl]\NP)\(S[dcl]\NP))/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:book
+sem: λv1.<b1>[]:['b1←book:book.n.01(v1)']</b1>
+cat: N
+----------
+tokens:this
+sem: λv1.(<b1>['b1←x1']:['b1←this:this.n.01(x1)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:would
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:be
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←be:be.v.01(e1)','b1←Co-Theme(e1,v5)','b1←Theme(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:good
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←good:good.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:bit
+sem: λv1.<b1>[]:['b1←bit:bit.n.04(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

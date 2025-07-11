@@ -1,0 +1,196 @@
+% Tom walked into the visiting room glad that his mum was making it back to see him so quickly or at least when they told him he had a visitor he assumed it was his mum.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02     Name "Tom"                                       % Tom                      [0-3]
+%SBN% walk.v.01     Theme -1 Time +1 Destination +3 Attribute +4     % walked  --into--              [4-15]
+%SBN% time.n.08     TPR now                                          %                          
+%SBN% visiting.n.01 FeatureOf +1                                     %  --the-- visiting             [16-28]
+%SBN% room.n.01                                                      % room                     [29-33]
+%SBN% glad.a.01     Proposition &gt;1 Experiencer -5                    % glad                     [34-38]
+%SBN%               CONTINUATION &lt;0                                  %                          
+%SBN% male.n.02     ANA -6                                           %  --that-- his                 [39-47]
+%SBN% person.n.01   Role +1                                          % mum                      [48-51]
+%SBN% mum.n.02      Of -2                                            %                          
+%SBN% time.n.08     TPR now                                          % was                      [52-55]
+%SBN% make.v.28     Agent -3 Time -1 Location +1 Degree +4 Manner +5 % making  --it--                [56-65]
+%SBN% back.r.01     Agent -4 Goal +1                                 % back  --to--                  [66-73]
+%SBN% see.v.08      Agent -5 Theme +1                                % see                      [74-77]
+%SBN% male.n.02     ANA -13                                          % him                      [78-81]
+%SBN% so.r.01                                                        % so                       [82-84]
+%SBN% quickly.r.02                                                   % quickly  --or--  --at least--  --when-- [85-109]
+%SBN%               CONTINUATION &lt;2                                  %                          
+%SBN% person.n.01                                                    % they                     [110-114]
+%SBN% tell.v.02     Proposition &gt;1 Agent -1 Time +1 Recipient +2     % told                     [115-119]
+%SBN% time.n.08     TPR now                                          %                          
+%SBN% male.n.02     ANA -19                                          % him                      [120-123]
+%SBN%               CONTINUATION &lt;0                                  %                          
+%SBN% male.n.02     ANA -20                                          % he                       [124-126]
+%SBN% have.v.01     Experiencer -1 Time +1 Stimulus +2               % had                      [127-130]
+%SBN% time.n.08     TPR now                                          %                          
+%SBN% visitor.n.01                                                   %  --a-- visitor                [131-140]
+%SBN%               CONTINUATION &lt;3                                  %                          
+%SBN% male.n.02     ANA -24                                          % he                       [141-143]
+%SBN% assume.v.01   Proposition &gt;1 Agent -1 Time +1                  % assumed                  [144-151]
+%SBN% time.n.08     TPR now                                          %                          
+%SBN%               CONTINUATION &lt;0                                  %                          
+%SBN% entity.n.01                                                    % it                       [152-154]
+%SBN% be.v.01       Theme -1 Time +1 Co-Theme +3                     % was                      [155-158]
+%SBN% time.n.08     TPR now                                          %                          
+%SBN% male.n.02     ANA -30                                          % his                      [159-162]
+%SBN% person.n.01   Role +1                                          % mum --.--                     [163-167]
+%SBN% mum.n.02      Of -2                                            %                          
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Tom
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,tom)']</b1>
+cat: N
+----------
+tokens:walked
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←walk:walk.v.01(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Attribute(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[adj]\NP)
+----------
+tokens:into
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Destination(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:visiting
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←visiting:visiting.n.01(x1)','b1←FeatureOf(x1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:room
+sem: λv1.<b1>[]:['b1←room:room.n.01(v1)']</b1>
+cat: N
+----------
+tokens:glad
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←s1','b1←p1']:['b1←p1:(v1@λv5.<b2>[]:[]</b2>)','b1←glad:glad.a.01(s1)','b1←Stimulus(s1,p1)','b1←Experiencer(s1,v4)']</b1>;(v3@s1)))
+cat: (S[adj]\NP)/S[em]
+----------
+tokens:that
+sem: λv1.v1
+cat: S[em]/S[dcl]
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←Of(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:mum
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←mum:mum.n.02(x1)','b1←person:person.n.01(v2)','b1←Role(v2,x1)']</b1>;(v1@x1))
+cat: N/PP
+----------
+tokens:was
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:making
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←make:make.v.28(e1)','b1←Agent(e1,v5)']</b1>;(((v2@λv6.(v6@v5))@λv7.<b2>[]:['b2←Location(e1,v7)']</b2>);(v4@e1))))
+cat: ((S[ng]\NP)/(S[adj]\NP))/PR
+----------
+tokens:it
+sem: it
+cat: PR
+----------
+tokens:back
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←s1']:['b1←back:back.r.01(s1)','b1←Agent(s1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Goal(s1,v6)']</b2>);(v3@s1))))
+cat: (S[adj]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:see
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←see:see.v.08(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:so
+sem: λv1.λv2.λv3.λv4.(((v1@v2)@v3)@λv5.(<b1>['b1←s1']:['b1←so:so.r.01(s1)','b1←Degree(v5,s1)']</b1>;(v4@v5)))
+cat: ((S\NP)\(S\NP))/((S\NP)\(S\NP))
+----------
+tokens:quickly
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←quickly:quickly.r.02(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:or
+sem: λv1.v1
+cat: S/S
+----------
+tokens:at~least
+sem: λv1.v1
+cat: (S/S)/(S/S)
+----------
+tokens:when
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: (S/S)/S[dcl]
+----------
+tokens:they
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:told
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v2@λv7.<b3>[]:[]</b3>)','b1←tell:tell.v.02(e1)','b1←Time(e1,t1)','b1←Recipient(e1,v6)','b1←Topic(e1,p1)','b1←Agent(e1,v5)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v4@e1))))
+cat: ((S[dcl]\NP)/S[dcl])/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←have:have.v.01(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,v5)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:visitor
+sem: λv1.<b1>[]:['b1←visitor:visitor.n.01(v1)']</b1>
+cat: N
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:assumed
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←assume:assume.v.01(e1)','b1←Time(e1,t1)','b1←Topic(e1,p1)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[dcl]
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:was
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←be:be.v.01(e1)','b1←Time(e1,t1)','b1←Co-Theme(e1,v5)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←Of(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:mum
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←mum:mum.n.02(x1)','b1←person:person.n.01(v2)','b1←Role(v2,x1)']</b1>;(v1@x1))
+cat: N/PP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

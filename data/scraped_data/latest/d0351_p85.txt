@@ -1,0 +1,87 @@
+% I ask that my people be allowed to stay behind and tend to the wounded.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01  EQU speaker                        % I               [0-1]
+%SBN% ask.v.01     Proposition &gt;1 Agent -1 Time +1    % ask             [2-5]
+%SBN% time.n.08    EQU now                            %                 
+%SBN%              CONTINUATION &lt;0                    %                 
+%SBN% person.n.01  EQU speaker                        %  --that-- my         [6-13]
+%SBN% person.n.01  User -1                            % people          [14-20]
+%SBN% time.n.08    TSU now                            % be              [21-23]
+%SBN% allow.v.02   Agent -2 Time -1 Theme +1 Theme +2 % allowed  --to--      [24-34]
+%SBN% stay.v.05    Theme -3                           % stay  --behind--  --and-- [35-50]
+%SBN% tend.v.02    Participant -4 Time +1 Theme +2    % tend  --to--         [51-58]
+%SBN% time.n.08    TSU now                            %                 
+%SBN% person.n.01  Role +1                            %  --the-- wounded --.--    [59-71]
+%SBN% wounded.n.01                                    %                 
+
+% Incremental DRS
+
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:ask
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←ask:ask.v.01(e1)','b1←Time(e1,t1)','b1←Topic(e1,p1)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1=now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[em]
+----------
+tokens:that
+sem: λv1.v1
+cat: S[em]/S[dcl]
+----------
+tokens:my
+sem: λv1.λv2.((<b1>['b1←x1','b1←x2']:['b1←User(x1,x2)','b1←person:person.n.01(x2)','b1←Equal(x2,speaker)']</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:people
+sem: λv1.<b1>[]:['b1←person:person.n.01(v1)']</b1>
+cat: N
+----------
+tokens:be
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[pss]\NP)
+----------
+tokens:allowed
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←allow:allow.v.02(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Theme(e1,v6)']</b2>);(v3@e1))))
+cat: (S[pss]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:stay
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←stay:stay.v.05(e1)','b1←Theme(e1,v4)']</b1>;(v3@e1)))
+cat: (S[b]\NP)/PR
+----------
+tokens:behind
+sem: behind
+cat: PR
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:tend
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←tend:tend.v.02(e1)','b1←Participant(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≻now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[b]\NP)/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:wounded
+sem: λv1.<b1>['b1←x1']:['b1←wounded:wounded.n.01(x1)','b1←person:person.n.01(v1)','b1←Role(v1,x1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

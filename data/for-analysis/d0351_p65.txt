@@ -1,0 +1,93 @@
+% He had money whenever he wanted it and still the best truck in town.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                   % He             [0-2]
+%SBN% have.v.01   Pivot -1 Time +1 Theme +2       % had            [3-6]
+%SBN% time.n.08   TPR now                         %                
+%SBN% money.n.01                                  % money  --whenever-- [7-21]
+%SBN% male.n.02   ANA -4                          % he             [22-24]
+%SBN% want.v.01   Pivot -1 Time +2 Theme +4       % wanted         [25-31]
+%SBN% want.v.01   Pivot -2 Time +2 Theme +5       %                
+%SBN% time.n.08   TPR now                         %                
+%SBN% time.n.08   TPR now                         %                
+%SBN% entity.n.01 ANA -6                          % it  --and--         [32-38]
+%SBN% still.n.01                                  % still          [39-44]
+%SBN% truck.n.01  NEQ -1 Attribute +1 Location +3 % truck  --in--       [54-62]
+%SBN% good.a.01   Degree +1                       %  --the-- best       [45-53]
+%SBN% most.r.01                                   %                
+%SBN% town.n.01                                   % town --.--          [63-68]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←have:have.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Pivot(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:money
+sem: λv1.<b1>[]:['b1←money:money.n.01(v1)']</b1>
+cat: N
+----------
+tokens:whenever
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.((v1@λv6.<b1>[]:[]</b1>);(v4@v5)))
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:wanted
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←want:want.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Pivot(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.((v2@v3);(v1@v3))
+cat: conj
+----------
+tokens:still
+sem: λv1.λv2.(v1@λv3.(<b2>['b1←x1']:['b1←still:still.n.01(x1)','b2←entity:entity.n.01(v3)','b2←v3≠x1']</b2>;(v2@v3)))
+cat: NP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:best
+sem: λv1.λv2.(<b1>['b1←s1','b1←s2']:['b1←most:most.r.01(s2)','b1←good:good.a.01(s1)','b1←Degree(s1,s2)','b1←Attribute(v2,s1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:truck
+sem: λv1.λv2.(<b1>[]:['b1←truck:truck.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:town
+sem: λv1.<b1>[]:['b1←town:town.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

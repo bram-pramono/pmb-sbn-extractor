@@ -1,0 +1,108 @@
+% I am a man of the dead and I have felt the anguish of those passing through my hands.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01  EQU speaker                  % I               [0-1]
+%SBN% be.v.01      Theme -1 Time +1 Co-Theme +2 % am              [2-4]
+%SBN% time.n.08    EQU now                      %                 
+%SBN% man.n.01     Of +1                        %  --a-- man  --of--        [5-13]
+%SBN% dead.n.01                                 %  --the-- dead  --and--    [14-26]
+%SBN%              CONTINUATION &lt;1              %                 
+%SBN% person.n.01  EQU speaker                  % I  --have--          [27-33]
+%SBN% feel.v.01    Agent -1 Time +1 Theme +2    % felt            [34-38]
+%SBN% time.n.08    TPR now                      %                 
+%SBN% anguish.n.01 User +1                      %  --the-- anguish  --of--  [39-53]
+%SBN% entity.n.01                               % those           [54-59]
+%SBN% pass.v.01    Theme -1 Location +2         % passing  --through-- [60-75]
+%SBN% person.n.01  ANA -6                       % my              [76-78]
+%SBN% hand.n.01    PartOf -1                    % hands --.--          [79-85]
+
+% Incremental DRS
+
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:am
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←be:be.v.01(e1)','b1←Time(e1,t1)','b1←Co-Theme(e1,v5)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1=now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:man
+sem: λv1.λv2.(<b1>[]:['b1←man:man.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Of(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:dead
+sem: λv1.<b1>[]:['b1←dead:dead.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:have
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:felt
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←feel:feel.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[pt]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:anguish
+sem: λv1.λv2.(<b1>[]:['b1←anguish:anguish.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←User(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:those
+sem: λv1.λv2.(<b1>[]:['b1←entity:entity.n.01(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[ng]\NP)
+----------
+tokens:passing
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←pass:pass.v.01(e1)','b1←Theme(e1,v3)']</b1>;(v2@e1)))
+cat: S[ng]\NP
+----------
+tokens:through
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Location(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:my
+sem: λv1.λv2.((<b1>['b1←x1','b1←x2']:['b1←PartOf(x1,x2)','b1←person:person.n.01(x2)','b1←Equal(x2,speaker)']</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:hands
+sem: λv1.<b1>[]:['b1←hand:hand.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

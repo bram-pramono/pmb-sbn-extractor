@@ -1,0 +1,104 @@
+% To his mum and dad he was just another mouth they couldn't afford to feed.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                        %  --To-- his        [0-6]
+%SBN% person.n.01 Role +1                              % mum           [7-10]
+%SBN% mum.n.02    Of -2                                %               
+%SBN% entity.n.01 Sub -2 Sub +1                        % and           [11-14]
+%SBN% person.n.01 Role +1                              % dad           [15-18]
+%SBN% dad.n.01                                         %               
+%SBN% male.n.02   ANA -6 TPR now EQU +3                % he  --was--        [19-25]
+%SBN% just.r.01                                        % just          [26-30]
+%SBN% mouth.n.05  Proposition &gt;4 NEQ +1                % another       [31-38]
+%SBN% mouth.n.05  Recipient -6 Theme -2 Proposition &gt;1 % mouth         [39-44]
+%SBN%             CONTINUATION &lt;0                      %               
+%SBN% person.n.01                                      % they  --couldn't-- [45-58]
+%SBN%             NEGATION &lt;1                          %               
+%SBN%             POSSIBILITY &lt;1                       %               
+%SBN% afford.v.03 Agent -1 Theme +1                    % afford  --to--     [59-68]
+%SBN% feed.v.02   Agent -2                             % feed --.--         [69-74]
+%SBN%             CONTINUATION &lt;2                      %               
+%SBN% person.n.01                                      %               
+%SBN%             NEGATION &lt;1                          %               
+%SBN%             POSSIBILITY &lt;1                       %               
+%SBN% afford.v.03 Agent -1 Theme +1                    %               
+%SBN% feed.v.02   Agent -2                             %               
+
+% Incremental DRS
+
+tokens:To
+sem: λv1.λv2.λv3.(v2@λv4.((v1@λv5.<b1>[]:['b1←Recipient(v4,v5)']</b1>);(v3@v4)))
+cat: (S/S)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←Of(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:mum
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←mum:mum.n.02(x1)','b1←person:person.n.01(v2)','b1←Role(v2,x1)']</b1>;(v1@x1))
+cat: N/PP
+----------
+tokens:and
+sem: λv1.λv2.λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;((v2@λv4.<b2>[]:['b2←Sub(x1,v4)']</b2>);((v1@λv5.<b3>[]:['b3←Sub(x1,v5)']</b3>);(v3@x1))))
+cat: conj
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:dad
+sem: λv1.<b1>['b1←x1']:['b1←dad:dad.n.01(x1)','b1←person:person.n.01(v1)','b1←Role(v1,x1)']</b1>
+cat: N
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:was
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>[]:['b1←v4≺now','b1←v4=v5']</b1>;(v3@v5))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:just
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←just:just.r.01(s1)','b1←Theme(v3,s1)']</b1>;(v2@v3)))
+cat: NP/NP
+----------
+tokens:another
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(<b2>['b2←x2']:['b2←x2≠x1']</b2>;((v1@x2);(v2@x2))))
+cat: NP/N
+----------
+tokens:mouth
+sem: λv1.λv2.<b1>['b1←p1']:['b1←p1:(v1@λv3.<b2>[]:[]</b2>)','b1←mouth:mouth.n.05(v2)','b1←Topic(v2,p1)']</b1>
+cat: N/S[dcl]
+----------
+tokens:they
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:could
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←◊((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:n't
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:afford
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←afford:afford.v.03(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Theme(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:feed
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←feed:feed.v.02(e1)','b1←Agent(e1,v3)']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

@@ -1,0 +1,114 @@
+% To one side, out of sight of the priests on the steps of their temple, was a circle of stones.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% quantity.n.01     EQU 1                        %  --To-- one          [0-6]
+%SBN% side.n.01         Quantity -1                  % side --,--           [7-12]
+%SBN% out_of_sight.a.01 Attribute -1 FeatureOf +1    % out of sight  --of-- [13-28]
+%SBN% person.n.01       Role +1                      %  --the-- priests  --on--  [29-43]
+%SBN% priest.n.01       Location +1                  %                 
+%SBN% step.n.04         PartOf +2                    %  --the-- steps  --of--    [44-56]
+%SBN% person.n.01                                    % their           [57-62]
+%SBN% temple.n.01       User -1                      % temple --,--         [63-70]
+%SBN% be.v.03           Location -7 Time +1 Theme +2 % was             [71-74]
+%SBN% time.n.08         TPR now                      %                 
+%SBN% circle.n.03       Content +1                   %  --a-- circle  --of--     [75-86]
+%SBN% stone.n.01                                     % stones --.--         [87-94]
+
+% Incremental DRS
+
+tokens:To
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:one
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←quantity:quantity.n.01(x1)','b1←x1=1','b1←Quantity(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:side
+sem: λv1.<b1>[]:['b1←side:side.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.v1
+cat: NP\NP
+----------
+tokens:out~of~sight
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←s1']:['b1←out_of_sight:out_of_sight.a.01(s1)','b1←Attribute(s1,v4)']</b1>;((v1@s1);(v3@v4))))
+cat: (NP\NP)/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←FeatureOf(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:priests
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←priest:priest.n.01(x1)','b1←person:person.n.01(v2)','b1←Role(v2,x1)']</b1>;(v1@x1))
+cat: N/PP
+----------
+tokens:on
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:steps
+sem: λv1.λv2.(<b1>[]:['b1←step:step.n.04(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←PartOf(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:their
+sem: λv1.λv2.(<b1>['b1←x1','b1←x2']:['b1←person:person.n.01(x1)','b1←User(x2,x1)']</b1>;((v1@x2);(v2@x2)))
+cat: NP/N
+----------
+tokens:temple
+sem: λv1.<b1>[]:['b1←temple:temple.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.v1
+cat: NP\NP
+----------
+tokens:was
+sem: λv1.λv2.λv3.(v1@λv4.(<b1>['b1←e1']:['b1←be:be.v.03(e1)','b1←Theme(e1,v4)']</b1>;((v2@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\PP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:circle
+sem: λv1.λv2.(<b1>[]:['b1←circle:circle.n.03(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Content(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:stones
+sem: λv1.<b1>[]:['b1←stone:stone.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

@@ -1,0 +1,137 @@
+% There was a pause, then the distant rattle of stone on stone, followed closely by its echo from the high mountain walls behind.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% entity.n.01                                         % There          [0-5]
+%SBN% be.v.05       Theme -1 Time +1 Co-Theme +2 Time +4  % was            [6-9]
+%SBN% time.n.08     TPR now                               %                
+%SBN% pause.n.01                                          %  --a-- pause --,--  --then--  [10-23]
+%SBN% distant.a.01  AttributeOf +1                        %  --the-- distant    [24-35]
+%SBN% rattle.n.01   Source +1                             % rattle  --of--      [36-45]
+%SBN% stone.n.01    Location +1                           % stone  --on--       [46-54]
+%SBN% stone.n.01                                          % stone --,--         [55-61]
+%SBN% follow.v.06   Patient -3 Time +1 Manner +2 Theme +3 % followed       [62-70]
+%SBN% time.n.08     TPR now                               %                
+%SBN% closely.r.01                                        % closely  --by--  --its-- [71-85]
+%SBN% echo.n.01     Source +3                             % echo  --from--      [86-95]
+%SBN% high.a.02     AttributeOf +2                        %  --the-- high       [96-104]
+%SBN% mountain.n.01                                       % mountain       [105-113]
+%SBN% wall.n.02     Attribute -1                          % walls  --behind.--  [114-127]
+
+% Incremental DRS
+
+tokens:There
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(v1@x1))
+cat: NP[thr]
+----------
+tokens:was
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←be:be.v.05(e1)','b1←Time(e1,t1)','b1←Co-Theme(e1,v5)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP[thr])/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:pause
+sem: λv1.<b1>[]:['b1←pause:pause.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.v1
+cat: NP\NP
+----------
+tokens:then
+sem: λv1.λv2.λv3.(v2@λv4.((v1@λv5.<b1>[]:['b1←Time(v4,v5)']</b1>);(v3@v4)))
+cat: (S/S)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:distant
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←distant:distant.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:rattle
+sem: λv1.λv2.λv3.(<b1>[]:['b1←rattle:rattle.n.01(v3)']</b1>;(((v2@λv4.(v4@v3))@λv5.<b2>[]:[]</b2>);(v1@v3)))
+cat: (N/(S[pss]\NP))/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Source(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:stone
+sem: λv1.<b1>[]:['b1←stone:stone.n.01(v1)']</b1>
+cat: N
+----------
+tokens:on
+sem: λv1.λv2.λv3.((v2@v3);(v1@λv4.<b1>[]:['b1←Location(v3,v4)']</b1>))
+cat: (N\N)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:stone
+sem: λv1.<b1>[]:['b1←stone:stone.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.v1
+cat: NP\NP
+----------
+tokens:followed
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←follow:follow.v.06(e1)','b1←Patient(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[pss]\NP)/PP
+----------
+tokens:closely
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←closely:closely.r.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:by
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:its
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:echo
+sem: λv1.λv2.(<b1>[]:['b1←echo:echo.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:from
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Source(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:high
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←high:high.a.02(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:mountain
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←mountain:mountain.n.01(x1)','b1←Attribute(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:walls
+sem: λv1.<b1>[]:['b1←wall:wall.n.02(v1)']</b1>
+cat: N
+----------
+tokens:behind
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

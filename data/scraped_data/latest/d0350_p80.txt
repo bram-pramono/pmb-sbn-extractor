@@ -1,0 +1,71 @@
+% You shouldn't have been racing my truck in the first place.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01 EQU hearer                           % You  --shouldn't--  --have-- [0-18]
+%SBN%             NEGATION &lt;1                          %                    
+%SBN%             NECESSITY &lt;1                         %                    
+%SBN% time.n.08   TPR now                              % been               [19-23]
+%SBN% race.v.04   Agent -2 Time -1 Theme +2 Context +4 % racing             [24-30]
+%SBN% person.n.01 EQU speaker                          % my                 [31-33]
+%SBN% truck.n.01  User -1                              % truck  --in--           [34-42]
+%SBN% rank.n.02   EQU 1                                %  --the-- first          [43-52]
+%SBN% place.n.06  Order -1                             % place --.--             [53-59]
+
+% Incremental DRS
+
+tokens:You
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:should
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←□((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:n't
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:have
+sem: λv1.v1
+cat: (S[b]\NP)/(S[pt]\NP)
+----------
+tokens:been
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[pt]\NP)/(S[ng]\NP)
+----------
+tokens:racing
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←race:race.v.04(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:my
+sem: λv1.λv2.((<b1>['b1←x1','b1←x2']:['b1←User(x1,x2)','b1←person:person.n.01(x2)','b1←Equal(x2,speaker)']</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:truck
+sem: λv1.<b1>[]:['b1←truck:truck.n.01(v1)']</b1>
+cat: N
+----------
+tokens:in
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Context(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:first
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←rank:rank.n.02(x1)','b1←x1=1','b1←Order(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:place
+sem: λv1.<b1>[]:['b1←place:place.n.06(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

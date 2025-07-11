@@ -1,0 +1,80 @@
+% The speaker turned to her with a smile and a bow of his head.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01  Role +1                                 %  --The-- speaker [0-11]
+%SBN% speaker.n.01                                         %             
+%SBN% turn.v.01    Agent -2 Time +1 Recipient +2 Manner +4 % turned  --to--   [12-21]
+%SBN% time.n.08    TPR now                                 %             
+%SBN% female.n.02                                          % her  --with--    [22-30]
+%SBN% smile.n.01                                           %  --a-- smile     [31-38]
+%SBN% entity.n.01  Sub -1 Sub +1                           % and         [39-42]
+%SBN% bow.n.06     PartOf +2                               %  --a-- bow  --of--    [43-51]
+%SBN% male.n.02    ANA -8                                  % his         [52-55]
+%SBN% head.n.01    PartOf -1                               % head --.--       [56-61]
+
+% Incremental DRS
+
+tokens:The
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:speaker
+sem: λv1.<b1>['b1←x1']:['b1←speaker:speaker.n.01(x1)','b1←person:person.n.01(v1)','b1←Role(v1,x1)']</b1>
+cat: N
+----------
+tokens:turned
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←turn:turn.v.01(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Recipient(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:her
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:with
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Manner(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:smile
+sem: λv1.<b1>[]:['b1←smile:smile.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;((v2@λv4.<b2>[]:['b2←Sub(x1,v4)']</b2>);((v1@λv5.<b3>[]:['b3←Sub(x1,v5)']</b3>);(v3@x1))))
+cat: conj
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:bow
+sem: λv1.λv2.(<b1>[]:['b1←bow:bow.n.06(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←PartOf(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:head
+sem: λv1.λv2.(<b1>[]:['b1←head:head.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

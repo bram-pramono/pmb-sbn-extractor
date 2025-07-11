@@ -1,0 +1,66 @@
+% Let's get out and I'll buy you a drink.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01  EQU speaker                              %  --Let--'s       [0-5]
+%SBN% get_out.v.03 Theme -1                                 % get  --out--  --and-- [6-17]
+%SBN%              CONTINUATION &lt;1                          %             
+%SBN% person.n.01  EQU speaker                              % I           [18-19]
+%SBN% time.n.08    TSU now                                  % 'll         [19-22]
+%SBN% buy.v.01     Agent -2 Time -1 Beneficiary +1 Theme +2 % buy         [23-26]
+%SBN% person.n.01  EQU hearer                               % you         [27-30]
+%SBN% drink.n.01                                            %  --a-- drink --.--    [31-39]
+
+% Incremental DRS
+
+tokens:Let
+sem: λv1.λv2.(v2@v1)
+cat: (S[dcl]/(S[b]\NP))/NP
+----------
+tokens:'s
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:get
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←get_out:get_out.v.03(e1)','b1←Theme(e1,v4)']</b1>;(v3@e1)))
+cat: (S[b]\NP)/PR
+----------
+tokens:out
+sem: out
+cat: PR
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:'ll
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:buy
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(v1@λv7.(<b1>['b1←e1']:['b1←buy:buy.v.01(e1)','b1←Beneficiary(e1,v7)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;(v4@e1)))))
+cat: ((S[b]\NP)/NP)/NP
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:drink
+sem: λv1.<b1>[]:['b1←drink:drink.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S\S
+----------

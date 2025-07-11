@@ -1,0 +1,90 @@
+% Dennis noticed someone standing in front of him when he reached for another log.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02   Name "Dennis"                      % Dennis      [0-6]
+%SBN% notice.v.02 Experiencer -1 Time +1 Stimulus +2 % noticed     [7-14]
+%SBN% time.n.08   TPR now                            %             
+%SBN% person.n.01                                    % someone     [15-22]
+%SBN% stand.v.01  Agent -1 Location +1               % standing  --in-- [23-34]
+%SBN% front.n.08  Theme +1                           % front  --of--    [35-43]
+%SBN% male.n.02   ANA -6                             % him  --when--    [44-52]
+%SBN% male.n.02   ANA -7                             % he          [53-55]
+%SBN% time.n.08   TPR now                            % reached  --for-- [56-67]
+%SBN% reach.n.03  Agent -2 TIN -8 Time -1 Theme +2   %             
+%SBN% log.n.01    NEQ +1                             % another     [68-75]
+%SBN% log.n.01                                       % log --.--        [76-80]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Dennis
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,dennis)']</b1>
+cat: N
+----------
+tokens:noticed
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←notice:notice.v.02(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,v5)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:someone
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>;(((v1@λv3.(v3@x1))@λv4.<b2>[]:[]</b2>);(v2@x1)))
+cat: NP/(S\NP)
+----------
+tokens:standing
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←stand:stand.v.01(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[ng]\NP)/PP
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:front
+sem: λv1.λv2.(<b1>[]:['b1←front:front.n.08(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:when
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.((v1@λv6.<b1>[]:['b1←v6⊏v5']</b1>);(v4@v5)))
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:reached
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←x1']:['b1←reach:reach.n.03(x1)','b1←Agent(x1,v4)']</b1>;((v1@x1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(x1,t1)']</b3>;(v3@x1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:for
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:another
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(<b2>['b2←x2']:['b2←x2≠x1']</b2>;((v1@x2);(v2@x2))))
+cat: NP/N
+----------
+tokens:log
+sem: λv1.<b1>[]:['b1←log:log.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

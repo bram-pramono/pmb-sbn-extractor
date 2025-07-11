@@ -1,0 +1,132 @@
+% Sue shook her head as she watched Nicholas give up on fighting to stay awake and fall asleep on the chair by the fire.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02  Name "Sue"                                                     % Sue          [0-3]
+%SBN% shake.v.01   Agent -1 Time +1 Theme +3 Time +4                              % shook        [4-9]
+%SBN% time.n.08    TPR now                                                        %              
+%SBN% female.n.02  ANA -3                                                         % her          [10-13]
+%SBN% head.n.01    PartOf -1                                                      % head         [14-18]
+%SBN% entity.n.01                                                                 % as           [19-21]
+%SBN% female.n.02  ANA -3                                                         % she          [22-25]
+%SBN% watch.v.02   Participant -2 Agent -1 Time +1 Recipient +2 Theme +3 Theme +7 % watched      [26-33]
+%SBN% time.n.08    TPR now                                                        %              
+%SBN% male.n.02    Name "Nichola"                                                 % Nicholas     [34-42]
+%SBN% give_up.v.04 Agent -1 Manner +1                                             % give  --up--  --on--   [43-53]
+%SBN% fight.v.03   Agent -2 Theme +1                                              % fighting  --to--  [54-65]
+%SBN% stay.v.01    Experiencer -3 Stimulus +1                                     % stay         [66-70]
+%SBN% awake.a.01   AttributeOf -4                                                 % awake  --and--    [71-80]
+%SBN% fall.v.03    Experiencer -5 Stimulus +1                                     % fall         [81-85]
+%SBN% asleep.a.01  AttributeOf -6 Location +1                                     % asleep  --on--    [86-95]
+%SBN% chair.n.01   Location +1                                                    %  --the-- chair  --by-- [96-108]
+%SBN% fire.n.04                                                                   %  --the-- fire --.--    [109-118]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Sue
+sem: λv1.<b1>[]:['b1←female:female.n.02(v1)','b1←Name(v1,sue)']</b1>
+cat: N
+----------
+tokens:shook
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←shake:shake.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:her
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:head
+sem: λv1.λv2.(<b1>[]:['b1←head:head.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:as
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.((v1@λv6.<b1>['b1←x1']:['b1←entity:entity.n.01(x1)','b1←Time(v5,x1)','b1←Participant(v6,x1)']</b1>);(v4@v5)))
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:she
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:watched
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←watch:watch.v.02(e1)','b1←Agent(e1,v5)','b1←Recipient(e1,v6)']</b1>;(((v2@λv7.(v7@v6))@λv8.<b2>[]:['b2←Theme(e1,v8)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v4@e1))))))
+cat: ((S[dcl]\NP)/(S[b]\NP))/NP
+----------
+tokens:Nicholas
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)','b1←Name(x1,nichola)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:give
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←give_up:give_up.v.04(e1)','b1←Agent(e1,v4)']</b1>;(v3@e1)))
+cat: (S[b]\NP)/PR
+----------
+tokens:up
+sem: up
+cat: PR
+----------
+tokens:on
+sem: λv1.λv2.λv3.λv4.(v3@λv5.((v2@λv6.(v6@v5))@λv7.((v1@λv8.(v8@v5))@λv9.(<b1>[]:['b1←Manner(v7,v9)']</b1>;(v4@v7)))))
+cat: ((S\NP)\(S\NP))/(S[ng]\NP)
+----------
+tokens:fighting
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←fight:fight.v.03(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Theme(e1,v6)']</b2>);(v3@e1))))
+cat: (S[ng]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:stay
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←stay:stay.v.01(e1)','b1←Experiencer(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Stimulus(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[adj]\NP)
+----------
+tokens:awake
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←awake:awake.a.01(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:fall
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←fall:fall.v.03(e1)','b1←Experiencer(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Stimulus(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[adj]\NP)
+----------
+tokens:asleep
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←asleep:asleep.a.01(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:on
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Location(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:chair
+sem: λv1.λv2.(<b1>[]:['b1←chair:chair.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:by
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:fire
+sem: λv1.<b1>[]:['b1←fire:fire.n.04(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

@@ -1,0 +1,86 @@
+% The gate was double, one huge mass of wood following another.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% gate.n.01                                  %  --The-- gate  [0-8]
+%SBN% be.v.01       Theme -1 Time +1 Co-Theme +4 % was       [9-12]
+%SBN% time.n.08     TPR now                      %           
+%SBN% double.a.02   AttributeOf +1               % double    [13-19]
+%SBN% entity.n.01                                %           
+%SBN% entity.n.01   Sub -1 Sub +3                % ,         [19-20]
+%SBN% quantity.n.01 EQU 1                        % one       [21-24]
+%SBN% huge.a.01     AttributeOf +1               % huge      [25-29]
+%SBN% mass.n.02     Quantity -2 MadeOf +1        % mass  --of--   [30-37]
+%SBN% wood.n.01                                  % wood      [38-42]
+%SBN% follow.v.08   Co-Theme -1 Theme +1         % following [43-52]
+%SBN% wood.n.01                                  % another --.--  [53-61]
+
+% Incremental DRS
+
+tokens:The
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:gate
+sem: λv1.<b1>[]:['b1←gate:gate.n.01(v1)']</b1>
+cat: N
+----------
+tokens:was
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←be:be.v.01(e1)','b1←Time(e1,t1)','b1←Co-Theme(e1,v5)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:double
+sem: λv1.<b1>['b1←s1']:['b1←entity:entity.n.01(v1)','b1←double:double.a.02(s1)','b1←AttributeOf(s1,v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.λv2.λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;((v2@λv4.<b2>[]:['b2←Sub(x1,v4)']</b2>);((v1@λv5.<b3>[]:['b3←Sub(x1,v5)']</b3>);(v3@x1))))
+cat: conj
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:one
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←quantity:quantity.n.01(x1)','b1←x1=1','b1←Quantity(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:huge
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←huge:huge.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:mass
+sem: λv1.λv2.(<b1>[]:['b1←mass:mass.n.02(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←MadeOf(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:wood
+sem: λv1.λv2.(<b1>[]:['b1←wood:wood.n.01(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[ng]\NP)
+----------
+tokens:following
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←follow:follow.v.08(e1)','b1←Theme(e1,v5)','b1←Co-Theme(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:another
+sem: λv1.(<b1>['b1←x1']:['b1←wood:wood.n.01(x1)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

@@ -1,0 +1,82 @@
+% Charlie walked home slowly so that he could smoke one of his cigarettes.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02      Name "Charlie"                            % Charlie       [0-7]
+%SBN% walk.v.01      Theme -1 Time +1 Destination +2 Manner +3 % walked        [8-14]
+%SBN% time.n.08      TPR now                                   %               
+%SBN% home.n.01                                                % home          [15-19]
+%SBN% slowly.r.01                                              % slowly  --so--     [20-29]
+%SBN%                EXPLANATION &lt;1                            %               
+%SBN% male.n.02      ANA -5                                    %  --that-- he  --could-- [30-43]
+%SBN%                POSSIBILITY &lt;1                            %               
+%SBN% smoke.v.01     Agent -1 Patient +1                       % smoke         [44-49]
+%SBN% entity.n.01    SubOf +2                                  % one  --of--        [50-56]
+%SBN% male.n.02      ANA -3                                    % his           [57-60]
+%SBN% cigarette.n.01 User -1                                   % cigarettes --.--   [61-72]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Charlie
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,charlie)']</b1>
+cat: N
+----------
+tokens:walked
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←walk:walk.v.01(e1)','b1←Time(e1,t1)','b1←Destination(e1,v5)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:home
+sem: λv1.(<b1>['b1←x1']:['b1←home:home.n.01(x1)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:slowly
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←slowly:slowly.r.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:so
+sem: λv1.λv2.λv3.λv4.<>[]:[]</>
+cat: ((S\NP)\(S\NP))/S[em]
+----------
+tokens:that
+sem: λv1.v1
+cat: S[em]/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:could
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←◊((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:smoke
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←smoke:smoke.v.01(e1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:one
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;((v1@x1);(v2@x1)))
+cat: NP/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←SubOf(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:cigarettes
+sem: λv1.<b1>[]:['b1←cigarette:cigarette.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

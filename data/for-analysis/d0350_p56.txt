@@ -1,0 +1,72 @@
+% Jamie took a cigarette and Andy gave him a light.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02      Name "Jamie"                           % Jamie           [0-5]
+%SBN% take.v.04      Agent -1 Time +1 Theme +2              % took            [6-10]
+%SBN% time.n.08      TPR now                                %                 
+%SBN% cigarette.n.01                                        %  --a-- cigarette  --and-- [11-26]
+%SBN%                CONTINUATION &lt;1                        %                 
+%SBN% male.n.02      Name "Andy"                            % Andy            [27-31]
+%SBN% give.v.01      Agent -1 Time +1 Recipient +2 Theme +3 % gave            [32-36]
+%SBN% time.n.08      TPR now                                %                 
+%SBN% male.n.02      ANA -7                                 % him             [37-40]
+%SBN% light.n.15                                            %  --a-- light --.--        [41-49]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Jamie
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,jamie)']</b1>
+cat: N
+----------
+tokens:took
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←take:take.v.04(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:cigarette
+sem: λv1.<b1>[]:['b1←cigarette:cigarette.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Andy
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,andy)']</b1>
+cat: N
+----------
+tokens:gave
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(v1@λv7.(<b1>['b1←e1','b2←t1']:['b1←give:give.v.01(e1)','b1←Time(e1,t1)','b1←Recipient(e1,v7)','b1←Theme(e1,v6)','b1←Agent(e1,v5)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v4@e1)))))
+cat: ((S[dcl]\NP)/NP)/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:light
+sem: λv1.<b1>[]:['b1←light:light.n.15(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

@@ -1,0 +1,86 @@
+% He was already up and dressed and invited us in for a cup of tea.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                     % He                 [0-2]
+%SBN% time.n.08   TPR now                           % was  --already--  --up--  --and-- [3-21]
+%SBN% dress.v.01  Patient -2 Time -1                % dressed  --and--        [22-33]
+%SBN% invite.v.02 Agent -3 Time +1 Theme +2 Goal +3 % invited            [34-41]
+%SBN% time.n.08   TPR now                           %                    
+%SBN% person.n.01 Sub speaker                       % us  --in--  --for--          [42-51]
+%SBN% cup.n.02    Content +1                        %  --a-- cup  --of--           [52-60]
+%SBN% tea.n.01                                      % tea --.--               [61-65]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:was
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[pss]\NP)
+----------
+tokens:already
+sem: λv1.v1
+cat: (S\NP)/(S\NP)
+----------
+tokens:up
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:and
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:dressed
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←dress:dress.v.01(e1)','b1←Patient(e1,v3)']</b1>;(v2@e1)))
+cat: S[pss]\NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:invited
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←invite:invite.v.02(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:us
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Sub(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:in
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:for
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Goal(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:cup
+sem: λv1.λv2.(<b1>[]:['b1←cup:cup.n.02(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Content(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:tea
+sem: λv1.<b1>[]:['b1←tea:tea.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

@@ -1,0 +1,76 @@
+% He knocked on the door so hard that he almost broke it down.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                              % He         [0-2]
+%SBN% knock.v.02      Agent -1 Time +1 Location +2 Degree +3 % knocked  --on-- [3-13]
+%SBN% time.n.08       TPR now                                %            
+%SBN% door.n.01                                              %  --the-- door   [14-22]
+%SBN% so.r.01                                                % so  --hard--    [23-30]
+%SBN% male.n.02       ANA -5                                 %  --that-- he    [31-38]
+%SBN% almost.r.01                                            % almost     [39-45]
+%SBN% break_down.v.06 Agent -2 Degree -1 Time +1 Patient +2  % broke      [46-51]
+%SBN% time.n.08       TPR now                                %            
+%SBN% entity.n.01     ANA -6                                 % it  --down.--   [52-60]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:knocked
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←knock:knock.v.02(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:on
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:door
+sem: λv1.<b1>[]:['b1←door:door.n.01(v1)']</b1>
+cat: N
+----------
+tokens:so
+sem: λv1.λv2.λv3.λv4.(((v1@v2)@v3)@λv5.(<b1>['b1←s1']:['b1←so:so.r.01(s1)','b1←Degree(v5,s1)']</b1>;(v4@v5)))
+cat: ((S\NP)\(S\NP))/((S\NP)\(S\NP))
+----------
+tokens:hard
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.((v1@λv6.<b1>[]:[]</b1>);(v4@v5)))
+cat: ((S\NP)\(S\NP))/S[em]
+----------
+tokens:that
+sem: λv1.v1
+cat: S[em]/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:almost
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←almost:almost.r.01(s1)','b1←Degree(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)/(S\NP)
+----------
+tokens:broke
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1','b2←t1']:['b1←break_down:break_down.v.06(e1)','b1←Time(e1,t1)','b1←Patient(e1,v6)','b1←Agent(e1,v5)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v4@e1))))
+cat: ((S[dcl]\NP)/PR)/NP
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:down
+sem: down
+cat: PR
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

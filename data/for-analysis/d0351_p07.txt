@@ -1,0 +1,74 @@
+% They stared at the black wall and now this offered no comfort.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01                                     % They       [0-4]
+%SBN% stare.v.01   Agent -1 Time +1 Theme +3          % stared  --at--  [5-14]
+%SBN% time.n.08    TPR now                            %            
+%SBN% black.a.01                                      %  --the-- black  [15-24]
+%SBN% wall.n.01    Colour -1                          % wall  --and--   [25-33]
+%SBN%              CONTINUATION &lt;1                    %            
+%SBN% stare.v.01                                      % this       [38-42]
+%SBN% time.n.08    EQU now                            % now        [34-37]
+%SBN%              NEGATION &lt;1                        %            
+%SBN% offer.v.02   Theme -2 Time -1 Time +1 Result +2 % offered  --no-- [43-53]
+%SBN% time.n.08    TPR now                            %            
+%SBN% comfort.n.02                                    % comfort --.--   [54-62]
+
+% Incremental DRS
+
+tokens:They
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:stared
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←stare:stare.v.01(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:at
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:black
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←black:black.a.01(s1)','b1←Colour(v2,s1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:wall
+sem: λv1.<b1>[]:['b1←wall:wall.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:now
+sem: λv1.λv2.(v1@λv3.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v3,t1)']</b2>;(v2@v3)))
+cat: S/S
+----------
+tokens:this
+sem: λv1.(<b1>['b1←e1']:['b1←stare:stare.v.01(e1)']</b1>;(v1@e1))
+cat: NP
+----------
+tokens:offered
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←offer:offer.v.02(e1)','b1←Time(e1,t1)','b1←Result(e1,v5)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:no
+sem: λv1.λv2.<b1>[]:["b1←¬(<b2>['b2←x1']:[]</b2>;((v1@x1);(v2@x1)))"]</b1>
+cat: NP/N
+----------
+tokens:comfort
+sem: λv1.<b1>[]:['b1←comfort:comfort.n.02(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

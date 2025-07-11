@@ -1,0 +1,105 @@
+% The people need a champion to follow, to open the wall in battle and give them an opening.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01                                                            %  --The-- people    [0-10]
+%SBN% need.v.01     Time +1 Agent -1 Recipient +2 Topic +3 Topic +4 Topic +7 % need          [11-15]
+%SBN% time.n.08     EQU now                                                  %               
+%SBN% champion.n.01                                                          %  --a-- champion  --to-- [16-29]
+%SBN% follow.v.01   Theme -1                                                 % follow --,--  --to--    [30-40]
+%SBN% open.v.01     Agent -2 Patient +1 Context +2                           % open          [41-45]
+%SBN% wall.n.01                                                              %  --the-- wall  --in--   [46-57]
+%SBN% battle.n.01                                                            % battle  --and--    [58-68]
+%SBN% give.v.01     Agent -5 Recipient +1 Theme +2                           % give          [69-73]
+%SBN% person.n.01                                                            % them          [74-78]
+%SBN% opening.n.01                                                           %  --an-- opening --.--   [79-90]
+
+% Incremental DRS
+
+tokens:The
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:people
+sem: λv1.<b1>[]:['b1←person:person.n.01(v1)']</b1>
+cat: N
+----------
+tokens:need
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←need:need.v.01(e1)','b1←Agent(e1,v5)','b1←Recipient(e1,v6)']</b1>;(((v2@λv7.(v7@v6))@λv8.<b2>[]:['b2←Topic(e1,v8)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1=now','b4←Time(e1,t1)']</b4>;(v4@e1))))))
+cat: ((S[dcl]\NP)/(S[to]\NP))/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:champion
+sem: λv1.<b1>[]:['b1←champion:champion.n.01(v1)']</b1>
+cat: N
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:follow
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←follow:follow.v.01(e1)','b1←Theme(e1,v3)']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:,
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:open
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←open:open.v.01(e1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:wall
+sem: λv1.<b1>[]:['b1←wall:wall.n.01(v1)']</b1>
+cat: N
+----------
+tokens:in
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Context(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:battle
+sem: λv1.<b1>[]:['b1←battle:battle.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:give
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(v1@λv7.(<b1>['b1←e1']:['b1←give:give.v.01(e1)','b1←Recipient(e1,v7)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;(v4@e1)))))
+cat: ((S[b]\NP)/NP)/NP
+----------
+tokens:them
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:an
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:opening
+sem: λv1.<b1>[]:['b1←opening:opening.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

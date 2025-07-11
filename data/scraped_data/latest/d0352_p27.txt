@@ -1,0 +1,109 @@
+% The driver slowed down, pulled over and got out, which was really a terrible mistake on his part.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01          Role +1               %  --The-- driver      [0-10]
+%SBN% driver.n.01                                %                 
+%SBN% slow.v.01            Agent -2 Time +1      % slowed  --down,--    [11-23]
+%SBN% time.n.08            TPR now               %                 
+%SBN% pull.v.01            Agent -4 Time +1      % pulled  --over--  --and-- [24-39]
+%SBN% time.n.08            TPR now               %                 
+%SBN% get.v.01             Theme -6 Time +1      % got  --out,--  --which--  [40-54]
+%SBN% time.n.08            TPR now               %                 
+%SBN%                      CONTINUATION &lt;1       %                 
+%SBN% terrible.a.01        AttributeOf +1        %  --a-- terrible      [66-76]
+%SBN% mistake.n.01         Location +2           % mistake  --on--      [77-87]
+%SBN% male.n.02                                  % his             [88-91]
+%SBN% part.n.01            PartOf -1             % part --.--           [92-97]
+%SBN% terra_incognita.n.03 EQU -12 TPR now       % was  --really--      [55-65]
+%SBN% terra_incognita.n.03 EQU -13 EQU -4 EQU -1 %                 
+
+% Incremental DRS
+
+tokens:The
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:driver
+sem: λv1.<b1>['b1←x1']:['b1←driver:driver.n.01(x1)','b1←person:person.n.01(v1)','b1←Role(v1,x1)']</b1>
+cat: N
+----------
+tokens:slowed
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←slow:slow.v.01(e1)','b1←Time(e1,t1)','b1←Agent(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:down
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:,
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:pulled
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b2←t1']:['b1←pull:pull.v.01(e1)','b1←Time(e1,t1)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/PR
+----------
+tokens:over
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.λv5.((((v2@v3)@v4)@v5);(((v1@v3)@v4)@v5))
+cat: conj
+----------
+tokens:got
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b2←t1']:['b1←get:get.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/PR
+----------
+tokens:out
+sem: out
+cat: PR
+----------
+tokens:,
+sem: λv1.v1
+cat: PR\PR
+----------
+tokens:which
+sem: λv1.λv2.λv3.λv4.(v3@λv5.<>[]:[]</>)
+cat: ((S\NP)\(S\NP))/(S[dcl]\NP)
+----------
+tokens:was
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>[]:['b1←v4≺now','b1←v4=v5']</b1>;(v3@v5))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:really
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:terrible
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←terrible:terrible.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:mistake
+sem: λv1.<b1>[]:['b1←mistake:mistake.n.01(v1)']</b1>
+cat: N
+----------
+tokens:on
+sem: λv1.λv2.λv3.((v2@v3);(v1@λv4.<b1>[]:['b1←Location(v3,v4)']</b1>))
+cat: (N\N)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:part
+sem: λv1.λv2.(<b1>[]:['b1←part:part.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

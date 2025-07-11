@@ -1,0 +1,145 @@
+% Phil ran up to the water tank, his mum would kill Nigel if she knew he'd sent him up the hill without a jacket.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02       Name "Phil"                           % Phil             [0-4]
+%SBN% run.v.01        Theme -1 Time +1 Destination +2       % ran  --up--  --to--        [5-14]
+%SBN% time.n.08       TPR now                               %                  
+%SBN% water_tank.n.01                                       %  --the-- water tank --,--  [15-30]
+%SBN%                 CONTINUATION &lt;1                       %                  
+%SBN% male.n.02       ANA -4                                % his              [31-34]
+%SBN% person.n.01     Role +1                               % mum              [35-38]
+%SBN% mum.n.02        Of -2                                 %                  
+%SBN% time.n.08       TSU now                               % would            [39-44]
+%SBN% kill.v.01       Agent -3 Time -1 Patient +1           % kill             [45-49]
+%SBN% male.n.02       Name "Nigel"                          % Nigel  --if--         [50-58]
+%SBN%                 PRECONDITION &lt;1                       %                  
+%SBN% female.n.02     ANA -5                                % she              [59-62]
+%SBN% know.v.01       Proposition &gt;1 Experiencer -1 Time +1 % knew             [63-67]
+%SBN% time.n.08       TPR now                               %                  
+%SBN%                 CONTINUATION &lt;0                       %                  
+%SBN% male.n.02       ANA -4                                % he --'d--             [68-72]
+%SBN% send.v.02       Agent -1 Time +1 Theme +2 Location +3 % sent             [73-77]
+%SBN% time.n.08       TPR now                               %                  
+%SBN% male.n.02       ANA -16                               % him  --up--           [78-84]
+%SBN% hill.n.01                                             %  --the-- hill  --without-- [85-101]
+%SBN%                 NEGATION &lt;1                           %                  
+%SBN% jacket.n.01     Instrument -4                         %  --a-- jacket --.--        [102-111]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Phil
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,phil)']</b1>
+cat: N
+----------
+tokens:ran
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←run:run.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:up
+sem: λv1.v1
+cat: PP/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:water~tank
+sem: λv1.<b1>[]:['b1←water_tank:water_tank.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←Of(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:mum
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←mum:mum.n.02(x1)','b1←person:person.n.01(v2)','b1←Role(v2,x1)']</b1>;(v1@x1))
+cat: N/PP
+----------
+tokens:would
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:kill
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←kill:kill.v.01(e1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Nigel
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,nigel)']</b1>
+cat: N
+----------
+tokens:if
+sem: λv1.λv2.λv3.λv4.<>[]:[]</>
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:she
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:knew
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←know:know.v.01(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,p1)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:'d
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:sent
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←send:send.v.02(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[pt]\NP)/PP)/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:up
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:hill
+sem: λv1.<b1>[]:['b1←hill:hill.n.01(v1)']</b1>
+cat: N
+----------
+tokens:without
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(<b1>[]:["b1←¬(v1@λv6.<b2>[]:['b2←Instrument(v6,v5)']</b2>)"]</b1>;(v4@v5)))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:jacket
+sem: λv1.<b1>[]:['b1←jacket:jacket.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

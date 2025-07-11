@@ -1,0 +1,146 @@
+% Jenny went to the sitting room while Ross finished off his tea and washed up his dishes then went for a bath and straight to bed.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02       Name "Jenny"                              % Jenny                  [0-5]
+%SBN% go.v.01           Theme -1 Time +1 Destination +2           % went  --to--                [6-13]
+%SBN% time.n.08         TPR now                                   %                        
+%SBN% sitting_room.n.01                                           %  --the-- sitting room  --while-- [14-36]
+%SBN%                   EXPLANATION &lt;1                            %                        
+%SBN% male.n.02         Name "Ross"                               % Ross                   [37-41]
+%SBN% finish_off.v.01   Agent -1 Time +1 Theme +3                 % finished  --off--           [42-54]
+%SBN% time.n.08         TPR now                                   %                        
+%SBN% male.n.02         ANA -3                                    % his                    [55-58]
+%SBN% tea.n.01          Consumer -1                               % tea  --and--                [59-66]
+%SBN% wash_up.v.03      Agent -5 Time +1 Theme +3                 % washed  --up--              [67-76]
+%SBN% time.n.08         TPR now                                   %                        
+%SBN% male.n.02         ANA -7                                    % his                    [77-80]
+%SBN% dish.n.01         User -1                                   % dishes  --then--            [81-92]
+%SBN%                   CONTINUATION &lt;1                           %                        
+%SBN% go.v.01           Theme -9 Time +1 Destination +2 Manner +3 % went  --for--               [93-101]
+%SBN% time.n.08         TPR now                                   %                        
+%SBN% bath.n.02                                                   %  --a-- bath  --and--             [102-112]
+%SBN% straight.r.01     Destination +1                            % straight  --to--            [113-124]
+%SBN% bed.n.01                                                    % bed --.--                   [125-129]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Jenny
+sem: λv1.<b1>[]:['b1←female:female.n.02(v1)','b1←Name(v1,jenny)']</b1>
+cat: N
+----------
+tokens:went
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←go:go.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:sitting~room
+sem: λv1.<b1>[]:['b1←sitting_room:sitting_room.n.01(v1)']</b1>
+cat: N
+----------
+tokens:while
+sem: λv1.λv2.λv3.λv4.<>[]:[]</>
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Ross
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,ross)']</b1>
+cat: N
+----------
+tokens:finished
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(<b1>['b1←e1','b2←t1']:['b1←finish_off:finish_off.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v4@e1))))
+cat: ((S[dcl]\NP)/NP)/PR
+----------
+tokens:off
+sem: off
+cat: PR
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←Consumer(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:tea
+sem: λv1.<b1>[]:['b1←tea:tea.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:washed
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(<b1>['b1←e1','b2←t1']:['b1←wash_up:wash_up.v.03(e1)','b1←Time(e1,t1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v4@e1))))
+cat: ((S[dcl]\NP)/NP)/PR
+----------
+tokens:up
+sem: up
+cat: PR
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:dishes
+sem: λv1.<b1>[]:['b1←dish:dish.n.01(v1)']</b1>
+cat: N
+----------
+tokens:then
+sem: λv1.λv2.λv3.λv4.(v3@λv5.<>[]:[]</>)
+cat: ((S\NP)\(S\NP))/(S[dcl]\NP)
+----------
+tokens:went
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←go:go.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:for
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:bath
+sem: λv1.<b1>[]:['b1←bath:bath.n.02(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.((v2@v3);(v1@v3))
+cat: conj
+----------
+tokens:straight
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←straight:straight.r.01(s1)','b1←Manner(v2,s1)']</b1>;(v1@s1))
+cat: PP/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:bed
+sem: λv1.<b1>[]:['b1←bed:bed.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

@@ -1,0 +1,213 @@
+% She seemed to show some interest in Tony fixing the truck and asked a lot of questions and even liked it when he let her fix some things and she didn't seem to mind getting covered in oil.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02                                                   % She                [0-3]
+%SBN% seem.v.01     Theme -1 Time +1 Attribute +2                   % seemed  --to--          [4-13]
+%SBN% time.n.08     TPR now                                         %                    
+%SBN% show.v.10     Agent -3 Theme +1                               % show               [14-18]
+%SBN% interest.n.01 Stimulus +1                                     %  --some-- interest  --in--   [19-35]
+%SBN% male.n.02                                                     % Tony               [36-40]
+%SBN% fix.v.01      Agent -1 Patient +1                             % fixing             [41-47]
+%SBN% truck.n.01                                                    %  --the-- truck  --and--      [48-61]
+%SBN% ask.v.01      Agent -8 Time +1 Theme +2                       % asked              [62-67]
+%SBN% time.n.08     TPR now                                         %                    
+%SBN% entity.n.01   Quantity + QuantityOf +1                        %  --a-- lot  --of--           [68-76]
+%SBN% question.n.01                                                 % questions  --and--  --even-- [77-95]
+%SBN% like.v.02     Experiencer -12 Time +1 Stimulus +2             % liked              [96-101]
+%SBN% time.n.08     TPR now                                         %                    
+%SBN% entity.n.01   ANA -4                                          % it  --when--            [102-109]
+%SBN% male.n.02     ANA -10                                         % he                 [110-112]
+%SBN% let.v.01      Agent -1 Time +1 TIN -4 Beneficiary +2 Theme +3 % let                [113-116]
+%SBN% time.n.08     TPR now                                         %                    
+%SBN% female.n.02   ANA -18                                         % her                [117-120]
+%SBN% fix.v.01      Agent -1 Patient +1                             % fix                [121-124]
+%SBN% thing.n.10                                                    %  --some-- things  --and--    [125-140]
+%SBN%               CONTINUATION &lt;1                                 %                    
+%SBN% female.n.02   ANA -21                                         % she                [141-144]
+%SBN% time.n.08     TPR now                                         % did --n't--             [145-151]
+%SBN%               NEGATION &lt;1                                     %                    
+%SBN% seem.v.01     Experiencer -2 Time -1 Stimulus +1              % seem  --to--            [152-159]
+%SBN% mind.v.02     Experiencer -3 Stimulus +1                      % mind               [160-164]
+%SBN% get.v.01      Patient -4 Result +1                            % getting            [165-172]
+%SBN% cover.v.01    Agent -5 Time +1 Theme +2                       % covered  --in--         [173-183]
+%SBN% time.n.08     TPR now                                         %                    
+%SBN% oil.n.01                                                      % oil --.--               [184-188]
+
+% Incremental DRS
+
+tokens:She
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:seemed
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←seem:seem.v.01(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Attribute(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:show
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←show:show.v.10(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:some
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:interest
+sem: λv1.λv2.(<b1>[]:['b1←interest:interest.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Stimulus(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:Tony
+sem: λv1.λv2.(<b1>[]:['b1←male:male.n.02(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[ng]\NP)
+----------
+tokens:fixing
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←fix:fix.v.01(e1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:truck
+sem: λv1.<b1>[]:['b1←truck:truck.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:asked
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←ask:ask.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:lot
+sem: λv1.λv2.(<b1>[]:['b1←entity:entity.n.01(v2)','b1←Quantity(v2,+)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←QuantityOf(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:questions
+sem: λv1.<b1>[]:['b1←question:question.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:even
+sem: λv1.v1
+cat: (S\NP)/(S\NP)
+----------
+tokens:liked
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←like:like.v.02(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,v5)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:when
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.((v1@λv6.<b1>[]:['b1←v6⊏v5']</b1>);(v4@v5)))
+cat: ((S\NP)\(S\NP))/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:let
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←let:let.v.01(e1)','b1←Agent(e1,v5)','b1←Beneficiary(e1,v6)']</b1>;(((v2@λv7.(v7@v6))@λv8.<b2>[]:['b2←Theme(e1,v8)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v4@e1))))))
+cat: ((S[dcl]\NP)/(S[b]\NP))/NP
+----------
+tokens:her
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:fix
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←fix:fix.v.01(e1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:some
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:things
+sem: λv1.<b1>[]:['b1←thing:thing.n.10(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:she
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:did
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:n't
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:seem
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←seem:seem.v.01(e1)','b1←Experiencer(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Stimulus(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:mind
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←mind:mind.v.02(e1)','b1←Experiencer(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Stimulus(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[ng]\NP)
+----------
+tokens:getting
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←get:get.v.01(e1)','b1←Patient(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Result(e1,v6)']</b2>);(v3@e1))))
+cat: (S[ng]\NP)/(S[pss]\NP)
+----------
+tokens:covered
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←cover:cover.v.01(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[pss]\NP)/PP
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:oil
+sem: λv1.<b1>[]:['b1←oil:oil.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

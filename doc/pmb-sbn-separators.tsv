@@ -1,0 +1,15 @@
+Separator	Identifier	Char	Meaning	Document
+NEGATION	600000009	¬	logical, negation	00/1593
+CONJUNCTION	600000014		logical, conjunction	03/0850
+CONTINUATION	600000005		rhetorical, coordinating: expressing events occurring in the sequence as described	
+RESULT	600000007		rhetorical, coordinating: connects a cause to its effect	12/0346
+ELABORATION	600000015		rhetorical, subordinating: expresses more (detailed) information about the same event	51/0285
+EXPLANATION	600000007		rhetorical, subordinating: exresses the cause of an effect	00/2599
+PRECONDITION	600000011
+
+# missing
+POSSIBILITY
+CONTRAST
+CONSEQUENCE
+ATTRIBUTION
+NECESSITY

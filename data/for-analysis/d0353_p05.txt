@@ -1,0 +1,194 @@
+% He kept his stock books neat and checked them every day and Steve knew he urged his son Kenneth to be nothing less than respectable and made sure he was polite with their customers.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN%                      NEGATION &lt;1                                    %                 
+%SBN% day.n.01                                                            % day  --and--         [52-59]
+%SBN%                      NEGATION &lt;1                                    %                 
+%SBN% male.n.02                                                           % He              [0-2]
+%SBN% keep.v.01            Agent -1 Time -2 Time +1 Theme +4 Attribute +5 % kept            [3-7]
+%SBN% time.n.08            TPR now                                        %                 
+%SBN% male.n.02            ANA -3                                         % his             [8-11]
+%SBN% stock.a.03           AttributeOf +1                                 % stock           [12-17]
+%SBN% book.n.01            User -2                                        % books           [18-23]
+%SBN% neat.a.01            AttributeOf -1                                 % neat  --and--        [24-32]
+%SBN% check.v.01           Time -8 Agent -7 Time +1 Theme +2              % checked         [33-40]
+%SBN% time.n.08            TPR now                                        %                 
+%SBN% entity.n.01          ANA -4                                         % them  --every--      [41-51]
+%SBN%                      CONTINUATION &lt;2                                %                 
+%SBN% male.n.02            Name "Steve"                                   % Steve           [60-65]
+%SBN% know.v.01            Proposition &gt;1 Experiencer -1 Time +1          % knew            [66-70]
+%SBN% time.n.08            TPR now                                        %                 
+%SBN%                      CONTINUATION &lt;0                                %                 
+%SBN% male.n.02            ANA -3                                         % he              [71-73]
+%SBN% urge.v.03            Agent -1 Time +1 Theme +3                      % urged           [74-79]
+%SBN% time.n.08            TPR now                                        %                 
+%SBN% male.n.02            ANA -6                                         % his             [80-83]
+%SBN% person.n.01          Role +1                                        % son  --Kenneth--  --to--  [84-98]
+%SBN% son.n.01             Of -2                                          %                 
+%SBN% make_sure.v.01       Proposition &gt;2 Agent -6 Time +1                % made  --sure--       [136-145]
+%SBN% time.n.08            TPR now                                        %                 
+%SBN%                      NEGATION &lt;1                                    %                 
+%SBN% be.v.01              Theme -4 Co-Theme +1                           % be              [99-101]
+%SBN% entity.n.01                                                         % nothing         [102-109]
+%SBN% less.a.01            Quantity -1 Co-Theme +2                        % less            [110-114]
+%SBN% entity.n.01                                                         % than            [115-119]
+%SBN% respectable.a.01     AttributeOf -1                                 % respectable  --and-- [120-135]
+%SBN% terra_incognita.n.01 EQU -12 Destination -5                         %                 
+%SBN%                      CONTINUATION &lt;0                                %                 
+%SBN% male.n.02            ANA -10                                        % he              [146-148]
+%SBN% time.n.08            TPR now                                        % was             [149-152]
+%SBN% polite.a.01          AttributeOf -2 Time -1 Beneficiary +2          % polite  --with--     [153-164]
+%SBN% person.n.01                                                         % their           [165-170]
+%SBN% person.n.01          Role +1                                        % customers --.--      [171-181]
+%SBN% customer.n.01        User -2                                        %                 
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:kept
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←keep:keep.v.01(e1)','b1←Agent(e1,v5)','b1←Theme(e1,v6)']</b1>;(((v2@λv7.(v7@v6))@λv8.<b2>[]:['b2←Attribute(e1,v8)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v4@e1))))))
+cat: ((S[dcl]\NP)/(S[adj]\NP))/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:stock
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←stock:stock.a.03(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:books
+sem: λv1.<b1>[]:['b1←book:book.n.01(v1)']</b1>
+cat: N
+----------
+tokens:neat
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←neat:neat.a.01(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:checked
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←check:check.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:them
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:every
+sem: λv1.λv2.λv3.λv4.<b1>[]:['b1←¬(<b2>[\'b2←x1\']:["b2←¬((v2@v3)@λv5.(<b3>[]:[\'b3←Time(v5,x1)\']</b3>;(v4@v5)))"]</b2>;(v1@x1))']</b1>
+cat: ((S\NP)\(S\NP))/N
+----------
+tokens:day
+sem: λv1.<b1>[]:['b1←day:day.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Steve
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,steve)']</b1>
+cat: N
+----------
+tokens:knew
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←know:know.v.01(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,p1)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:urged
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←urge:urge.v.03(e1)','b1←Agent(e1,v5)','b1←Theme(e1,v6)']</b1>;(((v2@λv7.(v7@v6))@λv8.<b2>[]:['b2←Destination(e1,v8)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v4@e1))))))
+cat: ((S[dcl]\NP)/(S[to]\NP))/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←Of(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:son
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←son:son.n.01(x1)','b1←person:person.n.01(v2)','b1←Role(v2,x1)']</b1>;(v1@x1))
+cat: N/PP
+----------
+tokens:Kenneth
+sem: λv1.v1
+cat: (N/PP)\(N/PP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:be
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←be:be.v.01(e1)','b1←Co-Theme(e1,v5)','b1←Theme(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:nothing
+sem: λv1.<b1>[]:["b1←¬(<b2>['b2←x1']:['b2←entity:entity.n.01(x1)']</b2>;(v1@x1))"]</b1>
+cat: NP
+----------
+tokens:less
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←s1']:['b1←less:less.a.01(s1)','b1←Quantity(s1,v4)']</b1>;((v1@s1);(v3@v4))))
+cat: (NP\NP)/PP
+----------
+tokens:than
+sem: λv1.λv2.((v1@λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(v3@x1)))@λv4.<b2>[]:['b2←Co-Theme(v2,v4)']</b2>)
+cat: PP/(S[adj]\NP)
+----------
+tokens:respectable
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←respectable:respectable.a.01(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:made
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←make_sure:make_sure.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:sure
+sem: λv1.λv2.(<b1>['b1←p1']:['b1←p1:(v1@λv3.<b2>[]:[]</b2>)']</b1>;(v2@p1))
+cat: NP/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:was
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[adj]\NP)
+----------
+tokens:polite
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←s1']:['b1←polite:polite.a.01(s1)','b1←AttributeOf(s1,v4)']</b1>;((v1@s1);(v3@s1))))
+cat: (S[adj]\NP)/PP
+----------
+tokens:with
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Beneficiary(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:their
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←User(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:customers
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←customer:customer.n.01(x1)','b1←person:person.n.01(v2)','b1←Role(v2,x1)']</b1>;(v1@x1))
+cat: N/PP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

@@ -1,0 +1,79 @@
+% Bruce is looking for someone to take the spare room in his flat.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02 Name "Bruce"                  % Bruce       [0-5]
+%SBN% time.n.08   EQU now                       % is          [6-8]
+%SBN% look.v.04   Agent -2 Time -1 Theme +1     % looking  --for-- [9-20]
+%SBN% person.n.01                               % someone  --to--  [21-31]
+%SBN% take.v.31   Agent -1 Theme +2 Location +4 % take        [32-36]
+%SBN% spare.a.02  AttributeOf +1                %  --the-- spare   [37-46]
+%SBN% room.n.01                                 % room  --in--     [47-54]
+%SBN% male.n.02   ANA -7                        % his         [55-58]
+%SBN% flat.n.07   User -1                       % flat --.--       [59-64]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Bruce
+sem: λv1.<b1>[]:['b1←female:female.n.02(v1)','b1←Name(v1,bruce)']</b1>
+cat: N
+----------
+tokens:is
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:looking
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←look:look.v.04(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[ng]\NP)/PP
+----------
+tokens:for
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:someone
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>;(((v1@λv3.(v3@x1))@λv4.<b2>[]:[]</b2>);(v2@x1)))
+cat: NP/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:take
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←take:take.v.31(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(v4@e1)))))
+cat: ((S[b]\NP)/PP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:spare
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←spare:spare.a.02(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:room
+sem: λv1.<b1>[]:['b1←room:room.n.01(v1)']</b1>
+cat: N
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:flat
+sem: λv1.<b1>[]:['b1←flat:flat.n.07(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

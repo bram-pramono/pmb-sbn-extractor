@@ -1,0 +1,193 @@
+% Paula tried to relax back into the pillow to drift off a little, to enjoy listening to the world, but the morning was shot, it was ruined and there was no getting it back.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02    Name "Paula"                       % Paula            [0-5]
+%SBN% try.v.01       Agent -1 Time +1 Theme +2 Theme +3 % tried  --to--         [6-14]
+%SBN% time.n.08      TPR now                            %                  
+%SBN% relax.v.01     Theme -3 Location +2 Goal +4       % relax  --back--  --into--  [15-30]
+%SBN% relax.v.01     Theme -4 Location +2 Goal +5       %                  
+%SBN% pillow.n.01                                       %  --the-- pillow  --to--    [31-44]
+%SBN% pillow.n.01                                       %                  
+%SBN% drift_off.v.01 Experiencer -7 Value +1            % drift  --off--        [45-54]
+%SBN% little.n.01                                       %  --a-- little --,--  --to--     [55-67]
+%SBN% enjoy.v.01     Experiencer -9 Stimulus +1         % enjoy            [68-73]
+%SBN% listen.v.01    Agent -10 Theme +1                 % listening  --to--     [74-86]
+%SBN% world.n.01                                        %  --the-- world --,--       [87-97]
+%SBN%                CONTRAST &lt;1                        %                  
+%SBN% morning.n.01                                      %  --but--  --the-- morning  [98-113]
+%SBN% time.n.08      TPR now                            % was              [114-117]
+%SBN% shoot.v.05     Patient -2 Time -1 Time +1         % shot --,--            [118-123]
+%SBN% time.n.08      TPR now                            %                  
+%SBN%                CONTINUATION &lt;2                    %                  
+%SBN% entity.n.01    ANA -4                             % it               [124-126]
+%SBN% time.n.08      TPR now                            % was              [127-130]
+%SBN% ruin.v.02      Patient -2 Time -1 Time +1         % ruined  --and--  --there-- [131-147]
+%SBN% time.n.08      TPR now                            %                  
+%SBN%                CONTINUATION &lt;1                    %                  
+%SBN% time.n.08      TPR now                            % was  --no--           [148-154]
+%SBN%                NEGATION &lt;1                        %                  
+%SBN% get_back.v.01  Time -1 Agent speaker Theme +1     % getting          [155-162]
+%SBN% entity.n.01    ANA -10                            % it  --back.--         [163-171]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Paula
+sem: λv1.<b1>[]:['b1←female:female.n.02(v1)','b1←Name(v1,paula)']</b1>
+cat: N
+----------
+tokens:tried
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←try:try.v.01(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Theme(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:relax
+sem: λv1.λv2.λv3.λv4.(v3@λv5.((v2@λv6.(v6@v5))@λv7.(<b1>['b1←e1']:['b1←relax:relax.v.01(e1)','b1←Goal(e1,v7)','b1←Theme(e1,v5)']</b1>;((v1@e1);(v4@e1)))))
+cat: ((S[b]\NP)/(S[to]\NP))/PP
+----------
+tokens:back
+sem: λv1.v1
+cat: PP/PP
+----------
+tokens:into
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:pillow
+sem: λv1.<b1>[]:['b1←pillow:pillow.n.01(v1)']</b1>
+cat: N
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:drift
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(<b1>['b1←e1']:['b1←drift_off:drift_off.v.01(e1)','b1←Value(e1,v6)','b1←Experiencer(e1,v5)']</b1>;(v4@e1))))
+cat: ((S[b]\NP)/NP)/PR
+----------
+tokens:off
+sem: off
+cat: PR
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:little
+sem: λv1.<b1>[]:['b1←little:little.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:enjoy
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←enjoy:enjoy.v.01(e1)','b1←Experiencer(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Stimulus(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[ng]\NP)
+----------
+tokens:listening
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←listen:listen.v.01(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[ng]\NP)/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:world
+sem: λv1.<b1>[]:['b1←world:world.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------
+tokens:but
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:morning
+sem: λv1.<b1>[]:['b1←morning:morning.n.01(v1)']</b1>
+cat: N
+----------
+tokens:was
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[pss]\NP)
+----------
+tokens:shot
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←shoot:shoot.v.05(e1)','b1←Time(e1,t1)','b1←Patient(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[pss]\NP
+----------
+tokens:,
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:was
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[pss]\NP)
+----------
+tokens:ruined
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←ruin:ruin.v.02(e1)','b1←Time(e1,t1)','b1←Patient(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[pss]\NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:there
+sem: λv1.v1
+cat: S[dcl]/S[inv]
+----------
+tokens:was
+sem: λv1.λv2.((v1@λv3.(v3@speaker))@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v2@v4)))
+cat: S[inv]/(S\NP)
+----------
+tokens:no
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[ng]\NP)/(S[ng]\NP)
+----------
+tokens:getting
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←get_back:get_back.v.01(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;(v4@e1))))
+cat: ((S[ng]\NP)/PR)/NP
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:back
+sem: back
+cat: PR
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

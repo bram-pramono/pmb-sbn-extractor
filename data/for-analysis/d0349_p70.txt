@@ -1,0 +1,53 @@
+% I'll give him more than a slap.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01   EQU speaker                            % I         [0-1]
+%SBN% time.n.08     TSU now                                % 'll       [1-4]
+%SBN% give.v.01     Agent -2 Time -1 Recipient +1 Theme +4 % give      [5-9]
+%SBN% male.n.02                                            % him       [10-13]
+%SBN% quantity.n.01 MOR +1                                 % more than [14-23]
+%SBN% quantity.n.01 EQU 1                                  % a         [24-25]
+%SBN% slap.n.01     Quantity -2                            % slap --.--     [26-31]
+
+% Incremental DRS
+
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:'ll
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:give
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(v1@λv7.(<b1>['b1←e1']:['b1←give:give.v.01(e1)','b1←Recipient(e1,v7)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;(v4@e1)))))
+cat: ((S[b]\NP)/NP)/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:more~than
+sem: λv1.λv2.λv3.(<b1>['b1←x1','b1←x2']:['b1←quantity:quantity.n.01(x1)','b1←Quantity(v3,x1)']</b1>;(((v1@λv4.<b2>[]:['b2←x1>v4']</b2>)@x2);(v2@v3)))
+cat: (N/N)/(N/N)
+----------
+tokens:a
+sem: λv1.λv2.(<b1>[]:['b1←quantity:quantity.n.01(v2)','b1←v2=1']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:slap
+sem: λv1.<b1>[]:['b1←slap:slap.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

@@ -1,0 +1,78 @@
+% Within four months they moved in together to the flat on Shakespeare Road.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% quantity.n.01 EQU 4                                             %  --Within-- four       [0-11]
+%SBN% month.n.02    Quantity -1                                       % months            [12-18]
+%SBN% person.n.01                                                     % they              [19-23]
+%SBN% move_in.v.03  Time -2 Agent -1 Time +1 Manner +2 Destination +3 % moved  --in--          [24-32]
+%SBN% time.n.08     TPR now                                           %                   
+%SBN% together.r.05                                                   % together  --to--       [33-44]
+%SBN% flat.n.07     Location +1                                       %  --the-- flat  --on--       [45-56]
+%SBN% location.n.01 Name "Shakespeare Road"                           % Shakespeare Road --.-- [57-74]
+
+% Incremental DRS
+
+tokens:Within
+sem: λv1.λv2.λv3.(v2@λv4.((v1@λv5.<b1>[]:['b1←Time(v4,v5)']</b1>);(v3@v4)))
+cat: (S/S)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:four
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←quantity:quantity.n.01(x1)','b1←x1=4','b1←Quantity(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:months
+sem: λv1.<b1>[]:['b1←month:month.n.02(v1)']</b1>
+cat: N
+----------
+tokens:they
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:moved
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←move_in:move_in.v.03(e1)','b1←Agent(e1,v5)']</b1>;((v2@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1)))))
+cat: ((S[dcl]\NP)/PP)/PR
+----------
+tokens:in
+sem: in
+cat: PR
+----------
+tokens:together
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←together:together.r.05(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:flat
+sem: λv1.λv2.(<b1>[]:['b1←flat:flat.n.07(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:on
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Shakespeare~Road
+sem: λv1.<b1>[]:['b1←location:location.n.01(v1)','b1←Name(v1,shakespeare~road)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

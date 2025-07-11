@@ -1,0 +1,147 @@
+% She also says to tell you that you will not be able to rely on the land, not once you are under the shadow of the walls.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02                                        % She  --also--      [0-8]
+%SBN% say.v.05      Agent -1 Time +1 Topic +2            % says  --to--       [9-16]
+%SBN% time.n.08     EQU now                              %               
+%SBN% tell.v.02     Proposition &gt;1 Agent -3 Recipient +1 % tell          [17-21]
+%SBN% person.n.01   EQU hearer                           % you           [22-25]
+%SBN%               CONTINUATION &lt;0                      %               
+%SBN% person.n.01   EQU hearer                           %  --that-- you      [26-34]
+%SBN% time.n.08     TSU now                              % will  --not--  --be--   [35-46]
+%SBN%               NEGATION &lt;1                          %               
+%SBN% able.a.01     Attribute -2 Time -1 Theme +1        % able  --to--       [47-54]
+%SBN% rely.v.01     Agent -3 Theme +1                    % rely  --on--       [55-62]
+%SBN% land.n.03                                          %  --the-- land --,--  --not-- [63-76]
+%SBN%               CONTINUATION &lt;3                      %               
+%SBN%               NEGATION &lt;1                          %               
+%SBN% once.r.02                                          % once          [77-81]
+%SBN% person.n.01   EQU hearer                           % you           [82-85]
+%SBN% be.v.03       Time -2 Theme -1 Time +1 Location +2 % are           [86-89]
+%SBN% time.n.08     EQU now                              %               
+%SBN% location.n.01 SZN +1                               % under         [90-95]
+%SBN% shadow.n.01   FeatureOf +1                         %  --the-- shadow  --of-- [96-109]
+%SBN% wall.n.01                                          %  --the-- walls --.--    [110-120]
+
+% Incremental DRS
+
+tokens:She
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:also
+sem: λv1.v1
+cat: (S\NP)/(S\NP)
+----------
+tokens:says
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←say:say.v.05(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Topic(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1=now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:tell
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1','b1←p1']:['b1←p1:(v2@λv7.<b2>[]:[]</b2>)','b1←tell:tell.v.02(e1)','b1←Recipient(e1,v6)','b1←Topic(e1,p1)','b1←Agent(e1,v5)']</b1>;(v4@e1))))
+cat: ((S[b]\NP)/S[em])/NP
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:that
+sem: λv1.v1
+cat: S[em]/S[dcl]
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:will
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:not
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:be
+sem: λv1.v1
+cat: (S[b]\NP)/(S[adj]\NP)
+----------
+tokens:able
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←s1']:['b1←able:able.a.01(s1)','b1←Attribute(s1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Theme(s1,v6)']</b2>);(v3@s1))))
+cat: (S[adj]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:rely
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←rely:rely.v.01(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[b]\NP)/PP
+----------
+tokens:on
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:land
+sem: λv1.<b1>[]:['b1←land:land.n.03(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.v1
+cat: NP\NP
+----------
+tokens:not
+sem: λv1.λv2.λv3.<b1>[]:['b1←¬((v1@v2)@v3)']</b1>
+cat: (S/S)/(S/S)
+----------
+tokens:once
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←once:once.r.02(s1)','b1←Time(v3,s1)']</b1>;(v2@v3)))
+cat: S/S[dcl]
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:are
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←be:be.v.03(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1=now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:under
+sem: λv1.λv2.(v1@λv3.<b1>['b1←x1']:['b1←location:location.n.01(x1)','b1←SZN(x1,v3)','b1←Location(v2,x1)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:shadow
+sem: λv1.λv2.(<b1>[]:['b1←shadow:shadow.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←FeatureOf(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:walls
+sem: λv1.<b1>[]:['b1←wall:wall.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S\S
+----------

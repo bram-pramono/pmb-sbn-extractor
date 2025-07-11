@@ -1,0 +1,49 @@
+% Shut your smart foul mouth and sit down.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01   EQU hearer          %           
+%SBN% shut.v.01     Agent -1 Patient +4 % Shut      [0-4]
+%SBN% person.n.01   PartOf hearer       % your      [5-9]
+%SBN% smart.a.04    AttributeOf +2      % smart     [10-15]
+%SBN% foul.a.01     AttributeOf +1      % foul      [16-20]
+%SBN% mouth.n.01    User -3             % mouth  --and-- [21-30]
+%SBN% sit_down.v.01 Agent -6            % sit down --.-- [31-40]
+
+% Incremental DRS
+
+tokens:Shut
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←shut:shut.v.01(e1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:your
+sem: λv1.λv2.((<b1>['b1←x1','b1←x2']:['b1←User(x1,x2)','b1←person:person.n.01(x2)','b1←PartOf(x2,hearer)']</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:smart
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←smart:smart.a.04(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:foul
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←foul:foul.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:mouth
+sem: λv1.<b1>[]:['b1←mouth:mouth.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:sit~down
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←sit_down:sit_down.v.01(e1)','b1←Agent(e1,v3)']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: (S[b]\NP)\(S[b]\NP)
+----------

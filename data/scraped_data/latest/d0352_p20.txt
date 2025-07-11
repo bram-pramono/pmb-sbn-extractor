@@ -1,0 +1,97 @@
+% He stared down the narrow pass as though expecting some challenge to issue from the mouth of it.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                % He                [0-2]
+%SBN% stare.v.01     Agent -1 Time +1 Theme +3 % stared  --down--       [3-14]
+%SBN% time.n.08      TPR now                   %                   
+%SBN% narrow.a.01    AttributeOf +1            %  --the-- narrow        [15-25]
+%SBN% pass.n.04                                % pass  --as--  --though--    [26-40]
+%SBN%                CONTINUATION &lt;1           %                   
+%SBN% expect.v.01    Agent -5 Theme +1         % expecting         [41-50]
+%SBN% challenge.n.02                           %  --some-- challenge  --to-- [51-68]
+%SBN% issue.v.04     Theme -1 Source +1        % issue  --from--        [69-79]
+%SBN% mouth.n.03     SubOf +1                  %  --the-- mouth  --of--      [80-92]
+%SBN% entity.n.01    ANA -5                    % it --.--               [93-96]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:stared
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←stare:stare.v.01(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:down
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:narrow
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←narrow:narrow.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:pass
+sem: λv1.<b1>[]:['b1←pass:pass.n.04(v1)']</b1>
+cat: N
+----------
+tokens:as
+sem: λv1.v1
+cat: ((S\NP)\(S\NP))/((S\NP)\(S\NP))
+----------
+tokens:though
+sem: λv1.λv2.λv3.λv4.(v3@λv5.<>[]:[]</>)
+cat: ((S\NP)\(S\NP))/(S[ng]\NP)
+----------
+tokens:expecting
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←expect:expect.v.01(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:some
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:challenge
+sem: λv1.λv2.(<b1>[]:['b1←challenge:challenge.n.02(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:issue
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←issue:issue.v.04(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[b]\NP)/PP
+----------
+tokens:from
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Source(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:mouth
+sem: λv1.λv2.(<b1>[]:['b1←mouth:mouth.n.03(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←SubOf(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

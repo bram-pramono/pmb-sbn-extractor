@@ -1,0 +1,60 @@
+% She turned and saw him standing in her path.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02                                       % She         [0-3]
+%SBN% turn.v.01   Agent -1 Time +1                      % turned  --and--  [4-14]
+%SBN% time.n.08   TPR now                               %             
+%SBN% see.v.01    Proposition &gt;1 Experiencer -3 Time +1 % saw         [15-18]
+%SBN% time.n.08   TPR now                               %             
+%SBN%             CONTINUATION &lt;0                       %             
+%SBN% male.n.02                                         % him         [19-22]
+%SBN% stand.v.03  Theme -1 Location +2                  % standing  --in-- [23-34]
+%SBN% female.n.02 ANA -7                                % her         [35-38]
+%SBN% path.n.03   User -1                               % path --.--       [39-44]
+
+% Incremental DRS
+
+tokens:She
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:turned
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←turn:turn.v.01(e1)','b1←Time(e1,t1)','b1←Agent(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:saw
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←see:see.v.01(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,p1)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[ng]
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:standing
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←stand:stand.v.03(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[ng]\NP)/PP
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:her
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←User(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:path
+sem: λv1.λv2.(<b1>[]:['b1←path:path.n.03(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

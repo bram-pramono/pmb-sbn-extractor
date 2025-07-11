@@ -1,0 +1,142 @@
+% Sam slid down the wall and sat with his knees against his chest and folded his arms across them and put his head down on them.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02   Name "Sam"                                  % Sam           [0-3]
+%SBN% slide.v.02  Agent -1 Time +1 Path +2                    % slid  --down--     [4-13]
+%SBN% time.n.08   TPR now                                     %               
+%SBN% wall.n.01                                               %  --the-- wall  --and--  [14-26]
+%SBN% sit.v.03    Agent -4 Time +1 Manner +3                  % sat  --with--      [27-35]
+%SBN% time.n.08   TPR now                                     %               
+%SBN% male.n.02   ANA -6                                      % his           [36-39]
+%SBN% knee.n.01   PartOf -1 Location +2                       % knees  --against-- [40-53]
+%SBN% male.n.02   ANA -8                                      % his           [54-57]
+%SBN% chest.n.01  PartOf -1                                   % chest  --and--     [58-67]
+%SBN% fold.v.01   Agent -10 Time +1 Patient +3 Destination +4 % folded        [68-74]
+%SBN% time.n.08   TPR now                                     %               
+%SBN% male.n.02   ANA -12                                     % his           [75-78]
+%SBN% arm.n.01    PartOf -1                                   % arms  --across--   [79-90]
+%SBN% entity.n.01 ANA -7                                      % them  --and--      [91-99]
+%SBN% put.v.01    Agent -15 Time +1 Theme +3 Destination +4   % put           [100-103]
+%SBN% time.n.08   TPR now                                     %               
+%SBN% male.n.02   ANA -17                                     % his           [104-107]
+%SBN% head.n.01   PartOf -1                                   % head  --down--  --on--  [108-120]
+%SBN% entity.n.01 ANA -12                                     % them --.--         [121-126]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Sam
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,sam)']</b1>
+cat: N
+----------
+tokens:slid
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←slide:slide.v.02(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:down
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Path(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:wall
+sem: λv1.<b1>[]:['b1←wall:wall.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:sat
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←sit:sit.v.03(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:with
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Manner(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←PartOf(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:knees
+sem: λv1.λv2.(<b1>[]:['b1←knee:knee.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:against
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←PartOf(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:chest
+sem: λv1.<b1>[]:['b1←chest:chest.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:folded
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←fold:fold.v.01(e1)','b1←Patient(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/PP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←PartOf(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:arms
+sem: λv1.<b1>[]:['b1←arm:arm.n.01(v1)']</b1>
+cat: N
+----------
+tokens:across
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:them
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:put
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←put:put.v.01(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/PP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←PartOf(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:head
+sem: λv1.<b1>[]:['b1←head:head.n.01(v1)']</b1>
+cat: N
+----------
+tokens:down
+sem: λv1.v1
+cat: PP/PP
+----------
+tokens:on
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:them
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

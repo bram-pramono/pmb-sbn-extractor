@@ -1,0 +1,134 @@
+% He could see a paying job just about to slip out of his fingers and he knew he had to act fast to save it.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                         % He  --could--    [0-8]
+%SBN%             POSSIBILITY &lt;1                        %             
+%SBN% see.v.02    Experiencer -1 Stimulus +2            % see         [9-12]
+%SBN% pay.v.01    Attribute +1                          %  --a-- paying    [13-21]
+%SBN% job.n.01    Stimulus +2                           % job  --just--    [22-30]
+%SBN% entity.n.01                                       % about  --to--    [31-39]
+%SBN% slip.v.11   Patient -1 Source +2                  % slip  --out--  --of-- [40-51]
+%SBN% male.n.02   ANA -6                                % his         [52-55]
+%SBN% finger.n.01 User -1                               % fingers  --and-- [56-67]
+%SBN%             CONTINUATION &lt;1                       %             
+%SBN% male.n.02   ANA -8                                % he          [68-70]
+%SBN% know.v.01   Proposition &gt;1 Experiencer -1 Time +1 % knew        [71-75]
+%SBN% time.n.08   TPR now                               %             
+%SBN%             CONTINUATION &lt;0                       %             
+%SBN% male.n.02   ANA -11                               % he          [76-78]
+%SBN% time.n.08   TPR now                               % had  --to--      [79-85]
+%SBN% act.v.01    Agent -2 Time -1 Manner +1 Topic +2   % act         [86-89]
+%SBN% fast.r.01                                         % fast  --to--     [90-97]
+%SBN% save.v.02   Agent -4 Theme +1                     % save        [98-102]
+%SBN% entity.n.01                                       % it --.--         [103-106]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:could
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←◊((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:see
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←see:see.v.02(e1)','b1←Stimulus(e1,v5)','b1←Experiencer(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:paying
+sem: λv1.λv2.(<b1>['b1←e1']:['b1←pay:pay.v.01(e1)','b1←Attribute(e1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:job
+sem: λv1.λv2.(<b1>[]:['b1←job:job.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:just
+sem: λv1.v1
+cat: (PP/PP)/(PP/PP)
+----------
+tokens:about
+sem: λv1.λv2.((v1@λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(v3@x1)))@λv4.<b2>[]:['b2←Stimulus(v2,v4)']</b2>)
+cat: PP/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:slip
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←slip:slip.v.11(e1)','b1←Patient(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[b]\NP)/PP
+----------
+tokens:out
+sem: λv1.v1
+cat: PP/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Source(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:fingers
+sem: λv1.<b1>[]:['b1←finger:finger.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:knew
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←know:know.v.01(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,p1)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[dcl]
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:act
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←act:act.v.01(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Topic(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[to]\NP)
+----------
+tokens:fast
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←fast:fast.r.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:save
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←save:save.v.02(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

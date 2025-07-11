@@ -1,0 +1,80 @@
+% We should talk about the things people talk about on first dates.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01 Sub speaker              % We  --should--     [0-9]
+%SBN%             NECESSITY &lt;1             %               
+%SBN% talk.v.01   Agent -1 Topic +1        % talk  --about--    [10-20]
+%SBN% thing.n.07  Proposition &gt;1           %  --the-- things    [21-31]
+%SBN%             CONTINUATION &lt;0          %               
+%SBN% person.n.01                          % people        [32-38]
+%SBN% talk.v.02   Agent -1 Time +1 Time +3 % talk  --about--  --on-- [39-52]
+%SBN% time.n.08   EQU now                  %               
+%SBN% rank.n.02   EQU 1                    % first         [53-58]
+%SBN% date.n.03   Order -1                 % dates --.--        [59-65]
+
+% Incremental DRS
+
+tokens:We
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Sub(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:should
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←□((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:talk
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←talk:talk.v.01(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[b]\NP)/PP
+----------
+tokens:about
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Topic(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:things
+sem: λv1.λv2.<b1>['b1←p1']:['b1←p1:(v1@λv3.<b2>[]:[]</b2>)','b1←thing:thing.n.07(v2)','b1←Topic(v2,p1)']</b1>
+cat: N/S[dcl]
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:people
+sem: λv1.<b1>[]:['b1←person:person.n.01(v1)']</b1>
+cat: N
+----------
+tokens:talk
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b2←t1']:['b1←talk:talk.v.02(e1)','b1←Time(e1,t1)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1=now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/PR
+----------
+tokens:about
+sem: about
+cat: PR
+----------
+tokens:on
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Time(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:first
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←rank:rank.n.02(x1)','b1←x1=1','b1←Order(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:dates
+sem: λv1.<b1>[]:['b1←date:date.n.03(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

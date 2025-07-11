@@ -1,0 +1,132 @@
+% Richard sat down on the chair in front of the stove and tucked into his tea with the warmth of the stove on his back.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02     Name "Richard"                           % Richard       [0-7]
+%SBN% sit_down.v.01 Agent -1 Time +1 Location +2 Location +3 % sat  --down--  --on--   [8-19]
+%SBN% time.n.08     TPR now                                  %               
+%SBN% chair.n.01                                             %  --the-- chair     [20-29]
+%SBN% entity.n.01   Location +1                              % in  --front--  --of--   [30-41]
+%SBN% stove.n.01                                             %  --the-- stove  --and-- [42-55]
+%SBN% tuck.v.01     Agent -6 Time +1 Theme +3 Manner +4      % tucked  --into--   [56-67]
+%SBN% time.n.08     TPR now                                  %               
+%SBN% male.n.02     ANA -8                                   % his           [68-71]
+%SBN% tea.n.01      Consumer -1                              % tea  --with--      [72-80]
+%SBN% warmth.n.01   Source +1 Location +3                    %  --the-- warmth  --of-- [81-94]
+%SBN% stove.n.01                                             %  --the-- stove  --on--  [95-107]
+%SBN% male.n.02     ANA -12                                  % his           [108-111]
+%SBN% back.n.01     PartOf -1                                % back --.--         [112-117]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Richard
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,richard)']</b1>
+cat: N
+----------
+tokens:sat
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b2←t1']:['b1←sit_down:sit_down.v.01(e1)','b1←Time(e1,t1)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/PR
+----------
+tokens:down
+sem: down
+cat: PR
+----------
+tokens:on
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Location(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:chair
+sem: λv1.<b1>[]:['b1←chair:chair.n.01(v1)']</b1>
+cat: N
+----------
+tokens:in
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)','b1←Location(v5,x1)']</b1>;((v1@x1);(v4@v5))))
+cat: ((S\NP)\(S\NP))/PP
+----------
+tokens:front
+sem: λv1.v1
+cat: PP/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:stove
+sem: λv1.<b1>[]:['b1←stove:stove.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:tucked
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←tuck:tuck.v.01(e1)','b1←Agent(e1,v5)']</b1>;((v2@e1);((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/PP)/PP
+----------
+tokens:into
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←Consumer(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:tea
+sem: λv1.<b1>[]:['b1←tea:tea.n.01(v1)']</b1>
+cat: N
+----------
+tokens:with
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Manner(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:warmth
+sem: λv1.λv2.λv3.(<b1>[]:['b1←warmth:warmth.n.01(v3)']</b1>;((v1@v3);(v2@v3)))
+cat: (N/PP)/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Source(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:stove
+sem: λv1.<b1>[]:['b1←stove:stove.n.01(v1)']</b1>
+cat: N
+----------
+tokens:on
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:back
+sem: λv1.λv2.(<b1>[]:['b1←back:back.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

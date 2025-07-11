@@ -1,0 +1,93 @@
+% He sets out to prove them wrong by holding down a job and trying to act responsible.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                           % He           [0-2]
+%SBN% set_out.v.01     Agent -1 Time +1 Goal +2           % sets  --out--  --to--  [3-14]
+%SBN% time.n.08        EQU now                            %              
+%SBN% prove.v.03       Agent -3 Theme +1 Result +2        % prove        [15-20]
+%SBN% person.n.01                                         % them         [21-25]
+%SBN% wrong.a.01       AttributeOf -1 Manner +1 Manner +3 % wrong  --by--     [26-34]
+%SBN% hold_down.v.01   Agent -2 Theme +1                  % holding  --down-- [35-47]
+%SBN% job.n.01                                            %  --a-- job  --and--    [48-57]
+%SBN% try.n.01         Agent -4 Theme +1                  % trying  --to--    [58-67]
+%SBN% act.v.02         Agent -5 Attribute +1              % act          [68-71]
+%SBN% responsible.a.01 AttributeOf -6                     % responsible --.-- [72-84]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:sets
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←set_out:set_out.v.01(e1)','b1←Agent(e1,v5)']</b1>;(((v2@λv6.(v6@v5))@λv7.<b2>[]:['b2←Goal(e1,v7)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1=now','b4←Time(e1,t1)']</b4>;(v4@e1)))))
+cat: ((S[dcl]\NP)/(S[to]\NP))/PR
+----------
+tokens:out
+sem: out
+cat: PR
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:prove
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←prove:prove.v.03(e1)','b1←Agent(e1,v5)','b1←Theme(e1,v6)']</b1>;(((v2@λv7.(v7@v6))@λv8.<b2>[]:['b2←Result(e1,v8)']</b2>);(v4@e1)))))
+cat: ((S[b]\NP)/(S[adj]\NP))/NP
+----------
+tokens:them
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:wrong
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←wrong:wrong.a.01(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:by
+sem: λv1.λv2.λv3.λv4.(v3@λv5.((v2@λv6.(v6@v5))@λv7.((v1@λv8.(v8@v5))@λv9.(<b1>[]:['b1←Manner(v7,v9)']</b1>;(v4@v7)))))
+cat: ((S\NP)\(S\NP))/(S[ng]\NP)
+----------
+tokens:holding
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(<b1>['b1←e1']:['b1←hold_down:hold_down.v.01(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;(v4@e1))))
+cat: ((S[ng]\NP)/NP)/PR
+----------
+tokens:down
+sem: down
+cat: PR
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:job
+sem: λv1.<b1>[]:['b1←job:job.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:trying
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←x1']:['b1←try:try.n.01(x1)','b1←Agent(x1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Theme(x1,v6)']</b2>);(v3@x1))))
+cat: (S[ng]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:act
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←act:act.v.02(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Attribute(e1,v6)']</b2>);(v3@e1))))
+cat: (S[b]\NP)/(S[adj]\NP)
+----------
+tokens:responsible
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←responsible:responsible.a.01(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

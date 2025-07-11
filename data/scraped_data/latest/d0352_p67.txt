@@ -1,0 +1,138 @@
+% Kate propped herself up on her elbows, her wine glass standing in the tall grass besides her, and announced that we should talk.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02   Name "Kate"                                   % Kate           [0-4]
+%SBN% prop_up.v.01  Agent -1 Time +1 Theme +2 Location +4 Time +5 % propped        [5-12]
+%SBN% time.n.08     TPR now                                       %                
+%SBN% female.n.02   ANA -3                                        % herself  --up--  --on--  [13-26]
+%SBN% female.n.02   ANA -4                                        % her            [27-30]
+%SBN% elbow.n.01    PartOf -1                                     % elbows         [31-37]
+%SBN% entity.n.01                                                 % ,              [37-38]
+%SBN% female.n.02   ANA -7                                        % her            [39-42]
+%SBN% wine.n.01                                                   % wine           [43-47]
+%SBN% glass.n.02    PartOf -2 Attribute -1                        % glass          [48-53]
+%SBN% stand.v.01    Participant -4 Theme -1 Location +2           % standing  --in--    [54-65]
+%SBN% tall.a.01     AttributeOf +1                                %  --the-- tall       [66-74]
+%SBN% grass.n.01    Location +1                                   % grass  --besides--  [75-88]
+%SBN% female.n.02   ANA -13                                       % her --,--  --and--       [89-97]
+%SBN% announce.v.01 Proposition &gt;1 Agent -14 Time +1              % announced      [98-107]
+%SBN% time.n.08     TPR now                                       %                
+%SBN%               CONTINUATION &lt;0                               %                
+%SBN% person.n.01   Sub speaker                                   %  --that-- we  --should-- [108-122]
+%SBN%               NECESSITY &lt;1                                  %                
+%SBN% talk.n.01     Agent -1                                      % talk --.--          [123-128]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Kate
+sem: λv1.<b1>[]:['b1←female:female.n.02(v1)','b1←Name(v1,kate)']</b1>
+cat: N
+----------
+tokens:propped
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1','b2←t1']:['b1←prop_up:prop_up.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v4@e1))))
+cat: ((S[dcl]\NP)/PR)/NP
+----------
+tokens:herself
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:up
+sem: up
+cat: PR
+----------
+tokens:on
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Location(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:her
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←PartOf(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:elbows
+sem: λv1.<b1>[]:['b1←elbow:elbow.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.((v1@λv6.<b1>['b1←x1']:['b1←entity:entity.n.01(x1)','b1←Time(v5,x1)','b1←Participant(v6,x1)']</b1>);(v4@v5)))
+cat: ((S\NP)\(S\NP))/S[ng]
+----------
+tokens:her
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:wine
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←wine:wine.n.01(x1)','b1←Attribute(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:glass
+sem: λv1.λv2.(<b1>[]:['b1←glass:glass.n.02(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:standing
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←stand:stand.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[ng]\NP)/PP
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:tall
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←tall:tall.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:grass
+sem: λv1.<b1>[]:['b1←grass:grass.n.01(v1)']</b1>
+cat: N
+----------
+tokens:besides
+sem: λv1.λv2.λv3.((v2@v3);(v1@λv4.<b1>[]:['b1←Location(v3,v4)']</b1>))
+cat: (N\N)/NP
+----------
+tokens:her
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:,
+sem: λv1.v1
+cat: NP\NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:announced
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←announce:announce.v.01(e1)','b1←Time(e1,t1)','b1←Topic(e1,p1)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/S[em]
+----------
+tokens:that
+sem: λv1.v1
+cat: S[em]/S[dcl]
+----------
+tokens:we
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Sub(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:should
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←□((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:talk
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←x1']:['b1←talk:talk.n.01(x1)','b1←Agent(x1,v3)']</b1>;(v2@x1)))
+cat: S[b]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

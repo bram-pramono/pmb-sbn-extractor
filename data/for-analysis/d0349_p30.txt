@@ -1,0 +1,48 @@
+% Anne lost control and laughed.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02  Name "Anne"               % Anne        [0-4]
+%SBN% lose.v.01    Agent -1 Time +1 Theme +2 % lost        [5-9]
+%SBN% time.n.08    TPR now                   %             
+%SBN% control.n.01                           % control  --and-- [10-21]
+%SBN% laugh.v.01   Agent -4 Time +1          % laughed --.--    [22-30]
+%SBN% time.n.08    TPR now                   %             
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Anne
+sem: λv1.<b1>[]:['b1←female:female.n.02(v1)','b1←Name(v1,anne)']</b1>
+cat: N
+----------
+tokens:lost
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←lose:lose.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:control
+sem: λv1.<b1>[]:['b1←control:control.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:laughed
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←laugh:laugh.v.01(e1)','b1←Time(e1,t1)','b1←Agent(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

@@ -1,0 +1,57 @@
+% He sighed and walked back to the wood shop.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                 % He             [0-2]
+%SBN% sigh.v.01 Agent -1 Time +1                % sighed  --and--     [3-13]
+%SBN% time.n.08 TPR now                         %                
+%SBN% walk.v.01 Theme -3 Time +1 Destination +3 % walked  --back--  --to-- [14-28]
+%SBN% time.n.08 TPR now                         %                
+%SBN% wood.n.01                                 %  --the-- wood       [29-37]
+%SBN% shop.n.01 Attribute -1                    % shop --.--          [38-43]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:sighed
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←sigh:sigh.v.01(e1)','b1←Time(e1,t1)','b1←Agent(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:walked
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←walk:walk.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:back
+sem: λv1.v1
+cat: PP/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:wood
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←wood:wood.n.01(x1)','b1←Attribute(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:shop
+sem: λv1.<b1>[]:['b1←shop:shop.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

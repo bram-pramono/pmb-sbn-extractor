@@ -1,0 +1,53 @@
+% Scott got up and washed his plate.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02   Name "Scott"                % Scott      [0-5]
+%SBN% get_up.v.01 Theme -1 Time +1            % got  --up--  --and-- [6-16]
+%SBN% time.n.08   TPR now                     %            
+%SBN% wash.v.01   Agent -3 Time +1 Patient +3 % washed     [17-23]
+%SBN% time.n.08   TPR now                     %            
+%SBN% male.n.02   ANA -5                      % his        [24-27]
+%SBN% plate.n.04  User -1                     % plate --.--     [28-34]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Scott
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,scott)']</b1>
+cat: N
+----------
+tokens:got
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b2←t1']:['b1←get_up:get_up.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[dcl]\NP)/PR
+----------
+tokens:up
+sem: up
+cat: PR
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:washed
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←wash:wash.v.01(e1)','b1←Time(e1,t1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:plate
+sem: λv1.<b1>[]:['b1←plate:plate.n.04(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

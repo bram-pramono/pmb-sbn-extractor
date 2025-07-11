@@ -1,0 +1,113 @@
+% Graham took a long drink from his beer as if to signal that that was an end to the matter.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02   Name "Graham"                       % Graham        [0-6]
+%SBN% take.v.18   Agent -1 Time +1 Theme +3 Source +5 % took          [7-11]
+%SBN% time.n.08   TPR now                             %               
+%SBN% long.a.01   Value +                             %  --a-- long        [12-18]
+%SBN% drink.n.05  Attribute -1                        % drink  --from--    [19-29]
+%SBN% male.n.02   ANA -5                              % his           [30-33]
+%SBN% beer.n.01   Consumer -1                         % beer  --as--  --if--  --to-- [34-47]
+%SBN%             CONTINUATION &lt;1                     %               
+%SBN% signal.v.01 Proposition &gt;1 Agent -7             % signal        [48-54]
+%SBN%             CONTINUATION &lt;0                     %               
+%SBN% entity.n.01                                     %  --that-- that     [55-64]
+%SBN% be.v.01     Theme -1 Time +1 Co-Theme +2        % was           [65-68]
+%SBN% time.n.08   TPR now                             %               
+%SBN% end.n.03    Theme +1                            %  --an-- end  --to--     [69-78]
+%SBN% matter.n.01                                     %  --the-- matter --.--   [79-90]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Graham
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,graham)']</b1>
+cat: N
+----------
+tokens:took
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(<b1>['b1←e1']:['b1←take:take.v.18(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/NP)/PP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:long
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←long:long.a.01(s1)','b1←Value(s1,+)','b1←Attribute(v2,s1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:drink
+sem: λv1.<b1>[]:['b1←drink:drink.n.05(v1)']</b1>
+cat: N
+----------
+tokens:from
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Source(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←Consumer(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:beer
+sem: λv1.λv2.(<b1>[]:['b1←beer:beer.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:as
+sem: λv1.v1
+cat: ((S\NP)\(S\NP))/((S\NP)\(S\NP))
+----------
+tokens:if
+sem: λv1.λv2.λv3.λv4.(v3@λv5.<>[]:[]</>)
+cat: ((S\NP)\(S\NP))/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:signal
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1']:['b1←p1:(v1@λv5.<b2>[]:[]</b2>)','b1←signal:signal.v.01(e1)','b1←Theme(e1,p1)','b1←Agent(e1,v4)']</b1>;(v3@e1)))
+cat: (S[b]\NP)/S[em]
+----------
+tokens:that
+sem: λv1.v1
+cat: S[em]/S[dcl]
+----------
+tokens:that
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:was
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←be:be.v.01(e1)','b1←Time(e1,t1)','b1←Co-Theme(e1,v5)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:an
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:end
+sem: λv1.λv2.(<b1>[]:['b1←end:end.n.03(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:matter
+sem: λv1.<b1>[]:['b1←matter:matter.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

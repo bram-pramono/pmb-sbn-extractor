@@ -1,0 +1,82 @@
+% The bored soldier pressed a button which opened the gate and allowed them in.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% bored.a.01   AttributeOf +1              %  --The-- bored      [0-9]
+%SBN% person.n.01  Role +1                     % soldier        [10-17]
+%SBN% soldier.n.01                             %                
+%SBN% press.v.01   Agent -2 Time +1 Theme +2   % pressed        [18-25]
+%SBN% time.n.08    TPR now                     %                
+%SBN% button.n.02                              %  --a-- button  --which-- [26-40]
+%SBN% open.v.01    Agent -1 Time +1 Patient +2 % opened         [41-47]
+%SBN% time.n.08    TPR now                     %                
+%SBN% gate.n.01                                %  --the-- gate  --and--   [48-60]
+%SBN% permit.v.01  Agent -8 Time +1 Theme +2   % allowed        [61-68]
+%SBN% time.n.08    TPR now                     %                
+%SBN% person.n.01                              % them  --in.--       [69-77]
+
+% Incremental DRS
+
+tokens:The
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:bored
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←bored:bored.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:soldier
+sem: λv1.<b1>['b1←x1']:['b1←soldier:soldier.n.01(x1)','b1←person:person.n.01(v1)','b1←Role(v1,x1)']</b1>
+cat: N
+----------
+tokens:pressed
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←press:press.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:button
+sem: λv1.<b1>[]:['b1←button:button.n.02(v1)']</b1>
+cat: N
+----------
+tokens:which
+sem: λv1.λv2.λv3.((v2@v3);((v1@λv4.(v4@v3))@λv5.<b1>[]:[]</b1>))
+cat: (N\N)/(S[dcl]\NP)
+----------
+tokens:opened
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←open:open.v.01(e1)','b1←Time(e1,t1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:gate
+sem: λv1.<b1>[]:['b1←gate:gate.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:allowed
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1','b2←t1']:['b1←permit:permit.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v4@e1))))
+cat: ((S[dcl]\NP)/PR)/NP
+----------
+tokens:them
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:in
+sem: in
+cat: PR
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

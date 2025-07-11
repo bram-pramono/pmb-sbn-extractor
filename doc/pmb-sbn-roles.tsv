@@ -1,0 +1,74 @@
+Event Role	Identifier	Document	Explanation
+Participant(E,X)	20000		X is a participant of event E (the most general event role)
+Actor(E,X)	22000		
+Agent(E,X)	22100	00/0865	X is an Actor in an event E who initiates and carries out the event intentionally or consciously, and X exists independently of the event.
+Co-Agent(E,X)	22110	00/1687	Agent who is acting in coordination or reciprocally with another agent while participating in the same event (specific to events with symmetrical participants).
+Causer(E,X)	22200	01/1744	X is an Actor (animate or inanimate) in an event that initiates the event, but that does not act with any intentionality or consciousness; it exists independently of the event.
+Stimulus(E,X)	22210	00/2887	Causer in an event that elicits an emotional or psychological response (specific to events of perception.
+Undergoer(E,X)	23000		
+Theme(E,X)	23100	00/1895	Undergoer that is central to an event or state that does not have control over the way the event occurs, is not structurally changed by the event, and/or is characterized as being in a certain position or condition throughout the state.
+Co-Theme(E,X)	23120	02/2574	Theme that participates in an event or state with another Theme; both participate equally (thereby distinguishing this role from Pivot; specific toevents with symmetrical participants).
+Topic(E,X)	23110		Theme characterized by information content transferred to another participant (specific to events of communication).
+Proposition(E,X)	23130	29/2011	Theme with propositional content
+Pivot(E,X)	23140	05/2049	Theme that participates in an event with another theme unequally. Pivot is much more central to the event (thereby distinguishing it from Co-Theme).
+Patient(E,X)	23200	00/0715	Undergoer in an event that experiences a change of state, location or condition, that is causally involved or directly affected by other participants, and exists independently of the event.
+Experiencer(E,X)	23210	00/2445	X is a Patient that is aware of the event E undergone (specific to events of perception).
+Material(E,X)	23220	06/3000	Patient that exists at the starting point of action (inheritance from Source), which is transformed through the event into a new entity; concrete or abstract.
+Co-Patient(E,X)	23230	60/3307	Patient that participates in an event with another patient, both participate equally in the event (specific to events with symmetrical participants).
+Beneficiary(E,X)	23300	04/2078	X is an Undergoer in a state or an event E that is (potentially) advantaged or disadvantaged by E.
+Instrument(E,X)	23400	00/1558	Undergoer in an event that is manipulated by an Agent, and with which an intentional act is performed; it exists independently of the event
+Abstract(E,X)	24000		
+Degree(E,X)	24100	00/1660	X specifies the intensity of a property.
+Goal(E,X)	24200	08/1993	Place that is the end point of an action and exists independently of the event.
+Result(E,X)	24210	03/2650	Goal that comes into existence through the event.
+Product(E,X)	24211	12/2605	Result that is a concrete object.
+Manner(E,X)	23300	00/2430	The way an event is taking place.
+Context(E,X)	24400	04/1660	The language or specific situation in which an event is taking place
+Place(E,X)	25000		
+Location(E,X)	25100	00/0907	Place that is concrete.
+Source(E,X)	25110	00/3046	Place that is the starting point of action; exists independently of the event.
+Destination(E,X)	25120	00/1895	Event E has Goal X that is a concrete, physical location.
+Recipient(E,X)	25121	01/1997	Destination that is animate.
+Value(E,X)	25200	04/2790	X is a Place along a formal scale.
+Asset(E,X)	25230	18/2987	E has Value X that is a concrete object.
+Extent(E,X)	25240	02/2775	X is the score of a (sports) event.
+Path(E,X)	25300	09/2825	X specifies the trajectory of E's theme.
+Time(E,X)	21000	00/0760	Participant that indicates an instant or an interval of time during which a state exists or an event took place.
+Duration(E,X)	21100	01/2141	Event E has length or extent of time X.
+Frequency(E,X)	21300	00/3056	X is the number of occurrences of an event E within a given time span.
+Start(E,X)	21500	14/1422	Time that indicates when an event begins or a state becomes true.
+Finish(E,X)	21400	34/0824	Time that indicates when an event ends or a state becomes false. (VerbNet: Final-Time)
+
+Attribute Role	Identifier	Document	Explanation
+Attribute(X,Y)	10000	00/2993	Entity X has property Y (usually a state).
+Quantity(X,Y)	11000	04/2469	Entity X has quantity Y (usually a number).
+Name(X,Y)	12000	00/2045	Entity X has name Y (usually a constant).
+Order(X,Y)	13000	17/1381	Entity X is ranked on position Y.
+Colour(X,Y)	14000	07/0042	Entity X (an entity) has colour Y.
+Unit(X,Y)	15000	04/1876	Entity X is measured in unit of measurement Y.
+Title(X,Y)	16000	37/2214	Entity X has title Y.
+
+Concept Role	Identifier	Document	Explanation
+Role(X,Y)	30000	27/1388	Entity X plays role Y.
+Of(X,Y)	31000	19/3040	(used only in combination with a predicate of a relational noun).
+Affectee(X,Y)	32000	42/3185	Entity X affects Y.
+Creator(X,Y)	35000	00/1708	Entity X (an artifact or situation) has creator Y (animate).
+User(X,Y)	33000	00/2019	Entity X has user Y.
+Owner(X,Y)	34000	00/2269	Entity X has owner Y (an animate entity, usually a pet).
+Consumer(X,Y)	36000	16/2365	Entity X has owner Y (an animate entity).
+Bearer(X,Y)	37000	08/3432	Entity X bears name Y (a name).
+
+Relational Role	Identifier	Document	Explanation
+InstanceOf(X,Y)	41000	00/1697	Entity X is an instance of Y.
+SubOf(X,Y)	42000	01/2404	Entity X is a subset of Y (X and Y are of the same sort).
+PartOf(X,Y)	43000	00/1427	Entity X is a (body) part of Y (X and Y are not of the same sort).
+MadeOf(X,Y)	44000	11/2828	Entity X is made of material Y.
+FeatureOf(X,Y)	45000	52/3514	Entity X is a feature of Y.
+ContentOf(X,Y)	46000	07/0842	Entity X forms the content of Y.
+
+Specific Time Role	Identifier	Document	Explanation
+YearOfCentury(T,yyyy)	21210	19/2165	Specifies a calendar year.
+ClockTime(T,hh:mm)	21220	01/1669	Specifies exact clock time of a time interval.
+DayOfWeek(T,X)	21230	87/2578	Specifies exact day in a week.
+MonthOfYear(X,Y)	21240	38/1998	Specifies month in a year.
+DayOfMonth(T,dd)	21250	01/1238	Specifies exact day in a month.

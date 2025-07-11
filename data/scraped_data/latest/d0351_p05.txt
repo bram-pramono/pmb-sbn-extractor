@@ -1,0 +1,86 @@
+% The last thing Alex felt like doing after work was more work.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% last.a.04   AttributeOf +1               %  --The-- last [0-8]
+%SBN% entity.n.01                              % thing    [9-14]
+%SBN% male.n.02   Name "Alex"                  % Alex     [15-19]
+%SBN% feel.v.01   Agent -1 Time +1 Theme +3    % felt     [20-24]
+%SBN% time.n.08   TPR now                      %          
+%SBN% entity.n.01                              % like     [25-29]
+%SBN% do.v.02     Theme -5 Agent -1 Time +1    % doing    [30-35]
+%SBN% time.n.08   TSU +1                       % after    [36-41]
+%SBN% work.n.03                                % work     [42-46]
+%SBN% be.v.01     Theme -8 Time +1 Co-Theme +2 % was  --more-- [47-55]
+%SBN% time.n.08   TPR now                      %          
+%SBN% work.n.01                                % work --.--    [56-61]
+
+% Incremental DRS
+
+tokens:The
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:last
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←last:last.a.04(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:thing
+sem: λv1.λv2.(<b1>[]:['b1←entity:entity.n.01(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S/NP)
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Alex
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,alex)']</b1>
+cat: N
+----------
+tokens:felt
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←feel:feel.v.01(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:like
+sem: λv1.λv2.((v1@λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(v3@x1)))@λv4.<b2>[]:['b2←Theme(v2,v4)']</b2>)
+cat: PP/(S[ng]\NP)
+----------
+tokens:doing
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(<b1>['b1←e1']:['b1←do:do.v.02(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v1@e1);(v4@e1)))))
+cat: ((S[ng]\NP)/NP)/PP
+----------
+tokens:after
+sem: λv1.λv2.(v1@λv3.<b1>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻v3','b1←Time(v2,t1)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:work
+sem: λv1.<b1>[]:['b1←work:work.n.03(v1)']</b1>
+cat: N
+----------
+tokens:was
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←be:be.v.01(e1)','b1←Time(e1,t1)','b1←Co-Theme(e1,v5)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:more
+sem: λv1.v1
+cat: N/N
+----------
+tokens:work
+sem: λv1.<b1>[]:['b1←work:work.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

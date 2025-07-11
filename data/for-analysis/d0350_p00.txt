@@ -1,0 +1,56 @@
+% Let us leave these poor people in peace.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01 EQU hearer                                 %            
+%SBN% person.n.01 EQU speaker                                %  --Let-- us     [0-6]
+%SBN% leave.v.04  Agent -2 Participant -1 Theme +2 Manner +3 % leave      [7-12]
+%SBN% poor.a.01   AttributeOf +1                             %  --these-- poor [13-23]
+%SBN% person.n.01                                            % people  --in--  [24-33]
+%SBN% peace.n.02                                             % peace --.--     [34-40]
+
+% Incremental DRS
+
+tokens:Let
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Participant(v5,v6)']</b1>;(v4@v5))))
+cat: ((S[b]\NP)/(S[b]\NP))/NP
+----------
+tokens:us
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:leave
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←leave:leave.v.04(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(v4@e1)))))
+cat: ((S[b]\NP)/PP)/NP
+----------
+tokens:these
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:poor
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←poor:poor.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:people
+sem: λv1.<b1>[]:['b1←person:person.n.01(v1)']</b1>
+cat: N
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Manner(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:peace
+sem: λv1.<b1>[]:['b1←peace:peace.n.02(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: (S[b]\NP)\(S[b]\NP)
+----------

@@ -1,0 +1,55 @@
+% Tell me what really happened to the truck.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01 EQU hearer                            %             
+%SBN% tell.v.02   Proposition &gt;1 Agent -1 Recipient +1  % Tell        [0-4]
+%SBN% person.n.01 EQU speaker                           % me          [5-7]
+%SBN%             CONTINUATION &lt;0                       %             
+%SBN% entity.n.01 EQU ?                                 % what        [8-12]
+%SBN% really.r.02                                       % really      [13-19]
+%SBN% happen.v.02 Theme -2 Degree -1 Time +1 Patient +2 % happened  --to-- [20-31]
+%SBN% time.n.08   TPR now                               %             
+%SBN% truck.n.01                                        %  --the-- truck --.--  [32-42]
+
+% Incremental DRS
+
+tokens:Tell
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1','b1←p1']:['b1←p1:(v2@λv7.<b2>[]:[]</b2>)','b1←tell:tell.v.02(e1)','b1←Recipient(e1,v6)','b1←Topic(e1,p1)','b1←Agent(e1,v5)']</b1>;(v4@e1))))
+cat: ((S[b]\NP)/S[wq])/NP
+----------
+tokens:me
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:what
+sem: λv1.λv2.((v1@λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)','b1←x1=?']</b1>;(v3@x1)))@v2)
+cat: S[wq]/(S[dcl]\NP)
+----------
+tokens:really
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←really:really.r.02(s1)','b1←Degree(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)/(S\NP)
+----------
+tokens:happened
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←happen:happen.v.02(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Patient(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:truck
+sem: λv1.<b1>[]:['b1←truck:truck.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: (S[b]\NP)\(S[b]\NP)
+----------

@@ -1,0 +1,67 @@
+% He drove his truck home and walked down to the village.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                             % He             [0-2]
+%SBN% drive.v.01   Agent -1 Time +1 Theme +3 Destination +4 % drove          [3-8]
+%SBN% time.n.08    TPR now                                  %                
+%SBN% male.n.02    ANA -3                                   % his            [9-12]
+%SBN% truck.n.01   User -1                                  % truck          [13-18]
+%SBN% home.n.01                                             % home  --and--       [19-27]
+%SBN% walk.v.01    Theme -6 Time +1 Destination +2          % walked  --down--  --to-- [28-42]
+%SBN% time.n.08    TPR now                                  %                
+%SBN% village.n.01                                          %  --the-- village --.--   [43-55]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:drove
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(v1@λv7.(<b1>['b1←e1','b2←t1']:['b1←drive:drive.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v7)','b1←Destination(e1,v6)','b1←Agent(e1,v5)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v4@e1)))))
+cat: ((S[dcl]\NP)/NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:truck
+sem: λv1.<b1>[]:['b1←truck:truck.n.01(v1)']</b1>
+cat: N
+----------
+tokens:home
+sem: λv1.(<b1>['b1←x1']:['b1←home:home.n.01(x1)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:walked
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←walk:walk.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:down
+sem: λv1.v1
+cat: PP/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:village
+sem: λv1.<b1>[]:['b1←village:village.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

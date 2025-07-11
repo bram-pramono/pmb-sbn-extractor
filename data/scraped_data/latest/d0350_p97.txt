@@ -1,0 +1,77 @@
+% James walked in to wake Samuel at four thirty in the morning.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02    Name "James"              % James          [0-5]
+%SBN% walk_in.v.01 Agent -1 Time +1 Goal +2  % walked  --in--  --to--   [6-18]
+%SBN% time.n.08    TPR now                   %                
+%SBN% wake.v.02    Agent -3 Theme +1 Time +2 % wake           [19-23]
+%SBN% male.n.02    Name "Samuel"             % Samuel  --at--      [24-33]
+%SBN% time.n.08    ClockTime 04:30 Time +1   % four thirty  --in-- [34-48]
+%SBN% morning.n.01                           %  --the-- morning --.--   [49-61]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:James
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,james)']</b1>
+cat: N
+----------
+tokens:walked
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←walk_in:walk_in.v.01(e1)','b1←Agent(e1,v5)']</b1>;(((v2@λv6.(v6@v5))@λv7.<b2>[]:['b2←Goal(e1,v7)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v4@e1)))))
+cat: ((S[dcl]\NP)/(S[to]\NP))/PR
+----------
+tokens:in
+sem: in
+cat: PR
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:wake
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←wake:wake.v.02(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Samuel
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,samuel)']</b1>
+cat: N
+----------
+tokens:at
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Time(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:four~thirty
+sem: λv1.λv2.(<b1>[]:['b1←time:time.n.08(v2)','b1←ClockTime(v2,04:30)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Time(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:morning
+sem: λv1.<b1>[]:['b1←morning:morning.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

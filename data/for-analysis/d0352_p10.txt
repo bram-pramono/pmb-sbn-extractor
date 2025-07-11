@@ -1,0 +1,107 @@
+% Don't tell me any more about the crime, in fact, don't tell me any more full stop.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01    EQU hearer                             %            
+%SBN% time.n.08      EQU now                                % Do --n't--      [0-5]
+%SBN%                NEGATION &lt;1                            %            
+%SBN% tell.v.01      Agent -2 Time -1 Recipient +1 Topic +2 % tell       [6-10]
+%SBN% person.n.01    EQU speaker                            % me  --any--     [11-17]
+%SBN% entity.n.01    Topic +1                               % more  --about-- [18-28]
+%SBN% crime.n.01                                            %  --the-- crime --,-- [29-39]
+%SBN%                CONTINUATION &lt;2                        %            
+%SBN% person.n.01    EQU hearer                             %            
+%SBN% time.n.08      EQU now                                % do --n't--      [49-54]
+%SBN%                NEGATION &lt;1                            %            
+%SBN% tell.v.01      Agent -2 Time -1 Recipient +1 Topic +2 % tell       [55-59]
+%SBN% person.n.01    EQU speaker                            % me  --any--     [60-66]
+%SBN% entity.n.01                                           % more       [67-71]
+%SBN%                CONTINUATION &lt;2                        %            
+%SBN% say.v.01       Agent speaker Theme +1                 % full stop --.-- [72-82]
+%SBN% full_stop.n.01                                        %            
+
+% Incremental DRS
+
+tokens:Do
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[b]\NP)/(S[b]\NP)
+----------
+tokens:n't
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:tell
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(v1@λv7.(<b1>['b1←e1']:['b1←tell:tell.v.01(e1)','b1←Recipient(e1,v7)','b1←Topic(e1,v6)','b1←Agent(e1,v5)']</b1>;(v4@e1)))))
+cat: ((S[b]\NP)/NP)/NP
+----------
+tokens:me
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:any
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:more
+sem: λv1.λv2.(<b1>[]:['b1←entity:entity.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:about
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Topic(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:crime
+sem: λv1.<b1>[]:['b1←crime:crime.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.v1
+cat: NP\NP
+----------
+tokens:in~fact
+sem: nil
+cat: S/S
+----------
+tokens:,
+sem: nil
+cat: S\(S/S)
+----------
+tokens:do
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[b]\NP)/(S[b]\NP)
+----------
+tokens:n't
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)\(S\NP)
+----------
+tokens:tell
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(v1@λv7.(<b1>['b1←e1']:['b1←tell:tell.v.01(e1)','b1←Recipient(e1,v7)','b1←Topic(e1,v6)','b1←Agent(e1,v5)']</b1>;(v4@e1)))))
+cat: ((S[b]\NP)/NP)/NP
+----------
+tokens:me
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:any
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:more
+sem: λv1.<b1>[]:['b1←entity:entity.n.01(v1)']</b1>
+cat: N
+----------
+tokens:full~stop
+sem: λv1.(<b1>['b1←e1','b1←x1']:['b1←full_stop:full_stop.n.01(x1)','b1←say:say.v.01(e1)','b1←Theme(e1,x1)','b1←Agent(e1,speaker)']</b1>;(v1@e1))
+cat: S
+----------
+tokens:.
+sem: λv1.v1
+cat: S\S
+----------

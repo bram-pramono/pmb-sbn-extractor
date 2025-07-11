@@ -1,0 +1,148 @@
+% The door was slammed shut behind him and Scott slid down the wall right to the floor not even noticing the two other men in the cell.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% door.n.01                                                      %  --The-- door           [0-8]
+%SBN% time.n.08     TPR now                                          % was                [9-12]
+%SBN% slam.v.01     Patient -2 Time -1 Time +1 Result +2 Location +3 % slammed            [13-20]
+%SBN% time.n.08     TPR now                                          %                    
+%SBN% shut.a.01     AttributeOf -4                                   % shut               [21-25]
+%SBN% location.n.01 SXP +1                                           % behind             [26-32]
+%SBN% male.n.02                                                      % him  --and--            [33-40]
+%SBN%               CONTINUATION &lt;1                                  %                    
+%SBN% male.n.02     Name "Scott"                                     % Scott              [41-46]
+%SBN%               NEGATION &lt;1                                      %                    
+%SBN% slide.v.02    Agent -1 Time +1 Path +2 Theme +3                % slid  --down--          [47-56]
+%SBN% time.n.08     TPR now                                          %                    
+%SBN% wall.n.01                                                      %  --the-- wall           [57-65]
+%SBN% right.r.01    Destination +1                                   % right  --to--           [66-74]
+%SBN% floor.n.01                                                     %  --the-- floor  --not--  --even-- [75-93]
+%SBN%               CONTINUATION &lt;2                                  %                    
+%SBN% notice.v.02   Experiencer -6 Stimulus +3                       % noticing           [94-102]
+%SBN% quantity.n.01 EQU 2                                            %  --the-- two            [103-110]
+%SBN% man.n.01      NEQ +1 Location +3                               % other              [111-116]
+%SBN% man.n.01      Quantity -2 Location +1                          % men  --in--             [117-123]
+%SBN% cell.n.01                                                      %  --the-- cell --.--          [124-133]
+%SBN% cell.n.01                                                      %                    
+
+% Incremental DRS
+
+tokens:The
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:door
+sem: λv1.<b1>[]:['b1←door:door.n.01(v1)']</b1>
+cat: N
+----------
+tokens:was
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[pss]\NP)
+----------
+tokens:slammed
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←slam:slam.v.01(e1)','b1←Patient(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Result(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[pss]\NP)/(S[adj]\NP)
+----------
+tokens:shut
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←shut:shut.a.01(s1)','b1←AttributeOf(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:behind
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>['b1←x1']:['b1←location:location.n.01(x1)','b1←SXP(x1,v6)','b1←Location(v5,x1)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Scott
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,scott)']</b1>
+cat: N
+----------
+tokens:slid
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←slide:slide.v.02(e1)','b1←Agent(e1,v5)']</b1>;((v2@e1);((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/PP)/PP
+----------
+tokens:down
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Path(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:wall
+sem: λv1.<b1>[]:['b1←wall:wall.n.01(v1)']</b1>
+cat: N
+----------
+tokens:right
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←right:right.r.01(s1)','b1←Theme(v2,s1)']</b1>;(v1@s1))
+cat: PP/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:floor
+sem: λv1.<b1>[]:['b1←floor:floor.n.01(v1)']</b1>
+cat: N
+----------
+tokens:not
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)/(S\NP)
+----------
+tokens:even
+sem: λv1.λv2.λv3.λv4.(v3@λv5.<>[]:[]</>)
+cat: ((S\NP)\(S\NP))/(S[ng]\NP)
+----------
+tokens:noticing
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←notice:notice.v.02(e1)','b1←Stimulus(e1,v5)','b1←Experiencer(e1,v4)']</b1>;(v3@e1))))
+cat: (S[ng]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:two
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←quantity:quantity.n.01(x1)','b1←x1=2','b1←Quantity(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:other
+sem: λv1.λv2.((v1@v2);((<b1>['b1←x1']:[]</b1>;(v1@x1))∗<b2>[]:['b2←v2≠x1']</b2>))
+cat: N/N
+----------
+tokens:men
+sem: λv1.λv2.(<b1>[]:['b1←man:man.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:cell
+sem: λv1.<b1>[]:['b1←cell:cell.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

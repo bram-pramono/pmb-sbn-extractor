@@ -1,0 +1,53 @@
+% The bored looking soldier just pointed.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% bored.a.02   Experiencer +2             %  --The-- bored [0-9]
+%SBN% looking.a.01 Attribute -1 Theme +1      % looking   [10-17]
+%SBN% person.n.01  Role +1                    % soldier   [18-25]
+%SBN% soldier.n.01                            %           
+%SBN% just.r.06                               % just      [26-30]
+%SBN% point.v.01   Agent -3 Manner -1 Time +1 % pointed --.--  [31-39]
+%SBN% time.n.08    TPR now                    %           
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:The
+sem: λv1.v1
+cat: N/N
+----------
+tokens:ø
+sem: λv1.λv2.λv3.((v2@v3);((v1@λv4.(v4@v3))@λv5.<b1>[]:[]</b1>))
+cat: (N\N)/(S[ng]\NP)
+----------
+tokens:bored
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←s1']:['b1←bored:bored.a.02(s1)','b1←Experiencer(s1,v3)']</b1>;(v2@s1)))
+cat: S[adj]\NP
+----------
+tokens:looking
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←s1']:['b1←looking:looking.a.01(s1)','b1←Theme(s1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Attribute(s1,v6)']</b2>);(v3@s1))))
+cat: (S[ng]\NP)\(S[adj]\NP)
+----------
+tokens:soldier
+sem: λv1.<b1>['b1←x1']:['b1←soldier:soldier.n.01(x1)','b1←person:person.n.01(v1)','b1←Role(v1,x1)']</b1>
+cat: N
+----------
+tokens:just
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←just:just.r.06(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)/(S\NP)
+----------
+tokens:pointed
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1','b2←t1']:['b1←point:point.v.01(e1)','b1←Time(e1,t1)','b1←Agent(e1,v3)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v2@e1)))
+cat: S[dcl]\NP
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

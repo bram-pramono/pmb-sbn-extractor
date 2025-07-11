@@ -1,0 +1,75 @@
+% He was built with muscle and liked to throw his weight around.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                      % He             [0-2]
+%SBN% time.n.08   TPR now                            % was            [3-6]
+%SBN% build.v.02  Product -2 Time -1 Theme +1        % built  --with--     [7-17]
+%SBN% muscle.n.05                                    % muscle  --and--     [18-28]
+%SBN% like.v.02   Experiencer -4 Time +1 Stimulus +2 % liked  --to--       [29-37]
+%SBN% time.n.08   TPR now                            %                
+%SBN% throw.v.02  Agent -6 Theme +2                  % throw          [38-43]
+%SBN% male.n.02   ANA -7                             % his            [44-47]
+%SBN% weight.n.01 PartOf -1                          % weight  --around.-- [48-62]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:was
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[pss]\NP)
+----------
+tokens:built
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←build:build.v.02(e1)','b1←Product(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[pss]\NP)/PP
+----------
+tokens:with
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:muscle
+sem: λv1.<b1>[]:['b1←muscle:muscle.n.05(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:liked
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←like:like.v.02(e1)','b1←Experiencer(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Stimulus(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:throw
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(<b1>['b1←e1']:['b1←throw:throw.v.02(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;(v4@e1))))
+cat: ((S[b]\NP)/NP)/PR
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:[]</b2>;((v1@λv3.<b3>[]:['b3←PartOf(v3,x1)']</b3>)@x2))∗(v2@x2)))
+cat: NP/(N/PP)
+----------
+tokens:weight
+sem: λv1.λv2.(<b1>[]:['b1←weight:weight.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:around
+sem: around
+cat: PR
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

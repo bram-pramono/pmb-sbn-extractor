@@ -1,0 +1,114 @@
+% At ground level, by the wall, a ditch gathered water and dead rats crowded the ground.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% ground.n.01                                             %  --At-- ground   [0-9]
+%SBN% level.n.04  Attribute -1 Location +1                    % level --,--  --by--   [10-19]
+%SBN% wall.n.01                                               %  --the-- wall --,--   [20-29]
+%SBN% ditch.n.02                                              %  --a-- ditch     [30-37]
+%SBN% gather.v.03 Location -3 Location -1 Time +1 Theme +2    % gathered    [38-46]
+%SBN% time.n.08   TPR now                                     %             
+%SBN% water.n.01                                              % water  --and--   [47-56]
+%SBN%             CONTINUATION &lt;1                             %             
+%SBN% ground.n.01                                             %             
+%SBN% level.n.04  Attribute -1 Location +1                    %             
+%SBN% wall.n.01                                               %             
+%SBN% dead.a.01   AttributeOf +1                              % dead        [57-61]
+%SBN% rat.n.01                                                % rats        [62-66]
+%SBN% crowd.v.02  Location -4 Theme -1 Time +1 Destination +2 % crowded     [67-74]
+%SBN% time.n.08   TPR now                                     %             
+%SBN% ground.n.01                                             %  --the-- ground --.-- [75-86]
+
+% Incremental DRS
+
+tokens:At
+sem: λv1.λv2.λv3.(v2@λv4.((v1@λv5.<b1>[]:['b1←Location(v4,v5)']</b1>);(v3@v4)))
+cat: (S/S)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:ground
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←ground:ground.n.01(x1)','b1←Attribute(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:level
+sem: λv1.<b1>[]:['b1←level:level.n.04(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.v1
+cat: NP\NP
+----------
+tokens:by
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>[]:['b1←Location(v4,v5)']</b1>;(v3@v4))))
+cat: (NP\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:wall
+sem: λv1.<b1>[]:['b1←wall:wall.n.01(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.v1
+cat: NP\NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:ditch
+sem: λv1.<b1>[]:['b1←ditch:ditch.n.02(v1)']</b1>
+cat: N
+----------
+tokens:gathered
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←gather:gather.v.03(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Location(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:water
+sem: λv1.<b1>[]:['b1←water:water.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:dead
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←dead:dead.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:rats
+sem: λv1.<b1>[]:['b1←rat:rat.n.01(v1)']</b1>
+cat: N
+----------
+tokens:crowded
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←crowd:crowd.v.02(e1)','b1←Time(e1,t1)','b1←Destination(e1,v5)','b1←Theme(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:ground
+sem: λv1.<b1>[]:['b1←ground:ground.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

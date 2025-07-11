@@ -1,0 +1,25 @@
+Identity Operator	Identifier	Char	Meaning	Document
+EQU	700000011	=	equal	06/2903
+NEQ	700000014	≠	not equal	00/1657
+APX	700000013	≈	approximately equal	16/1892
+ANA	700000012	≡	anaphoric link	06/1601
+LES	700000006	<	less than	92/0875
+MOR	700000010	>	greater than	01/3352
+TOP	700000007	≤	less or equal than	68/2535
+BOT	700000008	≥	greater or equal than	23/1853
+Temporal Operator	Identifier	Char	Meaning	Document
+TPR	700000001	≺	temporal precedes ("before")	
+TSU	700000002	≻	temporal succeeds ("after")	00/1593
+TIN	700000003	⊏	temporal inclusion	
+TCT	700000004	⊐	temporal contains	
+TAB	700000005	⋈	temporal abuts ("meets")	
+Spatial Operator	Identifier	Char	Meaning	Document
+SXP	700000015	≫	spatial behind	
+SXN	700000016	≪	spatial before	
+SZN	700000017	⊻	spatial under	
+SZP	700000018	⋎	spatial above	02/0781
+STI		⨃	spatial topological inside	05/1662
+STO		ᑘ	spatial topological outside	06/2541
+SY1		∥	spatial beside	49/0046
+SY2		⚮	spatial between	
+SXY		≖	spatial around	

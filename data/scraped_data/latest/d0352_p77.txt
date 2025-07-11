@@ -1,0 +1,157 @@
+% The very streets seemed to know the gossip, it passed from head to head not by mouth but seemingly by sheer power of will.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% very.a.02      AttributeOf +1                                                %  --The-- very         [0-8]
+%SBN% street.n.01                                                                  % streets          [9-16]
+%SBN% seem.v.01      Theme -1 Time +1 Attribute +2                                 % seemed  --to--        [17-26]
+%SBN% time.n.08      TPR now                                                       %                  
+%SBN% know.n.01      Experiencer -3 Stimulus +1                                    % know             [27-31]
+%SBN% gossip.n.02                                                                  %  --the-- gossip --,--      [32-43]
+%SBN%                CONTINUATION &lt;1                                               %                  
+%SBN% entity.n.01    ANA -1                                                        % it               [44-46]
+%SBN%                NEGATION &lt;1                                                   %                  
+%SBN% pass.v.12      Theme -1 Time +1 Source +2 Destination +3 Path +4             % passed  --from--      [47-58]
+%SBN% time.n.08      TPR now                                                       %                  
+%SBN% head.n.01                                                                    % head  --to--          [59-66]
+%SBN% head.n.01                                                                    % head  --not--  --by--      [67-78]
+%SBN% mouth.n.01                                                                   % mouth            [79-84]
+%SBN%                CONTRAST &lt;1                                                   %                  
+%SBN% pass.v.12      Theme -6 Time +1 Source +2 Destination +3 Manner +4 Causer +6 %                  
+%SBN% time.n.08      TPR now                                                       %                  
+%SBN% head.n.01                                                                    %                  
+%SBN% head.n.01                                                                    %                  
+%SBN% seemingly.r.01                                                               %  --but-- seemingly  --by-- [85-101]
+%SBN% sheer.a.01                                                                   % sheer            [102-107]
+%SBN% power.n.01     Attribute -1 Theme +1                                         % power  --of--         [108-116]
+%SBN% will.n.02                                                                    % will --.--            [117-122]
+
+% Incremental DRS
+
+tokens:The
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:very
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←very:very.a.02(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:streets
+sem: λv1.<b1>[]:['b1←street:street.n.01(v1)']</b1>
+cat: N
+----------
+tokens:seemed
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←seem:seem.v.01(e1)','b1←Theme(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Attribute(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:know
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←x1']:['b1←know:know.n.01(x1)','b1←Stimulus(x1,v5)','b1←Experiencer(x1,v4)']</b1>;(v3@x1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:gossip
+sem: λv1.<b1>[]:['b1←gossip:gossip.n.02(v1)']</b1>
+cat: N
+----------
+tokens:,
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:passed
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←pass:pass.v.12(e1)','b1←Theme(e1,v5)']</b1>;((v2@e1);((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/PP)/PP
+----------
+tokens:from
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Source(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:head
+sem: λv1.<b1>[]:['b1←head:head.n.01(v1)']</b1>
+cat: N
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:head
+sem: λv1.<b1>[]:['b1←head:head.n.01(v1)']</b1>
+cat: N
+----------
+tokens:not
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←¬((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S\NP)/(S\NP)
+----------
+tokens:by
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Path(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:mouth
+sem: λv1.<b1>[]:['b1←mouth:mouth.n.01(v1)']</b1>
+cat: N
+----------
+tokens:but
+sem: λv1.λv2.λv3.λv4.λv5.(v4@λv6.<>[]:[]</>)
+cat: conj
+----------
+tokens:seemingly
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←seemingly:seemingly.r.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)/(S\NP)
+----------
+tokens:by
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Causer(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:sheer
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←sheer:sheer.a.01(s1)','b1←Attribute(v2,s1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:power
+sem: λv1.λv2.(<b1>[]:['b1←power:power.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:of
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:will
+sem: λv1.<b1>[]:['b1←will:will.n.02(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

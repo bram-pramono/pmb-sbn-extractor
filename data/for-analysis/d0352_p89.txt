@@ -1,0 +1,146 @@
+% He went to get on his boots and Ian stuck out his foot and Roger fell over it and landed on the floor with a thud.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02   Name "Ian"                                % He             [0-2]
+%SBN% time.n.08   TPR now                                   % went  --to--        [3-10]
+%SBN% get.v.03    Agent -2 Time -1 Theme +2                 % get  --on--         [11-17]
+%SBN% male.n.02   ANA -3                                    % his            [18-21]
+%SBN% boot.n.01   User -1                                   % boots  --and--      [22-31]
+%SBN%             CONTINUATION &lt;1                           %                
+%SBN% male.n.02   ANA -5                                    % Ian            [32-35]
+%SBN% stick.v.01  Pivot -1 Time +1 Theme +3                 % stuck  --out--      [36-45]
+%SBN% time.n.08   TPR now                                   %                
+%SBN% male.n.02   ANA -8                                    % his            [46-49]
+%SBN% foot.n.01   PartOf -1                                 % foot  --and--       [50-58]
+%SBN%             CONTINUATION &lt;2                           %                
+%SBN% male.n.02   Name "Roger"                              % Roger          [59-64]
+%SBN% fall.v.01   Agent -1 Time +1 Location +2              % fell  --over--      [65-74]
+%SBN% time.n.08   TPR now                                   %                
+%SBN% entity.n.01 ANA -4                                    % it  --and--         [75-81]
+%SBN% land.v.02   Theme -4 Time +1 Destination +2 Manner +3 % landed  --on--      [82-91]
+%SBN% time.n.08   TPR now                                   %                
+%SBN% floor.n.01                                            %  --the-- floor  --with-- [92-106]
+%SBN% thud.n.01                                             %  --a-- thud --.--        [107-114]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:He
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,ian)']</b1>
+cat: N
+----------
+tokens:went
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:get
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←get:get.v.03(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[b]\NP)/PP
+----------
+tokens:on
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:boots
+sem: λv1.<b1>[]:['b1←boot:boot.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:Ian
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:stuck
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←stick:stick.v.01(e1)','b1←Pivot(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:out
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Theme(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←PartOf(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:foot
+sem: λv1.<b1>[]:['b1←foot:foot.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Roger
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,roger)']</b1>
+cat: N
+----------
+tokens:fell
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←fall:fall.v.01(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:over
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Location(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:landed
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←land:land.v.02(e1)','b1←Theme(e1,v5)']</b1>;((v2@e1);((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/PP)/PP
+----------
+tokens:on
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:floor
+sem: λv1.<b1>[]:['b1←floor:floor.n.01(v1)']</b1>
+cat: N
+----------
+tokens:with
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Manner(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:thud
+sem: λv1.<b1>[]:['b1←thud:thud.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

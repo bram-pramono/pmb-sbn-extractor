@@ -1,0 +1,105 @@
+% I considered it to be the minimum information I could give out in order to bring the situation under control.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01      EQU speaker                            % I                   [0-1]
+%SBN% consider.v.01    Agent -1 Time +1 Theme +2 Attribute +3 % considered          [2-12]
+%SBN% time.n.08        TPR now                                %                     
+%SBN% entity.n.01                                             % it  --to--               [13-18]
+%SBN% be.v.01          Theme -1 Co-Theme +2                   % be                  [19-21]
+%SBN% minimum.a.01     AttributeOf +1                         %  --the-- minimum         [22-33]
+%SBN% information.n.01 Proposition &gt;1                         % information         [34-45]
+%SBN%                  CONTINUATION &lt;0                        %                     
+%SBN% person.n.01      EQU speaker                            % I  --could--             [46-53]
+%SBN%                  POSSIBILITY &lt;1                         %                     
+%SBN% give_out.v.01    Agent -1 Goal +2                       % give  --out--            [54-62]
+%SBN% entity.n.01                                             % in order to         [63-74]
+%SBN% bring.v.05       Agent -1 Theme +1 Goal +2              % bring               [75-80]
+%SBN% situation.n.01                                          %  --the-- situation  --under-- [81-100]
+%SBN% control.n.01                                            % control --.--            [101-109]
+
+% Incremental DRS
+
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:considered
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←consider:consider.v.01(e1)','b1←Agent(e1,v5)','b1←Theme(e1,v6)']</b1>;(((v2@λv7.(v7@v6))@λv8.<b2>[]:['b2←Attribute(e1,v8)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v4@e1))))))
+cat: ((S[dcl]\NP)/(S[to]\NP))/NP
+----------
+tokens:it
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:be
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←be:be.v.01(e1)','b1←Co-Theme(e1,v5)','b1←Theme(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:minimum
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←minimum:minimum.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:information
+sem: λv1.λv2.<b1>['b1←p1']:['b1←p1:(v1@λv3.<b2>[]:[]</b2>)','b1←information:information.n.01(v2)','b1←Topic(v2,p1)']</b1>
+cat: N/S[dcl]
+----------
+tokens:I
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,speaker)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:could
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←◊((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[b]\NP)
+----------
+tokens:give
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(<b1>['b1←e1']:['b1←give_out:give_out.v.01(e1)','b1←Agent(e1,v5)']</b1>;((v2@e1);(v4@e1))))
+cat: ((S[b]\NP)/PP)/PR
+----------
+tokens:out
+sem: out
+cat: PR
+----------
+tokens:in~order~to
+sem: λv1.λv2.((v1@λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(v3@x1)))@λv4.<b2>[]:['b2←Goal(v2,v4)']</b2>)
+cat: PP/(S[b]\NP)
+----------
+tokens:bring
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←bring:bring.v.05(e1)','b1←Theme(e1,v6)','b1←Agent(e1,v5)']</b1>;((v2@e1);(v4@e1)))))
+cat: ((S[b]\NP)/PP)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:situation
+sem: λv1.<b1>[]:['b1←situation:situation.n.01(v1)']</b1>
+cat: N
+----------
+tokens:under
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Goal(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:control
+sem: λv1.<b1>[]:['b1←control:control.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

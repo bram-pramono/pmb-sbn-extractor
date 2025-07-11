@@ -1,0 +1,101 @@
+% He had walked so far since the battle and every step now seemed to him like a year.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                                      % He  --had--               [0-6]
+%SBN% time.n.08   TPR now                                            % walked               [7-13]
+%SBN% walk.n.01   Theme -2 Time -1 Degree +1 Attribute +2 Start +3   %                      
+%SBN% so.r.01                                                        % so                   [14-16]
+%SBN% far.r.02                                                       % far  --since--            [17-26]
+%SBN% battle.n.01                                                    %  --the-- battle  --and--  --every-- [27-47]
+%SBN%             CONTINUATION &lt;1                                    %                      
+%SBN%             NEGATION &lt;1                                        %                      
+%SBN% step.n.02                                                      % step                 [48-52]
+%SBN% time.n.08   EQU now                                            % now                  [53-56]
+%SBN%             NEGATION &lt;1                                        %                      
+%SBN% seem.v.04   Theme -2 Time -1 Time +1 Recipient +2 Attribute +3 % seemed  --to--            [57-66]
+%SBN% time.n.08   TPR now                                            %                      
+%SBN% male.n.02   ANA -10                                            % him  --like--             [67-75]
+%SBN% year.n.01                                                      %  --a-- year --.--              [76-83]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:walked
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←x1']:['b1←walk:walk.n.01(x1)','b1←Theme(x1,v4)']</b1>;((v1@x1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(x1,t1)']</b3>;(v3@x1)))))
+cat: (S[pt]\NP)/PP
+----------
+tokens:so
+sem: λv1.λv2.λv3.λv4.(((v1@v2)@v3)@λv5.(<b1>['b1←s1']:['b1←so:so.r.01(s1)','b1←Degree(v5,s1)']</b1>;(v4@v5)))
+cat: ((S\NP)/(S\NP))/((S\NP)\(S\NP))
+----------
+tokens:far
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←far:far.r.02(s1)','b1←Attribute(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)\(S\NP)
+----------
+tokens:since
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Start(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:battle
+sem: λv1.<b1>[]:['b1←battle:battle.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: conj
+----------
+tokens:every
+sem: λv1.λv2.<b1>[]:["b1←¬(<b2>['b2←x1']:['b2←¬(v2@x1)']</b2>;(v1@x1))"]</b1>
+cat: NP/N
+----------
+tokens:step
+sem: λv1.<b1>[]:['b1←step:step.n.02(v1)']</b1>
+cat: N
+----------
+tokens:now
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1=now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S\NP)/(S\NP)
+----------
+tokens:seemed
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←seem:seem.v.04(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
+cat: (S[dcl]\NP)/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Recipient(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:like
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Attribute(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:year
+sem: λv1.<b1>[]:['b1←year:year.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

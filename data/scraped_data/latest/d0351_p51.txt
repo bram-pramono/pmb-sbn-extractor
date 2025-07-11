@@ -1,0 +1,88 @@
+% Have that carriage sent down and have servants bring wine and water.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% carriage.n.02                         %  --that-- carriage [5-18]
+%SBN% send.v.02     Patient -1 Time +1      % sent  --down--  --and-- [19-32]
+%SBN% time.n.08     TPR now                 %               
+%SBN%               CONTINUATION &lt;0         %               
+%SBN% person.n.01   EQU hearer              %               
+%SBN% have.v.05     Proposition &lt;1 Agent -1 % Have          [0-4]
+%SBN% have.v.05     Proposition &gt;1 Agent -2 % have          [33-37]
+%SBN%               CONTINUATION &lt;0         %               
+%SBN% person.n.01   Role +1                 % servants      [38-46]
+%SBN% servant.n.01                          %               
+%SBN% bring.v.01    Agent -2 Theme +2       % bring         [47-52]
+%SBN% wine.n.01                             % wine          [53-57]
+%SBN% entity.n.01   Sub -1 Sub +1           % and           [58-61]
+%SBN% water.n.01                            % water --.--        [62-68]
+
+% Incremental DRS
+
+tokens:Have
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1']:['b1←p1:(v1@λv5.<b2>[]:[]</b2>)','b1←have:have.v.05(e1)','b1←Theme(e1,p1)','b1←Agent(e1,v4)']</b1>;(v3@e1)))
+cat: (S[b]\NP)/S[pt]
+----------
+tokens:that
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:carriage
+sem: λv1.<b1>[]:['b1←carriage:carriage.n.02(v1)']</b1>
+cat: N
+----------
+tokens:sent
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b2←t1']:['b1←send:send.v.02(e1)','b1←Time(e1,t1)','b1←Patient(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
+cat: (S[pt]\NP)/PR
+----------
+tokens:down
+sem: down
+cat: PR
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:have
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1']:['b1←p1:(v1@λv5.<b2>[]:[]</b2>)','b1←have:have.v.05(e1)','b1←Theme(e1,p1)','b1←Agent(e1,v4)']</b1>;(v3@e1)))
+cat: (S[b]\NP)/S[b]
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:servants
+sem: λv1.<b1>['b1←x1']:['b1←servant:servant.n.01(x1)','b1←person:person.n.01(v1)','b1←Role(v1,x1)']</b1>
+cat: N
+----------
+tokens:bring
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←bring:bring.v.01(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:wine
+sem: λv1.<b1>[]:['b1←wine:wine.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;((v2@λv4.<b2>[]:['b2←Sub(x1,v4)']</b2>);((v1@λv5.<b3>[]:['b3←Sub(x1,v5)']</b3>);(v3@x1))))
+cat: conj
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:water
+sem: λv1.<b1>[]:['b1←water:water.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: (S[b]\NP)\(S[b]\NP)
+----------

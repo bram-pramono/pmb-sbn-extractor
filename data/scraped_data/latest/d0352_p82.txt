@@ -1,0 +1,137 @@
+% If you were coming from the high street you had to walk past three or four perfectly good pubs to get to The Three Cups.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% person.n.01    EQU hearer                       %  --If-- you          [0-6]
+%SBN% time.n.08      TPR now                          % were            [7-11]
+%SBN% come.v.01      Theme -2 Time -1 Source +2       % coming  --from--     [12-23]
+%SBN% high.a.02      Value +                          %  --the-- high        [24-32]
+%SBN% street.n.01    Attribute -1                     % street          [33-39]
+%SBN%                CONSEQUENCE &lt;1                   %                 
+%SBN% person.n.01    EQU hearer                       % you             [40-43]
+%SBN% time.n.08      TPR now                          % had  --to--          [44-50]
+%SBN% walk.v.01      Theme -2 Time -1 Path +1 Goal +2 % walk  --past--       [51-60]
+%SBN% entity.n.01                                     % or              [67-69]
+%SBN% get.v.05       Theme -4 Destination +1          % get  --to--          [98-104]
+%SBN% company.n.01   Name "Three Cups"                %  --The-- Three Cups --.-- [105-120]
+%SBN%                NEGATION &lt;1                      %                 
+%SBN%                NEGATION &lt;1                      %                 
+%SBN% quantity.n.01  EQU 3                            % three           [61-66]
+%SBN% perfectly.r.01                                  % perfectly       [75-84]
+%SBN% good.a.01      AttributeOf +1                   % good            [85-89]
+%SBN% pub.n.01       EQU -6 Quantity -3 Role -2       % pubs  --to--         [90-97]
+%SBN%                NEGATION &lt;2                      %                 
+%SBN% quantity.n.01  EQU 4                            % four            [70-74]
+%SBN% perfectly.r.01                                  %                 
+%SBN% good.a.01      AttributeOf +1                   %                 
+%SBN% pub.n.01       EQU -10 Quantity -3 Role -2      %                 
+
+% Incremental DRS
+
+tokens:If
+sem: λv1.λv2.λv3.<>[]:[]</>
+cat: (S/S)/S[dcl]
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:were
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:coming
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←come:come.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[ng]\NP)/PP
+----------
+tokens:from
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Source(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:high
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←high:high.a.02(s1)','b1←Value(s1,+)','b1←Attribute(v2,s1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:street
+sem: λv1.<b1>[]:['b1←street:street.n.01(v1)']</b1>
+cat: N
+----------
+tokens:you
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)','b1←Equal(x1,hearer)']</b1>;(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≺now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:walk
+sem: λv1.λv2.λv3.λv4.(v3@λv5.((v2@λv6.(v6@v5))@λv7.(<b1>['b1←e1']:['b1←walk:walk.v.01(e1)','b1←Goal(e1,v7)','b1←Theme(e1,v5)']</b1>;((v1@e1);(v4@e1)))))
+cat: ((S[b]\NP)/(S[to]\NP))/PP
+----------
+tokens:past
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Path(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:three
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←quantity:quantity.n.01(x1)','b1←x1=3','b1←Quantity(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:or
+sem: λv1.λv2.λv3.λv4.<b1>[]:['b1←¬<b2>[]:["b2←¬(<b3>[\'b3←x1\']:[\'b3←x1=v4\']</b3>;((v2@v3)@x1))","b2←¬(<b4>[\'b4←x2\']:[\'b4←x2=v4\']</b4>;((v1@v3)@x2))"]</b2>','b1←entity:entity.n.01(v4)']</b1>
+cat: conj
+----------
+tokens:four
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←quantity:quantity.n.01(x1)','b1←x1=4','b1←Quantity(v2,x1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:perfectly
+sem: λv1.λv2.λv3.(((v1@λv4.<b1>['b1←s1']:['b1←perfectly:perfectly.r.01(s1)','b1←Role(v4,s1)']</b1>)@v3);(v2@v3))
+cat: (N/N)/(N/N)
+----------
+tokens:good
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←good:good.a.01(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:pubs
+sem: λv1.<b1>[]:['b1←pub:pub.n.01(v1)']</b1>
+cat: N
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:get
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←get:get.v.05(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[b]\NP)/PP
+----------
+tokens:to
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:The
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Three~Cups
+sem: λv1.<b1>[]:['b1←company:company.n.01(v1)','b1←Name(v1,three~cups)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

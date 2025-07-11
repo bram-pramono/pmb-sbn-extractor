@@ -1,0 +1,118 @@
+% Malcolm woke Lewis at six in the morning and told him to wear his worst jeans and shirt.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02    Name "Malcolm"                         % Malcolm         [0-7]
+%SBN% wake.v.05    Agent -1 Time +1 Patient +2 Time +3    % woke            [8-12]
+%SBN% time.n.08    TPR now                                %                 
+%SBN% male.n.02    Name "Lewis"                           % Lewis  --at--        [13-21]
+%SBN% time.n.08    ClockTime 06:00 Time +1                % six  --in--          [22-28]
+%SBN% morning.n.01                                        %  --the-- morning  --and-- [29-44]
+%SBN% tell.v.04    Agent -6 Time +1 Recipient +2 Topic +3 % told            [45-49]
+%SBN% time.n.08    TPR now                                %                 
+%SBN% male.n.02    ANA -5                                 % him  --to--          [50-56]
+%SBN% wear.v.01    Agent -1 Theme +5                      % wear            [57-61]
+%SBN% male.n.02    ANA -7                                 % his             [62-65]
+%SBN% bad.a.01     Degree +1                              % worst           [66-71]
+%SBN% most.r.01                                           %                 
+%SBN% jean.n.01    User -3 Attribute -2                   % jeans           [72-77]
+%SBN% entity.n.01  Sub -1 Sub +1                          % and             [78-81]
+%SBN% shirt.n.01                                          % shirt --.--          [82-88]
+
+% Incremental DRS
+
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Malcolm
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,malcolm)']</b1>
+cat: N
+----------
+tokens:woke
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←wake:wake.v.05(e1)','b1←Time(e1,t1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+cat: (S[dcl]\NP)/NP
+----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:Lewis
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,lewis)']</b1>
+cat: N
+----------
+tokens:at
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(v1@λv6.(<b1>[]:['b1←Time(v5,v6)']</b1>;(v4@v5))))
+cat: ((S\NP)\(S\NP))/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:six
+sem: λv1.<b1>[]:['b1←time:time.n.08(v1)','b1←ClockTime(v1,06:00)']</b1>
+cat: N
+----------
+tokens:in
+sem: λv1.λv2.λv3.((v2@v3);(v1@λv4.<b1>[]:['b1←Time(v3,v4)']</b1>))
+cat: (N\N)/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:morning
+sem: λv1.<b1>[]:['b1←morning:morning.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)))
+cat: conj
+----------
+tokens:told
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←tell:tell.v.04(e1)','b1←Agent(e1,v5)','b1←Recipient(e1,v6)']</b1>;(((v2@λv7.(v7@v6))@λv8.<b2>[]:['b2←Topic(e1,v8)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v4@e1))))))
+cat: ((S[dcl]\NP)/(S[to]\NP))/NP
+----------
+tokens:him
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:wear
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←wear:wear.v.01(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:worst
+sem: λv1.λv2.(<b1>['b1←s1','b1←s2']:['b1←most:most.r.01(s2)','b1←bad:bad.a.01(s1)','b1←Degree(s1,s2)','b1←Attribute(v2,s1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:jeans
+sem: λv1.<b1>[]:['b1←jean:jean.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;((v2@λv4.<b2>[]:['b2←Sub(x1,v4)']</b2>);((v1@λv5.<b3>[]:['b3←Sub(x1,v5)']</b3>);(v3@x1))))
+cat: conj
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:shirt
+sem: λv1.<b1>[]:['b1←shirt:shirt.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

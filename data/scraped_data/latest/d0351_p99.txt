@@ -1,0 +1,100 @@
+% He walked into the kitchen a while after dinner dressed in his best jeans and shirt.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% male.n.02                                                        % He          [0-2]
+%SBN% walk.v.01    Theme -1 Time +1 Destination +2 Time +3 Location +6 % walked  --into-- [3-14]
+%SBN% time.n.08    TPR now                                             %             
+%SBN% kitchen.n.01                                                     %  --the-- kitchen [15-26]
+%SBN% while.n.01   Time +1                                             %  --a-- while     [27-34]
+%SBN% time.n.08    TSU +1                                              % after       [35-40]
+%SBN% dinner.n.01                                                      % dinner      [41-47]
+%SBN% dress.v.04   Manner +5                                           % dressed  --in--  [48-58]
+%SBN% male.n.02    ANA -8                                              % his         [59-62]
+%SBN% good.a.01    Degree +1                                           % best        [63-67]
+%SBN% most.r.01                                                        %             
+%SBN% jean.n.01    User -3 Attribute -2                                % jeans       [68-73]
+%SBN% entity.n.01  Sub -1 Sub +1                                       % and         [74-77]
+%SBN% shirt.n.01                                                       % shirt --.--      [78-84]
+
+% Incremental DRS
+
+tokens:He
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:walked
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v2@λv6.(<b1>['b1←e1']:['b1←walk:walk.v.01(e1)','b1←Time(e1,v6)','b1←Theme(e1,v5)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v4@e1))))))
+cat: ((S[dcl]\NP)/NP)/PP
+----------
+tokens:into
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:kitchen
+sem: λv1.<b1>[]:['b1←kitchen:kitchen.n.01(v1)']</b1>
+cat: N
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:while
+sem: λv1.λv2.(<b1>[]:['b1←while:while.n.01(v2)']</b1>;(v1@v2))
+cat: N/PP
+----------
+tokens:after
+sem: λv1.λv2.(v1@λv3.<b1>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻v3','b1←Time(v2,t1)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:dinner
+sem: λv1.<b1>[]:['b1←dinner:dinner.n.01(v1)']</b1>
+cat: N
+----------
+tokens:dressed
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(<b1>['b1←e1']:['b1←dress:dress.v.04(e1)','b1←Location(v5,e1)']</b1>;((v1@e1);(v4@v5))))
+cat: ((S\NP)\(S\NP))/PP
+----------
+tokens:in
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Manner(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:his
+sem: λv1.λv2.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗((<b2>['b2←x2']:['b2←User(x2,x1)']</b2>;(v1@x2))∗(v2@x2)))
+cat: NP/N
+----------
+tokens:best
+sem: λv1.λv2.(<b1>['b1←s1','b1←s2']:['b1←most:most.r.01(s2)','b1←good:good.a.01(s1)','b1←Degree(s1,s2)','b1←Attribute(v2,s1)']</b1>;(v1@v2))
+cat: N/N
+----------
+tokens:jeans
+sem: λv1.<b1>[]:['b1←jean:jean.n.01(v1)']</b1>
+cat: N
+----------
+tokens:and
+sem: λv1.λv2.λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;((v2@λv4.<b2>[]:['b2←Sub(x1,v4)']</b2>);((v1@λv5.<b3>[]:['b3←Sub(x1,v5)']</b3>);(v3@x1))))
+cat: conj
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:shirt
+sem: λv1.<b1>[]:['b1←shirt:shirt.n.01(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

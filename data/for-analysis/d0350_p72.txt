@@ -1,0 +1,69 @@
+% She just kept telling herself he had to learn a lesson.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% female.n.02                                      % She       [0-3]
+%SBN% just.a.01                                        % just      [4-8]
+%SBN% keep.v.02   Agent -2 Manner -1 Time +1 Theme +2  % kept      [9-13]
+%SBN% time.n.08   TPR now                              %           
+%SBN% tell.v.06   Proposition &gt;1 Agent -4 Recipient +1 % telling   [14-21]
+%SBN% female.n.02 ANA -5                               % herself   [22-29]
+%SBN%             CONTINUATION &lt;0                      %           
+%SBN% male.n.02                                        % he  --had--  --to-- [30-39]
+%SBN%             NECESSITY &lt;1                         %           
+%SBN% learn.v.01  Agent -1 Theme +1                    % learn     [40-45]
+%SBN% lesson.n.03                                      %  --a-- lesson --.-- [46-55]
+
+% Incremental DRS
+
+tokens:She
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:just
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b1>['b1←s1']:['b1←just:just.a.01(s1)','b1←Manner(v4,s1)']</b1>;(v3@v4)))
+cat: (S\NP)/(S\NP)
+----------
+tokens:kept
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←keep:keep.v.02(e1)','b1←Agent(e1,v4)']</b1>;(((v1@λv5.(v5@v4))@λv6.<b2>[]:['b2←Theme(e1,v6)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v3@e1)))))
+cat: (S[dcl]\NP)/(S[ng]\NP)
+----------
+tokens:telling
+sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1','b1←p1']:['b1←p1:(v2@λv7.<b2>[]:[]</b2>)','b1←tell:tell.v.06(e1)','b1←Recipient(e1,v6)','b1←Topic(e1,p1)','b1←Agent(e1,v5)']</b1>;(v4@e1))))
+cat: ((S[ng]\NP)/S[dcl])/NP
+----------
+tokens:herself
+sem: λv1.(<b1>['b1←x1']:['b1←female:female.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:he
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.λv2.λv3.(v2@λv4.<b1>[]:['b1←□((v1@λv5.(v5@v4))@v3)']</b1>)
+cat: (S[dcl]\NP)/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:learn
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←learn:learn.v.01(e1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)']</b1>;(v3@e1))))
+cat: (S[b]\NP)/NP
+----------
+tokens:a
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:lesson
+sem: λv1.<b1>[]:['b1←lesson:lesson.n.03(v1)']</b1>
+cat: N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

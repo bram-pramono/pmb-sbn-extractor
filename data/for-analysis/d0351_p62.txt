@@ -1,0 +1,89 @@
+% After only a night's journey by sea they had travelled into the South proper.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% night.n.01                                   %  --After--  --only--  --a-- night --'s-- [0-20]
+%SBN% journey.n.01 Attribute -1 Path +1            % journey  --by--           [21-31]
+%SBN% sea.n.01                                     % sea                  [32-35]
+%SBN% person.n.01                                  % they  --had--             [36-44]
+%SBN% travel.v.01  Time -3 Theme -1 Destination +1 % travelled  --into--       [45-59]
+%SBN% south.n.01                                   %  --the-- South            [60-69]
+%SBN% proper.a.02  AttributeOf -1                  % proper --.--              [70-77]
+
+% Incremental DRS
+
+tokens:After
+sem: λv1.λv2.λv3.(v2@λv4.((v1@λv5.<b1>[]:['b1←Time(v4,v5)']</b1>);(v3@v4)))
+cat: (S/S)/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:only
+sem: λv1.v1
+cat: (N/N)/(N/N)
+----------
+tokens:a
+sem: λv1.v1
+cat: N/N
+----------
+tokens:night
+sem: λv1.<b1>[]:['b1←night:night.n.01(v1)']</b1>
+cat: N
+----------
+tokens:'s
+sem: λv1.λv2.λv3.(v1@λv4.((<b1>['b1←x1']:[]</b1>;((v2@λv5.<b2>[]:['b2←Attribute(v5,v4)']</b2>)@x1))∗(v3@x1)))
+cat: (NP/(N/PP))\NP
+----------
+tokens:journey
+sem: λv1.λv2.λv3.(<b1>[]:['b1←journey:journey.n.01(v3)']</b1>;((v1@v3);(v2@v3)))
+cat: (N/PP)/PP
+----------
+tokens:by
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Path(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:sea
+sem: λv1.<b1>[]:['b1←sea:sea.n.01(v1)']</b1>
+cat: N
+----------
+tokens:they
+sem: λv1.(<b1>['b1←x1']:['b1←person:person.n.01(x1)']</b1>∗(v1@x1))
+cat: NP
+----------
+tokens:had
+sem: λv1.v1
+cat: (S[dcl]\NP)/(S[pt]\NP)
+----------
+tokens:travelled
+sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←travel:travel.v.01(e1)','b1←Theme(e1,v4)']</b1>;((v1@e1);(v3@e1))))
+cat: (S[pt]\NP)/PP
+----------
+tokens:into
+sem: λv1.λv2.(v1@λv3.<b1>[]:['b1←Destination(v2,v3)']</b1>)
+cat: PP/NP
+----------
+tokens:the
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
+tokens:South
+sem: λv1.<b1>[]:['b1←south:south.n.01(v1)']</b1>
+cat: N
+----------
+tokens:proper
+sem: λv1.λv2.(<b1>['b1←s1']:['b1←proper:proper.a.02(s1)','b1←AttributeOf(s1,v2)']</b1>;(v1@v2))
+cat: N\N
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------

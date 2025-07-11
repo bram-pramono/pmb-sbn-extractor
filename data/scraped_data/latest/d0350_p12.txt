@@ -1,0 +1,54 @@
+% There will be men to kill either way.
+
+
+[]
+
+% Sequence Box Notation
+
+%SBN% time.n.08 TSU now          %  --There-- will       [0-10]
+%SBN% be.v.04   Time -1 Theme +1 % be               [11-13]
+%SBN% man.n.01                   % men  --to--           [14-20]
+%SBN% kill.v.01 Patient -1       % kill  --either--  --way.-- [21-37]
+
+% Incremental DRS
+
+tokens:There
+sem: λv1.v1
+cat: S[dcl]/S[inv]
+----------
+tokens:will
+sem: λv1.λv2.λv3.((v1@v2)@λv4.(<b2>['b1←t1']:['b1←time:time.n.08(t1)','b1←t1≻now','b2←Time(v4,t1)']</b2>;(v3@v4)))
+cat: (S[inv]/NP)/(S[inv]/NP)
+----------
+tokens:be
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←be:be.v.04(e1)','b1←Theme(e1,v3)']</b1>;(v2@e1)))
+cat: S[inv]/NP
+----------
+tokens:ø
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
+cat: NP/N
+----------
+tokens:men
+sem: λv1.λv2.(<b1>[]:['b1←man:man.n.01(v2)']</b1>;((v1@λv3.(v3@v2))@λv4.<b2>[]:[]</b2>))
+cat: N/(S[to]\NP)
+----------
+tokens:to
+sem: λv1.v1
+cat: (S[to]\NP)/(S[b]\NP)
+----------
+tokens:kill
+sem: λv1.λv2.(v1@λv3.(<b1>['b1←e1']:['b1←kill:kill.v.01(e1)','b1←Patient(e1,v3)']</b1>;(v2@e1)))
+cat: S[b]\NP
+----------
+tokens:either
+sem: λv1.v1
+cat: ((S\NP)\(S\NP))/((S\NP)\(S\NP))
+----------
+tokens:way
+sem: λv1.v1
+cat: (S\NP)\(S\NP)
+----------
+tokens:.
+sem: λv1.v1
+cat: S[dcl]\S[dcl]
+----------
