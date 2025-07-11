@@ -3,7 +3,8 @@ import os
 import re
 from datetime import datetime
 
-from script.sbnutils import extract_sbn_integration, determine_ori_sent_token_idxs_based_on_sbn, parse_research_data, clean_up_sbn_anas
+from script.sbnutils import extract_sbn_integration, determine_ori_sent_token_idxs_based_on_sbn, parse_research_data, clean_up_sbn_anas, \
+  stimuli_folder, data_folder, report_folder
 from script.utils import to_abspath, load_indexed_manual_anaphoras, load_pmb_ids, load_avg_spr_rt_by_keys, load_spr_rt_with_subj_by_keys, \
   load_avg_et_rt_by_keys, load_et_rt_with_subj_by_keys, load_et_with_subj_df
 
@@ -26,16 +27,11 @@ def flush_clean_wrap_print(file_path):
 
 
 if __name__ == '__main__':
-  base_folder = "/home/pramono/work/drs/pmb-sbn-extractor"
-  report_folder = to_abspath(base_folder, 'report')
-  data_folder = to_abspath(report_folder, 'data')
-
-  stimuli_folder = to_abspath(base_folder, 'data/frank_etal/')
   stimuli_ref = parse_research_data(stimuli_folder)
   manual_ref = load_indexed_manual_anaphoras()
   pmb_id_ref = load_pmb_ids()
 
-  sbn_drs_folder = to_abspath(base_folder, f'data/for-analysis')
+  sbn_drs_folder = to_abspath(data_folder, f'for-analysis')
   indexed_aligned_lines = []
   sbn_ana_distance_with_rt_list = []
 
@@ -232,4 +228,4 @@ if __name__ == '__main__':
     w.writerows(extracted_et_sbn_data_with_subj)
 
   today = datetime.today().strftime('%Y%m%d-%H%M%S')
-  flush_clean_wrap_print(to_abspath(base_folder, f'thesis/2b_simple_sbn_extractor_{today}.txt'))
+  flush_clean_wrap_print(to_abspath(report_folder, f'2b_simple_sbn_extractor_{today}.txt'))

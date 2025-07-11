@@ -32,3 +32,5 @@ venv
 
 # Project specific
 tmp
+result
+report

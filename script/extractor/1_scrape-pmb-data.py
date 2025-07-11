@@ -8,6 +8,7 @@ from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
 
+from script.sbnutils import data_folder, report_folder
 from script.utils import to_abspath
 
 
@@ -28,6 +29,7 @@ def flush_clean_wrap_print(file_path):
 def extract_incremental_drs(soup):
   incremental_drs_data = []
   wrap_print('Extracting incremental drs per token')
+
   def remove_ws(text):
     # text = re.sub(r"\t", "$", text)
     text = re.sub(r"\s+", "", text)
@@ -81,6 +83,7 @@ def extract_incremental_drs(soup):
     incremental_drs_data.append('\n' + '-' * 10 + '\n')
 
   return incremental_drs_data
+
 
 def scrape_franketal_data(target_base_folder, docs_to_scrape):
   global req_headers, count
@@ -190,12 +193,11 @@ def replace_prev_folder(new_folder, prev_folder):
 #################################
 if __name__ == '__main__':
   print_acc = []
-  base_folder = "/home/pramono/work/drs/pmb-sbn-extractor"
   today = datetime.today().strftime('%Y%m%d-%H%M%S')
   wrap_print(f"Running data collection and clean up at {today}")
-  target_scrape_folder = to_abspath(base_folder, "data/scraped_data", today)
-  prev_scrape_folder = to_abspath(base_folder, "data/scraped_data/latest")
-  preparation_folder = to_abspath(base_folder, "data/for-analysis")
+  target_scrape_folder = to_abspath(data_folder, "scraped_data", today)
+  prev_scrape_folder = to_abspath(data_folder, "scraped_data/latest")
+  preparation_folder = to_abspath(data_folder, "for-analysis")
 
   docs = [
     # ("0349", 30, 99),
@@ -263,4 +265,4 @@ if __name__ == '__main__':
     wrap_print(f'Removing {target_scrape_folder}')
     shutil.rmtree(target_scrape_folder)
 
-  flush_clean_wrap_print(to_abspath(base_folder, f'thesis/report-1_scrape-pmb-data_{today}.txt'))
+  flush_clean_wrap_print(to_abspath(report_folder, f'report-1_scrape-pmb-data_{today}.txt'))

@@ -1,6 +1,6 @@
 import csv
 
-from script.sbnutils import parse_research_data
+from script.sbnutils import parse_research_data, stimuli_folder, data_folder
 from script.utils import to_abspath, load_indexed_manual_anaphoras, load_pmb_ids, load_avg_spr_rt_by_keys, load_spr_rt_with_subj_by_keys, \
   load_et_rt_with_subj_by_keys, load_avg_et_rt_by_keys, load_et_with_subj_df
 
@@ -20,12 +20,8 @@ def flush_clean_wrap_print(file_path):
 
 
 if __name__ == '__main__':
-  base_folder = "/home/pramono/work/drs/pmb-sbn-extractor"
-  report_folder = to_abspath(base_folder, 'report')
-  data_folder = to_abspath(report_folder, 'data')
-
-  stimuli_folder = to_abspath(base_folder, 'data/frank_etal/')
   stimuli_ref = parse_research_data(stimuli_folder)
+  sent_nr_ref = {value['sent_nr']: value for value in stimuli_ref.values()}
   manual_ref = load_indexed_manual_anaphoras()
   pmb_id_ref = load_pmb_ids()
 
@@ -49,6 +45,9 @@ if __name__ == '__main__':
 
   for key, indexed_anaphoras in manual_ref.items():
     sent_nr = int(key)
+    sent = sent_nr_ref[key]['sentence'].strip()
+    sent_tokens = sent.split(' ')
+
     # NOTE!! There are indeed the same sent_idxs which are identical
     for ana_token_idx, token, distance, target_idx, target_token, sent_idx2 in indexed_anaphoras:
       word_pos = int(ana_token_idx) + 1
@@ -58,6 +57,7 @@ if __name__ == '__main__':
         combined_spr_data_with_subj = {
           'sent_nr': sent_nr,
           'word_pos': word_pos,
+          'last_word': 1 if ana_token_idx == len(sent_tokens) - 1 else 0,
           'token': token,
           'sent_has_unresolved': sent_nr in sents_with_unresolved,
           'distance': distance,
@@ -79,6 +79,7 @@ if __name__ == '__main__':
           combined_et_data_with_subj = {
             'sent_nr': sent_nr,
             'word_pos': word_pos,
+            'last_word': 1 if ana_token_idx == len(sent_tokens) - 1 else 0,
             'token': token,
             'sent_has_unresolved': sent_nr in sents_with_unresolved,
             'distance': distance,

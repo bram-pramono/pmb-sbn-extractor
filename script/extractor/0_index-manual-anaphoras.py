@@ -2,6 +2,7 @@ import csv
 import re
 from datetime import datetime
 
+from script.sbnutils import stimuli_folder, data_folder, report_folder
 from script.utils import to_abspath
 
 print_acc = []
@@ -17,12 +18,6 @@ def flush_clean_wrap_print(file_path):
   with open(file_path, 'w') as out:
     out.writelines(print_acc)
   print_acc.clear()
-
-base_folder = '/home/pramono/work/drs/pmb-sbn-extractor'
-report_folder = to_abspath(base_folder, 'report')
-
-stimuli_folder = to_abspath(base_folder, 'data/frank_etal')
-data_folder = to_abspath(base_folder, 'data')
 
 stimuli_ref = {}
 with open(to_abspath(stimuli_folder, 'stimuli.txt')) as raw_file:
@@ -99,7 +94,7 @@ for sent_nr, row in manual_ana_ref.items():
     lines_to_write.append(line_to_write)
 
 today = datetime.today().strftime('%Y%m%d-%H%M%S')
-flush_clean_wrap_print(to_abspath(base_folder, f'report/report-0_index-manual-anaphoras_{today}.txt'))
+flush_clean_wrap_print(to_abspath(report_folder, f'report-0_index-manual-anaphoras_{today}.txt'))
 
 with open(to_abspath(data_folder, f'indexed-manual-anaphoras_{today}.tsv'), 'w') as out_file:
   w = csv.DictWriter(out_file, line_to_write.keys(), delimiter='\t')

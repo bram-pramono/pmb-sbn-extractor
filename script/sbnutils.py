@@ -30,8 +30,12 @@ MODAL_WORDS = ['want', 'need', 'know', 'refuse', 'continue', 'think', 'wish', 'h
 
 CONTINUATION_WORDS = ['and', 'when', 'while', 'before', 'if', 'but', 'then', 'whenever']
 
-base_folder = '/home/pramono/work/drs/local_neural_drs'
-stimuli_folder = to_abspath(base_folder, 'thesis/data/frank_etal/')
+base_folder = '/home/pramono/work/drs/pmb-sbn-extractor'
+report_folder = to_abspath(base_folder, 'report')
+result_folder = to_abspath(base_folder, 'result')
+
+data_folder = to_abspath(base_folder, 'data')
+stimuli_folder = to_abspath(data_folder, 'frank_etal')
 
 sent_nr_ref = {value['sent_nr']: value for value in parse_research_data(stimuli_folder).values()}
 

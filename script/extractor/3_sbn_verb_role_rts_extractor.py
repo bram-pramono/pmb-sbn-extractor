@@ -4,7 +4,8 @@ import os
 import re
 from datetime import datetime
 
-from script.sbnutils import determine_ori_sent_token_idxs_based_on_sbn, parse_research_data, extract_sbn_integration
+from script.sbnutils import determine_ori_sent_token_idxs_based_on_sbn, parse_research_data, extract_sbn_integration, data_folder, \
+  report_folder, stimuli_folder
 from script.utils import to_abspath, load_indexed_manual_anaphoras, load_pmb_ids, load_spr_rt_with_subj_by_keys, \
   load_et_rt_with_subj_by_keys, load_et_with_subj_df
 
@@ -76,11 +77,6 @@ def extract_verbs_and_role_distances(non_connector_sbn_lines):
 
 
 if __name__ == '__main__':
-  base_folder = "/home/pramono/work/drs/pmb-sbn-extractor"
-  report_folder = to_abspath(base_folder, 'report')
-  data_folder = to_abspath(report_folder, 'data')
-
-  stimuli_folder = to_abspath(base_folder, 'data/frank_etal/')
   stimuli_ref = parse_research_data(stimuli_folder)
   manual_ref = load_indexed_manual_anaphoras()
   pmb_id_ref = load_pmb_ids()
@@ -93,7 +89,7 @@ if __name__ == '__main__':
   extracted_spr_sbn_data_with_subj = []
   extracted_et_sbn_data_with_subj = []
 
-  sbn_drs_folder = to_abspath(base_folder, f'data/for-analysis')
+  sbn_drs_folder = to_abspath(data_folder, f'for-analysis')
   indexed_aligned_lines = []
 
   skipped_pmb_ids = []
