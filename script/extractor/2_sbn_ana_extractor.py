@@ -170,10 +170,11 @@ if __name__ == '__main__':
       # ###
 
       rt_all_subj = spr_data_with_subj[sent_nr][word_pos]
-      for subj_nr, rt in rt_all_subj.items():
+      for subj_nr, (rt, sent_pos) in rt_all_subj.items():
         data_with_subj = {
           'sent_nr': sent_nr,
           'word_pos': word_pos,
+          'sent_pos': sent_pos,
           'last_word': row['last_word'],
           'token': row['ana_token'],
           'sent_has_unresolved': sent_nr in sents_with_unresolved,
@@ -183,7 +184,7 @@ if __name__ == '__main__':
           'spill': -999
         }
         if word_pos + 1 in spr_data_with_subj[sent_nr]:
-          data_with_subj['spill'] = spr_data_with_subj[sent_nr][word_pos + 1][subj_nr]
+          data_with_subj['spill'] = spr_data_with_subj[sent_nr][word_pos + 1][subj_nr][0]
         extracted_spr_sbn_data_with_subj.append(data_with_subj)
 
     # ###
@@ -192,19 +193,20 @@ if __name__ == '__main__':
 
     if sent_nr in et_sent_nrs:
 
-      for subj_nr, (subj_rt_ff, subj_rt_fp, subj_rt_rb, subj_rt_gp) in et_data_with_subj[sent_nr][word_pos].items():
+      for subj_nr, (subj_rt_ff, subj_rt_fp, subj_rt_rb, subj_rt_gp, sent_pos) in et_data_with_subj[sent_nr][word_pos].items():
         combined_et_data_with_subj = {
           'sent_nr': sent_nr,
           'word_pos': word_pos,
+          'sent_pos': sent_pos,
           'last_word': row['last_word'],
           'token': row['ana_token'],
           'sent_has_unresolved': sent_nr in sents_with_unresolved,
           'distance': row['distance'],
           'subj_nr': subj_nr,
-          'rt_ff': et_data_with_subj[sent_nr][word_pos][subj_nr][0],
-          'rt_fp': et_data_with_subj[sent_nr][word_pos][subj_nr][1],
-          'rt_rb': et_data_with_subj[sent_nr][word_pos][subj_nr][2],
-          'rt_gp': et_data_with_subj[sent_nr][word_pos][subj_nr][3],
+          'rt_ff': subj_rt_ff,
+          'rt_fp': subj_rt_fp,
+          'rt_rb': subj_rt_rb,
+          'rt_gp': subj_rt_gp,
           'spill_ff': -999,
           'spill_fp': -999,
           'spill_rb': -999,

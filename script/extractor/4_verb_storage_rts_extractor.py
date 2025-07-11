@@ -119,21 +119,22 @@ if __name__ == '__main__':
         for verb_storage_data in sbn_verb_storage_data:
           word_pos = verb_storage_data['word_pos']
           spr_rt_all_subj = spr_data_with_subj[sent_nr][word_pos]
-          for subj_nr, rt in spr_rt_all_subj.items():
+          for subj_nr, (rt, sent_pos) in spr_rt_all_subj.items():
             spr_copy_storage_data = copy.deepcopy(verb_storage_data)
             spr_copy_storage_data['subj_nr'] = subj_nr
+            spr_copy_storage_data['sent_pos'] = sent_pos
             spr_spill = -999
             if word_pos + 1 in spr_data_with_subj[sent_nr]:
-              spr_spill = spr_data_with_subj[sent_nr][word_pos + 1][subj_nr]
+              spr_spill = spr_data_with_subj[sent_nr][word_pos + 1][subj_nr][0]
 
             spr_copy_storage_data['rt'] = rt
             spr_copy_storage_data['spill'] = spr_spill
             extracted_spr_sbn_data_with_subj.append(spr_copy_storage_data)
 
-          et_rt_all_subj = et_data_with_subj[sent_nr][word_pos]
-          for subj_nr, rt in et_rt_all_subj.items():
+          for subj_nr, (subj_rt_ff, subj_rt_fp, subj_rt_rb, subj_rt_gp, sent_pos) in et_data_with_subj[sent_nr][word_pos].items():
             et_copy_storage_data = copy.deepcopy(verb_storage_data)
             et_copy_storage_data['subj_nr'] = subj_nr
+            spr_copy_storage_data['sent_pos'] = sent_pos
             et_spill_ff = -999
             et_spill_fp = -999
             et_spill_rb = -999
@@ -144,10 +145,10 @@ if __name__ == '__main__':
               et_spill_rb = et_data_with_subj[sent_nr][word_pos + 1][subj_nr][2]
               et_spill_gp = et_data_with_subj[sent_nr][word_pos + 1][subj_nr][3]
 
-            et_copy_storage_data['rt_ff'] = et_data_with_subj[sent_nr][word_pos][subj_nr][0]
-            et_copy_storage_data['rt_fp'] = et_data_with_subj[sent_nr][word_pos][subj_nr][1]
-            et_copy_storage_data['rt_rb'] = et_data_with_subj[sent_nr][word_pos][subj_nr][2]
-            et_copy_storage_data['rt_gp'] = et_data_with_subj[sent_nr][word_pos][subj_nr][3]
+            et_copy_storage_data['rt_ff'] = subj_rt_ff
+            et_copy_storage_data['rt_fp'] = subj_rt_fp
+            et_copy_storage_data['rt_rb'] = subj_rt_rb
+            et_copy_storage_data['rt_gp'] = subj_rt_gp
             et_copy_storage_data['spill_ff'] = et_spill_ff
             et_copy_storage_data['spill_fp'] = et_spill_fp
             et_copy_storage_data['spill_rb'] = et_spill_rb

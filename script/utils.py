@@ -45,13 +45,13 @@ def load_spr_rt_with_subj_df():
   research_folder = '/home/pramono/work/drs/pmb-sbn-extractor/data/frank_etal'
   # Self-paced Reading df
   spr_rt_df = pd.read_csv(to_abspath(research_folder, 'selfpacedreading.RT.txt'), sep='\t')
-  return spr_rt_df[['sent_nr', 'word_pos', 'subj_nr', 'RT']]
+  return spr_rt_df[['sent_nr', 'word_pos', 'sent_pos', 'subj_nr', 'RT']]
 
 def load_spr_rt_with_subj_by_keys():
   spr_df = load_spr_rt_with_subj_df()
   spr_data = defaultdict(lambda: defaultdict(dict))
-  for sent_nr, word_pos, subj_nr, rt in spr_df.to_numpy().tolist():
-    spr_data[int(sent_nr)][int(word_pos)][int(subj_nr)] = rt
+  for sent_nr, word_pos, sent_pos, subj_nr, rt in spr_df.to_numpy().tolist():
+    spr_data[int(sent_nr)][int(word_pos)][int(subj_nr)] = (rt, sent_pos)
   return spr_data
 
 
@@ -85,14 +85,14 @@ def load_et_with_subj_df():
   research_folder = '/home/pramono/work/drs/pmb-sbn-extractor/data/frank_etal'
   # Eyetracking Reading df
   et_rt_df = pd.read_csv(to_abspath(research_folder, 'eyetracking.RT.txt'), sep='\t')
-  return et_rt_df[['subj_nr', 'sent_nr', 'word_pos', 'RTfirstfix', 'RTfirstpass', 'RTrightbound', 'RTgopast']]
+  return et_rt_df[['subj_nr', 'sent_nr', 'word_pos', 'sent_pos', 'RTfirstfix', 'RTfirstpass', 'RTrightbound', 'RTgopast']]
 
 
 def load_et_rt_with_subj_by_keys():
   et_df = load_et_with_subj_df()
   et_data = defaultdict(lambda: defaultdict(dict))
-  for subj_nr, sent_nr, word_pos, rt_ff, rt_fp, rt_rb, rt_gp in et_df.to_numpy().tolist():
-    et_data[int(sent_nr)][int(word_pos)][int(subj_nr)] = (rt_ff, rt_fp, rt_rb, rt_gp)
+  for subj_nr, sent_nr, word_pos, sent_pos, rt_ff, rt_fp, rt_rb, rt_gp in et_df.to_numpy().tolist():
+    et_data[int(sent_nr)][int(word_pos)][int(subj_nr)] = (rt_ff, rt_fp, rt_rb, rt_gp, sent_pos)
   return et_data
 
 
