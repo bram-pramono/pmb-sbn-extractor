@@ -4,6 +4,7 @@ import os
 from script.sbnutils import result_folder
 from script.utils import to_abspath
 
+show_all_coef = False
 sub_folder = '20250711'
 
 r_analysis_result_folder = to_abspath(result_folder, 'r-analysis', sub_folder)
@@ -30,15 +31,15 @@ for root, dirs, files in os.walk(r_analysis_result_folder):
       lines = result_content.split('\n')
       for line in lines[2:-1]:
         line = line.replace('< 2e-16', '<2e-16')
-        # if line.startswith(dep_var) and ':' not in line:
-        items = [x for x in line.split(' ') if len(x) > 0]
-        coef = items[0]
-        est = items[1]
-        t_val = items[4]
-        p_val = items[5]
-        sig = items[6].replace('\n', '') if len(items) > 6 else ''
-        cross_intercept = f_name_parts[-1].replace('.txt', '')
-        report_data.append((s_type, d_type, a_type, dep_var, indep_var, coef, est, t_val, p_val, sig, cross_intercept, f))
+        if show_all_coef or (line.startswith(indep_var) and ':' not in line):
+          items = [x for x in line.split(' ') if len(x) > 0]
+          coef = items[0]
+          est = items[1]
+          t_val = items[4]
+          p_val = items[5]
+          sig = items[6].replace('\n', '') if len(items) > 6 else ''
+          cross_intercept = f_name_parts[-1].replace('.txt', '')
+          report_data.append((s_type, d_type, a_type, dep_var, indep_var, coef, est, t_val, p_val, sig, cross_intercept, f))
 
 with open(to_abspath(result_folder, f'summary_{sub_folder}.tsv'), 'w') as out:
   cwriter = csv.writer(out, delimiter='\t')

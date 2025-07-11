@@ -48,8 +48,8 @@ def extract_verbs_and_storage_changes(non_connector_sbn_lines):
       word_pos = sent_idxs[0] + 1
       target_token = sent_tokens[0]
 
-    negative_roles = [(x, int(y)) for x, y in verb_line.roles if y.startswith('-')]
-    positive_roles = [(x, int(y)) for x, y in verb_line.roles if y.startswith('+')]
+    negative_roles = [(x, int(y)) for x, y in verb_line.roles if y.startswith('-') and x != 'Time']
+    positive_roles = [(x, int(y)) for x, y in verb_line.roles if y.startswith('+') and x != 'Time']
 
     roles_data.append(dict(
       sent_nr=sent_nr,  # this is the index of this verb in sbn
