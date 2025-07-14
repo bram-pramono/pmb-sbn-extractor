@@ -5,8 +5,8 @@ from datetime import datetime
 
 from script.sbnutils import extract_sbn_integration, determine_ori_sent_token_idxs_based_on_sbn, parse_research_data, clean_up_sbn_anas, \
   stimuli_folder, data_folder, report_folder
-from script.utils import to_abspath, load_indexed_manual_anaphoras, load_pmb_ids, load_avg_spr_rt_by_keys, load_spr_rt_with_subj_by_keys, \
-  load_avg_et_rt_by_keys, load_et_rt_with_subj_by_keys, load_et_with_subj_df
+from script.utils import to_abspath, load_indexed_manual_anaphoras, load_pmb_ids, load_spr_rt_with_subj_by_keys, \
+  load_et_rt_with_subj_by_keys, get_et_sent_nrs
 
 ANA_WORDS = ["he'd", 'himself.', 'herself', 'her.', "he'll", 'him.', 'my', 'she', 'they', 'his', 'itself.', 'him', 'Paul', 'me.', "they'll", 'her',
              'himself', 'them.', 'their', 'you', 'he', 'her,', 'that.', 'it', 'our', 'your', 'Charlie', 'it.', 'them']
@@ -142,13 +142,11 @@ if __name__ == '__main__':
 
   to_exclude = ['I', 'my', 'you', 'your', 'Paul', 'Charlie']
 
-  spr_data = load_avg_spr_rt_by_keys()
   spr_data_with_subj = load_spr_rt_with_subj_by_keys()
   extracted_spr_sbn_data_with_subj = []
 
-  et_data = load_avg_et_rt_by_keys()
   et_data_with_subj = load_et_rt_with_subj_by_keys()
-  et_sent_nrs = load_et_with_subj_df()['sent_nr'].unique()
+  et_sent_nrs = get_et_sent_nrs()
   extracted_et_sbn_data_with_subj = []
 
   sents_with_unresolved = set()

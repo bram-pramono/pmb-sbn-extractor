@@ -158,12 +158,12 @@ wrap_print('## RT ~ resolved')
 
 df_name = 'manual_ana_spr_rt_resolved_df'
 save_for_R(manual_spr_ana_df, df_name)
-write_r_for_ana(df_name, 'log(rt)', 'C(resolved) * C(reflexive) * word_pos')
+write_r_for_ana(df_name, 'log(rt)', 'C(resolved) * sent_pos * C(reflexive) * word_pos')
 
 df_name = 'manual_ana_spr_spill_resolved_df'
 spill_manual_spr_ana_df = manual_spr_ana_df[manual_spr_ana_df.spill > 0]
 save_for_R(spill_manual_spr_ana_df, df_name)
-write_r_for_ana(df_name, 'log(spill)', 'C(resolved) * C(reflexive) * word_pos')
+write_r_for_ana(df_name, 'log(spill)', 'C(resolved) * sent_pos * C(reflexive) * word_pos')
 
 wrap_print('## RT ~ distance')
 
@@ -208,7 +208,7 @@ wrap_print('## skip ~ resolved')
 manual_et_ana_df['target_skipped'] = manual_et_ana_df['rt_fp'] == 0
 manual_et_ana_df.target_skipped = manual_et_ana_df.target_skipped.astype(int)
 
-skip_rate_fixed_effects = 'C(resolved) * C(reflexive) * word_pos'
+skip_rate_fixed_effects = 'C(resolved) * sent_pos * C(reflexive) * word_pos'
 
 df_name = 'manual_ana_et_rt_skipped_resolved_df'
 save_for_R(manual_et_ana_df, df_name)
@@ -225,7 +225,7 @@ write_r_for_ana(df_name, 'spill_skipped', skip_rate_fixed_effects)
 wrap_print('## (non_reflexive) skip ~ resolved')
 
 non_reflexive_manual_et_ana_df = manual_et_ana_df.drop(manual_et_ana_df[manual_et_ana_df.reflexive == 'TRUE'].index)
-skip_rate_fixed_effects = 'C(resolved) * word_pos'
+skip_rate_fixed_effects = 'C(resolved) * sent_pos * word_pos'
 
 df_name = 'manual_ana_et_rt_skipped_resolved_non_reflexive_df'
 save_for_R(non_reflexive_manual_et_ana_df, df_name)
@@ -258,13 +258,13 @@ non_skipped_rt_manual_et_ana_df = manual_et_ana_df[manual_et_ana_df.rt_fp > 0]
 
 df_name = 'manual_ana_et_rt_resolved_df'
 save_for_R(non_skipped_rt_manual_et_ana_df, df_name)
-write_r_for_ana(df_name, 'log(rt_fp)', 'C(resolved) * C(reflexive) * word_pos')
+write_r_for_ana(df_name, 'log(rt_fp)', 'C(resolved) * sent_pos * C(reflexive) * word_pos')
 
 non_skipped_spill_manual_et_ana_df = manual_et_ana_df[manual_et_ana_df.spill_fp > 0]
 
 df_name = 'manual_ana_et_spill_resolved_df'
 save_for_R(non_skipped_spill_manual_et_ana_df, df_name)
-write_r_for_ana(df_name, 'log(spill_fp)', 'C(resolved) * C(reflexive) * word_pos')
+write_r_for_ana(df_name, 'log(spill_fp)', 'C(resolved) * sent_pos * C(reflexive) * word_pos')
 
 wrap_print('## RT ~ distance')
 
@@ -321,12 +321,12 @@ wrap_print('## RT ~ resolved')
 
 df_name = 'sbn_ana_spr_rt_resolved_df'
 save_for_R(sbn_rt_resolved_df, df_name)
-write_r_for_ana(df_name, 'log(rt)', 'C(resolved) * C(reflexive) * word_pos')
+write_r_for_ana(df_name, 'log(rt)', 'C(resolved) * sent_pos * C(reflexive) * word_pos')
 
 df_name = 'sbn_ana_spr_spill_resolved_df'
 sbn_spill_resolved_df = sbn_rt_resolved_df[sbn_rt_resolved_df.spill > 0]
 save_for_R(sbn_spill_resolved_df, df_name)
-write_r_for_ana(df_name, 'log(spill)', 'C(resolved) * C(reflexive) * word_pos')
+write_r_for_ana(df_name, 'log(spill)', 'C(resolved) * sent_pos * C(reflexive) * word_pos')
 
 wrap_print('## RT ~ distance')
 
@@ -376,7 +376,7 @@ wrap_print('## skip ~ resolved')
 combo_et_ana_df['target_skipped'] = combo_et_ana_df['rt_fp'] == 0
 combo_et_ana_df.target_skipped = combo_et_ana_df.target_skipped.astype(int)
 
-skip_rate_fixed_effects = 'C(resolved) * C(reflexive) * word_pos'
+skip_rate_fixed_effects = 'C(resolved) * sent_pos * C(reflexive) * word_pos'
 
 df_name = 'sbn_ana_et_rt_skipped_resolved_df'
 save_for_R(combo_et_ana_df, df_name)
@@ -393,7 +393,7 @@ write_r_for_ana(df_name, 'spill_skipped', skip_rate_fixed_effects)
 wrap_print('## (non_reflexive) skip ~ resolved')
 
 non_reflexive_combo_et_ana_df = combo_et_ana_df.drop(combo_et_ana_df[combo_et_ana_df.reflexive == 'TRUE'].index)
-skip_rate_fixed_effects = 'C(resolved) * word_pos'
+skip_rate_fixed_effects = 'C(resolved) * sent_pos * word_pos'
 
 df_name = 'sbn_ana_et_rt_skipped_resolved_non_reflexive_df'
 save_for_R(non_reflexive_combo_et_ana_df, df_name)
@@ -428,13 +428,13 @@ non_skipped_rt_combo_et_ana_df = combo_et_ana_df[combo_et_ana_df.rt_fp > 0]
 
 df_name = 'sbn_ana_et_rt_resolved_df'
 save_for_R(non_skipped_rt_combo_et_ana_df, df_name)
-write_r_for_ana(df_name, 'log(rt_fp)', 'C(resolved) * C(reflexive) * word_pos')
+write_r_for_ana(df_name, 'log(rt_fp)', 'C(resolved) * sent_pos * C(reflexive) * word_pos')
 
 non_skipped_spill_combo_et_ana_df = combo_et_ana_df[combo_et_ana_df.spill_fp > 0]
 
 df_name = 'sbn_ana_et_spill_resolved_df'
 save_for_R(non_skipped_spill_combo_et_ana_df, df_name)
-write_r_for_ana(df_name, 'log(spill_fp)', 'C(resolved) * C(reflexive) * word_pos')
+write_r_for_ana(df_name, 'log(spill_fp)', 'C(resolved) * sent_pos * C(reflexive) * word_pos')
 
 wrap_print('## RT ~ distance')
 
@@ -565,16 +565,6 @@ spill_sbn_spr_storage_df = sbn_spr_storage_df[sbn_spr_storage_df.spill > 0]
 df_name = 'sbn_storage_spr_spill_neg_pos_df'
 save_for_R(spill_sbn_spr_storage_df, df_name)
 write_r_for_storage(df_name, 'log(spill)', 'nr_neg_roles * nr_pos_roles * word_pos')
-
-wrap_print('## rt ~ total')
-
-df_name = 'sbn_storage_spr_rt_total_df'
-save_for_R(sbn_spr_storage_df, df_name)
-write_r_for_storage(df_name, 'log(rt)', 'nr_total_roles * word_pos')
-
-df_name = 'sbn_storage_spr_spill_total_df'
-save_for_R(spill_sbn_spr_storage_df, df_name)
-write_r_for_storage(df_name, 'log(spill)', 'nr_total_roles * word_pos')
 
 wrap_print('########################')
 wrap_print('# FOR ET STORAGE')

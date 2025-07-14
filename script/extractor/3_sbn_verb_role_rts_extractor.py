@@ -7,7 +7,7 @@ from datetime import datetime
 from script.sbnutils import determine_ori_sent_token_idxs_based_on_sbn, parse_research_data, extract_sbn_integration, data_folder, \
   report_folder, stimuli_folder
 from script.utils import to_abspath, load_indexed_manual_anaphoras, load_pmb_ids, load_spr_rt_with_subj_by_keys, \
-  load_et_rt_with_subj_by_keys, load_et_with_subj_df
+  load_et_rt_with_subj_by_keys, get_et_sent_nrs
 
 print_acc = []
 
@@ -84,7 +84,7 @@ if __name__ == '__main__':
   spr_data_with_subj = load_spr_rt_with_subj_by_keys()
 
   et_data_with_subj = load_et_rt_with_subj_by_keys()
-  et_sent_nrs = load_et_with_subj_df()['sent_nr'].unique()
+  et_sent_nrs = get_et_sent_nrs()
 
   extracted_spr_sbn_data_with_subj = []
   extracted_et_sbn_data_with_subj = []

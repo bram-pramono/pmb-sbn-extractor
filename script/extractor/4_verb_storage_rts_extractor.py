@@ -7,7 +7,7 @@ from datetime import datetime
 from script.sbnutils import determine_ori_sent_token_idxs_based_on_sbn, parse_research_data, extract_sbn_integration, stimuli_folder, data_folder, \
   report_folder
 from script.utils import to_abspath, load_indexed_manual_anaphoras, load_pmb_ids, load_spr_rt_with_subj_by_keys, \
-  load_et_rt_with_subj_by_keys, load_et_with_subj_df
+  load_et_rt_with_subj_by_keys, get_et_sent_nrs
 
 print_acc = []
 
@@ -74,7 +74,7 @@ if __name__ == '__main__':
   spr_data_with_subj = load_spr_rt_with_subj_by_keys()
 
   et_data_with_subj = load_et_rt_with_subj_by_keys()
-  et_sent_nrs = load_et_with_subj_df()['sent_nr'].unique()
+  et_sent_nrs = get_et_sent_nrs()
 
   extracted_spr_sbn_data_with_subj = []
   extracted_et_sbn_data_with_subj = []
@@ -134,7 +134,7 @@ if __name__ == '__main__':
           for subj_nr, (subj_rt_ff, subj_rt_fp, subj_rt_rb, subj_rt_gp, sent_pos) in et_data_with_subj[sent_nr][word_pos].items():
             et_copy_storage_data = copy.deepcopy(verb_storage_data)
             et_copy_storage_data['subj_nr'] = subj_nr
-            spr_copy_storage_data['sent_pos'] = sent_pos
+            et_copy_storage_data['sent_pos'] = sent_pos
             et_spill_ff = -999
             et_spill_fp = -999
             et_spill_rb = -999

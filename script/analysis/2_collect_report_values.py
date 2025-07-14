@@ -4,8 +4,8 @@ import os
 from script.sbnutils import result_folder
 from script.utils import to_abspath
 
-show_all_coef = False
-sub_folder = '20250711'
+show_all_coef = True
+sub_folder = '20250711-reconfirmed'
 
 r_analysis_result_folder = to_abspath(result_folder, 'r-analysis', sub_folder)
 

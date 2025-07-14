@@ -1,8 +1,8 @@
 import csv
 
 from script.sbnutils import parse_research_data, stimuli_folder, data_folder
-from script.utils import to_abspath, load_indexed_manual_anaphoras, load_pmb_ids, load_avg_spr_rt_by_keys, load_spr_rt_with_subj_by_keys, \
-  load_et_rt_with_subj_by_keys, load_avg_et_rt_by_keys, load_et_with_subj_df
+from script.utils import to_abspath, load_indexed_manual_anaphoras, load_pmb_ids, load_spr_rt_with_subj_by_keys, \
+  load_et_rt_with_subj_by_keys, get_et_sent_nrs
 
 print_acc = []
 
@@ -25,13 +25,11 @@ if __name__ == '__main__':
   manual_ref = load_indexed_manual_anaphoras()
   pmb_id_ref = load_pmb_ids()
 
-  spr_data = load_avg_spr_rt_by_keys()
   spr_data_with_subj = load_spr_rt_with_subj_by_keys()
   extracted_spr_manual_data_with_subj = []
 
-  et_data = load_avg_et_rt_by_keys()
   et_data_with_subj = load_et_rt_with_subj_by_keys()
-  et_sent_nrs = load_et_with_subj_df()['sent_nr'].unique()
+  et_sent_nrs = get_et_sent_nrs()
   extracted_et_manual_data_with_subj = []
 
   sents_with_unresolved = set()
