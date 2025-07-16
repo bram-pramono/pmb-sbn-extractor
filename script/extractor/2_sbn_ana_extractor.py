@@ -32,14 +32,11 @@ if __name__ == '__main__':
   pmb_id_ref = load_pmb_ids()
 
   sbn_drs_folder = to_abspath(data_folder, f'for-analysis')
-  indexed_aligned_lines = []
   sbn_ana_distance_with_rt_list = []
 
   skipped_pmb_ids = []
 
   for filename in sorted(os.listdir(sbn_drs_folder)):
-    indexed_aligned_line = {}
-    indexed_aligned_lines.append(indexed_aligned_line)
     src = to_abspath(sbn_drs_folder, filename)
     sbn_anas = []
     with open(src) as scraped_file:
@@ -53,7 +50,6 @@ if __name__ == '__main__':
       file_content = file_content.split('% Sequence Box Notation')
       data_to_process = file_content[1].split('% Incremental DRS')
       sbn_raw_text = data_to_process[0].strip()
-      # lambda_data = data_to_process[1].strip()
 
       context_map, integration_map, sbn_lines_list, full_sbn_info_list = extract_sbn_integration(sent, sbn_raw_text)
       non_connector_sbn_lines = [x for x in full_sbn_info_list if x.sbn_word is not None]
@@ -143,10 +139,10 @@ if __name__ == '__main__':
   to_exclude = ['I', 'my', 'you', 'your', 'Paul', 'Charlie']
 
   spr_data_with_subj = load_spr_rt_with_subj_by_keys()
-  extracted_spr_sbn_data_with_subj = []
-
   et_data_with_subj = load_et_rt_with_subj_by_keys()
   et_sent_nrs = get_et_sent_nrs()
+
+  extracted_spr_sbn_data_with_subj = []
   extracted_et_sbn_data_with_subj = []
 
   sents_with_unresolved = set()
