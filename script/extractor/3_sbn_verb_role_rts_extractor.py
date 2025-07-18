@@ -49,7 +49,7 @@ def extract_verbs_and_role_distances(non_connector_sbn_lines):
       target_token = sent_tokens[0]
 
     negative_distance_roles = [(x, int(y)) for x, y in verb_line.roles if y.startswith('-') and x != 'Time']
-    positive_distance_roles = [(x, int(y)) for x, y in verb_line.roles if y.startswith('+')]
+    positive_distance_roles = [(x, int(y)) for x, y in verb_line.roles if y.startswith('+') and x != 'Time']
     closest_role = ('-', 0)
     furthest_role = ('-', 0)
     if len(negative_distance_roles) > 0:

@@ -79,18 +79,21 @@ def enrich_with_role_info(df):
 
 def enrich_with_storage_info(df):
   df['word_length'] = df['token'].apply(len)
-  df['nr_total_roles'] = df['nr_neg_roles'] + df['nr_pos_roles']
 
 
 def save_for_R(df, name):
   df.to_csv(to_abspath(data_folder, 'R_prepared', f'R_{name}.tsv'), sep='\t')
 
 
-def write_r(df_name, dep_var, fixed_effects, covariates, third_cross_intercept):
+def write_r(df_name, dep_var, fixed_effects, covariates, third_cross_intercept, binomial_analysis=False):
+  r_lmer_code = f'res<-lmer({dep_var} ~ {fixed_effects} + {covariates} + (1 |subj_nr) + (1 | sent_nr), data = {df_name})'
+  if binomial_analysis:
+    r_lmer_code = f'res<-glmer({dep_var} ~ {fixed_effects} + {covariates} + (1 |subj_nr) + (1 | sent_nr), data = {df_name}, family = "binomial", glmerControl(optimizer = "bobyqa"))'
+
   wrap_print(f'''
 {df_name}<- readr::read_tsv(url("file://{data_folder}/R_prepared/R_{df_name}.tsv"))
 
-res<-lmer({dep_var} ~ {fixed_effects} + {covariates} + (1 |subj_nr) + (1 | sent_nr), data = {df_name})
+{r_lmer_code}
 
 sink("{base_folder}/result/r-analysis/{df_name.replace("_df", "")}_sentnr.txt")
 summary(res)
@@ -98,8 +101,12 @@ sink()
   ''')
 
   if third_cross_intercept is not None:
+    r_lmer_code = f'res<-lmer({dep_var} ~ {fixed_effects} + {covariates} + (1 |subj_nr) + (1 | {third_cross_intercept}), data = {df_name})'
+    if binomial_analysis:
+      r_lmer_code = f'res<-glmer({dep_var} ~ {fixed_effects} + {covariates} + (1 |subj_nr) + (1 | {third_cross_intercept}), data = {df_name}, family = "binomial", glmerControl(optimizer = "bobyqa"))'
+
     wrap_print(f'''
-res<-lmer({dep_var} ~ {fixed_effects} + {covariates} + (1 |subj_nr) + (1 | {third_cross_intercept}), data = {df_name})
+{r_lmer_code}
 
 sink("{base_folder}/result/r-analysis/{df_name.replace("_df", "")}_{third_cross_intercept.replace("clean_", "")}.txt")
 summary(res)
@@ -107,16 +114,16 @@ sink()
     ''')
 
 
-def write_r_for_ana(df_name, dep_var, fixed_effects):
-  write_r(df_name, dep_var, fixed_effects, 'C(multiple_drefs) + word_length + num_prev_anas', 'clean_token')
+def write_r_for_ana(df_name, dep_var, fixed_effects, binomial_analysis=False):
+  write_r(df_name, dep_var, fixed_effects, 'C(multiple_drefs) + word_length + num_prev_anas', 'clean_token', binomial_analysis)
 
 
-def write_r_for_role(df_name, dep_var, fixed_effects, third_cross_intercept):
-  write_r(df_name, dep_var, fixed_effects, 'word_length', third_cross_intercept)
+def write_r_for_role(df_name, dep_var, fixed_effects, third_cross_intercept, binomial_analysis=False):
+  write_r(df_name, dep_var, fixed_effects, 'word_length', third_cross_intercept, binomial_analysis)
 
 
-def write_r_for_storage(df_name, dep_var, fixed_effects):
-  write_r(df_name, dep_var, fixed_effects, 'word_length', None)
+def write_r_for_storage(df_name, dep_var, fixed_effects, binomial_analysis=False):
+  write_r(df_name, dep_var, fixed_effects, 'word_length', None, binomial_analysis)
 
 
 wrap_print('########################')
@@ -190,7 +197,6 @@ if skip_first_last_for_ana:
   ori_manual_et_ana_df['last_word'] = ori_manual_et_ana_df.token.str.endswith('.')
   ori_manual_et_ana_df.last_word = ori_manual_et_ana_df.last_word.astype(int)
 
-
 # clean up data
 manual_et_ana_df = ori_manual_et_ana_df.drop(ori_manual_et_ana_df[ori_manual_et_ana_df.distance.str.contains('\+')].index)
 enrich_with_ana_info(manual_et_ana_df)
@@ -208,11 +214,9 @@ wrap_print('## skip ~ resolved')
 manual_et_ana_df['target_skipped'] = manual_et_ana_df['rt_fp'] == 0
 manual_et_ana_df.target_skipped = manual_et_ana_df.target_skipped.astype(int)
 
-skip_rate_fixed_effects = 'C(resolved) * sent_pos * C(reflexive) * word_pos'
-
 df_name = 'manual_ana_et_rt_skipped_resolved_df'
 save_for_R(manual_et_ana_df, df_name)
-write_r_for_ana(df_name, 'target_skipped', skip_rate_fixed_effects)
+write_r_for_ana(df_name, 'target_skipped', 'C(resolved) * sent_pos * C(reflexive) * word_pos', binomial_analysis=False)
 
 spill_manual_et_ana_df = manual_et_ana_df[manual_et_ana_df.spill_fp >= 0]
 spill_manual_et_ana_df['spill_skipped'] = spill_manual_et_ana_df['spill_fp'] == 0
@@ -220,22 +224,7 @@ spill_manual_et_ana_df.spill_skipped = spill_manual_et_ana_df.spill_skipped.asty
 
 df_name = 'manual_ana_et_spill_skipped_resolved_df'
 save_for_R(spill_manual_et_ana_df, df_name)
-write_r_for_ana(df_name, 'spill_skipped', skip_rate_fixed_effects)
-
-wrap_print('## (non_reflexive) skip ~ resolved')
-
-non_reflexive_manual_et_ana_df = manual_et_ana_df.drop(manual_et_ana_df[manual_et_ana_df.reflexive == 'TRUE'].index)
-skip_rate_fixed_effects = 'C(resolved) * sent_pos * word_pos'
-
-df_name = 'manual_ana_et_rt_skipped_resolved_non_reflexive_df'
-save_for_R(non_reflexive_manual_et_ana_df, df_name)
-write_r_for_ana(df_name, 'target_skipped', skip_rate_fixed_effects)
-
-non_reflexive_spill_manual_et_ana_df = spill_manual_et_ana_df.drop(spill_manual_et_ana_df[spill_manual_et_ana_df.reflexive == 'TRUE'].index)
-
-df_name = 'manual_ana_et_spill_skipped_resolved_non_reflexive_df'
-save_for_R(non_reflexive_spill_manual_et_ana_df, df_name)
-write_r_for_ana(df_name, 'spill_skipped', skip_rate_fixed_effects)
+write_r_for_ana(df_name, 'spill_skipped', 'C(resolved) * sent_pos * C(reflexive) * word_pos', binomial_analysis=False)
 
 wrap_print('## skip ~ distance')
 
@@ -244,13 +233,13 @@ manual_et_ana_distance_df.distance = manual_et_ana_distance_df.distance.astype(i
 
 df_name = 'manual_ana_et_rt_skipped_distance_df'
 save_for_R(manual_et_ana_distance_df, df_name)
-write_r_for_ana(df_name, 'target_skipped', 'distance * C(reflexive) * word_pos')
+write_r_for_ana(df_name, 'target_skipped', 'distance * C(reflexive) * word_pos', binomial_analysis=False)
 
 spill_manual_et_ana_distance_df = spill_manual_et_ana_df[spill_manual_et_ana_df.distance != '?']
 
 df_name = 'manual_ana_et_spill_skipped_distance_df'
 save_for_R(spill_manual_et_ana_distance_df, df_name)
-write_r_for_ana(df_name, 'spill_skipped', 'distance * C(reflexive) * word_pos')
+write_r_for_ana(df_name, 'spill_skipped', 'distance * C(reflexive) * word_pos', binomial_analysis=False)
 
 wrap_print('## RT ~ resolved')
 
@@ -280,7 +269,6 @@ non_skipped_spill_manual_et_ana_distance_df = manual_et_ana_distance_df[manual_e
 df_name = 'manual_ana_et_spill_distance_df'
 save_for_R(non_skipped_spill_manual_et_ana_distance_df, df_name)
 write_r_for_ana(df_name, 'log(spill_fp)', 'distance * C(reflexive) * word_pos')
-
 
 wrap_print('########################')
 wrap_print('# SBN ANAPHORAS')
@@ -376,11 +364,9 @@ wrap_print('## skip ~ resolved')
 combo_et_ana_df['target_skipped'] = combo_et_ana_df['rt_fp'] == 0
 combo_et_ana_df.target_skipped = combo_et_ana_df.target_skipped.astype(int)
 
-skip_rate_fixed_effects = 'C(resolved) * sent_pos * C(reflexive) * word_pos'
-
 df_name = 'sbn_ana_et_rt_skipped_resolved_df'
 save_for_R(combo_et_ana_df, df_name)
-write_r_for_ana(df_name, 'target_skipped', skip_rate_fixed_effects)
+write_r_for_ana(df_name, 'target_skipped', 'C(resolved) * sent_pos * C(reflexive) * word_pos', binomial_analysis=False)
 
 combo_et_ana_df['spill_skipped'] = combo_et_ana_df['spill_fp'] == 0
 combo_et_ana_df.spill_skipped = combo_et_ana_df.spill_skipped.astype(int)
@@ -388,22 +374,7 @@ spill_combo_et_ana_df = combo_et_ana_df[combo_et_ana_df.spill_fp >= 0]
 
 df_name = 'sbn_ana_et_spill_skipped_resolved_df'
 save_for_R(spill_combo_et_ana_df, df_name)
-write_r_for_ana(df_name, 'spill_skipped', skip_rate_fixed_effects)
-
-wrap_print('## (non_reflexive) skip ~ resolved')
-
-non_reflexive_combo_et_ana_df = combo_et_ana_df.drop(combo_et_ana_df[combo_et_ana_df.reflexive == 'TRUE'].index)
-skip_rate_fixed_effects = 'C(resolved) * sent_pos * word_pos'
-
-df_name = 'sbn_ana_et_rt_skipped_resolved_non_reflexive_df'
-save_for_R(non_reflexive_combo_et_ana_df, df_name)
-write_r_for_ana(df_name, 'target_skipped', skip_rate_fixed_effects)
-
-non_reflexive_spill_combo_et_ana_df = non_reflexive_combo_et_ana_df[non_reflexive_combo_et_ana_df.spill_fp >= 0]
-
-df_name = 'sbn_ana_et_spill_skipped_resolved_non_reflexive_df'
-save_for_R(non_reflexive_spill_combo_et_ana_df, df_name)
-write_r_for_ana(df_name, 'spill_skipped', skip_rate_fixed_effects)
+write_r_for_ana(df_name, 'spill_skipped', 'C(resolved) * sent_pos * C(reflexive) * word_pos', binomial_analysis=False)
 
 wrap_print('## skip ~ distance')
 
@@ -412,7 +383,7 @@ sbn_et_ana_df.target_skipped = sbn_et_ana_df.target_skipped.astype(int)
 
 df_name = 'sbn_ana_et_rt_skipped_distance_df'
 save_for_R(sbn_et_ana_df, df_name)
-write_r_for_ana(df_name, 'target_skipped', 'distance * C(reflexive) * word_pos')
+write_r_for_ana(df_name, 'target_skipped', 'distance * C(reflexive) * word_pos', binomial_analysis=False)
 
 sbn_et_ana_df['spill_skipped'] = sbn_et_ana_df['spill_fp'] == 0
 sbn_et_ana_df.spill_skipped = sbn_et_ana_df.spill_skipped.astype(int)
@@ -420,7 +391,7 @@ spill_sbn_et_ana_df = sbn_et_ana_df[sbn_et_ana_df.spill_fp >= 0]
 
 df_name = 'sbn_ana_et_spill_skipped_distance_df'
 save_for_R(spill_sbn_et_ana_df, df_name)
-write_r_for_ana(df_name, 'spill_skipped', 'distance * C(reflexive) * word_pos')
+write_r_for_ana(df_name, 'spill_skipped', 'distance * C(reflexive) * word_pos', binomial_analysis=False)
 
 wrap_print('## RT ~ resolved')
 
@@ -501,7 +472,7 @@ sbn_et_role_df.target_skipped = sbn_et_role_df.target_skipped.astype(int)
 
 df_name = 'sbn_role_et_rt_skipped_closest_distance_df'
 save_for_R(sbn_et_role_df, df_name)
-write_r_for_role(df_name, 'target_skipped', 'closest_distance * word_pos', 'closest_role')
+write_r_for_role(df_name, 'target_skipped', 'closest_distance * word_pos', 'closest_role', binomial_analysis=False)
 
 spill_sbn_et_role_df = sbn_et_role_df[sbn_et_role_df.spill_fp >= 0]
 spill_sbn_et_role_df['spill_skipped'] = spill_sbn_et_role_df['spill_fp'] == 0
@@ -509,17 +480,17 @@ spill_sbn_et_role_df.spill_skipped = spill_sbn_et_role_df.spill_skipped.astype(i
 
 df_name = 'sbn_role_et_spill_skipped_closest_distance_df'
 save_for_R(spill_sbn_et_role_df, df_name)
-write_r_for_role(df_name, 'spill_skipped', 'closest_distance * word_pos', 'closest_role')
+write_r_for_role(df_name, 'spill_skipped', 'closest_distance * word_pos', 'closest_role', binomial_analysis=False)
 
 wrap_print('## skip ~ furthest_distance')
 
 df_name = 'sbn_role_et_rt_skipped_furthest_distance_df'
 save_for_R(sbn_et_role_df, df_name)
-write_r_for_role(df_name, 'target_skipped', 'furthest_distance * word_pos', 'furthest_role')
+write_r_for_role(df_name, 'target_skipped', 'furthest_distance * word_pos', 'furthest_role', binomial_analysis=False)
 
 df_name = 'sbn_role_et_spill_skipped_furthest_distance_df'
 save_for_R(spill_sbn_et_role_df, df_name)
-write_r_for_role(df_name, 'spill_skipped', 'furthest_distance * word_pos', 'furthest_role')
+write_r_for_role(df_name, 'spill_skipped', 'furthest_distance * word_pos', 'furthest_role', binomial_analysis=False)
 
 wrap_print('## rt ~ closest_distance')
 
@@ -582,7 +553,7 @@ sbn_et_storage_df.target_skipped = sbn_et_storage_df.target_skipped.astype(int)
 
 df_name = 'sbn_storage_et_rt_skipped_neg_pos_df'
 save_for_R(sbn_et_storage_df, df_name)
-write_r_for_storage(df_name, 'target_skipped', 'nr_neg_roles * nr_pos_roles * word_pos')
+write_r_for_storage(df_name, 'target_skipped', 'nr_neg_roles * nr_pos_roles * word_pos', binomial_analysis=False)
 
 spill_sbn_et_storage_df = sbn_et_storage_df[sbn_et_storage_df.spill_fp >= 0]
 spill_sbn_et_storage_df['spill_skipped'] = spill_sbn_et_storage_df['spill_fp'] == 0
@@ -590,17 +561,7 @@ spill_sbn_et_storage_df.spill_skipped = spill_sbn_et_storage_df.spill_skipped.as
 
 df_name = 'sbn_storage_et_spill_skipped_neg_pos_df'
 save_for_R(spill_sbn_et_storage_df, df_name)
-write_r_for_storage(df_name, 'spill_skipped', 'nr_neg_roles * nr_pos_roles * word_pos')
-
-wrap_print('## skip ~ total')
-
-df_name = 'sbn_storage_et_rt_skipped_total_df'
-save_for_R(sbn_et_storage_df, df_name)
-write_r_for_storage(df_name, 'target_skipped', 'nr_total_roles * word_pos')
-
-df_name = 'sbn_storage_et_spill_skipped_total_df'
-save_for_R(spill_sbn_et_storage_df, df_name)
-write_r_for_storage(df_name, 'spill_skipped', 'nr_total_roles * word_pos')
+write_r_for_storage(df_name, 'spill_skipped', 'nr_neg_roles * nr_pos_roles * word_pos', binomial_analysis=False)
 
 wrap_print('## rt ~ neg_pos')
 
@@ -615,16 +576,6 @@ non_skipped_spill_sbn_et_storage_df = spill_sbn_et_storage_df[spill_sbn_et_stora
 df_name = 'sbn_storage_et_spill_neg_pos_df'
 save_for_R(non_skipped_spill_sbn_et_storage_df, df_name)
 write_r_for_storage(df_name, 'log(spill_fp)', 'nr_neg_roles * nr_pos_roles * word_pos')
-
-wrap_print('## rt ~ total')
-
-df_name = 'sbn_storage_et_rt_total_df'
-save_for_R(non_skipped_sbn_et_storage_df, df_name)
-write_r_for_storage(df_name, 'log(rt_fp)', 'nr_total_roles * word_pos')
-
-df_name = 'sbn_storage_et_spill_total_df'
-save_for_R(non_skipped_spill_sbn_et_storage_df, df_name)
-write_r_for_storage(df_name, 'log(spill_fp)', 'nr_total_roles * word_pos')
 
 today = datetime.today().strftime('%Y%m%d-%H%M%S')
 flush_clean_wrap_print(to_abspath(base_folder, f'script/1_prep-r-code_{today}.txt'))
