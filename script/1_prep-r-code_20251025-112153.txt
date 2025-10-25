@@ -1,0 +1,567 @@
+########################
+# DATASET CONFIGS
+########################
+library(readr)
+library(lme4)
+library(lmerTest)
+########################
+# MANUAL ANAPHORAS
+########################
+########################
+# FOR SPR ANAPHORAS
+########################
+## RT ~ resolved
+
+manual_ana_spr_rt_resolved_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_manual_ana_spr_rt_resolved_df.tsv"))
+res<-lmer(log(rt) ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = manual_ana_spr_rt_resolved_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_spr_rt_resolved_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(rt) ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = manual_ana_spr_rt_resolved_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_spr_rt_resolved_token.txt")
+summary(res)
+sink()
+    
+
+manual_ana_spr_spill_resolved_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_manual_ana_spr_spill_resolved_df.tsv"))
+res<-lmer(log(spill) ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = manual_ana_spr_spill_resolved_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_spr_spill_resolved_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(spill) ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = manual_ana_spr_spill_resolved_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_spr_spill_resolved_token.txt")
+summary(res)
+sink()
+    
+## RT ~ distance
+
+manual_ana_spr_rt_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_manual_ana_spr_rt_distance_df.tsv"))
+res<-lmer(log(rt) ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = manual_ana_spr_rt_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_spr_rt_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(rt) ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = manual_ana_spr_rt_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_spr_rt_distance_token.txt")
+summary(res)
+sink()
+    
+
+manual_ana_spr_spill_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_manual_ana_spr_spill_distance_df.tsv"))
+res<-lmer(log(spill) ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = manual_ana_spr_spill_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_spr_spill_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(spill) ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = manual_ana_spr_spill_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_spr_spill_distance_token.txt")
+summary(res)
+sink()
+    
+########################
+# FOR ET ANAPHORAS
+########################
+## skip ~ resolved
+
+manual_ana_et_rt_skipped_resolved_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_manual_ana_et_rt_skipped_resolved_df.tsv"))
+res<-glmer(target_skipped ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = manual_ana_et_rt_skipped_resolved_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_et_rt_skipped_resolved_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-glmer(target_skipped ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = manual_ana_et_rt_skipped_resolved_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_et_rt_skipped_resolved_token.txt")
+summary(res)
+sink()
+    
+
+manual_ana_et_spill_skipped_resolved_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_manual_ana_et_spill_skipped_resolved_df.tsv"))
+res<-glmer(spill_skipped ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = manual_ana_et_spill_skipped_resolved_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_et_spill_skipped_resolved_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-glmer(spill_skipped ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = manual_ana_et_spill_skipped_resolved_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_et_spill_skipped_resolved_token.txt")
+summary(res)
+sink()
+    
+## skip ~ distance
+
+manual_ana_et_rt_skipped_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_manual_ana_et_rt_skipped_distance_df.tsv"))
+res<-glmer(target_skipped ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = manual_ana_et_rt_skipped_distance_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_et_rt_skipped_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-glmer(target_skipped ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = manual_ana_et_rt_skipped_distance_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_et_rt_skipped_distance_token.txt")
+summary(res)
+sink()
+    
+
+manual_ana_et_spill_skipped_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_manual_ana_et_spill_skipped_distance_df.tsv"))
+res<-glmer(spill_skipped ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = manual_ana_et_spill_skipped_distance_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_et_spill_skipped_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-glmer(spill_skipped ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = manual_ana_et_spill_skipped_distance_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_et_spill_skipped_distance_token.txt")
+summary(res)
+sink()
+    
+## RT ~ resolved
+
+manual_ana_et_rt_resolved_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_manual_ana_et_rt_resolved_df.tsv"))
+res<-lmer(log(rt_fp) ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = manual_ana_et_rt_resolved_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_et_rt_resolved_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(rt_fp) ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = manual_ana_et_rt_resolved_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_et_rt_resolved_token.txt")
+summary(res)
+sink()
+    
+
+manual_ana_et_spill_resolved_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_manual_ana_et_spill_resolved_df.tsv"))
+res<-lmer(log(spill_fp) ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = manual_ana_et_spill_resolved_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_et_spill_resolved_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(spill_fp) ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = manual_ana_et_spill_resolved_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_et_spill_resolved_token.txt")
+summary(res)
+sink()
+    
+## RT ~ distance
+
+manual_ana_et_rt_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_manual_ana_et_rt_distance_df.tsv"))
+res<-lmer(log(rt_fp) ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = manual_ana_et_rt_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_et_rt_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(rt_fp) ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = manual_ana_et_rt_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_et_rt_distance_token.txt")
+summary(res)
+sink()
+    
+
+manual_ana_et_spill_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_manual_ana_et_spill_distance_df.tsv"))
+res<-lmer(log(spill_fp) ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = manual_ana_et_spill_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_et_spill_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(spill_fp) ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = manual_ana_et_spill_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/manual_ana_et_spill_distance_token.txt")
+summary(res)
+sink()
+    
+########################
+# SBN ANAPHORAS
+########################
+########################
+# FOR SPR ANAPHORAS
+########################
+## RT ~ resolved
+
+sbn_ana_spr_rt_resolved_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_ana_spr_rt_resolved_df.tsv"))
+res<-lmer(log(rt) ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = sbn_ana_spr_rt_resolved_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_spr_rt_resolved_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(rt) ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = sbn_ana_spr_rt_resolved_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_spr_rt_resolved_token.txt")
+summary(res)
+sink()
+    
+
+sbn_ana_spr_spill_resolved_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_ana_spr_spill_resolved_df.tsv"))
+res<-lmer(log(spill) ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = sbn_ana_spr_spill_resolved_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_spr_spill_resolved_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(spill) ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = sbn_ana_spr_spill_resolved_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_spr_spill_resolved_token.txt")
+summary(res)
+sink()
+    
+## RT ~ distance
+
+sbn_ana_spr_rt_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_ana_spr_rt_distance_df.tsv"))
+res<-lmer(log(rt) ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = sbn_ana_spr_rt_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_spr_rt_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(rt) ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = sbn_ana_spr_rt_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_spr_rt_distance_token.txt")
+summary(res)
+sink()
+    
+
+sbn_ana_spr_spill_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_ana_spr_spill_distance_df.tsv"))
+res<-lmer(log(spill) ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = sbn_ana_spr_spill_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_spr_spill_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(spill) ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = sbn_ana_spr_spill_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_spr_spill_distance_token.txt")
+summary(res)
+sink()
+    
+########################
+# FOR ET ANAPHORAS
+########################
+## skip ~ resolved
+
+sbn_ana_et_rt_skipped_resolved_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_ana_et_rt_skipped_resolved_df.tsv"))
+res<-glmer(target_skipped ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = sbn_ana_et_rt_skipped_resolved_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_et_rt_skipped_resolved_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-glmer(target_skipped ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = sbn_ana_et_rt_skipped_resolved_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_et_rt_skipped_resolved_token.txt")
+summary(res)
+sink()
+    
+
+sbn_ana_et_spill_skipped_resolved_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_ana_et_spill_skipped_resolved_df.tsv"))
+res<-glmer(spill_skipped ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = sbn_ana_et_spill_skipped_resolved_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_et_spill_skipped_resolved_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-glmer(spill_skipped ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = sbn_ana_et_spill_skipped_resolved_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_et_spill_skipped_resolved_token.txt")
+summary(res)
+sink()
+    
+## skip ~ distance
+
+sbn_ana_et_rt_skipped_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_ana_et_rt_skipped_distance_df.tsv"))
+res<-glmer(target_skipped ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = sbn_ana_et_rt_skipped_distance_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_et_rt_skipped_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-glmer(target_skipped ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = sbn_ana_et_rt_skipped_distance_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_et_rt_skipped_distance_token.txt")
+summary(res)
+sink()
+    
+
+sbn_ana_et_spill_skipped_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_ana_et_spill_skipped_distance_df.tsv"))
+res<-glmer(spill_skipped ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = sbn_ana_et_spill_skipped_distance_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_et_spill_skipped_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-glmer(spill_skipped ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = sbn_ana_et_spill_skipped_distance_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_et_spill_skipped_distance_token.txt")
+summary(res)
+sink()
+    
+## RT ~ resolved
+
+sbn_ana_et_rt_resolved_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_ana_et_rt_resolved_df.tsv"))
+res<-lmer(log(rt_fp) ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = sbn_ana_et_rt_resolved_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_et_rt_resolved_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(rt_fp) ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = sbn_ana_et_rt_resolved_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_et_rt_resolved_token.txt")
+summary(res)
+sink()
+    
+
+sbn_ana_et_spill_resolved_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_ana_et_spill_resolved_df.tsv"))
+res<-lmer(log(spill_fp) ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = sbn_ana_et_spill_resolved_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_et_spill_resolved_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(spill_fp) ~ C(resolved) * sent_pos * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = sbn_ana_et_spill_resolved_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_et_spill_resolved_token.txt")
+summary(res)
+sink()
+    
+## RT ~ distance
+
+sbn_ana_et_rt_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_ana_et_rt_distance_df.tsv"))
+res<-lmer(log(rt_fp) ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = sbn_ana_et_rt_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_et_rt_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(rt_fp) ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = sbn_ana_et_rt_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_et_rt_distance_token.txt")
+summary(res)
+sink()
+    
+
+sbn_ana_et_spill_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_ana_et_spill_distance_df.tsv"))
+res<-lmer(log(spill_fp) ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | sent_nr), data = sbn_ana_et_spill_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_et_spill_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(spill_fp) ~ distance * C(reflexive) * word_pos + C(multiple_drefs) + word_length + num_prev_anas + (1 |subj_nr) + (1 | clean_token), data = sbn_ana_et_spill_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_ana_et_spill_distance_token.txt")
+summary(res)
+sink()
+    
+########################
+# FOR SPR ROLES
+########################
+## rt ~ closest_distance
+
+sbn_role_spr_rt_closest_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_role_spr_rt_closest_distance_df.tsv"))
+res<-lmer(log(rt) ~ closest_distance * word_pos + word_length + (1 |subj_nr) + (1 | sent_nr), data = sbn_role_spr_rt_closest_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_spr_rt_closest_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(rt) ~ closest_distance * word_pos + word_length + (1 |subj_nr) + (1 | closest_role), data = sbn_role_spr_rt_closest_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_spr_rt_closest_distance_closest_role.txt")
+summary(res)
+sink()
+    
+
+sbn_role_spr_spill_closest_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_role_spr_spill_closest_distance_df.tsv"))
+res<-lmer(log(spill) ~ closest_distance * word_pos + word_length + (1 |subj_nr) + (1 | sent_nr), data = sbn_role_spr_spill_closest_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_spr_spill_closest_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(spill) ~ closest_distance * word_pos + word_length + (1 |subj_nr) + (1 | closest_role), data = sbn_role_spr_spill_closest_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_spr_spill_closest_distance_closest_role.txt")
+summary(res)
+sink()
+    
+## rt ~ furthest_distance
+
+sbn_role_spr_rt_furthest_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_role_spr_rt_furthest_distance_df.tsv"))
+res<-lmer(log(rt) ~ furthest_distance * word_pos + word_length + (1 |subj_nr) + (1 | sent_nr), data = sbn_role_spr_rt_furthest_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_spr_rt_furthest_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(rt) ~ furthest_distance * word_pos + word_length + (1 |subj_nr) + (1 | furthest_role), data = sbn_role_spr_rt_furthest_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_spr_rt_furthest_distance_furthest_role.txt")
+summary(res)
+sink()
+    
+
+sbn_role_spr_spill_furthest_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_role_spr_spill_furthest_distance_df.tsv"))
+res<-lmer(log(spill) ~ furthest_distance * word_pos + word_length + (1 |subj_nr) + (1 | sent_nr), data = sbn_role_spr_spill_furthest_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_spr_spill_furthest_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(spill) ~ furthest_distance * word_pos + word_length + (1 |subj_nr) + (1 | furthest_role), data = sbn_role_spr_spill_furthest_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_spr_spill_furthest_distance_furthest_role.txt")
+summary(res)
+sink()
+    
+########################
+# FOR ET ROLES
+########################
+## skip ~ closest_distance
+
+sbn_role_et_rt_skipped_closest_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_role_et_rt_skipped_closest_distance_df.tsv"))
+res<-glmer(target_skipped ~ closest_distance * word_pos + word_length + (1 |subj_nr) + (1 | sent_nr), data = sbn_role_et_rt_skipped_closest_distance_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_et_rt_skipped_closest_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-glmer(target_skipped ~ closest_distance * word_pos + word_length + (1 |subj_nr) + (1 | closest_role), data = sbn_role_et_rt_skipped_closest_distance_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_et_rt_skipped_closest_distance_closest_role.txt")
+summary(res)
+sink()
+    
+
+sbn_role_et_spill_skipped_closest_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_role_et_spill_skipped_closest_distance_df.tsv"))
+res<-glmer(spill_skipped ~ closest_distance * word_pos + word_length + (1 |subj_nr) + (1 | sent_nr), data = sbn_role_et_spill_skipped_closest_distance_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_et_spill_skipped_closest_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-glmer(spill_skipped ~ closest_distance * word_pos + word_length + (1 |subj_nr) + (1 | closest_role), data = sbn_role_et_spill_skipped_closest_distance_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_et_spill_skipped_closest_distance_closest_role.txt")
+summary(res)
+sink()
+    
+## skip ~ furthest_distance
+
+sbn_role_et_rt_skipped_furthest_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_role_et_rt_skipped_furthest_distance_df.tsv"))
+res<-glmer(target_skipped ~ furthest_distance * word_pos + word_length + (1 |subj_nr) + (1 | sent_nr), data = sbn_role_et_rt_skipped_furthest_distance_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_et_rt_skipped_furthest_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-glmer(target_skipped ~ furthest_distance * word_pos + word_length + (1 |subj_nr) + (1 | furthest_role), data = sbn_role_et_rt_skipped_furthest_distance_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_et_rt_skipped_furthest_distance_furthest_role.txt")
+summary(res)
+sink()
+    
+
+sbn_role_et_spill_skipped_furthest_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_role_et_spill_skipped_furthest_distance_df.tsv"))
+res<-glmer(spill_skipped ~ furthest_distance * word_pos + word_length + (1 |subj_nr) + (1 | sent_nr), data = sbn_role_et_spill_skipped_furthest_distance_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_et_spill_skipped_furthest_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-glmer(spill_skipped ~ furthest_distance * word_pos + word_length + (1 |subj_nr) + (1 | furthest_role), data = sbn_role_et_spill_skipped_furthest_distance_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_et_spill_skipped_furthest_distance_furthest_role.txt")
+summary(res)
+sink()
+    
+## rt ~ closest_distance
+
+sbn_role_et_rt_closest_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_role_et_rt_closest_distance_df.tsv"))
+res<-lmer(log(rt_fp) ~ closest_distance * word_pos + word_length + (1 |subj_nr) + (1 | sent_nr), data = sbn_role_et_rt_closest_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_et_rt_closest_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(rt_fp) ~ closest_distance * word_pos + word_length + (1 |subj_nr) + (1 | closest_role), data = sbn_role_et_rt_closest_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_et_rt_closest_distance_closest_role.txt")
+summary(res)
+sink()
+    
+
+sbn_role_et_spill_closest_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_role_et_spill_closest_distance_df.tsv"))
+res<-lmer(log(spill_fp) ~ closest_distance * word_pos + word_length + (1 |subj_nr) + (1 | sent_nr), data = sbn_role_et_spill_closest_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_et_spill_closest_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(spill_fp) ~ closest_distance * word_pos + word_length + (1 |subj_nr) + (1 | closest_role), data = sbn_role_et_spill_closest_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_et_spill_closest_distance_closest_role.txt")
+summary(res)
+sink()
+    
+## rt ~ furthest_distance
+
+sbn_role_et_rt_furthest_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_role_et_rt_furthest_distance_df.tsv"))
+res<-lmer(log(rt_fp) ~ furthest_distance * word_pos + word_length + (1 |subj_nr) + (1 | sent_nr), data = sbn_role_et_rt_furthest_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_et_rt_furthest_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(rt_fp) ~ furthest_distance * word_pos + word_length + (1 |subj_nr) + (1 | furthest_role), data = sbn_role_et_rt_furthest_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_et_rt_furthest_distance_furthest_role.txt")
+summary(res)
+sink()
+    
+
+sbn_role_et_spill_furthest_distance_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_role_et_spill_furthest_distance_df.tsv"))
+res<-lmer(log(spill_fp) ~ furthest_distance * word_pos + word_length + (1 |subj_nr) + (1 | sent_nr), data = sbn_role_et_spill_furthest_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_et_spill_furthest_distance_sentnr.txt")
+summary(res)
+sink()
+  
+
+res<-lmer(log(spill_fp) ~ furthest_distance * word_pos + word_length + (1 |subj_nr) + (1 | furthest_role), data = sbn_role_et_spill_furthest_distance_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_role_et_spill_furthest_distance_furthest_role.txt")
+summary(res)
+sink()
+    
+########################
+# FOR SPR STORAGE
+########################
+## rt ~ neg * pos
+
+sbn_storage_spr_rt_neg_pos_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_storage_spr_rt_neg_pos_df.tsv"))
+res<-lmer(log(rt) ~ nr_neg_roles * nr_pos_roles * word_pos + word_length + (1 |subj_nr) + (1 | sent_nr), data = sbn_storage_spr_rt_neg_pos_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_storage_spr_rt_neg_pos_sentnr.txt")
+summary(res)
+sink()
+  
+
+sbn_storage_spr_spill_neg_pos_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_storage_spr_spill_neg_pos_df.tsv"))
+res<-lmer(log(spill) ~ nr_neg_roles * nr_pos_roles * word_pos + word_length + (1 |subj_nr) + (1 | sent_nr), data = sbn_storage_spr_spill_neg_pos_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_storage_spr_spill_neg_pos_sentnr.txt")
+summary(res)
+sink()
+  
+########################
+# FOR ET STORAGE
+########################
+## skip ~ neg_pos
+
+sbn_storage_et_rt_skipped_neg_pos_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_storage_et_rt_skipped_neg_pos_df.tsv"))
+res<-glmer(target_skipped ~ nr_neg_roles * nr_pos_roles * word_pos + word_length + (1 |subj_nr) + (1 | sent_nr), data = sbn_storage_et_rt_skipped_neg_pos_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_storage_et_rt_skipped_neg_pos_sentnr.txt")
+summary(res)
+sink()
+  
+
+sbn_storage_et_spill_skipped_neg_pos_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_storage_et_spill_skipped_neg_pos_df.tsv"))
+res<-glmer(spill_skipped ~ nr_neg_roles * nr_pos_roles * word_pos + word_length + (1 |subj_nr) + (1 | sent_nr), data = sbn_storage_et_spill_skipped_neg_pos_df, family = "binomial", glmerControl(optimizer = "bobyqa"))
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_storage_et_spill_skipped_neg_pos_sentnr.txt")
+summary(res)
+sink()
+  
+## rt ~ neg_pos
+
+sbn_storage_et_rt_neg_pos_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_storage_et_rt_neg_pos_df.tsv"))
+res<-lmer(log(rt_fp) ~ nr_neg_roles * nr_pos_roles * word_pos + word_length + (1 |subj_nr) + (1 | sent_nr), data = sbn_storage_et_rt_neg_pos_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_storage_et_rt_neg_pos_sentnr.txt")
+summary(res)
+sink()
+  
+
+sbn_storage_et_spill_neg_pos_df<- readr::read_tsv(url("file:///home/pramono/work/drs/pmb-sbn-extractor/data/R_prepared/R_sbn_storage_et_spill_neg_pos_df.tsv"))
+res<-lmer(log(spill_fp) ~ nr_neg_roles * nr_pos_roles * word_pos + word_length + (1 |subj_nr) + (1 | sent_nr), data = sbn_storage_et_spill_neg_pos_df)
+sink("/home/pramono/work/drs/pmb-sbn-extractor/result/r-analysis/sbn_storage_et_spill_neg_pos_sentnr.txt")
+summary(res)
+sink()
+  

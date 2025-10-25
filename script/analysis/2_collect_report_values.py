@@ -4,8 +4,8 @@ import os
 from script.sbnutils import result_folder
 from script.utils import to_abspath
 
-# show_all_coef = False
-show_all_coef = True
+show_all_coef = False
+# show_all_coef = True
 sub_folder = '20251025-corrected-final'
 # sub_folder = '20250809-storage-no-pos'
 # sub_folder = '20250909-inverse-distance'
