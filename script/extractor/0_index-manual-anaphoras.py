@@ -55,9 +55,9 @@ for sent_nr, row in manual_ana_ref.items():
         if last_ana_item == "ana-we'll[9](?)":
           special_anas.append((idx, last_ana_item, '?', None, None, idx))
         if last_ana_item == 'ana-the man[14](-8)':
-          special_anas.append((idx, last_ana_item, 8, 6, 'man', idx))
+          special_anas.append((idx, last_ana_item, -8, 6, 'man', idx))
         if last_ana_item == 'ana-the chopping block[13](-10)':
-          special_anas.append((idx, last_ana_item, 10, 3, 'block', idx))
+          special_anas.append((idx, last_ana_item, -10, 3, 'block', idx))
         if len(row_ana_items) == 0:
           break
         last_ana_item, last_ana_match = extract_last_ana_match(row_ana_items)

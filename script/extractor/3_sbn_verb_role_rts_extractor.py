@@ -24,11 +24,32 @@ def flush_clean_wrap_print(file_path):
   print_acc.clear()
 
 
+def get_focus_word_pos_in_sent_by_sbn(sbn_line):
+  sent_idxs, sent_tokens = determine_ori_sent_token_idxs_based_on_sbn(sent_nr, sbn_line.word_info.start_idx, sbn_line.word_info.end_idx)
+  if len(sent_tokens) > 1:
+    clean_sent_tokens = [x.replace('.', '').replace(',', '') for x in sent_tokens]
+    word_to_find = sbn_line.word_info.word
+    if ' ' in word_to_find:
+      word_to_find = word_to_find.split(' ')[0]
+    if word_to_find in clean_sent_tokens:
+      word_idx = clean_sent_tokens.index(word_to_find)
+    else:
+      word_idx = next(idx for idx, x in enumerate(clean_sent_tokens) if x.startswith(word_to_find))
+    word_pos = sent_idxs[word_idx] + 1
+    target_token = word_to_find
+  else:
+    word_pos = sent_idxs[0] + 1
+    target_token = sent_tokens[0]
+
+  return word_pos, target_token
+
+
 def extract_verbs_and_role_distances(non_connector_sbn_lines):
   global pmb_id, sent_nr
   roles_data = []
   sbn_verb_lines = [(idx, line) for idx, line in enumerate(non_connector_sbn_lines) if '.v.' in line.sbn_word]
   for idx, verb_line in sbn_verb_lines:
+    idx = int(idx)
     if verb_line.word_info.word == '':
       wrap_print(f'Skipping sbn verb line of {str(verb_line)}')
       continue
@@ -52,19 +73,31 @@ def extract_verbs_and_role_distances(non_connector_sbn_lines):
     positive_distance_roles = [(x, int(y)) for x, y in verb_line.roles if y.startswith('+') and x != 'Time']
     closest_role = ('-', 0)
     furthest_role = ('-', 0)
+    furthest_word_pos, furthest_word = closest_word_pos, closest_word = (-1, '')
     if len(negative_distance_roles) > 0:
       negative_distance_roles.sort(key=lambda x: x[1])
       closest_role = negative_distance_roles[-1]
       furthest_role = negative_distance_roles[0]
+      closest_sbn_line = non_connector_sbn_lines[idx + closest_role[1]]
+      if closest_sbn_line.word_info.word != '':
+        closest_word_pos, closest_word = get_focus_word_pos_in_sent_by_sbn(closest_sbn_line)
+      if closest_role[1] != furthest_role[1]:
+        furthest_sbn_line = non_connector_sbn_lines[idx + furthest_role[1]]
+        if furthest_sbn_line.word_info.word != '':
+          furthest_word_pos, furthest_word = get_focus_word_pos_in_sent_by_sbn(furthest_sbn_line)
 
     roles_data.append(dict(
-      sent_nr=sent_nr,  # this is the index of this verb in sbn
+      sent_nr=sent_nr,
       sbn_verb_pos=idx,  # this is the index of this verb in sbn
       nr_neg_roles=len(negative_distance_roles),
       nr_pos_roles=len(positive_distance_roles),
       closest_role=closest_role[0],
       closest_distance=closest_role[1],
+      closest_word=closest_word,
+      closest_word_pos=closest_word_pos,
       furthest_role=furthest_role[0],
+      furthest_word=furthest_word,
+      furthest_word_pos=furthest_word_pos,
       furthest_distance=furthest_role[1],
       word_pos=word_pos,
       token=target_token,
