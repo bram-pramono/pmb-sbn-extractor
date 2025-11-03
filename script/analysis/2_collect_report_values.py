@@ -6,7 +6,8 @@ from script.utils import to_abspath
 
 show_all_coef = False
 # show_all_coef = True
-sub_folder = '20251025-corrected-final'
+sub_folder = '20251027-updated-pmb'
+# sub_folder = '20251025-corrected-final'
 # sub_folder = '20250809-storage-no-pos'
 # sub_folder = '20250909-inverse-distance'
 # sub_folder = '20250801-binomial-no-time'

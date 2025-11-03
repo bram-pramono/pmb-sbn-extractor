@@ -5,19 +5,19 @@
 
 % Sequence Box Notation
 
-%SBN% male.n.02   Name "Ian"                                % He             [0-2]
+%SBN% male.n.02   Name "Roger"                              % He             [0-2]
 %SBN% time.n.08   TPR now                                   % went  --to--        [3-10]
 %SBN% get.v.03    Agent -2 Time -1 Theme +2                 % get  --on--         [11-17]
 %SBN% male.n.02   ANA -3                                    % his            [18-21]
 %SBN% boot.n.01   User -1                                   % boots  --and--      [22-31]
 %SBN%             CONTINUATION &lt;1                           %                
-%SBN% male.n.02   ANA -5                                    % Ian            [32-35]
+%SBN% male.n.02   Name "Ian"                                % Ian            [32-35]
 %SBN% stick.v.01  Pivot -1 Time +1 Theme +3                 % stuck  --out--      [36-45]
 %SBN% time.n.08   TPR now                                   %                
-%SBN% male.n.02   ANA -8                                    % his            [46-49]
+%SBN% male.n.02   ANA -3                                    % his            [46-49]
 %SBN% foot.n.01   PartOf -1                                 % foot  --and--       [50-58]
 %SBN%             CONTINUATION &lt;2                           %                
-%SBN% male.n.02   Name "Roger"                              % Roger          [59-64]
+%SBN% male.n.02   ANA -10                                   % Roger          [59-64]
 %SBN% fall.v.01   Agent -1 Time +1 Location +2              % fell  --over--      [65-74]
 %SBN% time.n.08   TPR now                                   %                
 %SBN% entity.n.01 ANA -4                                    % it  --and--         [75-81]
@@ -33,7 +33,7 @@ sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
 cat: NP/N
 ----------
 tokens:He
-sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,ian)']</b1>
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,roger)']</b1>
 cat: N
 ----------
 tokens:went
@@ -64,9 +64,13 @@ tokens:and
 sem: λv1.λv2.λv3.<>[]:[]</>
 cat: conj
 ----------
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
 tokens:Ian
-sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
-cat: NP
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,ian)']</b1>
+cat: N
 ----------
 tokens:stuck
 sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←stick:stick.v.01(e1)','b1←Pivot(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))
@@ -88,13 +92,9 @@ tokens:and
 sem: λv1.λv2.λv3.<>[]:[]</>
 cat: conj
 ----------
-tokens:ø
-sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
-cat: NP/N
-----------
 tokens:Roger
-sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,roger)']</b1>
-cat: N
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
 ----------
 tokens:fell
 sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1']:['b1←fall:fall.v.01(e1)','b1←Agent(e1,v4)']</b1>;((v1@e1);(<b3>['b2←t1']:['b2←time:time.n.08(t1)','b2←t1≺now','b3←Time(e1,t1)']</b3>;(v3@e1)))))

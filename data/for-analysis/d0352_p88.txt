@@ -5,34 +5,31 @@
 
 % Sequence Box Notation
 
-%SBN%                 NEGATION &lt;1                           %                
-%SBN% entity.n.01     SubOf +1                              %  --Despite-- all    [0-11]
-%SBN% publicity.n.01                                        %  --the-- publicity  [12-25]
-%SBN%                 NEGATION &lt;1                           %                
-%SBN% male.n.02                                             % he             [26-28]
-%SBN% time.n.08       TPR now                               % was            [29-32]
-%SBN% get.v.01        Theme -4 Agent -2 Time -1             % getting        [33-40]
-%SBN%                 CONTRAST &lt;1                           %                
-%SBN% entity.n.01                                           % there          [41-46]
-%SBN% be.v.04         EQU -1 Time +1 Theme +3               % was  --still--      [47-56]
-%SBN% time.n.08       TPR now                               %                
-%SBN% quantity.n.01   EQU 1                                 % one            [57-60]
-%SBN% entity.n.01     Quantity -1 Proposition &gt;2            % thing          [61-66]
-%SBN%                 CONTINUATION &lt;0                       %                
-%SBN% male.n.02                                             % he             [79-81]
-%SBN% time.n.08       TPR now                               % had  --to--         [82-88]
-%SBN% do.v.02         Agent -2 Time -1                      % do  --before--      [89-98]
-%SBN%                 CONTINUATION &lt;0                       %                
-%SBN% male.n.02       Name "Robert"                         % Robert         [67-73]
-%SBN% know.v.01       Proposition &lt;1 Experiencer -1 Time +1 % knew           [74-78]
-%SBN% time.n.08       TPR now                               %                
-%SBN% male.n.02       ANA -3                                % he  --could--       [99-107]
-%SBN%                 POSSIBILITY &lt;1                        %                
-%SBN% clear.v.01      Agent -1 TPR -3 Theme +2 Goal +3      % clear          [108-113]
-%SBN% male.n.02       ANA -5                                % his            [114-117]
-%SBN% conscience.n.01 PartOf -1                             % conscience  --for-- [118-132]
-%SBN% entity.n.01                                           % good --.--          [133-138]
-%SBN% good.n.02       AttributeOf -1                        %                
+%SBN% publicity.n.01                                        %  --Despite--  --all--  --the-- publicity [0-25]
+%SBN% male.n.02       Name "Robert"                         % he                        [26-28]
+%SBN% time.n.08       TPR now                               % was                       [29-32]
+%SBN% get.v.01        Theme -3 Agent -2 Time -1             % getting                   [33-40]
+%SBN%                 CONTRAST &lt;1                           %                           
+%SBN% entity.n.01                                           % there                     [41-46]
+%SBN% be.v.04         EQU -1 Time +1 Theme +3               % was  --still--                 [47-56]
+%SBN% time.n.08       TPR now                               %                           
+%SBN% quantity.n.01   EQU 1                                 % one                       [57-60]
+%SBN% entity.n.01     Quantity -1 Proposition &gt;2            % thing                     [61-66]
+%SBN%                 CONTINUATION &lt;0                       %                           
+%SBN% male.n.02       ANA -8                                % he                        [79-81]
+%SBN% time.n.08       TPR now                               % had  --to--                    [82-88]
+%SBN% do.v.02         Agent -2 Time -1                      % do  --before--                 [89-98]
+%SBN%                 CONTINUATION &lt;0                       %                           
+%SBN% male.n.02       ANA -11                               % Robert                    [67-73]
+%SBN% know.v.01       Proposition &lt;1 Experiencer -1 Time +1 % knew                      [74-78]
+%SBN% time.n.08       TPR now                               %                           
+%SBN% male.n.02       ANA -14                               % he  --could--                  [99-107]
+%SBN%                 POSSIBILITY &lt;1                        %                           
+%SBN% clear.v.01      Agent -1 TPR -3 Theme +2 Goal +3      % clear                     [108-113]
+%SBN% male.n.02       ANA -16                               % his                       [114-117]
+%SBN% conscience.n.01 PartOf -1                             % conscience  --for--            [118-132]
+%SBN% entity.n.01                                           % good --.--                     [133-138]
+%SBN% good.n.02       AttributeOf -1                        %                           
 
 % Incremental DRS
 
@@ -41,7 +38,7 @@ sem: λv1.λv2.λv3.<>[]:[]</>
 cat: (S/S)/S[dcl]
 ----------
 tokens:all
-sem: λv1.λv2.<b1>[]:["b1←¬(<b2>['b2←x1']:['b2←¬(v2@x1)','b2←entity:entity.n.01(x1)']</b2>;(v1@λv3.<b3>[]:['b3←SubOf(x1,v3)']</b3>))"]</b1>
+sem: λv1.v1
 cat: NP/NP
 ----------
 tokens:the
@@ -53,7 +50,7 @@ sem: λv1.<b1>[]:['b1←publicity:publicity.n.01(v1)']</b1>
 cat: N
 ----------
 tokens:he
-sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)','b1←Name(x1,robert)']</b1>∗(v1@x1))
 cat: NP
 ----------
 tokens:was
@@ -88,13 +85,9 @@ tokens:thing
 sem: λv1.λv2.<b1>['b1←p1']:['b1←p1:(v1@λv3.<b2>[]:[]</b2>)','b1←entity:entity.n.01(v2)','b1←Topic(v2,p1)']</b1>
 cat: N/S[dcl]
 ----------
-tokens:ø
-sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
-cat: NP/N
-----------
 tokens:Robert
-sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,robert)']</b1>
-cat: N
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
 ----------
 tokens:knew
 sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←know:know.v.01(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,p1)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))

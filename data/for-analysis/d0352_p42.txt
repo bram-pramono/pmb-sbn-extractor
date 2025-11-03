@@ -17,12 +17,10 @@
 %SBN% ring.v.04   Agent -1 Time +1 Theme +2              % rang                   [56-60]
 %SBN% time.n.08   TPR now                                %                        
 %SBN% male.n.02   Name "Gerry"                           % Gerry  --and--              [61-70]
-%SBN%             NEGATION &lt;1                            %                        
-%SBN% entity.n.01                                        % everything --.--            [80-91]
-%SBN%             NEGATION &lt;1                            %                        
-%SBN% tell.v.02   Agent -5 Topic -1 Time +1 Recipient +2 % told                   [71-75]
+%SBN% tell.v.02   Agent -4 Time +1 Recipient +2 Topic +3 % told                   [71-75]
 %SBN% time.n.08   TPR now                                %                        
-%SBN% male.n.02   ANA -4                                 % him                    [76-79]
+%SBN% male.n.02   ANA -3                                 % him                    [76-79]
+%SBN% entity.n.01                                        % everything --.--            [80-91]
 
 % Incremental DRS
 
@@ -107,7 +105,7 @@ sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
 cat: NP
 ----------
 tokens:everything
-sem: λv1.<b1>[]:["b1←¬<b2>['b2←x1']:['b2←¬(v1@x1)','b2←entity:entity.n.01(x1)']</b2>"]</b1>
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(v1@x1))
 cat: NP
 ----------
 tokens:.

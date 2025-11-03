@@ -14,19 +14,18 @@
 %SBN% female.n.02 ANA -5                                       % she              [29-32]
 %SBN% want.v.01   Pivot -1 Time +1 Theme +2                    % wanted           [33-39]
 %SBN% time.n.08   TPR now                                      %                  
-%SBN% person.n.01 Role +1                                      %  --a-- pet  --that--  --could-- [40-56]
-%SBN% pet.n.01                                                 %                  
-%SBN% entity.n.01 ANA -2                                       % it               [83-85]
+%SBN% pet.n.01                                                 %  --a-- pet  --that--  --could-- [40-56]
+%SBN% entity.n.01 ANA -1                                       % it               [83-85]
 %SBN% love.v.01   Experiencer -1 Time +1 Stimulus +2           % loved            [86-91]
 %SBN% time.n.08   TPR now                                      %                  
-%SBN% female.n.02 ANA -13                                      % her --,--             [92-96]
+%SBN% female.n.02 ANA -12                                      % her --,--             [92-96]
 %SBN%             POSSIBILITY &lt;1                               %                  
-%SBN% look.v.06   Experiencer -6 Stimulus +1                   % look  --after--       [57-67]
-%SBN% entity.n.01                                              % itself  --and,--  --if--   [68-82]
+%SBN% look.v.06   Experiencer -5 Stimulus +1                   % look  --after--       [57-67]
+%SBN% entity.n.01 ANA -6                                       % itself  --and,--  --if--   [68-82]
 %SBN%             CONSEQUENCE &lt;1                               %                  
 %SBN% time.n.08   TSU now                                      % would            [97-102]
-%SBN% love.v.01   Experiencer -9 Time -1 Stimulus +1 Manner +2 % love             [103-107]
-%SBN% female.n.02 ANA -18                                      % her  --as--           [108-114]
+%SBN% love.v.01   Experiencer -8 Time -1 Stimulus +1 Manner +2 % love             [103-107]
+%SBN% female.n.02 ANA -17                                      % her  --as--           [108-114]
 %SBN% equal.n.01                                               %  --an-- equal --.--        [115-124]
 
 % Incremental DRS
@@ -76,7 +75,7 @@ sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
 cat: NP/N
 ----------
 tokens:pet
-sem: λv1.<b1>['b1←x1']:['b1←pet:pet.n.01(x1)','b1←person:person.n.01(v1)','b1←Role(v1,x1)']</b1>
+sem: λv1.<b1>[]:['b1←pet:pet.n.01(v1)']</b1>
 cat: N
 ----------
 tokens:that

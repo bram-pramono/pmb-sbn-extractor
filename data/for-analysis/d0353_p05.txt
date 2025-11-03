@@ -5,41 +5,41 @@
 
 % Sequence Box Notation
 
-%SBN%                      NEGATION &lt;1                                    %                 
-%SBN% day.n.01                                                            % day  --and--         [52-59]
-%SBN%                      NEGATION &lt;1                                    %                 
-%SBN% male.n.02                                                           % He              [0-2]
-%SBN% keep.v.01            Agent -1 Time -2 Time +1 Theme +4 Attribute +5 % kept            [3-7]
+%SBN% male.n.02            Name "Steve"                                   % He              [0-2]
+%SBN% keep.v.01            Agent -1 Time +1 Theme +4 Attribute +5 Time +9 % kept            [3-7]
 %SBN% time.n.08            TPR now                                        %                 
 %SBN% male.n.02            ANA -3                                         % his             [8-11]
 %SBN% stock.a.03           AttributeOf +1                                 % stock           [12-17]
 %SBN% book.n.01            User -2                                        % books           [18-23]
 %SBN% neat.a.01            AttributeOf -1                                 % neat  --and--        [24-32]
-%SBN% check.v.01           Time -8 Agent -7 Time +1 Theme +2              % checked         [33-40]
+%SBN% check.v.01           Agent -7 Time +1 Patient +2 Time +4            % checked         [33-40]
 %SBN% time.n.08            TPR now                                        %                 
 %SBN% entity.n.01          ANA -4                                         % them  --every--      [41-51]
-%SBN%                      CONTINUATION &lt;2                                %                 
-%SBN% male.n.02            Name "Steve"                                   % Steve           [60-65]
+%SBN% day.n.01                                                            % day  --and--         [52-59]
+%SBN% day.n.01                                                            %                 
+%SBN%                      CONTINUATION &lt;1                                %                 
+%SBN% male.n.02            ANA -12                                        % Steve           [60-65]
 %SBN% know.v.01            Proposition &gt;1 Experiencer -1 Time +1          % knew            [66-70]
 %SBN% time.n.08            TPR now                                        %                 
 %SBN%                      CONTINUATION &lt;0                                %                 
-%SBN% male.n.02            ANA -3                                         % he              [71-73]
+%SBN% male.n.02            ANA -15                                        % he              [71-73]
 %SBN% urge.v.03            Agent -1 Time +1 Theme +3                      % urged           [74-79]
 %SBN% time.n.08            TPR now                                        %                 
-%SBN% male.n.02            ANA -6                                         % his             [80-83]
-%SBN% person.n.01          Role +1                                        % son  --Kenneth--  --to--  [84-98]
+%SBN% male.n.02            ANA -18                                        % his             [80-83]
+%SBN% person.n.01          EQU -16 Role +1                                % son             [84-87]
 %SBN% son.n.01             Of -2                                          %                 
-%SBN% make_sure.v.01       Proposition &gt;2 Agent -6 Time +1                % made  --sure--       [136-145]
+%SBN% male.n.02            Name "Kenneth" EQU -18                         % Kenneth  --to--      [88-98]
+%SBN% make_sure.v.01       Proposition &gt;2 Agent -7 Time +1                % made  --sure--       [136-145]
 %SBN% time.n.08            TPR now                                        %                 
 %SBN%                      NEGATION &lt;1                                    %                 
-%SBN% be.v.01              Theme -4 Co-Theme +1                           % be              [99-101]
+%SBN% be.v.01              Theme -5 Co-Theme +1                           % be              [99-101]
 %SBN% entity.n.01                                                         % nothing         [102-109]
 %SBN% less.a.01            Quantity -1 Co-Theme +2                        % less            [110-114]
 %SBN% entity.n.01                                                         % than            [115-119]
 %SBN% respectable.a.01     AttributeOf -1                                 % respectable  --and-- [120-135]
-%SBN% terra_incognita.n.01 EQU -12 Destination -5                         %                 
+%SBN% terra_incognita.n.01 EQU -13 Destination -5                         %                 
 %SBN%                      CONTINUATION &lt;0                                %                 
-%SBN% male.n.02            ANA -10                                        % he              [146-148]
+%SBN% male.n.02            ANA -11                                        % he              [146-148]
 %SBN% time.n.08            TPR now                                        % was             [149-152]
 %SBN% polite.a.01          AttributeOf -2 Time -1 Beneficiary +2          % polite  --with--     [153-164]
 %SBN% person.n.01                                                         % their           [165-170]
@@ -48,9 +48,13 @@
 
 % Incremental DRS
 
+tokens:ø
+sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
+cat: NP/N
+----------
 tokens:He
-sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
-cat: NP
+sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,steve)']</b1>
+cat: N
 ----------
 tokens:kept
 sem: λv1.λv2.λv3.λv4.(v3@λv5.(v1@λv6.(<b1>['b1←e1']:['b1←keep:keep.v.01(e1)','b1←Agent(e1,v5)','b1←Theme(e1,v6)']</b1>;(((v2@λv7.(v7@v6))@λv8.<b2>[]:['b2←Attribute(e1,v8)']</b2>);(<b4>['b3←t1']:['b3←time:time.n.08(t1)','b3←t1≺now','b4←Time(e1,t1)']</b4>;(v4@e1))))))
@@ -77,7 +81,7 @@ sem: λv1.λv2.λv3.λv4.(v3@λv5.(((v2@λv6.(v6@v5))@v4);((v1@λv7.(v7@v5))@v4)
 cat: conj
 ----------
 tokens:checked
-sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←check:check.v.01(e1)','b1←Time(e1,t1)','b1←Theme(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
+sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1','b2←t1']:['b1←check:check.v.01(e1)','b1←Time(e1,t1)','b1←Patient(e1,v5)','b1←Agent(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1))))
 cat: (S[dcl]\NP)/NP
 ----------
 tokens:them
@@ -85,7 +89,7 @@ sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>∗(v1@x1))
 cat: NP
 ----------
 tokens:every
-sem: λv1.λv2.λv3.λv4.<b1>[]:['b1←¬(<b2>[\'b2←x1\']:["b2←¬((v2@v3)@λv5.(<b3>[]:[\'b3←Time(v5,x1)\']</b3>;(v4@v5)))"]</b2>;(v1@x1))']</b1>
+sem: λv1.λv2.λv3.λv4.((v2@v3)@λv5.(<b1>['b1←x1']:['b1←Time(v5,x1)']</b1>;((v1@x1);(v4@v5))))
 cat: ((S\NP)\(S\NP))/N
 ----------
 tokens:day
@@ -96,13 +100,9 @@ tokens:and
 sem: λv1.λv2.λv3.<>[]:[]</>
 cat: conj
 ----------
-tokens:ø
-sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))
-cat: NP/N
-----------
 tokens:Steve
-sem: λv1.<b1>[]:['b1←male:male.n.02(v1)','b1←Name(v1,steve)']</b1>
-cat: N
+sem: λv1.(<b1>['b1←x1']:['b1←male:male.n.02(x1)']</b1>∗(v1@x1))
+cat: NP
 ----------
 tokens:knew
 sem: λv1.λv2.λv3.(v2@λv4.(<b1>['b1←e1','b1←p1','b2←t1']:['b1←p1:(v1@λv5.<b3>[]:[]</b3>)','b1←know:know.v.01(e1)','b1←Time(e1,t1)','b1←Stimulus(e1,p1)','b1←Experiencer(e1,v4)','b2←time:time.n.08(t1)','b2←t1≺now']</b1>;(v3@e1)))
@@ -125,8 +125,8 @@ sem: λv1.λv2.(<b1>['b1←x1']:['b1←son:son.n.01(x1)','b1←person:person.n.0
 cat: N/PP
 ----------
 tokens:Kenneth
-sem: λv1.v1
-cat: (N/PP)\(N/PP)
+sem: λv1.λv2.(<b2>['b1←x1']:['b1←male:male.n.02(x1)','b1←Name(x1,kenneth)','b2←Equal(v2,x1)']</b2>;(v1@v2))
+cat: N\N
 ----------
 tokens:to
 sem: λv1.v1

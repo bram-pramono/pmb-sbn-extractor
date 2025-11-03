@@ -5,26 +5,19 @@
 
 % Sequence Box Notation
 
-%SBN% male.n.02    Name "Martin"                              % Martin              [0-6]
-%SBN% decide.v.01  Agent -1 Time +1 Goal +2                   % decided  --to--          [7-17]
-%SBN% time.n.08    TPR now                                    %                     
-%SBN% step_in.v.01 Theme -3                                   % step  --in--  --when--        [18-30]
-%SBN% person.n.01                                             % they                [31-35]
-%SBN% ask.v.02     Agent -1 Time +1 TIN -4 Topic +2 Theme +3  % asked               [36-41]
-%SBN% time.n.08    TPR now                                    %                     
-%SBN% person.n.01                                             %  --every--one            [42-50]
-%SBN% pint.n.01    Time +1 Time +3                            %  --a-- pint              [71-77]
-%SBN% time.n.08    TSU +1                                     % after               [78-83]
-%SBN% work.n.01                                               % work  --on--             [84-91]
-%SBN% time.n.08    DayOfWeek friday                           % Friday --.--             [92-99]
-%SBN%              NEGATION &lt;1                                %                     
-%SBN% ask.v.02     Agent -8 Time +1 TIN -11 Topic +2 Theme +3 %                     
-%SBN% time.n.08    TPR now                                    %                     
-%SBN% male.n.02    Name "Nigel"                               %  --but-- Nigel  --along--  --for-- [51-70]
-%SBN% pint.n.01    Time +1 Time +3                            %                     
-%SBN% time.n.08    TSU +1                                     %                     
-%SBN% work.n.01                                               %                     
-%SBN% time.n.08    DayOfWeek friday                           %                     
+%SBN% male.n.02    Name "Martin"                             % Martin              [0-6]
+%SBN% decide.v.01  Agent -1 Time +1 Goal +2                  % decided  --to--          [7-17]
+%SBN% time.n.08    TPR now                                   %                     
+%SBN% step_in.v.01 Theme -3                                  % step  --in--  --when--        [18-30]
+%SBN% person.n.01                                            % they                [31-35]
+%SBN% ask.v.02     Agent -1 Time +1 TIN -4 Topic +2 Theme +4 % asked               [36-41]
+%SBN% time.n.08    TPR now                                   %                     
+%SBN% person.n.01  NEQ +1                                    %  --every--one            [42-50]
+%SBN% male.n.02    Name "Nigel"                              %  --but-- Nigel  --along--  --for-- [51-70]
+%SBN% pint.n.01    Time +1 Time +3                           %  --a-- pint              [71-77]
+%SBN% time.n.08    TSU +1                                    % after               [78-83]
+%SBN% work.n.01                                              % work  --on--             [84-91]
+%SBN% time.n.08    DayOfWeek friday                          % Friday --.--             [92-99]
 
 % Incremental DRS
 
@@ -73,8 +66,8 @@ sem: λv1.<b1>[]:['b1←person:person.n.01(v1)']</b1>
 cat: N
 ----------
 tokens:but
-sem: λv1.λv2.λv3.((v2@v3);<b1>[]:['b1←¬(v1@v3)']</b1>)
-cat: conj
+sem: λv1.λv2.λv3.((v2@v3);(v1@λv4.<b1>[]:['b1←v3≠v4']</b1>))
+cat: (N\N)/NP
 ----------
 tokens:ø
 sem: λv1.λv2.((<b1>['b1←x1']:[]</b1>;(v1@x1))∗(v2@x1))

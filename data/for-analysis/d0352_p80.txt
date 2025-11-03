@@ -5,26 +5,28 @@
 
 % Sequence Box Notation
 
-%SBN% male.n.02                                         % He  --could--    [0-8]
-%SBN%             POSSIBILITY &lt;1                        %             
-%SBN% see.v.02    Experiencer -1 Stimulus +2            % see         [9-12]
-%SBN% pay.v.01    Attribute +1                          %  --a-- paying    [13-21]
-%SBN% job.n.01    Stimulus +2                           % job  --just--    [22-30]
-%SBN% entity.n.01                                       % about  --to--    [31-39]
-%SBN% slip.v.11   Patient -1 Source +2                  % slip  --out--  --of-- [40-51]
-%SBN% male.n.02   ANA -6                                % his         [52-55]
-%SBN% finger.n.01 User -1                               % fingers  --and-- [56-67]
-%SBN%             CONTINUATION &lt;1                       %             
-%SBN% male.n.02   ANA -8                                % he          [68-70]
-%SBN% know.v.01   Proposition &gt;1 Experiencer -1 Time +1 % knew        [71-75]
-%SBN% time.n.08   TPR now                               %             
-%SBN%             CONTINUATION &lt;0                       %             
-%SBN% male.n.02   ANA -11                               % he          [76-78]
-%SBN% time.n.08   TPR now                               % had  --to--      [79-85]
-%SBN% act.v.01    Agent -2 Time -1 Manner +1 Topic +2   % act         [86-89]
-%SBN% fast.r.01                                         % fast  --to--     [90-97]
-%SBN% save.v.02   Agent -4 Theme +1                     % save        [98-102]
-%SBN% entity.n.01                                       % it --.--         [103-106]
+%SBN% male.n.02                                         % He  --could--      [0-8]
+%SBN%             POSSIBILITY &lt;1                        %               
+%SBN% see.v.02    Experiencer -1 Stimulus +2            % see           [9-12]
+%SBN% pay.v.01    Attribute +1                          %  --a-- paying      [13-21]
+%SBN% job.n.01                                          % job           [22-25]
+%SBN% just.r.05   EQU -3                                % just  --about--  --to-- [26-39]
+%SBN%             CONTINUATION &lt;1                       %               
+%SBN% just.r.05   Patient -5 Source +3                  %               
+%SBN% slip.v.11   EQU -1                                % slip  --out--  --of--   [40-51]
+%SBN% male.n.02   ANA -7                                % his           [52-55]
+%SBN% finger.n.01 User -1                               % fingers  --and--   [56-67]
+%SBN%             CONTINUATION &lt;3                       %               
+%SBN% male.n.02   ANA -9                                % he            [68-70]
+%SBN% know.v.01   Proposition &gt;1 Experiencer -1 Time +1 % knew          [71-75]
+%SBN% time.n.08   TPR now                               %               
+%SBN%             CONTINUATION &lt;0                       %               
+%SBN% male.n.02   ANA -12                               % he            [76-78]
+%SBN% time.n.08   TPR now                               % had  --to--        [79-85]
+%SBN% act.v.01    Agent -2 Time -1 Manner +1 Topic +2   % act           [86-89]
+%SBN% fast.r.01                                         % fast  --to--       [90-97]
+%SBN% save.v.02   Agent -4 Theme +1                     % save          [98-102]
+%SBN% entity.n.01                                       % it --.--           [103-106]
 
 % Incremental DRS
 
@@ -49,16 +51,16 @@ sem: λv1.λv2.(<b1>['b1←e1']:['b1←pay:pay.v.01(e1)','b1←Attribute(e1,v2)'
 cat: N/N
 ----------
 tokens:job
-sem: λv1.λv2.(<b1>[]:['b1←job:job.n.01(v2)']</b1>;(v1@v2))
-cat: N/PP
+sem: λv1.<b1>[]:['b1←job:job.n.01(v1)']</b1>
+cat: N
 ----------
 tokens:just
-sem: λv1.v1
-cat: (PP/PP)/(PP/PP)
+sem: λv1.λv2.λv3.λv4.(((v1@v2)@v3)@λv5.(<b1>[]:['b1←just:just.r.05(v5)']</b1>;(v4@v5)))
+cat: ((S\NP)\(S\NP))/((S\NP)\(S\NP))
 ----------
 tokens:about
-sem: λv1.λv2.((v1@λv3.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(v3@x1)))@λv4.<b2>[]:['b2←Stimulus(v2,v4)']</b2>)
-cat: PP/(S[to]\NP)
+sem: λv1.λv2.λv3.λv4.(v3@λv5.<>[]:[]</>)
+cat: ((S\NP)\(S\NP))/(S[to]\NP)
 ----------
 tokens:to
 sem: λv1.v1

@@ -21,14 +21,12 @@
 %SBN% stand.v.01    Theme -1 Attribute +1                             % stand             [64-69]
 %SBN% wide.a.01     AttributeOf -2                                    % wide  --and--          [70-78]
 %SBN%               CONTINUATION &lt;5                                   %                   
-%SBN%               NEGATION &lt;1                                       %                   
-%SBN% entity.n.01                                                     % all               [115-118]
-%SBN%               NEGATION &lt;1                                       %                   
-%SBN% gaping.a.01   AttributeOf -1 Causer +1                          % gaping --,--           [79-86]
-%SBN% welcome.v.02  Agent -2 Theme +1                                 % welcoming         [87-96]
+%SBN% gaping.a.01   Causer +1 AttributeOf +3                          % gaping --,--           [79-86]
+%SBN% welcome.v.02  Theme +1 Agent +2                                 % welcoming         [87-96]
 %SBN% night.n.01                                                      %  --the-- night  --in,--  --and-- [97-114]
-%SBN% entity.n.01   EQU -4                                            % that              [119-123]
-%SBN% entity.n.01   ANA -2                                            % it                [124-126]
+%SBN% entity.n.01                                                     % all               [115-118]
+%SBN% entity.n.01   EQU -1                                            % that              [119-123]
+%SBN% entity.n.01   ANA -3                                            % it                [124-126]
 %SBN% hold.v.04     Theme -2 Path -1 Time +1                          % held --.--             [127-132]
 %SBN% time.n.08     TPR now                                           %                   
 
@@ -135,7 +133,7 @@ sem: λv1.v1
 cat: S/S
 ----------
 tokens:all
-sem: λv1.<b1>[]:["b1←¬<b2>['b2←x1']:['b2←¬(v1@x1)','b2←entity:entity.n.01(x1)']</b2>"]</b1>
+sem: λv1.(<b1>['b1←x1']:['b1←entity:entity.n.01(x1)']</b1>;(v1@x1))
 cat: NP
 ----------
 tokens:that

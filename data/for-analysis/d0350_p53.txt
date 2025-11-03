@@ -5,16 +5,13 @@
 
 % Sequence Box Notation
 
-%SBN% man.n.01                                  % Men  --could--    [0-9]
-%SBN%                      POSSIBILITY &lt;1       %              
-%SBN% be.v.01              Theme -1 Co-Theme +1 % be           [10-12]
-%SBN% pay.v.01             Theme -2             % paid  --to--      [13-20]
-%SBN%                      NEGATION &lt;1          %              
-%SBN% sort.n.01            SubOf +1             %  --all-- sorts  --of-- [24-36]
-%SBN% thing.n.02                                % things --.--      [37-44]
-%SBN%                      NEGATION &lt;1          %              
-%SBN% do.v.01              Agent -5 Theme -2    % do           [21-23]
-%SBN% terra_incognita.n.01 EQU -4 Goal -1       %              
+%SBN% man.n.01                        % Men  --could--    [0-9]
+%SBN%            POSSIBILITY &lt;1       %              
+%SBN% be.v.01    Theme -1 Co-Theme +1 % be           [10-12]
+%SBN% pay.v.01   Theme -2 Goal +1     % paid  --to--      [13-20]
+%SBN% do.v.01    Agent -3 Theme +1    % do           [21-23]
+%SBN% sort.n.01  SubOf +1             %  --all-- sorts  --of-- [24-36]
+%SBN% thing.n.02                      % things --.--      [37-44]
 
 % Incremental DRS
 
@@ -47,7 +44,7 @@ sem: λv1.λv2.λv3.(v2@λv4.(v1@λv5.(<b1>['b1←e1']:['b1←do:do.v.01(e1)','b
 cat: (S[b]\NP)/NP
 ----------
 tokens:all
-sem: λv1.λv2.<b1>[]:["b1←¬(<b2>['b2←x1']:['b2←¬(v2@x1)']</b2>;(v1@x1))"]</b1>
+sem: λv1.λv2.(<b1>['b1←x1']:[]</b1>;((v1@x1);(v2@x1)))
 cat: NP/N
 ----------
 tokens:sorts
